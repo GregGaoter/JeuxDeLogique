@@ -3,9 +3,10 @@ package main;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import org.apache.commons.lang3.Conversion;
 import org.apache.commons.lang3.RandomUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 public class MainJeux {
 
@@ -66,11 +67,8 @@ public class MainJeux {
 			 * Afficher menu principal
 			 */
 			System.out.println();
-			System.out.println("Menu principal");
-			System.out.println("--------------");
-			System.out.println(choixNouveauJeu + ". Nouveau jeu");
-			System.out.println(choixOptions + ". Options");
-			System.out.println(choixQuitterApplication + ". Quitter");
+			System.out.println(creerMenu("Principal", creerMenuItem(choixNouveauJeu, "Nouveau jeu"),
+					creerMenuItem(choixOptions, "Options"), creerMenuItem(choixQuitterApplication, "Quitter")));
 			/*
 			 * Choisir menu principal
 			 */
@@ -85,11 +83,9 @@ public class MainJeux {
 				 * Afficher menu jeux
 				 */
 				System.out.println();
-				System.out.println("Menu des jeux");
-				System.out.println("-------------");
-				System.out.println(choixRecherchePlusMoins + ". Recherche +/-");
-				System.out.println(choixMastermind + ". Mastermind");
-				System.out.println(choixQuitterMenuJeux + ". Retour au menu principal");
+				System.out.println(creerMenu("Jeux", creerMenuItem(choixRecherchePlusMoins, "Recherche +/-"),
+						creerMenuItem(choixMastermind, "Mastermind"),
+						creerMenuItem(choixQuitterMenuJeux, "Retour au menu principal")));
 				/*
 				 * Choisir menu jeu
 				 */
@@ -104,11 +100,8 @@ public class MainJeux {
 					 * Afficher menu modes
 					 */
 					System.out.println();
-					System.out.println("Menu des modes");
-					System.out.println("--------------");
-					System.out.println(choixModeChallenger + ". Challenger");
-					System.out.println(choixModeDefenseur + ". Défenseur");
-					System.out.println(choixModeDuel + ". Duel");
+					System.out.println(creerMenu("Modes", creerMenuItem(choixModeChallenger, "Challenger"),
+							creerMenuItem(choixModeDefenseur, "Défenseur"), creerMenuItem(choixModeDuel, "Duel")));
 					/*
 					 * Choisir menu modes
 					 */
@@ -179,11 +172,11 @@ public class MainJeux {
 							/*
 							 * Afficher menu fin de partie
 							 */
-							System.out.println("Menu de fin de partie");
-							System.out.println("---------------------");
-							System.out.println(choixRejouerMemeJeu + ". Rejouer au même jeu");
-							System.out.println(choixLancerAutreJeu + ". Lancer un autre jeu");
-							System.out.println(choixQuitterMenuFinDePartie + ". Quitter");
+							System.out.println();
+							System.out.println(creerMenu("Fin de partie",
+									creerMenuItem(choixRejouerMemeJeu, "Rejouer au même jeu"),
+									creerMenuItem(choixLancerAutreJeu, "Lancer un autre jeu"),
+									creerMenuItem(choixQuitterMenuFinDePartie, "Quitter")));
 							/*
 							 * Choisir menu fin de partie
 							 */
@@ -224,6 +217,10 @@ public class MainJeux {
 				System.out.println("1. Jeux");
 				System.out.println("2. Logs");
 				System.out.println("0. Retour au menu principal");
+				System.out.println();
+				System.out.println(creerMenu("Options", creerMenuItem(choixOptionsJeux, "Jeux"),
+						creerMenuItem(choixOptionsLogs, "Logs"),
+						creerMenuItem(choixQuitterMenuOptions, "Retour au menu principal")));
 				/*
 				 * Choisir menu options
 				 */
@@ -255,6 +252,20 @@ public class MainJeux {
 		System.out.println("* Au revoir *");
 		System.out.println("*************");
 
+	}
+
+	private static String creerMenuItem(byte selecteur, String message) {
+		return selecteur + ". " + message + "\n";
+	}
+
+	private static StringBuffer creerMenu(String titre, String... menuItem) {
+		String titreMenu = "Menu " + titre + "\n";
+		String separateur = StringUtils.repeat('-', titreMenu.length()) + "\n";
+		StringBuffer menu = new StringBuffer(titreMenu + separateur);
+		for (int i = 0; i < menuItem.length; i++)
+			menu.append(menuItem[i]);
+		menu.deleteCharAt(menu.length() - 1);
+		return menu;
 	}
 
 }
