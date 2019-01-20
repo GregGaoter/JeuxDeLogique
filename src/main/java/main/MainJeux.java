@@ -45,7 +45,6 @@ public class MainJeux {
 		ArrayList<Integer> combinaisonSecrete = new ArrayList<Integer>();
 		ArrayList<Integer> combinaisonProposee = new ArrayList<Integer>();
 		ArrayList<String> combinaisonReponse = new ArrayList<String>();
-		String combinaisonProposeeString;
 
 		boolean modeDeveloppeurQ = true;
 
@@ -115,9 +114,7 @@ public class MainJeux {
 							/*
 							 * Définir combinaison secrète
 							 */
-							combinaisonSecrete.clear();
-							for (int i = 0; i < nbCasesCombinaison; i++)
-								combinaisonSecrete.add(RandomUtils.nextInt(0, 10));
+							setCombinaison(combinaisonSecrete, nbCasesCombinaison);
 							/*
 							 * Afficher plateau de jeu
 							 */
@@ -139,23 +136,11 @@ public class MainJeux {
 								 * Proposer combinaison
 								 */
 								System.out.print("Proposition " + compteurEssai + "/" + nbEssais + " : ");
-								combinaisonProposee.clear();
-								combinaisonProposeeString = sc.next();
-								for (int i = 0; i < combinaisonProposeeString.length(); i++)
-									combinaisonProposee
-											.add(Character.getNumericValue(combinaisonProposeeString.charAt(i)));
+								setCombinaison(combinaisonProposee, nbCasesCombinaison, sc);
 								/*
 								 * Calculer réponse
 								 */
-								combinaisonReponse.clear();
-								for (int i = 0; i < nbCasesCombinaison; i++) {
-									if (combinaisonSecrete.get(i) < combinaisonProposee.get(i))
-										combinaisonReponse.add("-");
-									else if (combinaisonSecrete.get(i) > combinaisonProposee.get(i))
-										combinaisonReponse.add("+");
-									else
-										combinaisonReponse.add("=");
-								}
+								setCombinaison(combinaisonReponse, combinaisonSecrete, combinaisonProposee);
 								/*
 								 * Afficher résultat
 								 */
@@ -212,12 +197,6 @@ public class MainJeux {
 				 * Afficher menu options
 				 */
 				System.out.println();
-				System.out.println("Menu des options");
-				System.out.println("----------------");
-				System.out.println("1. Jeux");
-				System.out.println("2. Logs");
-				System.out.println("0. Retour au menu principal");
-				System.out.println();
 				System.out.println(creerMenu("Options", creerMenuItem(choixOptionsJeux, "Jeux"),
 						creerMenuItem(choixOptionsLogs, "Logs"),
 						creerMenuItem(choixQuitterMenuOptions, "Retour au menu principal")));
@@ -266,6 +245,32 @@ public class MainJeux {
 			menu.append(menuItem[i]);
 		menu.deleteCharAt(menu.length() - 1);
 		return menu;
+	}
+
+	private static void setCombinaison(ArrayList<Integer> combinaison, int nbCasesCombinaison) {
+		combinaison.clear();
+		for (int i = 0; i < nbCasesCombinaison; i++)
+			combinaison.add(RandomUtils.nextInt(0, 10));
+	}
+
+	private static void setCombinaison(ArrayList<Integer> combinaison, int nbCasesCombinaison, Scanner sc) {
+		combinaison.clear();
+		String combinaisonString = sc.next();
+		for (int i = 0; i < combinaisonString.length(); i++)
+			combinaison.add(Character.getNumericValue(combinaisonString.charAt(i)));
+	}
+
+	private static void setCombinaison(ArrayList<String> combinaisonReponse, ArrayList<Integer> combinaisonSecrete,
+			ArrayList<Integer> combinaisonProposee) {
+		combinaisonReponse.clear();
+		for (int i = 0; i < combinaisonSecrete.size(); i++) {
+			if (combinaisonSecrete.get(i) < combinaisonProposee.get(i))
+				combinaisonReponse.add("-");
+			else if (combinaisonSecrete.get(i) > combinaisonProposee.get(i))
+				combinaisonReponse.add("+");
+			else
+				combinaisonReponse.add("=");
+		}
 	}
 
 }
