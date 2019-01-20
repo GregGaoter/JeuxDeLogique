@@ -3,7 +3,9 @@ package main;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import org.apache.commons.lang3.Conversion;
 import org.apache.commons.lang3.RandomUtils;
+import org.apache.commons.lang3.StringUtils;
 
 public class MainJeux {
 
@@ -32,10 +34,15 @@ public class MainJeux {
 		byte choixMenuModes;
 
 		int nbCasesCombinaison = 4;
-		int nbEssais = 6;
+		int nbEssais = 4;
+		String reponseCorrecte;
 
 		ArrayList<Integer> combinaisonSecrete = new ArrayList<Integer>();
-		int combinaisonProposee;
+		ArrayList<Integer> combinaisonProposee = new ArrayList<Integer>();
+		ArrayList<String> combinaisonReponse = new ArrayList<String>();
+		String combinaisonProposeeString;
+
+		boolean modeDeveloppeurQ = true;
 
 		Scanner sc = new Scanner(System.in);
 
@@ -112,6 +119,7 @@ public class MainJeux {
 						/*
 						 * Définir combinaison secrète
 						 */
+						combinaisonSecrete.clear();
 						for (int i = 0; i < nbCasesCombinaison; i++)
 							combinaisonSecrete.add(RandomUtils.nextInt(0, 10));
 						/*
@@ -119,12 +127,53 @@ public class MainJeux {
 						 */
 						System.out.println();
 						System.out.println("Partie de Recherche +/- en mode challenger");
-						System.out.println("------------------------------------------");
+						System.out.println("Combinaison secrète de " + nbCasesCombinaison + " chiffres");
+						System.out.println("-------------------------");
 						/*
-						 * Proposer combinaison
+						 * Afficher solution si mode développeur
 						 */
-						combinaisonProposee = sc.nextInt();
+						if (modeDeveloppeurQ)
+							System.out.println("(Combinaison secrète : "
+									+ StringUtils.join(combinaisonSecrete.toArray(), null) + ")");
 
+						int compteurEssai = 0;
+						reponseCorrecte = StringUtils.repeat("=", nbCasesCombinaison);
+
+						do {
+							compteurEssai++;
+							/*
+							 * Proposer combinaison
+							 */
+							System.out.print("Proposition " + compteurEssai + "/" + nbEssais + " : ");
+							combinaisonProposee.clear();
+							combinaisonProposeeString = sc.next();
+							for (int i = 0; i < combinaisonProposeeString.length(); i++)
+								combinaisonProposee.add(Character.getNumericValue(combinaisonProposeeString.charAt(i)));
+							/*
+							 * Calculer réponse
+							 */
+							combinaisonReponse.clear();
+							for (int i = 0; i < nbCasesCombinaison; i++) {
+								if (combinaisonSecrete.get(i) < combinaisonProposee.get(i))
+									combinaisonReponse.add("-");
+								else if (combinaisonSecrete.get(i) > combinaisonProposee.get(i))
+									combinaisonReponse.add("+");
+								else
+									combinaisonReponse.add("=");
+							}
+							/*
+							 * Afficher résultat
+							 */
+							System.out.println(
+									"        Réponse : " + StringUtils.join(combinaisonReponse.toArray(), null));
+
+						} while (!StringUtils.join(combinaisonReponse.toArray(), null).equals(reponseCorrecte)
+								&& compteurEssai < nbEssais);
+						if (StringUtils.join(combinaisonReponse.toArray(), null).equals(reponseCorrecte))
+							System.out.println("Gagné !");
+						else
+							System.out.println("Perdu ! Combinaison secrète : "
+									+ StringUtils.join(combinaisonSecrete.toArray(), null));
 						break;
 					case choixModeDefenseur:
 						// TODO Implementer le mode défenseur
