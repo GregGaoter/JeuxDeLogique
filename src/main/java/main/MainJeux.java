@@ -27,11 +27,15 @@ public class MainJeux {
 		final byte choixModeChallenger = 1;
 		final byte choixModeDefenseur = 2;
 		final byte choixModeDuel = 3;
+		final byte choixRejouerMemeJeu = 1;
+		final byte choixLancerAutreJeu = 2;
+		final byte choixQuitterMenuFinDePartie = 0;
 
 		byte choixMenuPrincipal;
 		byte choixMenuJeux = 0;
 		byte choixMenuOptions = 0;
 		byte choixMenuModes;
+		byte choixMenuFinDePartie = 0;
 
 		int nbCasesCombinaison = 4;
 		int nbEssais = 4;
@@ -114,66 +118,89 @@ public class MainJeux {
 					 */
 					switch (choixMenuModes) {
 					case choixModeChallenger:
-						// TODO Implementer le mode de challenger
-						System.out.println("Mode challenger choisi");
-						/*
-						 * Définir combinaison secrète
-						 */
-						combinaisonSecrete.clear();
-						for (int i = 0; i < nbCasesCombinaison; i++)
-							combinaisonSecrete.add(RandomUtils.nextInt(0, 10));
-						/*
-						 * Afficher plateau de jeu
-						 */
-						System.out.println();
-						System.out.println("Partie de Recherche +/- en mode challenger");
-						System.out.println("Combinaison secrète de " + nbCasesCombinaison + " chiffres");
-						System.out.println("-------------------------");
-						/*
-						 * Afficher solution si mode développeur
-						 */
-						if (modeDeveloppeurQ)
-							System.out.println("(Combinaison secrète : "
-									+ StringUtils.join(combinaisonSecrete.toArray(), null) + ")");
-
-						int compteurEssai = 0;
-						reponseCorrecte = StringUtils.repeat("=", nbCasesCombinaison);
-
 						do {
-							compteurEssai++;
 							/*
-							 * Proposer combinaison
+							 * Définir combinaison secrète
 							 */
-							System.out.print("Proposition " + compteurEssai + "/" + nbEssais + " : ");
-							combinaisonProposee.clear();
-							combinaisonProposeeString = sc.next();
-							for (int i = 0; i < combinaisonProposeeString.length(); i++)
-								combinaisonProposee.add(Character.getNumericValue(combinaisonProposeeString.charAt(i)));
+							combinaisonSecrete.clear();
+							for (int i = 0; i < nbCasesCombinaison; i++)
+								combinaisonSecrete.add(RandomUtils.nextInt(0, 10));
 							/*
-							 * Calculer réponse
+							 * Afficher plateau de jeu
 							 */
-							combinaisonReponse.clear();
-							for (int i = 0; i < nbCasesCombinaison; i++) {
-								if (combinaisonSecrete.get(i) < combinaisonProposee.get(i))
-									combinaisonReponse.add("-");
-								else if (combinaisonSecrete.get(i) > combinaisonProposee.get(i))
-									combinaisonReponse.add("+");
-								else
-									combinaisonReponse.add("=");
-							}
+							System.out.println();
+							System.out.println("Partie de Recherche +/- en mode challenger");
+							System.out.println("Combinaison secrète de " + nbCasesCombinaison + " chiffres");
+							System.out.println("-------------------------");
 							/*
-							 * Afficher résultat
+							 * Afficher solution si mode développeur
 							 */
-							System.out.println(
-									"        Réponse : " + StringUtils.join(combinaisonReponse.toArray(), null));
+							if (modeDeveloppeurQ)
+								System.out.println("(Combinaison secrète : "
+										+ StringUtils.join(combinaisonSecrete.toArray(), null) + ")");
+							int compteurEssai = 0;
+							reponseCorrecte = StringUtils.repeat("=", nbCasesCombinaison);
+							do {
+								compteurEssai++;
+								/*
+								 * Proposer combinaison
+								 */
+								System.out.print("Proposition " + compteurEssai + "/" + nbEssais + " : ");
+								combinaisonProposee.clear();
+								combinaisonProposeeString = sc.next();
+								for (int i = 0; i < combinaisonProposeeString.length(); i++)
+									combinaisonProposee
+											.add(Character.getNumericValue(combinaisonProposeeString.charAt(i)));
+								/*
+								 * Calculer réponse
+								 */
+								combinaisonReponse.clear();
+								for (int i = 0; i < nbCasesCombinaison; i++) {
+									if (combinaisonSecrete.get(i) < combinaisonProposee.get(i))
+										combinaisonReponse.add("-");
+									else if (combinaisonSecrete.get(i) > combinaisonProposee.get(i))
+										combinaisonReponse.add("+");
+									else
+										combinaisonReponse.add("=");
+								}
+								/*
+								 * Afficher résultat
+								 */
+								System.out.println(
+										"        Réponse : " + StringUtils.join(combinaisonReponse.toArray(), null));
 
-						} while (!StringUtils.join(combinaisonReponse.toArray(), null).equals(reponseCorrecte)
-								&& compteurEssai < nbEssais);
-						if (StringUtils.join(combinaisonReponse.toArray(), null).equals(reponseCorrecte))
-							System.out.println("Gagné !");
-						else
-							System.out.println("Perdu ! Combinaison secrète : "
-									+ StringUtils.join(combinaisonSecrete.toArray(), null));
+							} while (!StringUtils.join(combinaisonReponse.toArray(), null).equals(reponseCorrecte)
+									&& compteurEssai < nbEssais);
+							if (StringUtils.join(combinaisonReponse.toArray(), null).equals(reponseCorrecte))
+								System.out.println("Gagné !\n");
+							else
+								System.out.println("Perdu ! Combinaison secrète : "
+										+ StringUtils.join(combinaisonSecrete.toArray(), null) + "\n");
+							/*
+							 * Afficher menu fin de partie
+							 */
+							System.out.println("Menu de fin de partie");
+							System.out.println("---------------------");
+							System.out.println(choixRejouerMemeJeu + ". Rejouer au même jeu");
+							System.out.println(choixLancerAutreJeu + ". Lancer un autre jeu");
+							System.out.println(choixQuitterMenuFinDePartie + ". Quitter");
+							/*
+							 * Choisir menu fin de partie
+							 */
+							choixMenuFinDePartie = sc.nextByte();
+							/*
+							 * Commutateur menu fin de partie
+							 */
+							switch (choixMenuFinDePartie) {
+							case choixRejouerMemeJeu:
+								break;
+							case choixLancerAutreJeu:
+								choixMenuJeux = choixQuitterMenuJeux;
+								break;
+							case choixQuitterMenuFinDePartie:
+								System.exit(0);
+							}
+						} while (choixMenuFinDePartie == choixRejouerMemeJeu);
 						break;
 					case choixModeDefenseur:
 						// TODO Implementer le mode défenseur
@@ -186,7 +213,6 @@ public class MainJeux {
 					break;
 				case choixQuitterMenuJeux:
 				}
-
 				break;
 			case choixOptions:
 				/*
@@ -221,7 +247,13 @@ public class MainJeux {
 				System.exit(0);
 			}
 		} while (choixMenuJeux == choixQuitterMenuJeux || choixMenuOptions == choixQuitterMenuOptions);
+
 		sc.close();
+
+		System.out.println();
+		System.out.println("*************");
+		System.out.println("* Au revoir *");
+		System.out.println("*************");
 
 	}
 
