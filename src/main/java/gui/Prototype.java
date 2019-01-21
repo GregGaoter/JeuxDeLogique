@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -23,14 +24,8 @@ import javax.swing.border.EmptyBorder;
 
 public class Prototype extends JFrame {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -44,15 +39,9 @@ public class Prototype extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
 	public Prototype() {
 
-		/*
-		 * Layout de la fenêtre
-		 */
-		getContentPane().setLayout(new BorderLayout(0, 0));
+		int startX;
 
 		/*
 		 * Barre de menu
@@ -64,8 +53,8 @@ public class Prototype extends JFrame {
 		JMenu menuJeu = new JMenu("Jeu");
 		barreMenu.add(menuJeu);
 
-		JMenu menuConfiguration = new JMenu("Options");
-		barreMenu.add(menuConfiguration);
+		JMenu menuOption = new JMenu("Options");
+		barreMenu.add(menuOption);
 
 		JMenu menuAide = new JMenu("Aide");
 		barreMenu.add(menuAide);
@@ -86,9 +75,9 @@ public class Prototype extends JFrame {
 		 */
 		GridBagLayout layoutPanneauJeu = new GridBagLayout();
 		GridBagConstraints gc = new GridBagConstraints();
-		gc.fill = GridBagConstraints.BOTH;// Remplissage des composants
-		gc.insets = new Insets(0, 0, 0, 0);// Marge entre les composants (top, left, bottom, right)
-		gc.anchor = GridBagConstraints.CENTER;// Placement du composant s'il n'occupe pas tout l'espace
+		gc.fill = GridBagConstraints.BOTH;
+		gc.insets = new Insets(0, 0, 0, 0);
+		gc.anchor = GridBagConstraints.CENTER;
 
 		/*
 		 * Panneau de jeu
@@ -101,16 +90,13 @@ public class Prototype extends JFrame {
 		/*
 		 * Placement des chiffres de la combinaison solution
 		 */
-		gc.gridx = 1;
 		gc.gridy = 0;
-		gc.insets = new Insets(0, 0, 10, 0);// (top, left, bottom, right)
-		panneauJeu.add(new JLabelGrand("?", SwingConstants.CENTER), gc);
-		gc.gridx = 2;
-		panneauJeu.add(new JLabelGrand("?", SwingConstants.CENTER), gc);
-		gc.gridx = 3;
-		panneauJeu.add(new JLabelGrand("?", SwingConstants.CENTER), gc);
-		gc.gridx = 4;
-		panneauJeu.add(new JLabelGrand("?", SwingConstants.CENTER), gc);
+		gc.insets = new Insets(0, 0, 10, 0);
+		startX = 1;
+		for (; startX <= 4; startX++) {
+			gc.gridx = startX;
+			panneauJeu.add(new JLabelGrand("?", SwingConstants.CENTER), gc);
+		}
 
 		/*
 		 * Ligne 1 du jeu
@@ -118,7 +104,9 @@ public class Prototype extends JFrame {
 		gc.gridy = 1;
 		gc.gridx = 1;
 		gc.insets = new Insets(0, 0, 0, 0);// (top, left, bottom, right)
-		panneauJeu.add(new JLabel(new ImageIcon(getClass().getResource("/trou_24.png"))), gc);
+		// panneauJeu.add(new JLabel(new
+		// ImageIcon(getClass().getResource("/trou_24.png"))), gc);
+		panneauJeu.add(new Case(Color.LIGHT_GRAY), gc);
 		gc.gridx = 2;
 		panneauJeu.add(new JLabel(new ImageIcon(getClass().getResource("/trou_24.png"))), gc);
 		gc.gridx = 3;
