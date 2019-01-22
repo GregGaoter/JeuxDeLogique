@@ -1,14 +1,13 @@
 package gui;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.EventQueue;
-import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Insets;
 
+import javax.swing.Box;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -21,6 +20,10 @@ import javax.swing.JToggleButton;
 import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+
+import gui.enumeration.Chiffre;
+import gui.enumeration.Couleur;
+import gui.pion.Pion;
 
 public class Prototype extends JFrame {
 
@@ -40,6 +43,30 @@ public class Prototype extends JFrame {
 	}
 
 	public Prototype() {
+
+		Chiffre _0 = Chiffre.Zero;
+		Chiffre _1 = Chiffre.Un;
+		Chiffre _2 = Chiffre.Deux;
+		Chiffre _3 = Chiffre.Trois;
+		Chiffre _4 = Chiffre.Quatre;
+		Chiffre _5 = Chiffre.Cinq;
+		Chiffre _6 = Chiffre.Six;
+		Chiffre _7 = Chiffre.Sept;
+		Chiffre _8 = Chiffre.Huit;
+		Chiffre _9 = Chiffre.Neuf;
+
+		Couleur blanc = Couleur.Blanc;
+		Couleur bleu = Couleur.Bleu;
+		Couleur jaune = Couleur.Jaune;
+		Couleur noir = Couleur.Noir;
+		Couleur rouge = Couleur.Rouge;
+		Couleur turquoise = Couleur.Turquoise;
+		Couleur vert = Couleur.Vert;
+		Couleur violet = Couleur.Violet;
+
+		String moins = "-";
+		String plus = "+";
+		String egal = "=";
 
 		int startX;
 
@@ -91,266 +118,250 @@ public class Prototype extends JFrame {
 		 * Placement des chiffres de la combinaison solution
 		 */
 		gc.gridy = 0;
-		gc.insets = new Insets(0, 0, 10, 0);
-		startX = 1;
-		for (; startX <= 4; startX++) {
+		startX = 2;
+		for (; startX <= 5; startX++) {
 			gc.gridx = startX;
-			panneauJeu.add(new JLabelGrand("?", SwingConstants.CENTER), gc);
+			panneauJeu.add(new Pion("?"), gc);
 		}
-
+		
 		/*
 		 * Ligne 1 du jeu
 		 */
-		gc.gridy = 1;
-		gc.gridx = 1;
-		gc.insets = new Insets(0, 0, 0, 0);// (top, left, bottom, right)
-		// panneauJeu.add(new JLabel(new
-		// ImageIcon(getClass().getResource("/trou_24.png"))), gc);
-		panneauJeu.add(new Case(Color.LIGHT_GRAY), gc);
+		gc.gridy = 2;
 		gc.gridx = 2;
-		panneauJeu.add(new JLabel(new ImageIcon(getClass().getResource("/trou_24.png"))), gc);
+		panneauJeu.add(new Pion(), gc);
 		gc.gridx = 3;
-		panneauJeu.add(new JLabel(new ImageIcon(getClass().getResource("/trou_24.png"))), gc);
+		panneauJeu.add(new Pion(), gc);
 		gc.gridx = 4;
-		panneauJeu.add(new JLabel(new ImageIcon(getClass().getResource("/trou_24.png"))), gc);
+		panneauJeu.add(new Pion(), gc);
 		gc.gridx = 5;
-		gc.insets = new Insets(0, 10, 0, 0);// (top, left, bottom, right)
-		panneauJeu.add(new JLabel(), gc);
-		gc.gridx = 6;
-		gc.insets = new Insets(0, 0, 0, 0);// (top, left, bottom, right)
-		panneauJeu.add(new JLabel(), gc);
+		panneauJeu.add(new Pion(), gc);
 		gc.gridx = 7;
 		panneauJeu.add(new JLabel(), gc);
 		gc.gridx = 8;
+		panneauJeu.add(new JLabel(), gc);
+		gc.gridx = 9;
+		panneauJeu.add(new JLabel(), gc);
+		gc.gridx = 10;
 		panneauJeu.add(new JLabel(), gc);
 
 		/*
 		 * Ligne 2 du jeu
 		 */
-		gc.gridy = 2;
-		gc.gridx = 1;
-		gc.insets = new Insets(0, 0, 0, 0);// (top, left, bottom, right)
-		panneauJeu.add(new JLabel(new ImageIcon(getClass().getResource("/trou_24.png"))), gc);
+		gc.gridy = 3;
 		gc.gridx = 2;
-		panneauJeu.add(new JLabel(new ImageIcon(getClass().getResource("/trou_24.png"))), gc);
+		panneauJeu.add(new Pion(), gc);
 		gc.gridx = 3;
-		panneauJeu.add(new JLabel(new ImageIcon(getClass().getResource("/trou_24.png"))), gc);
+		panneauJeu.add(new Pion(), gc);
 		gc.gridx = 4;
-		panneauJeu.add(new JLabel(new ImageIcon(getClass().getResource("/trou_24.png"))), gc);
+		panneauJeu.add(new Pion(), gc);
 		gc.gridx = 5;
-		gc.insets = new Insets(0, 10, 0, 0);// (top, left, bottom, right)
-		panneauJeu.add(new JLabel(), gc);
-		gc.gridx = 6;
-		gc.insets = new Insets(0, 0, 0, 0);// (top, left, bottom, right)
-		panneauJeu.add(new JLabel(), gc);
+		panneauJeu.add(new Pion(), gc);
 		gc.gridx = 7;
 		panneauJeu.add(new JLabel(), gc);
 		gc.gridx = 8;
+		panneauJeu.add(new JLabel(), gc);
+		gc.gridx = 9;
+		panneauJeu.add(new JLabel(), gc);
+		gc.gridx = 10;
 		panneauJeu.add(new JLabel(), gc);
 
 		/*
 		 * Ligne 3 du jeu
 		 */
-		gc.gridy = 3;
-		gc.gridx = 1;
-		gc.insets = new Insets(0, 0, 0, 0);// (top, left, bottom, right)
-		panneauJeu.add(new JLabel(new ImageIcon(getClass().getResource("/trou_24.png"))), gc);
+		gc.gridy = 4;
 		gc.gridx = 2;
-		panneauJeu.add(new JLabel(new ImageIcon(getClass().getResource("/trou_24.png"))), gc);
+		panneauJeu.add(new Pion(), gc);
 		gc.gridx = 3;
-		panneauJeu.add(new JLabel(new ImageIcon(getClass().getResource("/trou_24.png"))), gc);
+		panneauJeu.add(new Pion(), gc);
 		gc.gridx = 4;
-		panneauJeu.add(new JLabel(new ImageIcon(getClass().getResource("/trou_24.png"))), gc);
+		panneauJeu.add(new Pion(), gc);
 		gc.gridx = 5;
-		gc.insets = new Insets(0, 10, 0, 0);// (top, left, bottom, right)
-		panneauJeu.add(new JLabel(), gc);
-		gc.gridx = 6;
-		gc.insets = new Insets(0, 0, 0, 0);// (top, left, bottom, right)
-		panneauJeu.add(new JLabel(), gc);
+		panneauJeu.add(new Pion(), gc);
 		gc.gridx = 7;
 		panneauJeu.add(new JLabel(), gc);
 		gc.gridx = 8;
+		panneauJeu.add(new JLabel(), gc);
+		gc.gridx = 9;
+		panneauJeu.add(new JLabel(), gc);
+		gc.gridx = 10;
 		panneauJeu.add(new JLabel(), gc);
 
 		/*
 		 * Ligne 4 du jeu
 		 */
-		gc.gridy = 4;
-		gc.gridx = 1;
-		gc.insets = new Insets(0, 0, 0, 0);// (top, left, bottom, right)
-		panneauJeu.add(new JLabel(new ImageIcon(getClass().getResource("/trou_24.png"))), gc);
+		gc.gridy = 5;
 		gc.gridx = 2;
-		panneauJeu.add(new JLabel(new ImageIcon(getClass().getResource("/trou_24.png"))), gc);
+		panneauJeu.add(new Pion(), gc);
 		gc.gridx = 3;
-		panneauJeu.add(new JLabel(new ImageIcon(getClass().getResource("/trou_24.png"))), gc);
+		panneauJeu.add(new Pion(), gc);
 		gc.gridx = 4;
-		panneauJeu.add(new JLabel(new ImageIcon(getClass().getResource("/trou_24.png"))), gc);
+		panneauJeu.add(new Pion(), gc);
 		gc.gridx = 5;
-		gc.insets = new Insets(0, 10, 0, 0);// (top, left, bottom, right)
-		panneauJeu.add(new JLabel(), gc);
-		gc.gridx = 6;
-		gc.insets = new Insets(0, 0, 0, 0);// (top, left, bottom, right)
-		panneauJeu.add(new JLabel(), gc);
+		panneauJeu.add(new Pion(), gc);
 		gc.gridx = 7;
 		panneauJeu.add(new JLabel(), gc);
 		gc.gridx = 8;
+		panneauJeu.add(new JLabel(), gc);
+		gc.gridx = 9;
+		panneauJeu.add(new JLabel(), gc);
+		gc.gridx = 10;
 		panneauJeu.add(new JLabel(), gc);
 
 		/*
 		 * Ligne 5 du jeu
 		 */
-		gc.gridx = 0;
-		gc.gridy = 5;
-		gc.insets = new Insets(0, 0, 0, 10);// (top, left, bottom, right)
-		panneauJeu.add(new JButton("Proposer"), gc);
-		gc.gridx = 1;
-		gc.insets = new Insets(0, 0, 0, 0);// (top, left, bottom, right)
-		panneauJeu.add(new JLabel(new ImageIcon(getClass().getResource("/trou_24.png"))), gc);
+		gc.gridy = 6;
 		gc.gridx = 2;
-		panneauJeu.add(new JLabel(new ImageIcon(getClass().getResource("/trou_24.png"))), gc);
+		panneauJeu.add(new Pion(), gc);
 		gc.gridx = 3;
-		panneauJeu.add(new JLabel(new ImageIcon(getClass().getResource("/trou_24.png"))), gc);
+		panneauJeu.add(new Pion(), gc);
 		gc.gridx = 4;
-		panneauJeu.add(new JLabel(new ImageIcon(getClass().getResource("/trou_24.png"))), gc);
+		panneauJeu.add(new Pion(), gc);
 		gc.gridx = 5;
-		gc.insets = new Insets(0, 10, 0, 0);// (top, left, bottom, right)
-		panneauJeu.add(new JLabel(), gc);
-		gc.gridx = 6;
-		gc.insets = new Insets(0, 0, 0, 0);// (top, left, bottom, right)
-		panneauJeu.add(new JLabel(), gc);
+		panneauJeu.add(new Pion(), gc);
 		gc.gridx = 7;
 		panneauJeu.add(new JLabel(), gc);
 		gc.gridx = 8;
+		panneauJeu.add(new JLabel(), gc);
+		gc.gridx = 9;
+		panneauJeu.add(new JLabel(), gc);
+		gc.gridx = 10;
 		panneauJeu.add(new JLabel(), gc);
 
 		/*
 		 * Ligne 6 du jeu
 		 */
-		gc.gridy = 6;
-		gc.gridx = 1;
-		gc.insets = new Insets(0, 0, 0, 0);// (top, left, bottom, right)
-		panneauJeu.add(new JLabelGrand("7", SwingConstants.CENTER), gc);
+		gc.gridx = 0;
+		gc.gridy = 7;
+		gc.fill = GridBagConstraints.NONE;
+		panneauJeu.add(new JButton("Proposer"), gc);
 		gc.gridx = 2;
-		panneauJeu.add(new JLabelGrand("0", SwingConstants.CENTER), gc);
+		gc.fill = GridBagConstraints.NONE;
+		panneauJeu.add(new Pion(), gc);
 		gc.gridx = 3;
-		panneauJeu.add(new JLabelGrand("3", SwingConstants.CENTER), gc);
+		panneauJeu.add(new Pion(), gc);
 		gc.gridx = 4;
-		panneauJeu.add(new JLabelGrand("3", SwingConstants.CENTER), gc);
+		panneauJeu.add(new Pion(), gc);
 		gc.gridx = 5;
-		gc.insets = new Insets(0, 10, 0, 0);// (top, left, bottom, right)
-		panneauJeu.add(new JLabelGrand("=", SwingConstants.CENTER), gc);
-		gc.gridx = 6;
-		gc.insets = new Insets(0, 0, 0, 0);// (top, left, bottom, right)
-		panneauJeu.add(new JLabelGrand("=", SwingConstants.CENTER), gc);
+		panneauJeu.add(new Pion(), gc);
 		gc.gridx = 7;
-		panneauJeu.add(new JLabelGrand("+", SwingConstants.CENTER), gc);
+		panneauJeu.add(new JLabel(), gc);
 		gc.gridx = 8;
-		panneauJeu.add(new JLabelGrand("=", SwingConstants.CENTER), gc);
+		panneauJeu.add(new JLabel(), gc);
+		gc.gridx = 9;
+		panneauJeu.add(new JLabel(), gc);
+		gc.gridx = 10;
+		panneauJeu.add(new JLabel(), gc);
 
 		/*
 		 * Ligne 7 du jeu
 		 */
-		gc.gridy = 7;
-		gc.gridx = 1;
-		gc.insets = new Insets(0, 0, 0, 0);// (top, left, bottom, right)
-		panneauJeu.add(new JLabelGrand("1", SwingConstants.CENTER), gc);
+		gc.gridy = 8;
 		gc.gridx = 2;
-		panneauJeu.add(new JLabelGrand("2", SwingConstants.CENTER), gc);
+		panneauJeu.add(new Pion(_1), gc);
 		gc.gridx = 3;
-		panneauJeu.add(new JLabelGrand("6", SwingConstants.CENTER), gc);
+		panneauJeu.add(new Pion(_1), gc);
 		gc.gridx = 4;
-		panneauJeu.add(new JLabelGrand("9", SwingConstants.CENTER), gc);
+		panneauJeu.add(new Pion(_8), gc);
 		gc.gridx = 5;
-		gc.insets = new Insets(0, 10, 0, 0);// (top, left, bottom, right)
-		panneauJeu.add(new JLabelGrand("+", SwingConstants.CENTER), gc);
-		gc.gridx = 6;
-		gc.insets = new Insets(0, 0, 0, 0);// (top, left, bottom, right)
-		panneauJeu.add(new JLabelGrand("+", SwingConstants.CENTER), gc);
+		panneauJeu.add(new Pion(_2), gc);
 		gc.gridx = 7;
-		panneauJeu.add(new JLabelGrand("-", SwingConstants.CENTER), gc);
+		panneauJeu.add(new Pion(moins), gc);
 		gc.gridx = 8;
-		panneauJeu.add(new JLabelGrand("-", SwingConstants.CENTER), gc);
+		panneauJeu.add(new Pion(moins), gc);
+		gc.gridx = 9;
+		panneauJeu.add(new Pion(egal), gc);
+		gc.gridx = 10;
+		panneauJeu.add(new Pion(egal), gc);
 
 		/*
 		 * Ligne 8 du jeu
 		 */
-		gc.gridy = 8;
-		gc.gridx = 1;
-		gc.insets = new Insets(0, 0, 0, 0);// (top, left, bottom, right)
-		panneauJeu.add(new JLabelGrand("9", SwingConstants.CENTER), gc);
+		gc.gridy = 9;
 		gc.gridx = 2;
-		panneauJeu.add(new JLabelGrand("9", SwingConstants.CENTER), gc);
+		panneauJeu.add(new Pion(_1), gc);
 		gc.gridx = 3;
-		panneauJeu.add(new JLabelGrand("9", SwingConstants.CENTER), gc);
+		panneauJeu.add(new Pion(_5), gc);
 		gc.gridx = 4;
-		panneauJeu.add(new JLabelGrand("9", SwingConstants.CENTER), gc);
+		panneauJeu.add(new Pion(_8), gc);
 		gc.gridx = 5;
-		gc.insets = new Insets(0, 10, 0, 0);// (top, left, bottom, right)
-		panneauJeu.add(new JLabelGrand("+", SwingConstants.CENTER), gc);
-		gc.gridx = 6;
-		gc.insets = new Insets(0, 0, 0, 0);// (top, left, bottom, right)
-		panneauJeu.add(new JLabelGrand("-", SwingConstants.CENTER), gc);
+		panneauJeu.add(new Pion(_2), gc);
 		gc.gridx = 7;
-		panneauJeu.add(new JLabelGrand("=", SwingConstants.CENTER), gc);
+		panneauJeu.add(new Pion(moins), gc);
 		gc.gridx = 8;
-		panneauJeu.add(new JLabelGrand("+", SwingConstants.CENTER), gc);
+		panneauJeu.add(new Pion(egal), gc);
+		gc.gridx = 9;
+		panneauJeu.add(new Pion(egal), gc);
+		gc.gridx = 10;
+		panneauJeu.add(new Pion(egal), gc);
 
 		/*
 		 * Ligne 9 du jeu
 		 */
-		gc.gridy = 9;
-		gc.gridx = 1;
-		gc.insets = new Insets(0, 0, 0, 0);// (top, left, bottom, right)
-		panneauJeu.add(new JLabelGrand("7", SwingConstants.CENTER), gc);
+		gc.gridy = 10;
 		gc.gridx = 2;
-		panneauJeu.add(new JLabelGrand("5", SwingConstants.CENTER), gc);
+		panneauJeu.add(new Pion(_1), gc);
 		gc.gridx = 3;
-		panneauJeu.add(new JLabelGrand("3", SwingConstants.CENTER), gc);
+		panneauJeu.add(new Pion(_3), gc);
 		gc.gridx = 4;
-		panneauJeu.add(new JLabelGrand("6", SwingConstants.CENTER), gc);
+		panneauJeu.add(new Pion(_4), gc);
 		gc.gridx = 5;
-		gc.insets = new Insets(0, 10, 0, 0);// (top, left, bottom, right)
-		panneauJeu.add(new JLabelGrand("-", SwingConstants.CENTER), gc);
-		gc.gridx = 6;
-		gc.insets = new Insets(0, 0, 0, 0);// (top, left, bottom, right)
-		panneauJeu.add(new JLabelGrand("+", SwingConstants.CENTER), gc);
+		panneauJeu.add(new Pion(_0), gc);
 		gc.gridx = 7;
-		panneauJeu.add(new JLabelGrand("-", SwingConstants.CENTER), gc);
+		panneauJeu.add(new Pion(moins), gc);
 		gc.gridx = 8;
-		panneauJeu.add(new JLabelGrand("+", SwingConstants.CENTER), gc);
+		panneauJeu.add(new Pion(moins), gc);
+		gc.gridx = 9;
+		panneauJeu.add(new Pion(plus), gc);
+		gc.gridx = 10;
+		panneauJeu.add(new Pion(plus), gc);
 
 		/*
 		 * Ligne 10 du jeu
 		 */
-		gc.gridy = 10;
-		gc.gridx = 1;
-		gc.insets = new Insets(0, 0, 0, 0);// (top, left, bottom, right)
-		panneauJeu.add(new JLabelGrand("4", SwingConstants.CENTER), gc);
+		gc.gridy = 11;
 		gc.gridx = 2;
-		panneauJeu.add(new JLabelGrand("4", SwingConstants.CENTER), gc);
+		panneauJeu.add(new Pion(_4), gc);
 		gc.gridx = 3;
-		panneauJeu.add(new JLabelGrand("2", SwingConstants.CENTER), gc);
+		panneauJeu.add(new Pion(_8), gc);
 		gc.gridx = 4;
-		panneauJeu.add(new JLabelGrand("4", SwingConstants.CENTER), gc);
+		panneauJeu.add(new Pion(_3), gc);
 		gc.gridx = 5;
-		gc.insets = new Insets(0, 10, 0, 0);// (top, left, bottom, right)
-		panneauJeu.add(new JLabelGrand("+", SwingConstants.CENTER), gc);
-		gc.gridx = 6;
-		gc.insets = new Insets(0, 0, 0, 0);// (top, left, bottom, right)
-		panneauJeu.add(new JLabelGrand("-", SwingConstants.CENTER), gc);
+		panneauJeu.add(new Pion(_3), gc);
 		gc.gridx = 7;
-		panneauJeu.add(new JLabelGrand("+", SwingConstants.CENTER), gc);
+		panneauJeu.add(new Pion(moins), gc);
 		gc.gridx = 8;
-		panneauJeu.add(new JLabelGrand("+", SwingConstants.CENTER), gc);
-
+		panneauJeu.add(new Pion(moins), gc);
+		gc.gridx = 9;
+		panneauJeu.add(new Pion(plus), gc);
+		gc.gridx = 10;
+		panneauJeu.add(new Pion(moins), gc);
+		
+		/*
+		 * Séparateurs verticaux
+		 */
+		gc.gridy = 1;
+		gc.gridx = 0;
+		panneauJeu.add(Box.createVerticalStrut(10), gc);
+		gc.gridy = 12;
+		panneauJeu.add(Box.createVerticalStrut(10), gc);
+		
+		/*
+		 * Séparateurs horizontaux
+		 */
+		gc.gridy = 0;
+		gc.gridx = 1;
+		panneauJeu.add(Box.createHorizontalStrut(10), gc);
+		gc.gridx = 6;
+		panneauJeu.add(Box.createHorizontalStrut(10), gc);
 		/*
 		 * Chiffres possibles
 		 */
 		gc.gridx = 0;
 		gc.gridy = 13;
-		gc.gridwidth = 9;
+		gc.gridwidth = 11;
 		gc.fill = GridBagConstraints.NONE;
-		gc.insets = new Insets(10, 0, 0, 0);// (top, left, bottom, right)
 		JPanel panneauChiffresPossibles = new JPanel();
 		panneauChiffresPossibles.setLayout(new GridLayout(2, 5, 0, 0));
 		panneauJeu.add(panneauChiffresPossibles, gc);
