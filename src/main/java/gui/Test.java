@@ -9,6 +9,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JToggleButton;
 import javax.swing.JToolBar;
+import javax.swing.JLayeredPane;
+import java.awt.CardLayout;
 
 public class Test extends JFrame {
 
@@ -63,6 +65,13 @@ public class Test extends JFrame {
 		JToggleButton tglbtnT_2 = new JToggleButton("t3");
 		toggleButtonGroupe.add(tglbtnT_2);
 		panel.add(tglbtnT_2);
+		
+		JPanel panel_1 = new JPanel();
+		getContentPane().add(panel_1, BorderLayout.CENTER);
+		panel_1.setLayout(null);
+		
+		JButton btnNewButton = new JButton("New button");
+		btnNewButton.setBounds(101, 77, 98, 26);
+		panel_1.add(btnNewButton);
 	}
-
 }

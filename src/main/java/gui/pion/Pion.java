@@ -27,7 +27,7 @@ public class Pion extends JPanel {
 		setPreferredSize(new Dimension(40, 40));
 		setLayout(new BorderLayout(0, 0));
 		faceColor = new Color(204, 204, 204, 204);
-		edgeColor = new Color(0, 0, 0, 64);
+		edgeColor = new Color(0, 0, 0, 32);
 	}
 
 	public Pion(Chiffre chiffre) {

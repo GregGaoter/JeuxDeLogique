@@ -29,6 +29,8 @@ public class Prototype extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 
+	JToggleButton toggleButton0;
+
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -98,7 +100,7 @@ public class Prototype extends JFrame {
 		barreOutils.add(boutonNouveauJeu);
 
 		/*
-		 * GridBagLayout et contraintes avec options générales
+		 * GridBagLayout du panneau de jeu et contraintes avec options générales
 		 */
 		GridBagLayout layoutPanneauJeu = new GridBagLayout();
 		GridBagConstraints gc = new GridBagConstraints();
@@ -123,7 +125,7 @@ public class Prototype extends JFrame {
 			gc.gridx = startX;
 			panneauJeu.add(new Pion("?"), gc);
 		}
-		
+
 		/*
 		 * Ligne 1 du jeu
 		 */
@@ -337,7 +339,7 @@ public class Prototype extends JFrame {
 		panneauJeu.add(new Pion(plus), gc);
 		gc.gridx = 10;
 		panneauJeu.add(new Pion(moins), gc);
-		
+
 		/*
 		 * Séparateurs verticaux
 		 */
@@ -346,7 +348,7 @@ public class Prototype extends JFrame {
 		panneauJeu.add(Box.createVerticalStrut(10), gc);
 		gc.gridy = 12;
 		panneauJeu.add(Box.createVerticalStrut(10), gc);
-		
+
 		/*
 		 * Séparateurs horizontaux
 		 */
@@ -366,7 +368,7 @@ public class Prototype extends JFrame {
 		panneauChiffresPossibles.setLayout(new GridLayout(2, 5, 0, 0));
 		panneauJeu.add(panneauChiffresPossibles, gc);
 		ButtonGroup toggleButtonGroupe = new ButtonGroup();
-		JToggleButton toggleButton0 = new JToggleButton("0");
+		toggleButton0 = new JToggleButton("0");
 		toggleButtonGroupe.add(toggleButton0);
 		panneauChiffresPossibles.add(toggleButton0);
 		JToggleButton toggleButton1 = new JToggleButton("1");
