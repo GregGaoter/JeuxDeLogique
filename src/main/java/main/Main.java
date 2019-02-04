@@ -1,16 +1,15 @@
 package main;
 
-import javax.swing.SwingUtilities;
-
-import gui.FenetreJeu;
+import controleur.ControleurJeu;
+import controleur.ControleurRecherchePlusMoins;
+import modele.ModeleJeu;
+import modele.ModeleRecherchePlusMoins;
 
 public class Main {
 
 	public static void main(String[] args) {
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				new FenetreJeu();
-			}
-		});
+		ModeleJeu modele = new ModeleRecherchePlusMoins();
+		ControleurJeu controleur = new ControleurRecherchePlusMoins(modele);
 	}
+
 }
