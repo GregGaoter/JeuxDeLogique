@@ -2,11 +2,11 @@ package com.openclassrooms.jeuxlogiques.vue.dialogue;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.Box;
-import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -15,6 +15,10 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JToggleButton;
+import javax.swing.border.EmptyBorder;
+
+import com.openclassrooms.jeuxlogiques.vue.separateur.AlignementVertical;
+import com.openclassrooms.jeuxlogiques.vue.separateur.SeparateurHorizontal;
 
 public class DialogueJeu extends JDialog {
 
@@ -25,6 +29,7 @@ public class DialogueJeu extends JDialog {
 
 	private String jeu;
 
+	private JPanel panneauPrincipal, panneauIcone, panneauChoixJeux, panneauSelection;
 	private JButton boutonOk;
 	private JButton boutonAnnuler;
 	private boolean okQ;
@@ -33,25 +38,40 @@ public class DialogueJeu extends JDialog {
 		super(fenetreParente, "Sélection du jeu", true);
 
 		/*
+		 * Panneau principal
+		 */
+		panneauPrincipal = new JPanel(new BorderLayout());
+		add(panneauPrincipal, BorderLayout.CENTER);
+		panneauPrincipal.setBorder(new EmptyBorder(10, 10, 10, 10));
+
+		/*
 		 * Icone
 		 */
-		add(new JLabel(new ImageIcon(getClass().getResource("/aide_48.png"))), BorderLayout.WEST);
+		panneauIcone = new JPanel();
+		panneauPrincipal.add(panneauIcone, BorderLayout.WEST);
+		panneauIcone.add(new JLabel(new ImageIcon(getClass().getResource("/aide_48.png"))));
+		panneauIcone.add(Box.createHorizontalStrut(10));
 
 		/*
 		 * Choix des jeux
 		 */
-		JPanel panneauChoixJeux = new JPanel();
-		add(panneauChoixJeux, BorderLayout.CENTER);
-		panneauChoixJeux.setLayout(new BoxLayout(panneauChoixJeux, BoxLayout.Y_AXIS));
+		panneauChoixJeux = new JPanel(new BorderLayout());
+		panneauPrincipal.add(panneauChoixJeux, BorderLayout.CENTER);
+
+		panneauSelection = new JPanel();
+		panneauChoixJeux.add(panneauSelection, BorderLayout.CENTER);
+		GridLayout layoutPanneauSelection = new GridLayout(0, 1);
+		panneauSelection.setLayout(layoutPanneauSelection);
+
 		ButtonGroup toggleButtonGroupe = new ButtonGroup();
 
-		panneauChoixJeux.add(new JLabel("Sélectionnez un jeu :"));
+		panneauChoixJeux.add(new JLabel("Sélectionnez un jeu :"), BorderLayout.NORTH);
 
-		panneauChoixJeux.add(Box.createVerticalStrut(20));
+		panneauSelection.add(new SeparateurHorizontal(20, AlignementVertical.Haut));
 
 		JToggleButton toggleButtonRecherchePlusMoins = new JToggleButton(jeuRecherchePlusMoins);
 		toggleButtonGroupe.add(toggleButtonRecherchePlusMoins);
-		panneauChoixJeux.add(toggleButtonRecherchePlusMoins);
+		panneauSelection.add(toggleButtonRecherchePlusMoins);
 		toggleButtonRecherchePlusMoins.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				jeu = jeuRecherchePlusMoins;
@@ -61,7 +81,7 @@ public class DialogueJeu extends JDialog {
 
 		JToggleButton toggleButtonMastermind = new JToggleButton(jeuMastermind);
 		toggleButtonGroupe.add(toggleButtonMastermind);
-		panneauChoixJeux.add(toggleButtonMastermind);
+		panneauSelection.add(toggleButtonMastermind);
 		toggleButtonMastermind.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				jeu = jeuMastermind;
@@ -69,15 +89,15 @@ public class DialogueJeu extends JDialog {
 			}
 		});
 
-		panneauChoixJeux.add(Box.createVerticalStrut(20));
+		panneauSelection.add(new SeparateurHorizontal(20, AlignementVertical.Bas));
 
-		toggleButtonRecherchePlusMoins.setSelected(true);
+		toggleButtonRecherchePlusMoins.doClick();
 
 		/*
 		 * Validation
 		 */
 		JPanel panneauValidation = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-		add(panneauValidation, BorderLayout.SOUTH);
+		panneauChoixJeux.add(panneauValidation, BorderLayout.SOUTH);
 		boutonOk = new JButton("OK");
 		panneauValidation.add(boutonOk);
 		boutonOk.addActionListener(new ActionListener() {

@@ -24,6 +24,8 @@ import com.openclassrooms.jeuxlogiques.modele.ModeleJeu;
 import com.openclassrooms.jeuxlogiques.vue.dialogue.DialogueJeu;
 import com.openclassrooms.jeuxlogiques.vue.pion.FabriqueDePion;
 import com.openclassrooms.jeuxlogiques.vue.pion.FabriqueDePionInitiale;
+import com.openclassrooms.jeuxlogiques.vue.separateur.AlignementHorizontal;
+import com.openclassrooms.jeuxlogiques.vue.separateur.SeparateurVertical;
 
 public class VueJeu implements Observateur {
 
@@ -141,7 +143,7 @@ public class VueJeu implements Observateur {
 		});
 		barreOutils.add(boutonNouveauJeu);
 
-		barreOutils.addSeparator();
+		barreOutils.add(new SeparateurVertical(20, AlignementHorizontal.Centre));
 
 		boutonOptionJeu = new JButton("Options jeux", new ImageIcon(getClass().getResource("/option_jeu_32.png")));
 		boutonOptionJeu.setVerticalTextPosition(SwingConstants.BOTTOM);
@@ -163,7 +165,7 @@ public class VueJeu implements Observateur {
 		});
 		barreOutils.add(boutonOptionLogs);
 
-		barreOutils.addSeparator();
+		barreOutils.add(new SeparateurVertical(20, AlignementHorizontal.Centre));
 
 		bouttonAide = new JButton("Règles de jeux", new ImageIcon(getClass().getResource("/aide_32.png")));
 		bouttonAide.setVerticalTextPosition(SwingConstants.BOTTOM);
