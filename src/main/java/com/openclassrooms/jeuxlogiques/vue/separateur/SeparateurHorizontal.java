@@ -20,13 +20,13 @@ public class SeparateurHorizontal extends Separateur {
 	protected void dessinerLigne() {
 		switch (alignementVertical.name()) {
 		case "Haut":
-			g2D.drawLine(0, 0, getWidth(), 0);
+			g2D.drawLine(0, 1, getWidth(), 1);
 			break;
 		case "Milieu":
 			g2D.drawLine(0, getHeight() / 2, getWidth(), getHeight() / 2);
 			break;
 		case "Bas":
-			g2D.drawLine(0, getHeight(), getWidth(), getHeight());
+			g2D.drawLine(0, getHeight() - 1, getWidth(), getHeight() - 1);
 			break;
 		}
 	}

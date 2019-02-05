@@ -58,16 +58,16 @@ public class DialogueJeu extends JDialog {
 		panneauChoixJeux = new JPanel(new BorderLayout());
 		panneauPrincipal.add(panneauChoixJeux, BorderLayout.CENTER);
 
-		panneauSelection = new JPanel();
+		panneauSelection = new JPanel(new GridLayout(0, 1));
 		panneauChoixJeux.add(panneauSelection, BorderLayout.CENTER);
-		GridLayout layoutPanneauSelection = new GridLayout(0, 1);
-		panneauSelection.setLayout(layoutPanneauSelection);
 
 		ButtonGroup toggleButtonGroupe = new ButtonGroup();
 
-		panneauChoixJeux.add(new JLabel("Sélectionnez un jeu :"), BorderLayout.NORTH);
+		JLabel message = new JLabel("Sélectionnez un jeu :");
+		panneauChoixJeux.add(message, BorderLayout.NORTH);
+		message.setBorder(new EmptyBorder(0, 0, 5, 0));
 
-		panneauSelection.add(new SeparateurHorizontal(20, AlignementVertical.Haut));
+		panneauSelection.add(new SeparateurHorizontal(1, AlignementVertical.Haut));
 
 		JToggleButton toggleButtonRecherchePlusMoins = new JToggleButton(jeuRecherchePlusMoins);
 		toggleButtonGroupe.add(toggleButtonRecherchePlusMoins);
@@ -89,7 +89,7 @@ public class DialogueJeu extends JDialog {
 			}
 		});
 
-		panneauSelection.add(new SeparateurHorizontal(20, AlignementVertical.Bas));
+		panneauSelection.add(new SeparateurHorizontal(1, AlignementVertical.Bas));
 
 		toggleButtonRecherchePlusMoins.doClick();
 
@@ -98,6 +98,7 @@ public class DialogueJeu extends JDialog {
 		 */
 		JPanel panneauValidation = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 		panneauChoixJeux.add(panneauValidation, BorderLayout.SOUTH);
+		panneauValidation.setBorder(new EmptyBorder(5, 0, 0, 0));
 		boutonOk = new JButton("OK");
 		panneauValidation.add(boutonOk);
 		boutonOk.addActionListener(new ActionListener() {
