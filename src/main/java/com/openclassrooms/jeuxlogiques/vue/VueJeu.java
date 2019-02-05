@@ -262,6 +262,14 @@ public class VueJeu implements Observateur {
 		return modele;
 	}
 
+	public ControleurJeu getControleur() {
+		return controleur;
+	}
+
+	public JFrame getFenetrePrincipale() {
+		return fenetrePrincipale;
+	}
+
 	public FabriqueDePion getFabriqueDePion() {
 		return fabriqueDePion;
 	}

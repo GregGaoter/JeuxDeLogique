@@ -1,8 +1,10 @@
 package com.openclassrooms.jeuxlogiques.controleur;
 
+import com.openclassrooms.jeuxlogiques.enumeration.Mode;
 import com.openclassrooms.jeuxlogiques.modele.ModeleJeu;
 import com.openclassrooms.jeuxlogiques.vue.VueJeu;
 import com.openclassrooms.jeuxlogiques.vue.dialogue.DialogueJeu;
+import com.openclassrooms.jeuxlogiques.vue.dialogue.DialogueMode;
 
 public abstract class ControleurJeu {
 
@@ -32,6 +34,17 @@ public abstract class ControleurJeu {
 
 		} else
 			System.out.println("Aucun jeu sélectionné");
+		dialogue.dispose();
+		lancerMode(new DialogueMode(vue.getFenetrePrincipale()));
+	}
+
+	private void lancerMode(DialogueMode dialogue) {
+		Mode mode = dialogue.getValeur();
+		if (mode != null) {
+			System.out.println("Mode sélectionné : " + mode);
+
+		} else
+			System.out.println("Aucun mode sélectionné");
 		dialogue.dispose();
 	}
 
