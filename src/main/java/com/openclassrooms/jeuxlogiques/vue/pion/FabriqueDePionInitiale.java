@@ -20,4 +20,8 @@ public class FabriqueDePionInitiale extends FabriqueDePion {
 		return new PionVide();
 	}
 
+	public JPanel creerPionTransparent() {
+		return new PionTransparent();
+	}
+
 }

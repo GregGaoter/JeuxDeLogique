@@ -18,6 +18,7 @@ public class PionVide extends JPanel {
 	public PionVide() {
 		setPreferredSize(new Dimension(40, 40));
 		setLayout(new BorderLayout(0, 0));
+		setBackground(new Color(0, 0, 0, 0));
 	}
 
 	public void paintComponent(Graphics g) {

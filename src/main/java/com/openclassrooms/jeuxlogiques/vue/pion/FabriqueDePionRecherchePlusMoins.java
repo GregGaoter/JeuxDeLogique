@@ -20,4 +20,8 @@ public class FabriqueDePionRecherchePlusMoins extends FabriqueDePion {
 		return null;
 	}
 
+	public JPanel creerPionTransparent() {
+		return null;
+	}
+
 }

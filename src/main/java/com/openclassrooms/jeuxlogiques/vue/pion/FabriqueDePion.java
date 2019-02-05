@@ -12,4 +12,6 @@ public abstract class FabriqueDePion {
 
 	public abstract JPanel creerPionReponse();
 
+	public abstract JPanel creerPionTransparent();
+
 }

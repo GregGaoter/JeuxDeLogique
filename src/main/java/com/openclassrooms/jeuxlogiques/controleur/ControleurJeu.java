@@ -27,9 +27,10 @@ public abstract class ControleurJeu {
 	 */
 	public void lancerNouveauJeu(DialogueJeu dialogue) {
 		String jeu = dialogue.getValeur();
-		if (jeu != null)
+		if (jeu != null) {
 			System.out.println("Jeu sélectionné : " + jeu);
-		else
+
+		} else
 			System.out.println("Aucun jeu sélectionné");
 		dialogue.dispose();
 	}
