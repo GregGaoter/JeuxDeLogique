@@ -52,7 +52,6 @@ public class VueJeu implements Observateur {
 			menuItemAideRegles;
 	private JToolBar barreOutils;
 	private JButton boutonNouveauJeu, boutonOptionJeu, boutonOptionLogs, bouttonAide;
-	private JButton boutonProposition;
 
 	/*
 	 * Le constructeur de la vue reçoit une référence du modèle et du contrôleur qui
@@ -216,28 +215,28 @@ public class VueJeu implements Observateur {
 		 */
 		contraintes.gridx = 2;
 		contraintes.gridy = 1;
-		panneauPrincipal.add(new PlateauSolution(this, fabriqueDePion), contraintes);
+		panneauPrincipal.add(new PlateauSolution(this), contraintes);
 
 		/*
 		 * Plateau proposition
 		 */
 		contraintes.gridx = 2;
 		contraintes.gridy = 2;
-		panneauPrincipal.add(new PlateauProposition(this, fabriqueDePion), contraintes);
+		panneauPrincipal.add(new PlateauProposition(this), contraintes);
 
 		/*
 		 * Plateau réponse
 		 */
 		contraintes.gridx = 3;
 		contraintes.gridy = 2;
-		panneauPrincipal.add(new PlateauReponse(this, fabriqueDePion), contraintes);
+		panneauPrincipal.add(new PlateauReponse(this), contraintes);
 
 		/*
 		 * Plateau validation
 		 */
 		contraintes.gridx = 1;
 		contraintes.gridy = 2;
-		panneauPrincipal.add(new PlateauValidation(this, fabriqueDePion), contraintes);
+		panneauPrincipal.add(new PlateauValidation(this), contraintes);
 
 		/*
 		 * Plateau pions
@@ -245,8 +244,10 @@ public class VueJeu implements Observateur {
 		contraintes.gridx = 1;
 		contraintes.gridy = 3;
 		contraintes.gridwidth = 3;
-		panneauPrincipal.add(new PlateauPions(this, fabriqueDePion), contraintes);
+		contraintes.fill = GridBagConstraints.NONE;
+		panneauPrincipal.add(new PlateauPions(this), contraintes);
 		contraintes.gridwidth = 1;
+		contraintes.fill = GridBagConstraints.BOTH;
 
 		/*
 		 * Paramètres de la fenêtre principale
@@ -259,6 +260,10 @@ public class VueJeu implements Observateur {
 
 	public ModeleJeu getModele() {
 		return modele;
+	}
+
+	public FabriqueDePion getFabriqueDePion() {
+		return fabriqueDePion;
 	}
 
 	public void actualiser() {
