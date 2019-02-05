@@ -3,12 +3,10 @@ package com.openclassrooms.jeuxlogiques.vue;
 import java.awt.BorderLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -27,6 +25,11 @@ import com.openclassrooms.jeuxlogiques.modele.ModeleJeu;
 import com.openclassrooms.jeuxlogiques.vue.dialogue.DialogueJeu;
 import com.openclassrooms.jeuxlogiques.vue.pion.FabriqueDePion;
 import com.openclassrooms.jeuxlogiques.vue.pion.FabriqueDePionInitiale;
+import com.openclassrooms.jeuxlogiques.vue.plateau.PlateauPions;
+import com.openclassrooms.jeuxlogiques.vue.plateau.PlateauProposition;
+import com.openclassrooms.jeuxlogiques.vue.plateau.PlateauReponse;
+import com.openclassrooms.jeuxlogiques.vue.plateau.PlateauSolution;
+import com.openclassrooms.jeuxlogiques.vue.plateau.PlateauValidation;
 import com.openclassrooms.jeuxlogiques.vue.separateur.AlignementHorizontal;
 import com.openclassrooms.jeuxlogiques.vue.separateur.SeparateurVertical;
 
@@ -43,7 +46,6 @@ public class VueJeu implements Observateur {
 
 	private JFrame fenetrePrincipale;
 	private JPanel panneauPrincipal;
-	private JPanel panneauPionsUtilisables;
 	private JMenuBar barreDeMenu;
 	private JMenu menuJeu, menuOption, menuAide;
 	private JMenuItem menuItemJeuNouveauJeu, menuItemJeuQuitter, menuItemOptionJeu, menuItemOptionLogs,
@@ -210,74 +212,40 @@ public class VueJeu implements Observateur {
 		panneauPrincipal.setBorder(new EmptyBorder(10, 10, 10, 10));
 
 		/*
-		 * Combinaison secrète
+		 * Plateau solution
 		 */
-		JPanel plateauCombinaisonSecrete = new JPanel(new GridLayout(1, modele.getNbPionsCombinaison()));
-		plateauCombinaisonSecrete.setBorder(BorderFactory.createTitledBorder("Solution"));
-		for (int i = 0; i < modele.getNbPionsCombinaison(); i++)
-			plateauCombinaisonSecrete.add(fabriqueDePion.creerPionVide());
 		contraintes.gridx = 2;
 		contraintes.gridy = 1;
-		panneauPrincipal.add(plateauCombinaisonSecrete, contraintes);
+		panneauPrincipal.add(new PlateauSolution(this, fabriqueDePion), contraintes);
 
 		/*
-		 * Combinaisons proposées
+		 * Plateau proposition
 		 */
-		JPanel plateauCombinaisonsProposees = new JPanel(
-				new GridLayout(modele.getNbEssais(), modele.getNbPionsCombinaison()));
-		plateauCombinaisonsProposees.setBorder(BorderFactory.createTitledBorder("Proposition"));
-		for (int y = 0; y < modele.getNbEssais(); y++) {
-			for (int x = 0; x < modele.getNbPionsCombinaison(); x++)
-				plateauCombinaisonsProposees.add(fabriqueDePion.creerPionVide());
-		}
 		contraintes.gridx = 2;
 		contraintes.gridy = 2;
-		panneauPrincipal.add(plateauCombinaisonsProposees, contraintes);
+		panneauPrincipal.add(new PlateauProposition(this, fabriqueDePion), contraintes);
 
 		/*
-		 * Combinaisons réponses
+		 * Plateau réponse
 		 */
-		JPanel plateauCombinaisonsReponses = new JPanel(
-				new GridLayout(modele.getNbEssais(), modele.getNbPionsCombinaison()));
-		plateauCombinaisonsReponses.setBorder(BorderFactory.createTitledBorder("Réponse"));
-		for (int y = 0; y < modele.getNbEssais(); y++) {
-			for (int x = 0; x < modele.getNbPionsCombinaison(); x++)
-				plateauCombinaisonsReponses.add(fabriqueDePion.creerPionVide());
-		}
 		contraintes.gridx = 3;
 		contraintes.gridy = 2;
-		panneauPrincipal.add(plateauCombinaisonsReponses, contraintes);
+		panneauPrincipal.add(new PlateauReponse(this, fabriqueDePion), contraintes);
 
 		/*
-		 * Bouton proposition
+		 * Plateau validation
 		 */
-		JPanel plateauBoutonProposition = new JPanel(new GridBagLayout());
-		boutonProposition = new JButton("Valider");
-		plateauBoutonProposition.setBorder(BorderFactory.createTitledBorder("Validation"));
 		contraintes.gridx = 1;
-		for (int y = 0; y < modele.getNbEssais() - 1; y++) {
-			contraintes.gridy = y + 1;
-			plateauBoutonProposition.add(fabriqueDePion.creerPionTransparent(), contraintes);
-		}
-		contraintes.gridy = modele.getNbEssais();
-		contraintes.fill = GridBagConstraints.HORIZONTAL;
-		plateauBoutonProposition.add(boutonProposition, contraintes);
-		boutonProposition.setEnabled(false);
-		contraintes.fill = GridBagConstraints.BOTH;
 		contraintes.gridy = 2;
-		panneauPrincipal.add(plateauBoutonProposition, contraintes);
+		panneauPrincipal.add(new PlateauValidation(this, fabriqueDePion), contraintes);
 
 		/*
-		 * Panneau des pions utilisables
+		 * Plateau pions
 		 */
-		JPanel plateauPionsUtilisables = new JPanel(new GridLayout(1, modele.getNbPionsUtilisables()));
-		plateauPionsUtilisables.setBorder(BorderFactory.createTitledBorder("Pions Utilisables"));
-		for (int i = 0; i < modele.getNbPionsUtilisables(); i++)
-			plateauPionsUtilisables.add(fabriqueDePion.creerPionVide());
 		contraintes.gridx = 1;
 		contraintes.gridy = 3;
 		contraintes.gridwidth = 3;
-		panneauPrincipal.add(plateauPionsUtilisables, contraintes);
+		panneauPrincipal.add(new PlateauPions(this, fabriqueDePion), contraintes);
 		contraintes.gridwidth = 1;
 
 		/*
@@ -287,6 +255,10 @@ public class VueJeu implements Observateur {
 		fenetrePrincipale.pack();
 		fenetrePrincipale.setLocationRelativeTo(null);
 		fenetrePrincipale.setVisible(true);
+	}
+
+	public ModeleJeu getModele() {
+		return modele;
 	}
 
 	public void actualiser() {
