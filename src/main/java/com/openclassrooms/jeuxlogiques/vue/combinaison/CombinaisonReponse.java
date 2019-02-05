@@ -4,6 +4,7 @@ import java.awt.GridLayout;
 
 import javax.swing.JPanel;
 
+import com.openclassrooms.jeuxlogiques.enumeration.Reponse;
 import com.openclassrooms.jeuxlogiques.vue.VueJeu;
 import com.openclassrooms.jeuxlogiques.vue.pion.FabriqueDePion;
 
@@ -14,7 +15,7 @@ public class CombinaisonReponse extends JPanel {
 	public CombinaisonReponse(VueJeu vue, FabriqueDePion fabriqueDePion) {
 		setLayout(new GridLayout(1, vue.getModele().getNbPionsCombinaison()));
 		for (int i = 0; i < vue.getModele().getNbPionsCombinaison(); i++)
-			add(fabriqueDePion.creerPionVide());
+			add(fabriqueDePion.creerPionReponse(Reponse.Plus));
 	}
 
 }

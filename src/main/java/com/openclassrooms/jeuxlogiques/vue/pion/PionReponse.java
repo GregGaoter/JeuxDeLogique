@@ -1,6 +1,10 @@
 package com.openclassrooms.jeuxlogiques.vue.pion;
 
-public abstract class PionReponse {
+import javax.swing.JPanel;
+
+public abstract class PionReponse extends JPanel {
+
+	private static final long serialVersionUID = 1L;
 
 	public abstract void creerPionReponse();
 

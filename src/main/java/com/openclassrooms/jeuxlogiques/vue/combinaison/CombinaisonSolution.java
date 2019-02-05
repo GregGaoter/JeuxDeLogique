@@ -14,7 +14,7 @@ public class CombinaisonSolution extends JPanel {
 	public CombinaisonSolution(VueJeu vue, FabriqueDePion fabriqueDePion) {
 		setLayout(new GridLayout(1, vue.getModele().getNbPionsCombinaison()));
 		for (int i = 0; i < vue.getModele().getNbPionsCombinaison(); i++)
-			add(fabriqueDePion.creerPionVide());
+			add(fabriqueDePion.creerPionSecret());
 	}
 
 }

@@ -2,6 +2,8 @@ package com.openclassrooms.jeuxlogiques.vue.pion;
 
 import javax.swing.JPanel;
 
+import com.openclassrooms.jeuxlogiques.enumeration.Apparence;
+
 public class FabriqueDePionInitiale extends FabriqueDePion {
 
 	public JPanel creerPionSecret() {
@@ -12,11 +14,11 @@ public class FabriqueDePionInitiale extends FabriqueDePion {
 		return new PionVide();
 	}
 
-	public JPanel creerPionJeu() {
+	public JPanel creerPionJeu(Apparence apparence) {
 		return new PionVide();
 	}
 
-	public JPanel creerPionReponse() {
+	public JPanel creerPionReponse(Apparence apparence) {
 		return new PionVide();
 	}
 
