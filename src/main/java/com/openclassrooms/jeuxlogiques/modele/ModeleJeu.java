@@ -24,7 +24,7 @@ public abstract class ModeleJeu {
 		observateurs = new LinkedList<>();
 		nbPionsUtilisables = 10;
 		nbPionsCombinaison = 4;
-		nbEssais = 10;
+		nbEssais = 8;
 		compteurEssais = 0;
 		solution = new LinkedList<>();
 		proposition = new LinkedList<>();

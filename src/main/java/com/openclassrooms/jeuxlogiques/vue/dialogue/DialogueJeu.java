@@ -6,6 +6,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
@@ -16,9 +17,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JToggleButton;
 import javax.swing.border.EmptyBorder;
-
-import com.openclassrooms.jeuxlogiques.vue.separateur.AlignementVertical;
-import com.openclassrooms.jeuxlogiques.vue.separateur.SeparateurHorizontal;
 
 public class DialogueJeu extends JDialog {
 
@@ -55,23 +53,15 @@ public class DialogueJeu extends JDialog {
 		/*
 		 * Choix des jeux
 		 */
-		panneauChoixJeux = new JPanel(new BorderLayout());
+		panneauChoixJeux = new JPanel(new GridLayout(0, 1));
 		panneauPrincipal.add(panneauChoixJeux, BorderLayout.CENTER);
-
-		panneauSelection = new JPanel(new GridLayout(0, 1));
-		panneauChoixJeux.add(panneauSelection, BorderLayout.CENTER);
+		panneauChoixJeux.setBorder(BorderFactory.createTitledBorder("Sélectionnez un jeu :"));
 
 		ButtonGroup toggleButtonGroupe = new ButtonGroup();
 
-		JLabel message = new JLabel("Sélectionnez un jeu :");
-		panneauChoixJeux.add(message, BorderLayout.NORTH);
-		message.setBorder(new EmptyBorder(0, 0, 5, 0));
-
-		panneauSelection.add(new SeparateurHorizontal(1, AlignementVertical.Haut));
-
 		JToggleButton toggleButtonRecherchePlusMoins = new JToggleButton(jeuRecherchePlusMoins);
 		toggleButtonGroupe.add(toggleButtonRecherchePlusMoins);
-		panneauSelection.add(toggleButtonRecherchePlusMoins);
+		panneauChoixJeux.add(toggleButtonRecherchePlusMoins);
 		toggleButtonRecherchePlusMoins.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				jeu = jeuRecherchePlusMoins;
@@ -81,7 +71,7 @@ public class DialogueJeu extends JDialog {
 
 		JToggleButton toggleButtonMastermind = new JToggleButton(jeuMastermind);
 		toggleButtonGroupe.add(toggleButtonMastermind);
-		panneauSelection.add(toggleButtonMastermind);
+		panneauChoixJeux.add(toggleButtonMastermind);
 		toggleButtonMastermind.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				jeu = jeuMastermind;
@@ -89,16 +79,14 @@ public class DialogueJeu extends JDialog {
 			}
 		});
 
-		panneauSelection.add(new SeparateurHorizontal(1, AlignementVertical.Bas));
-
 		toggleButtonRecherchePlusMoins.doClick();
 
 		/*
 		 * Validation
 		 */
 		JPanel panneauValidation = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-		panneauChoixJeux.add(panneauValidation, BorderLayout.SOUTH);
-		panneauValidation.setBorder(new EmptyBorder(5, 0, 0, 0));
+		panneauPrincipal.add(panneauValidation, BorderLayout.SOUTH);
+		// panneauValidation.setBorder(new EmptyBorder(5, 0, 0, 0));
 		boutonOk = new JButton("OK");
 		panneauValidation.add(boutonOk);
 		boutonOk.addActionListener(new ActionListener() {
