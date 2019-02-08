@@ -7,14 +7,14 @@ import java.awt.Insets;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import com.openclassrooms.jeuxlogiques.vue.VueJeu;
+import com.openclassrooms.jeuxlogiques.vue.Vue;
 import com.openclassrooms.jeuxlogiques.vue.pion.FabriqueDePion;
 
 public class CombinaisonValidation extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 
-	public CombinaisonValidation(VueJeu vue, FabriqueDePion fabriqueDePion) {
+	public CombinaisonValidation(Vue vue, FabriqueDePion fabriqueDePion) {
 
 		setLayout(new GridBagLayout());
 

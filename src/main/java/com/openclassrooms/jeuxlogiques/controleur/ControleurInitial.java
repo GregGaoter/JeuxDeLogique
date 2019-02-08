@@ -1,10 +1,10 @@
 package com.openclassrooms.jeuxlogiques.controleur;
 
-import com.openclassrooms.jeuxlogiques.modele.ModeleJeu;
+import com.openclassrooms.jeuxlogiques.modele.Modele;
 
-public class ControleurInitial extends ControleurJeu {
+public class ControleurInitial extends Controleur {
 
-	public ControleurInitial(ModeleJeu modele) {
+	public ControleurInitial(Modele modele) {
 		super(modele);
 	}
 

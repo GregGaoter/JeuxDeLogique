@@ -1,5 +1,5 @@
 package com.openclassrooms.jeuxlogiques.modele;
 
-public class ModeleRecherchePlusMoins extends ModeleJeu {
+public class ModeleRecherchePlusMoins extends Modele {
 
 }
