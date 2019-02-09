@@ -1,5 +1,6 @@
 package com.openclassrooms.jeuxlogiques.controleur;
 
+import com.openclassrooms.jeuxlogiques.enumeration.Jeu;
 import com.openclassrooms.jeuxlogiques.enumeration.Mode;
 import com.openclassrooms.jeuxlogiques.modele.Modele;
 import com.openclassrooms.jeuxlogiques.vue.Vue;
@@ -28,9 +29,9 @@ public abstract class Controleur {
 	 * Méthodes communes à tous les contrôleurs
 	 */
 	public void lancerNouveauJeu(DialogueJeu dialogue) {
-		String jeu = dialogue.getValeur();
+		Jeu jeu = dialogue.getValeur();
 		if (jeu != null) {
-			System.out.println("Jeu sélectionné : " + jeu);
+			System.out.println("Jeu sélectionné : " + jeu.getNom());
 
 		} else
 			System.out.println("Aucun jeu sélectionné");

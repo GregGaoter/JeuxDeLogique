@@ -18,16 +18,15 @@ import javax.swing.JPanel;
 import javax.swing.JToggleButton;
 import javax.swing.border.EmptyBorder;
 
+import com.openclassrooms.jeuxlogiques.enumeration.Jeu;
+
 public class DialogueJeu extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 
-	private final String jeuRecherchePlusMoins = "Recherche +/-";
-	private final String jeuMastermind = "Mastermind";
+	private Jeu jeuSelectionne;
 
-	private String jeu;
-
-	private JPanel panneauPrincipal, panneauIcone, panneauChoixJeux;
+	private JPanel panneauPrincipal, panneauIcone, panneauChoix;
 	private JButton boutonOk;
 	private JButton boutonAnnuler;
 	private boolean okQ;
@@ -53,33 +52,25 @@ public class DialogueJeu extends JDialog {
 		/*
 		 * Choix des jeux
 		 */
-		panneauChoixJeux = new JPanel(new GridLayout(0, 1));
-		panneauPrincipal.add(panneauChoixJeux, BorderLayout.CENTER);
-		panneauChoixJeux.setBorder(BorderFactory.createTitledBorder("Sélectionnez un jeu :"));
+		panneauChoix = new JPanel(new GridLayout(0, 1));
+		panneauPrincipal.add(panneauChoix, BorderLayout.CENTER);
+		panneauChoix.setBorder(BorderFactory.createTitledBorder("Sélectionnez un jeu :"));
 
 		ButtonGroup toggleButtonGroupe = new ButtonGroup();
 
-		JToggleButton toggleButtonRecherchePlusMoins = new JToggleButton(jeuRecherchePlusMoins);
-		toggleButtonGroupe.add(toggleButtonRecherchePlusMoins);
-		panneauChoixJeux.add(toggleButtonRecherchePlusMoins);
-		toggleButtonRecherchePlusMoins.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				jeu = jeuRecherchePlusMoins;
-				System.out.println(jeu);
-			}
-		});
+		for (Jeu jeu : Jeu.values()) {
+			JToggleButton toggleButton = new JToggleButton(jeu.getNom());
+			toggleButtonGroupe.add(toggleButton);
+			panneauChoix.add(toggleButton);
+			toggleButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					jeuSelectionne = jeu;
+					System.out.println(jeuSelectionne.getNom());
+				}
+			});
+		}
 
-		JToggleButton toggleButtonMastermind = new JToggleButton(jeuMastermind);
-		toggleButtonGroupe.add(toggleButtonMastermind);
-		panneauChoixJeux.add(toggleButtonMastermind);
-		toggleButtonMastermind.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				jeu = jeuMastermind;
-				System.out.println(jeu);
-			}
-		});
-
-		toggleButtonRecherchePlusMoins.doClick();
+		toggleButtonGroupe.getElements().nextElement().doClick();
 
 		/*
 		 * Validation
@@ -106,12 +97,12 @@ public class DialogueJeu extends JDialog {
 
 	}
 
-	public String getValeur() {
+	public Jeu getValeur() {
 		okQ = false;
 		pack();
 		setLocationRelativeTo(getOwner());
 		setVisible(true);
-		return (okQ ? jeu : null);
+		return (okQ ? jeuSelectionne : null);
 	}
 
 }

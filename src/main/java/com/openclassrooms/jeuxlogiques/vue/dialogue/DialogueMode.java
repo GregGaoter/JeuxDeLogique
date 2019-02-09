@@ -24,7 +24,7 @@ public class DialogueMode extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 
-	private Mode mode;
+	private Mode modeSelectionne;
 
 	private JPanel panneauPrincipal, panneauIcone, panneauChoix;
 	private JButton boutonOk;
@@ -58,37 +58,19 @@ public class DialogueMode extends JDialog {
 
 		ButtonGroup toggleButtonGroupe = new ButtonGroup();
 
-		JToggleButton toggleButtonChallenger = new JToggleButton(Mode.Challenger.toString());
-		toggleButtonGroupe.add(toggleButtonChallenger);
-		panneauChoix.add(toggleButtonChallenger);
-		toggleButtonChallenger.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				mode = Mode.Challenger;
-				System.out.println(Mode.Challenger.toString());
-			}
-		});
+		for (Mode mode : Mode.values()) {
+			JToggleButton toggleButton = new JToggleButton(mode.toString());
+			toggleButtonGroupe.add(toggleButton);
+			panneauChoix.add(toggleButton);
+			toggleButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					modeSelectionne = mode;
+					System.out.println(modeSelectionne.toString());
+				}
+			});
+		}
 
-		JToggleButton toggleButtonDefenseur = new JToggleButton(Mode.Defenseur.toString());
-		toggleButtonGroupe.add(toggleButtonDefenseur);
-		panneauChoix.add(toggleButtonDefenseur);
-		toggleButtonDefenseur.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				mode = Mode.Defenseur;
-				System.out.println(Mode.Defenseur.toString());
-			}
-		});
-
-		JToggleButton toggleButtonDuel = new JToggleButton(Mode.Duel.toString());
-		toggleButtonGroupe.add(toggleButtonDuel);
-		panneauChoix.add(toggleButtonDuel);
-		toggleButtonDuel.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				mode = Mode.Duel;
-				System.out.println(Mode.Duel.toString());
-			}
-		});
-
-		toggleButtonChallenger.doClick();
+		toggleButtonGroupe.getElements().nextElement().doClick();
 
 		/*
 		 * Validation
@@ -120,7 +102,7 @@ public class DialogueMode extends JDialog {
 		pack();
 		setLocationRelativeTo(getOwner());
 		setVisible(true);
-		return (okQ ? mode : null);
+		return (okQ ? modeSelectionne : null);
 	}
 
 }

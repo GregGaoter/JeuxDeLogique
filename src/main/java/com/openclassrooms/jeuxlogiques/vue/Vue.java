@@ -163,6 +163,7 @@ public class Vue implements Observateur {
 		});
 		barreOutils.add(boutonNouveauJeu);
 
+		// TODO Problème d'affichage des séparateurs verticaux dans la barre d'aoutils
 		barreOutils.add(new SeparateurVertical(100, AlignementHorizontal.Centre));
 
 		boutonOptionJeu = new JButton("Options jeux", new ImageIcon(getClass().getResource("/option_jeu_32.png")));
