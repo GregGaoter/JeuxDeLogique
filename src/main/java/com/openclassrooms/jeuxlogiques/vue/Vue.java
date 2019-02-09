@@ -68,6 +68,10 @@ public class Vue implements Observateur {
 		modele.ajouterObservateur(this);
 	}
 
+	public void lancerFenetreDemarrage() {
+		new FenetreDemarrage();
+	}
+
 	public void creerVue() {
 
 		/*
@@ -87,7 +91,7 @@ public class Vue implements Observateur {
 		 * Fenêtre principale
 		 */
 		fenetrePrincipale = new JFrame("Jeux de logique");
-		fenetrePrincipale.setIconImage(new ImageIcon(getClass().getResource("/coffre_fort_16.png")).getImage());
+		fenetrePrincipale.setIconImage(new ImageIcon(getClass().getResource("/game_16.png")).getImage());
 
 		/*
 		 * Barre de menu

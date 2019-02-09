@@ -46,7 +46,7 @@ public class DialogueMode extends JDialog {
 		 */
 		panneauIcone = new JPanel();
 		panneauPrincipal.add(panneauIcone, BorderLayout.WEST);
-		panneauIcone.add(new JLabel(new ImageIcon(getClass().getResource("/aide_48.png"))));
+		panneauIcone.add(new JLabel(new ImageIcon(getClass().getResource("/mode_48.png"))));
 		panneauIcone.add(Box.createHorizontalStrut(10));
 
 		/*
