@@ -1,8 +1,8 @@
 package com.openclassrooms.jeuxlogiques.vue.plateau;
 
-public class ConstructeurPlateauSolution extends ConstructeurPlateau {
+public class ConstructeurPlateauPion extends ConstructeurPlateau {
 
-	public ConstructeurPlateauSolution(Plateau plateau) {
+	public ConstructeurPlateauPion(Plateau plateau) {
 		super(plateau);
 	}
 

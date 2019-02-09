@@ -24,12 +24,14 @@ import com.openclassrooms.jeuxlogiques.controleur.Controleur;
 import com.openclassrooms.jeuxlogiques.modele.Modele;
 import com.openclassrooms.jeuxlogiques.vue.dialogue.DialogueJeu;
 import com.openclassrooms.jeuxlogiques.vue.pion.FabriqueDePion;
-import com.openclassrooms.jeuxlogiques.vue.pion.FabriqueDePionRecherchePlusMoins;
+import com.openclassrooms.jeuxlogiques.vue.pion.FabriqueDePionInitiale;
+import com.openclassrooms.jeuxlogiques.vue.plateau.ConstructeurPlateauPion;
+import com.openclassrooms.jeuxlogiques.vue.plateau.ConstructeurPlateauProposition;
+import com.openclassrooms.jeuxlogiques.vue.plateau.ConstructeurPlateauReponse;
 import com.openclassrooms.jeuxlogiques.vue.plateau.ConstructeurPlateauSolution;
+import com.openclassrooms.jeuxlogiques.vue.plateau.ConstructeurPlateauValidation;
 import com.openclassrooms.jeuxlogiques.vue.plateau.DirecteurConstructionPlateau;
-import com.openclassrooms.jeuxlogiques.vue.plateau.PlateauPions;
-import com.openclassrooms.jeuxlogiques.vue.plateau.PlateauProposition;
-import com.openclassrooms.jeuxlogiques.vue.plateau.PlateauReponse;
+import com.openclassrooms.jeuxlogiques.vue.plateau.PlateauJeu;
 import com.openclassrooms.jeuxlogiques.vue.plateau.PlateauValidation;
 import com.openclassrooms.jeuxlogiques.vue.separateur.AlignementHorizontal;
 import com.openclassrooms.jeuxlogiques.vue.separateur.SeparateurVertical;
@@ -62,7 +64,7 @@ public class Vue implements Observateur {
 	public Vue(Modele modele, Controleur controleur) {
 		this.modele = modele;
 		this.controleur = controleur;
-		fabriqueDePion = new FabriqueDePionRecherchePlusMoins();
+		fabriqueDePion = new FabriqueDePionInitiale();
 		modele.ajouterObservateur(this);
 	}
 
@@ -161,7 +163,7 @@ public class Vue implements Observateur {
 		});
 		barreOutils.add(boutonNouveauJeu);
 
-		barreOutils.add(new SeparateurVertical(20, AlignementHorizontal.Centre));
+		barreOutils.add(new SeparateurVertical(100, AlignementHorizontal.Centre));
 
 		boutonOptionJeu = new JButton("Options jeux", new ImageIcon(getClass().getResource("/option_jeu_32.png")));
 		boutonOptionJeu.setVerticalTextPosition(SwingConstants.BOTTOM);
@@ -217,31 +219,39 @@ public class Vue implements Observateur {
 		contraintes.gridx = 2;
 		contraintes.gridy = 1;
 		DirecteurConstructionPlateau directeurConstructionPlateau = new DirecteurConstructionPlateau(
-				new ConstructeurPlateauSolution());
+				new ConstructeurPlateauSolution(new PlateauJeu(1, modele.getNbPionsCombinaison(), "Solution")));
 		directeurConstructionPlateau.construirePlateau();
 		panneauPrincipal.add(directeurConstructionPlateau.getPlateau(), contraintes);
-		// panneauPrincipal.add(new PlateauSolution(this), contraintes);
 
 		/*
 		 * Plateau proposition
 		 */
 		contraintes.gridx = 2;
 		contraintes.gridy = 2;
-		panneauPrincipal.add(new PlateauProposition(this), contraintes);
+		directeurConstructionPlateau = new DirecteurConstructionPlateau(new ConstructeurPlateauProposition(
+				new PlateauJeu(modele.getNbEssais(), modele.getNbPionsCombinaison(), "Proposition")));
+		directeurConstructionPlateau.construirePlateau();
+		panneauPrincipal.add(directeurConstructionPlateau.getPlateau(), contraintes);
 
 		/*
 		 * Plateau réponse
 		 */
 		contraintes.gridx = 3;
 		contraintes.gridy = 2;
-		panneauPrincipal.add(new PlateauReponse(this), contraintes);
+		directeurConstructionPlateau = new DirecteurConstructionPlateau(new ConstructeurPlateauReponse(
+				new PlateauJeu(modele.getNbEssais(), modele.getNbPionsCombinaison(), "Réponse")));
+		directeurConstructionPlateau.construirePlateau();
+		panneauPrincipal.add(directeurConstructionPlateau.getPlateau(), contraintes);
 
 		/*
 		 * Plateau validation
 		 */
 		contraintes.gridx = 1;
 		contraintes.gridy = 2;
-		panneauPrincipal.add(new PlateauValidation(this), contraintes);
+		directeurConstructionPlateau = new DirecteurConstructionPlateau(
+				new ConstructeurPlateauValidation(new PlateauValidation(modele.getNbEssais(), 1, "Validation")));
+		directeurConstructionPlateau.construirePlateau();
+		panneauPrincipal.add(directeurConstructionPlateau.getPlateau(), contraintes);
 
 		/*
 		 * Plateau pions
@@ -250,7 +260,10 @@ public class Vue implements Observateur {
 		contraintes.gridy = 3;
 		contraintes.gridwidth = 3;
 		contraintes.fill = GridBagConstraints.NONE;
-		panneauPrincipal.add(new PlateauPions(this), contraintes);
+		directeurConstructionPlateau = new DirecteurConstructionPlateau(
+				new ConstructeurPlateauPion(new PlateauJeu(1, modele.getNbPionsUtilisables(), "Pions")));
+		directeurConstructionPlateau.construirePlateau();
+		panneauPrincipal.add(directeurConstructionPlateau.getPlateau(), contraintes);
 		contraintes.gridwidth = 1;
 		contraintes.fill = GridBagConstraints.BOTH;
 
