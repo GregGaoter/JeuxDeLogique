@@ -22,9 +22,8 @@ public abstract class Controleur {
 	public Controleur(Modele modele) {
 		this.modele = modele;
 		vue = new Vue(modele, this);
-		// TODO Synchroniser l'affichage entre la fenêtre de démarrage et la fenêtre de
-		// jeu
-		vue.lancerFenetreDemarrage();
+		vue.creerFenetreDemarrage();
+		vue.runBarreProgression();
 		vue.creerVue();
 	}
 

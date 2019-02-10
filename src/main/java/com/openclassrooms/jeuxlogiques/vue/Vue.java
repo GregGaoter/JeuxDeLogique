@@ -1,20 +1,26 @@
 package com.openclassrooms.jeuxlogiques.vue;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JProgressBar;
 import javax.swing.JToolBar;
+import javax.swing.JWindow;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
@@ -47,6 +53,7 @@ public class Vue implements Observateur {
 
 	private FabriqueDePion fabriqueDePion;
 
+	private JWindow fenetreDemarrage;
 	private JFrame fenetrePrincipale;
 	private JPanel panneauPrincipal;
 	private JMenuBar barreDeMenu;
@@ -55,6 +62,7 @@ public class Vue implements Observateur {
 			menuItemAideRegles;
 	private JToolBar barreOutils;
 	private JButton boutonNouveauJeu, boutonOptionJeu, boutonOptionLogs, bouttonAide;
+	private JProgressBar barreProgression;
 
 	/*
 	 * Le constructeur de la vue reçoit une référence du modèle et du contrôleur qui
@@ -68,11 +76,7 @@ public class Vue implements Observateur {
 		modele.ajouterObservateur(this);
 	}
 
-	public void lancerFenetreDemarrage() {
-		new FenetreDemarrage();
-	}
-
-	public void creerVue() {
+	public synchronized void creerVue() {
 
 		/*
 		 * Look and feel
@@ -279,6 +283,58 @@ public class Vue implements Observateur {
 		fenetrePrincipale.pack();
 		fenetrePrincipale.setLocationRelativeTo(null);
 		fenetrePrincipale.setVisible(true);
+	}
+
+	public synchronized void creerFenetreDemarrage() {
+
+		/*
+		 * Look and feel
+		 */
+		try {
+			for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+				if ("Nimbus".equals(info.getName())) {
+					UIManager.setLookAndFeel(info.getClassName());
+					break;
+				}
+			}
+		} catch (Exception e) {
+		}
+
+		fenetreDemarrage = new JWindow();
+
+		JLabel labelImage = new JLabel(new ImageIcon(getClass().getResource("/image_demarrage.png")));
+		labelImage.setLayout(new BorderLayout());
+		fenetreDemarrage.add(labelImage, BorderLayout.CENTER);
+
+		JPanel panneauBarreProgression = new JPanel();
+		panneauBarreProgression.setLayout(new BoxLayout(panneauBarreProgression, BoxLayout.Y_AXIS));
+		labelImage.add(panneauBarreProgression, BorderLayout.SOUTH);
+		panneauBarreProgression.setBackground(new Color(0, 0, 0, 0));
+
+		JLabel labelDemarrage = new JLabel("Démarrage...");
+		labelDemarrage.setAlignmentX(0.15f);
+		labelDemarrage.setFont(new Font(labelDemarrage.getFont().getFontName(), Font.ITALIC,
+				(int) (labelDemarrage.getFont().getSize() * .95)));
+		panneauBarreProgression.add(labelDemarrage);
+
+		barreProgression = new JProgressBar(0, 100);
+		panneauBarreProgression.add(barreProgression);
+		barreProgression.setStringPainted(true);
+
+		fenetreDemarrage.pack();
+		fenetreDemarrage.setLocationRelativeTo(null);
+		fenetreDemarrage.setVisible(true);
+	}
+
+	public synchronized void runBarreProgression() {
+		for (int i = 1; i <= 100; i++) {
+			try {
+				barreProgression.setValue(i);
+				Thread.sleep(30);
+			} catch (InterruptedException e) {
+			}
+		}
+		fenetreDemarrage.dispose();
 	}
 
 	public Modele getModele() {
