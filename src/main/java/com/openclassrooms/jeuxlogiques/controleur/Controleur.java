@@ -32,6 +32,7 @@ public abstract class Controleur {
 		Jeu jeu = dialogue.getValeur();
 		if (jeu != null) {
 			modele = jeu.getModele();
+			modele.initialiser(fabriqueDePion);
 			controleur = jeu.getControleur();
 			fabriqueDePion = jeu.getFabriqueDePion();
 			System.out.println("Jeu sélectionné : " + jeu.getNom());

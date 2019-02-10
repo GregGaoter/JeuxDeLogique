@@ -123,7 +123,7 @@ public class DialogueCombinaison extends JDialog {
 		 * Panneau de la solution
 		 */
 		DirecteurConstructionPlateau directeurConstructionPlateau = new DirecteurConstructionPlateau(
-				new ConstructeurPlateauPion(new PlateauJeu(1, modele.getNbPionsCombinaison(), "Pions utilisables :")));
+				new ConstructeurPlateauPion(new PlateauJeu(1, modele.getSolution(), "Pions utilisables :")));
 		directeurConstructionPlateau.construirePlateau();
 		contraintes.gridy++;
 		panneauSettings.add(directeurConstructionPlateau.getPlateau(), contraintes);
@@ -132,7 +132,7 @@ public class DialogueCombinaison extends JDialog {
 		 * Panneau des pions utilisables
 		 */
 		directeurConstructionPlateau = new DirecteurConstructionPlateau(new ConstructeurPlateauSolution(
-				new PlateauJeu(1, modele.getNbPionsUtilisables(), "Choisissez les pions de la solution :")));
+				new PlateauJeu(1, modele.getPionsUtilisables(), "Choisissez les pions de la solution :")));
 		directeurConstructionPlateau.construirePlateau();
 		contraintes.gridy++;
 		panneauSettings.add(directeurConstructionPlateau.getPlateau(), contraintes);

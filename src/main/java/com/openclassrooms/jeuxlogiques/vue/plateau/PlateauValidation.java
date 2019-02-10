@@ -1,5 +1,6 @@
 package com.openclassrooms.jeuxlogiques.vue.plateau;
 
+import java.util.ArrayList;
 import java.util.ListIterator;
 
 import javax.swing.JButton;
@@ -9,17 +10,19 @@ public class PlateauValidation extends Plateau {
 
 	private static final long serialVersionUID = 1L;
 
-	public PlateauValidation(int nbCombinaisons, int nbPionsCombinaisons, String titre) {
-		super(nbCombinaisons, nbPionsCombinaisons, titre);
+	public PlateauValidation(int nbCombinaisons, ArrayList<JPanel> pions, String titre) {
+		super(nbCombinaisons, pions, titre);
 	}
 
 	public void setPion() {
-		ListIterator<JPanel> iterateur = plateau.listIterator();
-		for (int i = 0; i < plateau.size() - 1; i++)
-			iterateur.next().add(fabriqueDePion.creerPionTransparent());
+		ListIterator<JPanel> iterateurPlateau = plateau.listIterator();
+		ListIterator<JPanel> iterateurPions = pions.listIterator();
+		for (int i = 0; i < plateau.size() - 1; i++) {
+			JPanel panneauCombinaison = iterateurPlateau.next();
+			while (iterateurPions.hasNext())
+				panneauCombinaison.add(iterateurPions.next());
+		}
 		JButton boutonValidation = new JButton("Valider");
-		boutonValidation.setEnabled(false);
-		iterateur.next().add(boutonValidation);
+		iterateurPlateau.next().add(boutonValidation);
 	}
-
 }

@@ -1,7 +1,5 @@
 package com.openclassrooms.jeuxlogiques.vue.plateau;
 
-import com.openclassrooms.jeuxlogiques.vue.pion.FabriqueDePionInitiale;
-
 public abstract class ConstructeurPlateau {
 
 	protected Plateau plateau;
@@ -15,7 +13,7 @@ public abstract class ConstructeurPlateau {
 	}
 
 	public void construirePion() {
-		plateau.setFabriqueDePion(new FabriqueDePionInitiale());
+		// plateau.setFabriqueDePion(new FabriqueDePionInitiale());
 		plateau.setPion();
 	}
 

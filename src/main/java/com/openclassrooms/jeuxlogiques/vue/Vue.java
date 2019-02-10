@@ -240,7 +240,7 @@ public class Vue implements Observateur {
 		contraintes.gridx = 2;
 		contraintes.gridy = 1;
 		DirecteurConstructionPlateau directeurConstructionPlateau = new DirecteurConstructionPlateau(
-				new ConstructeurPlateauSolution(new PlateauJeu(1, modele.getNbPionsCombinaison(), "Solution")));
+				new ConstructeurPlateauSolution(new PlateauJeu(1, modele.getSolution(), "Solution")));
 		directeurConstructionPlateau.construirePlateau();
 		panneauPrincipal.add(directeurConstructionPlateau.getPlateau(), contraintes);
 
@@ -250,7 +250,7 @@ public class Vue implements Observateur {
 		contraintes.gridx = 2;
 		contraintes.gridy = 2;
 		directeurConstructionPlateau = new DirecteurConstructionPlateau(new ConstructeurPlateauProposition(
-				new PlateauJeu(modele.getNbEssais(), modele.getNbPionsCombinaison(), "Proposition")));
+				new PlateauJeu(modele.getNbEssais(), modele.getProposition(), "Proposition")));
 		directeurConstructionPlateau.construirePlateau();
 		panneauPrincipal.add(directeurConstructionPlateau.getPlateau(), contraintes);
 
@@ -259,8 +259,8 @@ public class Vue implements Observateur {
 		 */
 		contraintes.gridx = 3;
 		contraintes.gridy = 2;
-		directeurConstructionPlateau = new DirecteurConstructionPlateau(new ConstructeurPlateauReponse(
-				new PlateauJeu(modele.getNbEssais(), modele.getNbPionsCombinaison(), "Réponse")));
+		directeurConstructionPlateau = new DirecteurConstructionPlateau(
+				new ConstructeurPlateauReponse(new PlateauJeu(modele.getNbEssais(), modele.getReponse(), "Réponse")));
 		directeurConstructionPlateau.construirePlateau();
 		panneauPrincipal.add(directeurConstructionPlateau.getPlateau(), contraintes);
 
@@ -269,8 +269,8 @@ public class Vue implements Observateur {
 		 */
 		contraintes.gridx = 1;
 		contraintes.gridy = 2;
-		directeurConstructionPlateau = new DirecteurConstructionPlateau(
-				new ConstructeurPlateauValidation(new PlateauValidation(modele.getNbEssais(), 1, "Validation")));
+		directeurConstructionPlateau = new DirecteurConstructionPlateau(new ConstructeurPlateauValidation(
+				new PlateauValidation(modele.getNbEssais(), modele.getValidation(), "Validation")));
 		directeurConstructionPlateau.construirePlateau();
 		panneauPrincipal.add(directeurConstructionPlateau.getPlateau(), contraintes);
 
@@ -282,7 +282,7 @@ public class Vue implements Observateur {
 		contraintes.gridwidth = 3;
 		contraintes.fill = GridBagConstraints.NONE;
 		directeurConstructionPlateau = new DirecteurConstructionPlateau(
-				new ConstructeurPlateauPion(new PlateauJeu(1, modele.getNbPionsUtilisables(), "Pions")));
+				new ConstructeurPlateauPion(new PlateauJeu(1, modele.getPionsUtilisables(), "Pions")));
 		directeurConstructionPlateau.construirePlateau();
 		panneauPrincipal.add(directeurConstructionPlateau.getPlateau(), contraintes);
 		contraintes.gridwidth = 1;

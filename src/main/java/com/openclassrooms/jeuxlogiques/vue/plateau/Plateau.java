@@ -13,14 +13,14 @@ public abstract class Plateau extends JPanel {
 	private static final long serialVersionUID = 1L;
 
 	protected int nbCombinaisons;
-	protected int nbPionsCombinaisons;
+	protected ArrayList<JPanel> pions;
 	protected String titre;
 	protected FabriqueDePion fabriqueDePion;
 	protected ArrayList<JPanel> plateau;
 
-	public Plateau(int nbCombinaisons, int nbPionsCombinaisons, String titre) {
+	public Plateau(int nbCombinaisons, ArrayList<JPanel> pions, String titre) {
 		this.nbCombinaisons = nbCombinaisons;
-		this.nbPionsCombinaisons = nbPionsCombinaisons;
+		this.pions = pions;
 		this.titre = titre;
 		plateau = new ArrayList<>();
 	}
