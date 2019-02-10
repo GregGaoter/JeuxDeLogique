@@ -17,8 +17,9 @@ public abstract class Modele {
 	protected LinkedList<?> solution;// Liste contenant les informations de la combinaison solution
 	protected LinkedList<?> proposition;// Liste contenant les informations de la combinaison proposée
 	protected LinkedList<?> reponse;// Liste contenant les informations de la combinaison réponse
-	protected LinkedList<?> choixPossibles;// Liste contenant les informations des différents choix possibles pour les
-											// combinaisons
+	protected LinkedList<?> pionsUtilisables;// Liste contenant les informations des différents pions utilisables pour
+												// les
+												// combinaisons
 
 	public Modele() {
 		observateurs = new LinkedList<>();
@@ -29,7 +30,7 @@ public abstract class Modele {
 		solution = new LinkedList<>();
 		proposition = new LinkedList<>();
 		reponse = new LinkedList<>();
-		choixPossibles = new LinkedList<>();
+		pionsUtilisables = new LinkedList<>();
 	}
 
 	public int getNbPionsUtilisables() {

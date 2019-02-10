@@ -1,6 +1,6 @@
 package com.openclassrooms.jeuxlogiques.vue.separateur;
 
-import java.awt.Dimension;
+import javax.swing.Box;
 
 public class SeparateurVertical extends Separateur {
 
@@ -14,7 +14,7 @@ public class SeparateurVertical extends Separateur {
 	}
 
 	protected void setTaille() {
-		setMaximumSize(new Dimension(dimension, Integer.MAX_VALUE));
+		add(Box.createHorizontalStrut(dimension));
 	}
 
 	protected void dessinerLigne() {

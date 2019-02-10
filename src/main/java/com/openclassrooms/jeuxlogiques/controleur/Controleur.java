@@ -1,11 +1,15 @@
 package com.openclassrooms.jeuxlogiques.controleur;
 
+import java.util.ArrayList;
+
 import com.openclassrooms.jeuxlogiques.enumeration.Jeu;
 import com.openclassrooms.jeuxlogiques.enumeration.Mode;
 import com.openclassrooms.jeuxlogiques.modele.Modele;
 import com.openclassrooms.jeuxlogiques.vue.Vue;
+import com.openclassrooms.jeuxlogiques.vue.dialogue.DialogueCombinaison;
 import com.openclassrooms.jeuxlogiques.vue.dialogue.DialogueJeu;
 import com.openclassrooms.jeuxlogiques.vue.dialogue.DialogueMode;
+import com.openclassrooms.jeuxlogiques.vue.pion.FabriqueDePion;
 
 public abstract class Controleur {
 
@@ -15,17 +19,11 @@ public abstract class Controleur {
 	protected Modele modele;
 	protected Vue vue;
 
-	/*
-	 * Le constructeur du contrôleur reçoit le modèle. Il crée ensuite la vue et
-	 * initialise le modèle.
-	 */
-	public Controleur(Modele modele) {
-		this.modele = modele;
-		vue = new Vue(modele, this);
-		vue.creerFenetreDemarrage();
-		vue.runBarreProgression();
-		vue.creerVue();
-	}
+	protected Controleur controleur;
+
+	protected Mode mode;
+	protected FabriqueDePion fabriqueDePion;
+	protected ArrayList<?> solution;
 
 	/*
 	 * Méthodes communes à tous les contrôleurs
@@ -33,21 +31,36 @@ public abstract class Controleur {
 	public void lancerNouveauJeu(DialogueJeu dialogue) {
 		Jeu jeu = dialogue.getValeur();
 		if (jeu != null) {
+			modele = jeu.getModele();
+			controleur = jeu.getControleur();
+			fabriqueDePion = jeu.getFabriqueDePion();
 			System.out.println("Jeu sélectionné : " + jeu.getNom());
-
+			System.out.println("Modèle : " + modele.getClass().getSimpleName());
+			System.out.println("Contrôleur : " + controleur.getClass().getSimpleName());
+			System.out.println("Fabrique de pions : " + fabriqueDePion.getClass().getSimpleName());
+			lancerMode(new DialogueMode(vue.getFenetrePrincipale()));
 		} else
 			System.out.println("Aucun jeu sélectionné");
 		dialogue.dispose();
-		lancerMode(new DialogueMode(vue.getFenetrePrincipale()));
 	}
 
 	private void lancerMode(DialogueMode dialogue) {
 		Mode mode = dialogue.getValeur();
 		if (mode != null) {
 			System.out.println("Mode sélectionné : " + mode);
-
+			if (mode.getCombinaisonQ())
+				lancerCombinaison(new DialogueCombinaison(vue.getFenetrePrincipale(), modele));
 		} else
 			System.out.println("Aucun mode sélectionné");
+		dialogue.dispose();
+	}
+
+	private void lancerCombinaison(DialogueCombinaison dialogue) {
+		ArrayList<?> solution = dialogue.getValeur();
+		if (solution != null) {
+			System.out.println("Solution : " + solution);
+		} else
+			System.out.println("Aucune solution choisit");
 		dialogue.dispose();
 	}
 

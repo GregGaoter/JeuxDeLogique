@@ -16,6 +16,7 @@ public abstract class Separateur extends JPanel {
 
 	public Separateur(int dimension) {
 		this.dimension = dimension;
+		setBackground(new Color(0, 0, 0, 0));
 		setTaille();
 	}
 

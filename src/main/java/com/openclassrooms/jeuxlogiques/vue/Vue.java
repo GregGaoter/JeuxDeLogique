@@ -160,6 +160,14 @@ public class Vue implements Observateur {
 		 */
 		barreOutils = new JToolBar();
 		fenetrePrincipale.add(barreOutils, BorderLayout.NORTH);
+		barreOutils.setLayout(new GridBagLayout());
+		barreOutils.setAlignmentX(0.0f);
+		GridBagConstraints contraintesBarreOutils = new GridBagConstraints();
+		contraintesBarreOutils.fill = GridBagConstraints.BOTH;
+		contraintesBarreOutils.insets = new Insets(0, 0, 0, 0);
+		contraintesBarreOutils.anchor = GridBagConstraints.WEST;
+		contraintesBarreOutils.gridx = 1;
+		contraintesBarreOutils.gridy = 1;
 
 		boutonNouveauJeu = new JButton("Nouveau Jeu", new ImageIcon(getClass().getResource("/nouveau_jeu_32.png")));
 		boutonNouveauJeu.setVerticalTextPosition(SwingConstants.BOTTOM);
@@ -169,10 +177,10 @@ public class Vue implements Observateur {
 				controleur.lancerNouveauJeu(new DialogueJeu(fenetrePrincipale));
 			}
 		});
-		barreOutils.add(boutonNouveauJeu);
+		barreOutils.add(boutonNouveauJeu, contraintesBarreOutils);
 
-		// TODO Problème d'affichage des séparateurs verticaux dans la barre d'aoutils
-		barreOutils.add(new SeparateurVertical(100, AlignementHorizontal.Centre));
+		contraintesBarreOutils.gridx++;
+		barreOutils.add(new SeparateurVertical(20, AlignementHorizontal.Centre), contraintesBarreOutils);
 
 		boutonOptionJeu = new JButton("Options jeux", new ImageIcon(getClass().getResource("/option_jeu_32.png")));
 		boutonOptionJeu.setVerticalTextPosition(SwingConstants.BOTTOM);
@@ -182,7 +190,8 @@ public class Vue implements Observateur {
 				controleur.configurerJeux();
 			}
 		});
-		barreOutils.add(boutonOptionJeu);
+		contraintesBarreOutils.gridx++;
+		barreOutils.add(boutonOptionJeu, contraintesBarreOutils);
 
 		boutonOptionLogs = new JButton("Options logs", new ImageIcon(getClass().getResource("/option_logs_32.png")));
 		boutonOptionLogs.setVerticalTextPosition(SwingConstants.BOTTOM);
@@ -192,9 +201,11 @@ public class Vue implements Observateur {
 				controleur.configurerLogs();
 			}
 		});
-		barreOutils.add(boutonOptionLogs);
+		contraintesBarreOutils.gridx++;
+		barreOutils.add(boutonOptionLogs, contraintesBarreOutils);
 
-		barreOutils.add(new SeparateurVertical(20, AlignementHorizontal.Centre));
+		contraintesBarreOutils.gridx++;
+		barreOutils.add(new SeparateurVertical(20, AlignementHorizontal.Centre), contraintesBarreOutils);
 
 		bouttonAide = new JButton("Règles de jeux", new ImageIcon(getClass().getResource("/aide_32.png")));
 		bouttonAide.setVerticalTextPosition(SwingConstants.BOTTOM);
@@ -204,7 +215,8 @@ public class Vue implements Observateur {
 				controleur.consulterReglesJeux();
 			}
 		});
-		barreOutils.add(bouttonAide);
+		contraintesBarreOutils.gridx++;
+		barreOutils.add(bouttonAide, contraintesBarreOutils);
 
 		/*
 		 * Contraintes des GridBagLayout
@@ -343,6 +355,14 @@ public class Vue implements Observateur {
 
 	public Controleur getControleur() {
 		return controleur;
+	}
+
+	public void setModele(Modele modele) {
+		this.modele = modele;
+	}
+
+	public void setControleur(Controleur controleur) {
+		this.controleur = controleur;
 	}
 
 	public JFrame getFenetrePrincipale() {
