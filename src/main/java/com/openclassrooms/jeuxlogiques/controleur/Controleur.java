@@ -8,4 +8,14 @@ public class Controleur {
 	private Modele modele;
 	private Vue vue;
 
+	public Controleur() {
+		modele = new Modele();
+		vue = new Vue();
+		modele.setVue(vue);
+		modele.setControleur(this);
+		vue.setModele(modele);
+		vue.setControleur(this);
+		vue.creerVue();
+	}
+
 }
