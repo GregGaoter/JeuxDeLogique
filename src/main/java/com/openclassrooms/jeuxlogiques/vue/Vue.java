@@ -62,6 +62,7 @@ public class Vue implements Observateur {
 
 	public void setModele(Modele modele) {
 		this.modele = modele;
+		modele.ajouterObservateur(this);
 	}
 
 	public void setControleur(Controleur controleur) {
@@ -103,7 +104,7 @@ public class Vue implements Observateur {
 		menuJeu.add(menuItemJeuNouveauJeu);
 		menuItemJeuNouveauJeu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				controleur.lancerDialogueNouveauJeu();
 			}
 		});
 
@@ -252,6 +253,7 @@ public class Vue implements Observateur {
 		contraintes.gridx = 2;
 		contraintes.gridy = 2;
 		panneauPrincipal.add(panneauProposition, contraintes);
+		setLabel(listePanneauProposition, getClef(2, 2), "/pion_rouge.png");
 
 		/*
 		 * Panneau réponse
@@ -325,6 +327,10 @@ public class Vue implements Observateur {
 			c.gridy = Integer.parseInt(item.getKey().split(separateurClef)[1]);
 			panneau.add(item.getValue(), c);
 		}
+	}
+
+	public void setLabel(HashMap<String, JLabel> listePanneau, String clef, String urlImage) {
+		listePanneau.get(clef).setIcon(new ImageIcon(getClass().getResource(urlImage)));
 	}
 
 	public void actualiser() {

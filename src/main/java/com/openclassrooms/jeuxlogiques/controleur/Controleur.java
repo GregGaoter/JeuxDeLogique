@@ -18,4 +18,8 @@ public class Controleur {
 		vue.creerVue();
 	}
 
+	public void lancerDialogueNouveauJeu() {
+
+	}
+
 }
