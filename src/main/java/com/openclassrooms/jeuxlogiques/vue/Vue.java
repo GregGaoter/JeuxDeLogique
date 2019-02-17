@@ -288,14 +288,13 @@ public class Vue implements Observateur {
 		panneauPrincipal.add(panneauValidation, contraintes);
 		panneauValidation.setBorder(BorderFactory.createTitledBorder("Validation"));
 		for (int y = 1; y <= modele.getNbEssais(); y++)
-			listePanneauValidation.put(String.valueOf(1) + separateurClef + String.valueOf(y),
-					new PanneauBoutonValidation(boutonValidation));
+			listePanneauValidation.put(getClef(1, y), new PanneauBoutonValidation(boutonValidation));
 		for (Map.Entry<String, JPanel> item : listePanneauValidation.entrySet()) {
 			contraintes.gridx = Integer.parseInt(item.getKey().split(separateurClef)[0]);
 			contraintes.gridy = Integer.parseInt(item.getKey().split(separateurClef)[1]);
 			panneauValidation.add(item.getValue(), contraintes);
 		}
-		listePanneauValidation.get("1-8").add(boutonValidation);
+		listePanneauValidation.get(getClef(1, modele.getNbEssais())).add(boutonValidation);
 
 		/*
 		 * Paramètres de la fenêtre principale
@@ -307,11 +306,14 @@ public class Vue implements Observateur {
 
 	}
 
+	private String getClef(int x, int y) {
+		return String.valueOf(x) + separateurClef + String.valueOf(y);
+	}
+
 	private void setListePanneau(HashMap<String, JLabel> listePanneau, int xMax, int yMax, String urlImage) {
 		for (int y = 1; y <= yMax; y++) {
 			for (int x = 1; x <= xMax; x++)
-				listePanneau.put(String.valueOf(x) + separateurClef + String.valueOf(y),
-						new JLabel(new ImageIcon(getClass().getResource(urlImage))));
+				listePanneau.put(getClef(x, y), new JLabel(new ImageIcon(getClass().getResource(urlImage))));
 		}
 	}
 
