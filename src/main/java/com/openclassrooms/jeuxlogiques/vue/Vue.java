@@ -104,7 +104,7 @@ public class Vue implements Observateur {
 		menuJeu.add(menuItemJeuNouveauJeu);
 		menuItemJeuNouveauJeu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				controleur.lancerDialogueNouveauJeu();
+				controleur.lancerDialogueJeu(fenetrePrincipale);
 			}
 		});
 
@@ -253,7 +253,6 @@ public class Vue implements Observateur {
 		contraintes.gridx = 2;
 		contraintes.gridy = 2;
 		panneauPrincipal.add(panneauProposition, contraintes);
-		setLabel(listePanneauProposition, getClef(2, 2), "/pion_rouge.png");
 
 		/*
 		 * Panneau réponse

@@ -5,14 +5,18 @@ import com.openclassrooms.jeuxlogiques.modele.enumeration.PionCommun;
 
 public abstract class Jeu {
 
+	public static final Jeu[] LISTE_JEUX = { new JeuRecherchePlusMoins(), new JeuMastermind() };
+
 	protected PionCommun pionCommun;
 
 	public Pion getPionCommun() {
 		return pionCommun;
 	}
 
-	public abstract Pion getPionJeu();
+	public abstract String getNom();
 
-	public abstract Pion getPionReponse();
+	public abstract Pion[] getPionsJeu();
+
+	public abstract Pion[] getPionsReponse();
 
 }

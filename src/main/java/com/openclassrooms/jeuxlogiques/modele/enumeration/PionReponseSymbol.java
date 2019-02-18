@@ -14,4 +14,8 @@ public enum PionReponseSymbol implements Pion {
 		return nomImage;
 	}
 
+	public int getValeur() {
+		return 0;
+	}
+
 }

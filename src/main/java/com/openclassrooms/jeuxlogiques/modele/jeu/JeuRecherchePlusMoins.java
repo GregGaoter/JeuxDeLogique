@@ -6,15 +6,16 @@ import com.openclassrooms.jeuxlogiques.modele.enumeration.PionReponseSymbol;
 
 public class JeuRecherchePlusMoins extends Jeu {
 
-	private PionChiffre pionJeu;
-	private PionReponseSymbol pionReponse;
-
-	public Pion getPionJeu() {
-		return pionJeu;
+	public String getNom() {
+		return "Recherche +/-";
 	}
 
-	public Pion getPionReponse() {
-		return pionReponse;
+	public Pion[] getPionsJeu() {
+		return PionChiffre.values();
+	}
+
+	public Pion[] getPionsReponse() {
+		return PionReponseSymbol.values();
 	}
 
 }

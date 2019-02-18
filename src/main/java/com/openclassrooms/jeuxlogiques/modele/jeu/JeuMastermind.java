@@ -6,15 +6,16 @@ import com.openclassrooms.jeuxlogiques.modele.enumeration.PionReponseCouleur;
 
 public class JeuMastermind extends Jeu {
 
-	private PionCouleur pionJeu;
-	private PionReponseCouleur pionReponse;
-
-	public Pion getPionJeu() {
-		return pionJeu;
+	public String getNom() {
+		return "Mastermind";
 	}
 
-	public Pion getPionReponse() {
-		return pionReponse;
+	public Pion[] getPionsJeu() {
+		return PionCouleur.values();
+	}
+
+	public Pion[] getPionsReponse() {
+		return PionReponseCouleur.values();
 	}
 
 }
