@@ -3,10 +3,10 @@ package com.openclassrooms.jeuxlogiques.controleur;
 import java.util.HashMap;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 import com.openclassrooms.jeuxlogiques.modele.Modele;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.Mode;
-import com.openclassrooms.jeuxlogiques.modele.enumeration.Pion;
 import com.openclassrooms.jeuxlogiques.modele.jeu.Jeu;
 import com.openclassrooms.jeuxlogiques.vue.Vue;
 import com.openclassrooms.jeuxlogiques.vue.dialogue.DialogueJeu;
@@ -52,7 +52,7 @@ public class Controleur {
 	private void lancerSelectionCombinaison(JFrame fenetreProprietaire) {
 		DialogueSelectionCombinaison dialogueSelectionCombinaison = new DialogueSelectionCombinaison(
 				fenetreProprietaire, modele);
-		HashMap<String, Pion> combinaisonSecrete = dialogueSelectionCombinaison.getValeur();
+		HashMap<String, JLabel> combinaisonSecrete = dialogueSelectionCombinaison.getValeur();
 	}
 
 }

@@ -28,9 +28,7 @@ import javax.swing.border.EmptyBorder;
 import com.openclassrooms.jeuxlogiques.controleur.Controleur;
 import com.openclassrooms.jeuxlogiques.modele.Modele;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.Pion;
-import com.openclassrooms.jeuxlogiques.modele.enumeration.PionChiffre;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.PionCommun;
-import com.openclassrooms.jeuxlogiques.modele.enumeration.PionCouleur;
 import com.openclassrooms.jeuxlogiques.separateur.AlignementHorizontal;
 import com.openclassrooms.jeuxlogiques.separateur.SeparateurVertical;
 
@@ -280,9 +278,6 @@ public class Vue implements Observateur {
 		panneauPrincipal.add(panneauPionsUtilisables, contraintes);
 		contraintes.gridwidth = 1;
 		contraintes.fill = GridBagConstraints.BOTH;
-
-		setPion(listePanneauPionUtilisable, getClef(2, 1), PionChiffre.Cinq);
-		setPion(listePanneauPionUtilisable, getClef(3, 1), PionCouleur.Bleu);
 
 		/*
 		 * Panneau validation
