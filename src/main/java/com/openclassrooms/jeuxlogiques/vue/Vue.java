@@ -27,6 +27,10 @@ import javax.swing.border.EmptyBorder;
 
 import com.openclassrooms.jeuxlogiques.controleur.Controleur;
 import com.openclassrooms.jeuxlogiques.modele.Modele;
+import com.openclassrooms.jeuxlogiques.modele.enumeration.Pion;
+import com.openclassrooms.jeuxlogiques.modele.enumeration.PionChiffre;
+import com.openclassrooms.jeuxlogiques.modele.enumeration.PionCommun;
+import com.openclassrooms.jeuxlogiques.modele.enumeration.PionCouleur;
 import com.openclassrooms.jeuxlogiques.separateur.AlignementHorizontal;
 import com.openclassrooms.jeuxlogiques.separateur.SeparateurVertical;
 
@@ -237,7 +241,7 @@ public class Vue implements Observateur {
 		 * Panneau combinaison secrète
 		 */
 		panneauCombinaisonSecrete = new JPanel(new GridBagLayout());
-		setListePanneau(listePanneauSecret, modele.getNbPionsCombinaison(), 1, "/pion_vide.png");
+		setListePanneau(listePanneauSecret, modele.getNbPionsCombinaison(), 1, PionCommun.Vide);
 		creerPanneau(panneauCombinaisonSecrete, listePanneauSecret, contraintes, "Combinaison secrète");
 		contraintes.gridx = 2;
 		contraintes.gridy = 1;
@@ -247,8 +251,7 @@ public class Vue implements Observateur {
 		 * Panneau proposition
 		 */
 		panneauProposition = new JPanel(new GridBagLayout());
-		setListePanneau(listePanneauProposition, modele.getNbPionsCombinaison(), modele.getNbEssais(),
-				"/pion_vide.png");
+		setListePanneau(listePanneauProposition, modele.getNbPionsCombinaison(), modele.getNbEssais(), PionCommun.Vide);
 		creerPanneau(panneauProposition, listePanneauProposition, contraintes, "Proposition");
 		contraintes.gridx = 2;
 		contraintes.gridy = 2;
@@ -258,7 +261,7 @@ public class Vue implements Observateur {
 		 * Panneau réponse
 		 */
 		panneauReponse = new JPanel(new GridBagLayout());
-		setListePanneau(listePanneauReponse, modele.getNbPionsCombinaison(), modele.getNbEssais(), "/pion_vide.png");
+		setListePanneau(listePanneauReponse, modele.getNbPionsCombinaison(), modele.getNbEssais(), PionCommun.Vide);
 		creerPanneau(panneauReponse, listePanneauReponse, contraintes, "Réponse");
 		contraintes.gridx = 3;
 		contraintes.gridy = 2;
@@ -268,7 +271,7 @@ public class Vue implements Observateur {
 		 * Panneau pions utilisables
 		 */
 		panneauPionsUtilisables = new JPanel(new GridBagLayout());
-		setListePanneau(listePanneauPionUtilisable, modele.getNbPionsUtilisables(), 1, "/pion_vide.png");
+		setListePanneau(listePanneauPionUtilisable, modele.getNbPionsUtilisables(), 1, PionCommun.Vide);
 		creerPanneau(panneauPionsUtilisables, listePanneauPionUtilisable, contraintes, "Pions utilisables");
 		contraintes.gridx = 1;
 		contraintes.gridy = 3;
@@ -277,6 +280,9 @@ public class Vue implements Observateur {
 		panneauPrincipal.add(panneauPionsUtilisables, contraintes);
 		contraintes.gridwidth = 1;
 		contraintes.fill = GridBagConstraints.BOTH;
+
+		setPion(listePanneauPionUtilisable, getClef(2, 1), PionChiffre.Cinq);
+		setPion(listePanneauPionUtilisable, getClef(3, 1), PionCouleur.Bleu);
 
 		/*
 		 * Panneau validation
@@ -311,10 +317,10 @@ public class Vue implements Observateur {
 		return String.valueOf(x) + separateurClef + String.valueOf(y);
 	}
 
-	private void setListePanneau(HashMap<String, JLabel> listePanneau, int xMax, int yMax, String urlImage) {
+	private void setListePanneau(HashMap<String, JLabel> listePanneau, int xMax, int yMax, Pion pion) {
 		for (int y = 1; y <= yMax; y++) {
 			for (int x = 1; x <= xMax; x++)
-				listePanneau.put(getClef(x, y), new JLabel(new ImageIcon(getClass().getResource(urlImage))));
+				listePanneau.put(getClef(x, y), new JLabelPion(pion));
 		}
 	}
 
@@ -328,8 +334,9 @@ public class Vue implements Observateur {
 		}
 	}
 
-	public void setLabel(HashMap<String, JLabel> listePanneau, String clef, String urlImage) {
-		listePanneau.get(clef).setIcon(new ImageIcon(getClass().getResource(urlImage)));
+	public void setPion(HashMap<String, JLabel> listePanneau, String clef, Pion pion) {
+		listePanneau.get(clef).setIcon(new ImageIcon(getClass().getResource(pion.getNomImage())));
+		listePanneau.get(clef).setText(Integer.toString(pion.getValeur()));
 	}
 
 	public void actualiser() {

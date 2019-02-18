@@ -1,6 +1,7 @@
 package com.openclassrooms.jeuxlogiques.vue.dialogue;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -8,6 +9,8 @@ import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -195,6 +198,30 @@ public class DialogueSelectionCombinaison extends JDialog {
 			c.gridy = Integer.parseInt(pion.getKey().split(separateurClef)[1]);
 			panneau.add(new JLabel(new ImageIcon(getClass().getResource(pion.getValue().getNomImage()))), c);
 		}
+		for (Component composant : panneau.getComponents())
+			composant.addMouseListener(new MouseListener() {
+
+				public void mouseClicked(MouseEvent arg0) {
+
+				}
+
+				public void mouseEntered(MouseEvent arg0) {
+
+				}
+
+				public void mouseExited(MouseEvent arg0) {
+
+				}
+
+				public void mousePressed(MouseEvent arg0) {
+
+				}
+
+				public void mouseReleased(MouseEvent arg0) {
+
+				}
+
+			});
 	}
 
 	public void setPion(HashMap<String, Pion> listePanneau, JPanel panneau, String clef, Pion pion) {

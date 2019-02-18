@@ -9,9 +9,9 @@ public enum PionChiffre implements Pion {
 	private final String nomImage;
 	private final int valeur;
 
-	private PionChiffre(String nomImage, int chiffre) {
+	private PionChiffre(String nomImage, int valeur) {
 		this.nomImage = nomImage;
-		this.valeur = chiffre;
+		this.valeur = valeur;
 	}
 
 	public String getNomImage() {
