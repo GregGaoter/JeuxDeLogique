@@ -26,6 +26,8 @@ public class Modele implements SujetObservable {
 	private ArrayList<Pion> combinaisonReponse;
 	private ArrayList<Pion> pionsUtilisables;
 
+	private Pion pionSelectionne;
+
 	public Modele() {
 		listeObservateurs = new ArrayList<>();
 		nbEssais = 8;
@@ -88,6 +90,16 @@ public class Modele implements SujetObservable {
 
 	public void setJeu(Jeu jeu) {
 		this.jeu = jeu;
+	}
+
+	public Pion getPionSelectionne() {
+		System.out.println(pionSelectionne.getNomImage());
+		return pionSelectionne;
+	}
+
+	public void setPionSelectionne(Pion pionSelectionne) {
+		this.pionSelectionne = pionSelectionne;
+		System.out.println(pionSelectionne.getNomImage());
 	}
 
 }

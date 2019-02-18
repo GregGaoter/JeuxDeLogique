@@ -314,8 +314,9 @@ public class Vue implements Observateur {
 
 	private void setListePanneau(HashMap<String, JLabel> listePanneau, int xMax, int yMax, Pion pion) {
 		for (int y = 1; y <= yMax; y++) {
-			for (int x = 1; x <= xMax; x++)
-				listePanneau.put(getClef(x, y), new JLabelPion(pion));
+			for (int x = 1; x <= xMax; x++) {
+			}
+			// listePanneau.put(getClef(x, y), new JLabelPionsUtilisables(pion));
 		}
 	}
 

@@ -3,15 +3,16 @@ package com.openclassrooms.jeuxlogiques.controleur;
 import java.util.HashMap;
 
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 
 import com.openclassrooms.jeuxlogiques.modele.Modele;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.Mode;
+import com.openclassrooms.jeuxlogiques.modele.enumeration.Pion;
 import com.openclassrooms.jeuxlogiques.modele.jeu.Jeu;
 import com.openclassrooms.jeuxlogiques.vue.Vue;
 import com.openclassrooms.jeuxlogiques.vue.dialogue.DialogueJeu;
 import com.openclassrooms.jeuxlogiques.vue.dialogue.DialogueMode;
 import com.openclassrooms.jeuxlogiques.vue.dialogue.DialogueSelectionCombinaison;
+import com.openclassrooms.jeuxlogiques.vue.labelpion.JLabelPion;
 
 public class Controleur {
 
@@ -51,8 +52,16 @@ public class Controleur {
 
 	private void lancerSelectionCombinaison(JFrame fenetreProprietaire) {
 		DialogueSelectionCombinaison dialogueSelectionCombinaison = new DialogueSelectionCombinaison(
-				fenetreProprietaire, modele);
-		HashMap<String, JLabel> combinaisonSecrete = dialogueSelectionCombinaison.getValeur();
+				fenetreProprietaire, modele, this);
+		HashMap<String, JLabelPion> combinaisonSecrete = dialogueSelectionCombinaison.getValeur();
+	}
+
+	public void setPionSelectionne(Pion pion) {
+		modele.setPionSelectionne(pion);
+	}
+
+	public void getPionSelectionne() {
+		modele.getPionSelectionne();
 	}
 
 }

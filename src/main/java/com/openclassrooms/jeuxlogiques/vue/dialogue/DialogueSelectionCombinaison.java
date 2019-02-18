@@ -23,12 +23,15 @@ import javax.swing.JPanel;
 import javax.swing.JToggleButton;
 import javax.swing.border.EmptyBorder;
 
+import com.openclassrooms.jeuxlogiques.controleur.Controleur;
 import com.openclassrooms.jeuxlogiques.modele.Modele;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.Pion;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.PionCommun;
 import com.openclassrooms.jeuxlogiques.separateur.AlignementVertical;
 import com.openclassrooms.jeuxlogiques.separateur.SeparateurHorizontal;
-import com.openclassrooms.jeuxlogiques.vue.JLabelPion;
+import com.openclassrooms.jeuxlogiques.vue.labelpion.JLabelPion;
+import com.openclassrooms.jeuxlogiques.vue.labelpion.MouseListenerGetPionSelectionne;
+import com.openclassrooms.jeuxlogiques.vue.labelpion.MouseListenerSetPionSelectionne;
 
 public class DialogueSelectionCombinaison extends JDialog {
 
@@ -42,16 +45,18 @@ public class DialogueSelectionCombinaison extends JDialog {
 	private JButton boutonAnnuler;
 	private boolean manuelQ;
 	private boolean okQ;
-	private HashMap<String, JLabel> listePanneauSecret;
-	private HashMap<String, JLabel> listePanneauPionUtilisable;
+	private HashMap<String, JLabelPion> listePanneauSecret;
+	private HashMap<String, JLabelPion> listePanneauPionUtilisable;
 
 	private Modele modele;
+	private Controleur controleur;
 
-	public DialogueSelectionCombinaison(JFrame fenetreParente, Modele modele) {
+	public DialogueSelectionCombinaison(JFrame fenetreParente, Modele modele, Controleur controleur) {
 		super(fenetreParente, "Choix de la combinaison solution", true);
 		listePanneauSecret = new HashMap<>();
 		listePanneauPionUtilisable = new HashMap<>();
 		this.modele = modele;
+		this.controleur = controleur;
 
 		/*
 		 * Contraintes du GridBagLayout
@@ -130,7 +135,7 @@ public class DialogueSelectionCombinaison extends JDialog {
 		 * Panneau combinaison secrète
 		 */
 		JPanel panneauCombinaisonSecrete = new JPanel(new GridBagLayout());
-		setListePanneau(listePanneauSecret, modele.getNbPionsCombinaison(), 1, PionCommun.Vide);
+		setListePanneauPionProposition(listePanneauSecret, modele.getNbPionsCombinaison(), 1, PionCommun.Vide);
 		creerPanneau(panneauCombinaisonSecrete, listePanneauSecret, contraintes, "Combinaison secrète");
 		contraintes.gridx = 1;
 		contraintes.gridy = 3;
@@ -140,14 +145,14 @@ public class DialogueSelectionCombinaison extends JDialog {
 		 * Panneau des pions utilisables
 		 */
 		JPanel panneauPionsUtilisables = new JPanel(new GridBagLayout());
-		setListePanneau(listePanneauPionUtilisable, modele.getNbPionsUtilisables(), 1, PionCommun.Vide);
+		setListePanneauPionUtilisables(listePanneauPionUtilisable, modele.getNbPionsUtilisables(), 1, PionCommun.Vide);
 		creerPanneau(panneauPionsUtilisables, listePanneauPionUtilisable, contraintes,
 				"Choisissez les pions de la combinaison secrète :");
 		contraintes.gridx = 1;
 		contraintes.gridy = 4;
 		panneauSettings.add(panneauPionsUtilisables, contraintes);
 		for (int i = 0; i < modele.getJeu().getPionsJeu().length; i++)
-			setPion(listePanneauPionUtilisable, getClef(i + 1, 1), modele.getJeu().getPionsJeu()[i]);
+			setPionUtilisable(listePanneauPionUtilisable, getClef(i + 1, 1), modele.getJeu().getPionsJeu()[i]);
 
 		/*
 		 * Validation
@@ -171,36 +176,53 @@ public class DialogueSelectionCombinaison extends JDialog {
 				setVisible(false);
 			}
 		});
-
 	}
 
 	private String getClef(int x, int y) {
 		return String.valueOf(x) + separateurClef + String.valueOf(y);
 	}
 
-	private void setListePanneau(HashMap<String, JLabel> listePanneau, int xMax, int yMax, Pion pion) {
+	private void setListePanneauPionUtilisables(HashMap<String, JLabelPion> listePanneau, int xMax, int yMax,
+			Pion pion) {
 		for (int y = 1; y <= yMax; y++) {
-			for (int x = 1; x <= xMax; x++)
-				listePanneau.put(getClef(x, y), new JLabelPion(pion));
+			for (int x = 1; x <= xMax; x++) {
+				listePanneau.put(getClef(x, y),
+						new JLabelPion(pion, new MouseListenerSetPionSelectionne(controleur, pion)));
+			}
 		}
 	}
 
-	private void creerPanneau(JPanel panneau, HashMap<String, JLabel> listePanneau, GridBagConstraints c,
+	private void setListePanneauPionProposition(HashMap<String, JLabelPion> listePanneau, int xMax, int yMax,
+			Pion pion) {
+		for (int y = 1; y <= yMax; y++) {
+			for (int x = 1; x <= xMax; x++)
+				listePanneau.put(getClef(x, y),
+						new JLabelPion(pion, new MouseListenerGetPionSelectionne(controleur, pion)));
+		}
+	}
+
+	private void creerPanneau(JPanel panneau, HashMap<String, JLabelPion> listePanneau, GridBagConstraints c,
 			String titre) {
 		panneau.setBorder(BorderFactory.createTitledBorder(titre));
-		for (Map.Entry<String, JLabel> item : listePanneau.entrySet()) {
+		for (Map.Entry<String, JLabelPion> item : listePanneau.entrySet()) {
 			c.gridx = Integer.parseInt(item.getKey().split(separateurClef)[0]);
 			c.gridy = Integer.parseInt(item.getKey().split(separateurClef)[1]);
 			panneau.add(item.getValue(), c);
 		}
 	}
 
-	public void setPion(HashMap<String, JLabel> listePanneau, String clef, Pion pion) {
+	public void setPionUtilisable(HashMap<String, JLabelPion> listePanneau, String clef, Pion pion) {
+		listePanneau.get(clef).setPion(pion);
 		listePanneau.get(clef).setIcon(new ImageIcon(getClass().getResource(pion.getNomImage())));
 		listePanneau.get(clef).setText(Integer.toString(pion.getValeur()));
 	}
 
-	public HashMap<String, JLabel> getValeur() {
+	public void setPionProposition(HashMap<String, JLabelPion> listePanneau, String clef, Pion pion) {
+		listePanneau.get(clef).setIcon(new ImageIcon(getClass().getResource(pion.getNomImage())));
+		listePanneau.get(clef).setText(Integer.toString(pion.getValeur()));
+	}
+
+	public HashMap<String, JLabelPion> getValeur() {
 		okQ = false;
 		pack();
 		setLocationRelativeTo(getOwner());
