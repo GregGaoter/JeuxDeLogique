@@ -57,6 +57,8 @@ public class Vue implements Observateur {
 	private JPanel panneauPionsUtilisables;
 	private JPanel panneauValidation;
 
+	private JButton boutonValidation;
+
 	public Vue() {
 		listePanneauSecret = new HashMap<>();
 		listePanneauProposition = new HashMap<>();
@@ -287,7 +289,7 @@ public class Vue implements Observateur {
 		/*
 		 * Panneau validation
 		 */
-		JButton boutonValidation = new JButton("Valider");
+		boutonValidation = new JButton("Valider");
 		boutonValidation.setEnabled(false);
 		panneauValidation = new JPanel(new GridBagLayout());
 		contraintes.gridx = 1;
@@ -302,6 +304,11 @@ public class Vue implements Observateur {
 			panneauValidation.add(item.getValue(), contraintes);
 		}
 		listePanneauValidation.get(getClef(1, modele.getNbEssais())).add(boutonValidation);
+		boutonValidation.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				controleur.calculerReponse();
+			}
+		});
 
 		/*
 		 * Paramètres de la fenêtre principale
@@ -335,6 +342,10 @@ public class Vue implements Observateur {
 
 	public HashMap<String, JPanel> getListePanneauValidation() {
 		return listePanneauValidation;
+	}
+
+	public JButton getBoutonValidation() {
+		return boutonValidation;
 	}
 
 	private String getClef(int x, int y) {
@@ -376,9 +387,14 @@ public class Vue implements Observateur {
 	}
 
 	public void actualiser() {
-		for (int i = 0; i < modele.getNbPionsCombinaison(); i++)
+		for (int i = 0; i < modele.getNbPionsCombinaison(); i++) {
 			setPion(listePanneauProposition, getClef(i + 1, modele.getCompteurEssais()),
 					modele.getCombinaisonProposition().get(i));
+			setPion(listePanneauReponse, getClef(i + 1, modele.getCompteurEssais()),
+					modele.getCombinaisonReponse().get(i));
+		}
+		if (!modele.getCombinaisonProposition().contains(PionCommun.Vide))
+			boutonValidation.setEnabled(true);
 	}
 
 }

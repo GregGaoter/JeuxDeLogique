@@ -1,13 +1,11 @@
 package com.openclassrooms.jeuxlogiques.controleur;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import javax.swing.JFrame;
 
+import com.openclassrooms.jeuxlogiques.controleur.service.ServiceDeCalcul;
 import com.openclassrooms.jeuxlogiques.modele.Modele;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.Mode;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.Pion;
@@ -28,6 +26,8 @@ public class Controleur {
 
 	private Mode mode;
 
+	private ServiceDeCalcul serviceDeCalcul;
+
 	public Controleur() {
 		modele = new Modele();
 		vue = new Vue();
@@ -46,6 +46,7 @@ public class Controleur {
 		if (jeu != null) {
 			modele.setJeu(jeu);
 			modele.setPionsUtilisables(Arrays.asList(jeu.getPionsJeu()));
+			setServiceDeCalcul(jeu.getServiceDeCalcul());
 			lancerMode(fenetreProprietaire);
 		}
 	}
@@ -65,7 +66,6 @@ public class Controleur {
 				fenetreProprietaire, modele, this);
 		HashMap<String, JLabelPion> combinaisonSecrete = dialogueSelectionCombinaison.getValeur();
 		if (combinaisonSecrete != null) {
-			modele.setCombinaisonSecrete(getPions(combinaisonSecrete));
 			for (int x = 1; x <= modele.getNbPionsCombinaison(); x++)
 				vue.setPion(vue.getListePanneauSecret(), getClef(x, 1), PionCommun.Secret);
 			for (int x = 1; x <= modele.getNbPionsUtilisables(); x++)
@@ -89,13 +89,6 @@ public class Controleur {
 		modele.getPionSecret(x);
 	}
 
-	private List<Pion> getPions(HashMap<String, JLabelPion> combinaison) {
-		List<Pion> listePions = new ArrayList<>();
-		for (Map.Entry<String, JLabelPion> jLabelPion : combinaison.entrySet())
-			listePions.add(jLabelPion.getValue().getPion());
-		return listePions;
-	}
-
 	private String getClef(int x, int y) {
 		return String.valueOf(x) + separateurClef + String.valueOf(y);
 	}
@@ -106,6 +99,19 @@ public class Controleur {
 
 	public void setPionProposition(Pion pion) {
 		modele.setPionProposition(pion);
+	}
+
+	public ServiceDeCalcul getServiceDeCalcul() {
+		return serviceDeCalcul;
+	}
+
+	public void setServiceDeCalcul(ServiceDeCalcul serviceDeCalcul) {
+		this.serviceDeCalcul = serviceDeCalcul;
+	}
+
+	public void calculerReponse() {
+		modele.setCombinaisonReponse(
+				serviceDeCalcul.calculerReponse(modele.getCombinaisonProposition(), modele.getCombinaisonSecrete()));
 	}
 
 }

@@ -107,6 +107,7 @@ public class Modele implements SujetObservable {
 
 	public void setCombinaisonReponse(List<Pion> combinaisonReponse) {
 		this.combinaisonReponse = combinaisonReponse;
+		notifierObservateur();
 	}
 
 	public void setPionsUtilisables(List<Pion> pionsUtilisables) {

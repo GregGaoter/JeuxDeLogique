@@ -1,5 +1,6 @@
 package com.openclassrooms.jeuxlogiques.modele.jeu;
 
+import com.openclassrooms.jeuxlogiques.controleur.service.ServiceDeCalcul;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.Pion;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.PionCommun;
 
@@ -18,5 +19,7 @@ public abstract class Jeu {
 	public abstract Pion[] getPionsJeu();
 
 	public abstract Pion[] getPionsReponse();
+
+	public abstract ServiceDeCalcul getServiceDeCalcul();
 
 }
