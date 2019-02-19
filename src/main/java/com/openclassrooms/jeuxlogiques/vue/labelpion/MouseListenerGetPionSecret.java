@@ -5,14 +5,17 @@ import java.awt.event.MouseEvent;
 import com.openclassrooms.jeuxlogiques.controleur.Controleur;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.Pion;
 
-public class MouseListenerSetPionSelectionne extends MouseListenerPionSelectionne {
+public class MouseListenerGetPionSecret extends MouseListenerPion {
 
-	public MouseListenerSetPionSelectionne(Controleur controleur, Pion pion) {
+	private int x;
+
+	public MouseListenerGetPionSecret(Controleur controleur, Pion pion, int x) {
 		super(controleur, pion);
+		this.x = x;
 	}
 
 	public void mouseClicked(MouseEvent e) {
-		controleur.setPionSelectionne(pion);
+		controleur.getPionSecret(x);
 	}
 
 	public void mouseEntered(MouseEvent e) {
@@ -29,6 +32,10 @@ public class MouseListenerSetPionSelectionne extends MouseListenerPionSelectionn
 
 	public void setPion(Pion pion) {
 		this.pion = pion;
+	}
+
+	public int getX() {
+		return x;
 	}
 
 }

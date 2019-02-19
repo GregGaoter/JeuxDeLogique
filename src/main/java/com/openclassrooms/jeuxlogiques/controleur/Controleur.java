@@ -1,12 +1,17 @@
 package com.openclassrooms.jeuxlogiques.controleur;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.swing.JFrame;
 
 import com.openclassrooms.jeuxlogiques.modele.Modele;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.Mode;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.Pion;
+import com.openclassrooms.jeuxlogiques.modele.enumeration.PionCommun;
 import com.openclassrooms.jeuxlogiques.modele.jeu.Jeu;
 import com.openclassrooms.jeuxlogiques.vue.Vue;
 import com.openclassrooms.jeuxlogiques.vue.dialogue.DialogueJeu;
@@ -15,6 +20,8 @@ import com.openclassrooms.jeuxlogiques.vue.dialogue.DialogueSelectionCombinaison
 import com.openclassrooms.jeuxlogiques.vue.labelpion.JLabelPion;
 
 public class Controleur {
+
+	private final String separateurClef = "-";
 
 	private Modele modele;
 	private Vue vue;
@@ -33,10 +40,12 @@ public class Controleur {
 	}
 
 	public void lancerDialogueJeu(JFrame fenetreProprietaire) {
+		modele.initialiser();
 		DialogueJeu dialogueJeu = new DialogueJeu(fenetreProprietaire);
 		Jeu jeu = dialogueJeu.getValeur();
 		if (jeu != null) {
 			modele.setJeu(jeu);
+			modele.setPionsUtilisables(Arrays.asList(jeu.getPionsJeu()));
 			lancerMode(fenetreProprietaire);
 		}
 	}
@@ -55,14 +64,48 @@ public class Controleur {
 		DialogueSelectionCombinaison dialogueSelectionCombinaison = new DialogueSelectionCombinaison(
 				fenetreProprietaire, modele, this);
 		HashMap<String, JLabelPion> combinaisonSecrete = dialogueSelectionCombinaison.getValeur();
+		if (combinaisonSecrete != null) {
+			modele.setCombinaisonSecrete(getPions(combinaisonSecrete));
+			for (int x = 1; x <= modele.getNbPionsCombinaison(); x++)
+				vue.setPion(vue.getListePanneauSecret(), getClef(x, 1), PionCommun.Secret);
+			for (int x = 1; x <= modele.getNbPionsUtilisables(); x++)
+				vue.setPion(vue.getListePanneauPionUtilisable(), getClef(x, 1),
+						modele.getPionsUtilisables().get(x - 1));
+			for (int y = 1; y <= modele.getNbEssais(); y++) {
+				for (int x = 1; x <= modele.getNbPionsCombinaison(); x++) {
+					vue.setPion(vue.getListePanneauProposition(), getClef(x, y), PionCommun.Vide);
+					vue.setPion(vue.getListePanneauReponse(), getClef(x, y), PionCommun.Vide);
+				}
+			}
+		}
+		dialogueSelectionCombinaison.dispose();
 	}
 
-	public void setPionSelectionne(Pion pion) {
-		modele.setPionSelectionne(pion);
+	public void setPionSecret(Pion pion) {
+		modele.setPionSecret(pion);
 	}
 
-	public void getPionSelectionne(int x) {
-		modele.getPionSelectionne(x);
+	public void getPionSecret(int x) {
+		modele.getPionSecret(x);
+	}
+
+	private List<Pion> getPions(HashMap<String, JLabelPion> combinaison) {
+		List<Pion> listePions = new ArrayList<>();
+		for (Map.Entry<String, JLabelPion> jLabelPion : combinaison.entrySet())
+			listePions.add(jLabelPion.getValue().getPion());
+		return listePions;
+	}
+
+	private String getClef(int x, int y) {
+		return String.valueOf(x) + separateurClef + String.valueOf(y);
+	}
+
+	public void getPionProposition(int x) {
+		modele.getPionProposition(x);
+	}
+
+	public void setPionProposition(Pion pion) {
+		modele.setPionProposition(pion);
 	}
 
 }

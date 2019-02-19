@@ -1,6 +1,7 @@
 package com.openclassrooms.jeuxlogiques.modele;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.openclassrooms.jeuxlogiques.controleur.Controleur;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.Pion;
@@ -19,35 +20,38 @@ public class Modele implements SujetObservable {
 	private int nbEssais;
 	private int nbPionsCombinaison;
 	private int nbPionsUtilisables;
+	private int compteurEssais;
 
 	private Jeu jeu;
 
-	private ArrayList<Pion> combinaisonSecrete;
-	private ArrayList<Pion> combinaisonProposition;
-	private ArrayList<Pion> combinaisonReponse;
-	private ArrayList<Pion> pionsUtilisables;
+	private List<Pion> combinaisonSecrete;
+	private List<Pion> combinaisonProposition;
+	private List<Pion> combinaisonReponse;
+	private List<Pion> pionsUtilisables;
 
-	private Pion pionSelectionne;
+	private Pion pionSecret;
+	private Pion pionProposition;
 
 	public Modele() {
 		listeObservateurs = new ArrayList<>();
 		nbEssais = 8;
 		nbPionsCombinaison = 4;
 		nbPionsUtilisables = 10;
+		compteurEssais = nbEssais;
+	}
+
+	public void initialiser() {
 		combinaisonSecrete = new ArrayList<>(nbPionsCombinaison);
 		combinaisonProposition = new ArrayList<>(nbPionsCombinaison);
 		combinaisonReponse = new ArrayList<>(nbPionsCombinaison);
 		pionsUtilisables = new ArrayList<>(nbPionsUtilisables);
-	}
-
-	public void initialiser() {
 		initialiserCombinaison(combinaisonSecrete, nbPionsCombinaison);
 		initialiserCombinaison(combinaisonProposition, nbPionsCombinaison);
 		initialiserCombinaison(combinaisonReponse, nbPionsCombinaison);
 		initialiserCombinaison(pionsUtilisables, nbPionsUtilisables);
 	}
 
-	private void initialiserCombinaison(ArrayList<Pion> combinaison, int nbPions) {
+	private void initialiserCombinaison(List<Pion> combinaison, int nbPions) {
 		for (int i = 0; i < nbPions; i++)
 			combinaison.add(PionCommun.Vide);
 	}
@@ -85,35 +89,43 @@ public class Modele implements SujetObservable {
 		return nbPionsUtilisables;
 	}
 
-	public void setCombinaisonSecrete(ArrayList<Pion> combinaisonSecrete) {
+	public int getCompteurEssais() {
+		return compteurEssais;
+	}
+
+	public void setCompteurEssais(int compteurEssais) {
+		this.compteurEssais = compteurEssais;
+	}
+
+	public void setCombinaisonSecrete(List<Pion> combinaisonSecrete) {
 		this.combinaisonSecrete = combinaisonSecrete;
 	}
 
-	public void setCombinaisonProposition(ArrayList<Pion> combinaisonProposition) {
+	public void setCombinaisonProposition(List<Pion> combinaisonProposition) {
 		this.combinaisonProposition = combinaisonProposition;
 	}
 
-	public void setCombinaisonReponse(ArrayList<Pion> combinaisonReponse) {
+	public void setCombinaisonReponse(List<Pion> combinaisonReponse) {
 		this.combinaisonReponse = combinaisonReponse;
 	}
 
-	public void setPionsUtilisables(ArrayList<Pion> pionsUtilisables) {
+	public void setPionsUtilisables(List<Pion> pionsUtilisables) {
 		this.pionsUtilisables = pionsUtilisables;
 	}
 
-	public ArrayList<Pion> getCombinaisonSecrete() {
+	public List<Pion> getCombinaisonSecrete() {
 		return combinaisonSecrete;
 	}
 
-	public ArrayList<Pion> getCombinaisonProposition() {
+	public List<Pion> getCombinaisonProposition() {
 		return combinaisonProposition;
 	}
 
-	public ArrayList<Pion> getCombinaisonReponse() {
+	public List<Pion> getCombinaisonReponse() {
 		return combinaisonReponse;
 	}
 
-	public ArrayList<Pion> getPionsUtilisables() {
+	public List<Pion> getPionsUtilisables() {
 		return pionsUtilisables;
 	}
 
@@ -125,14 +137,24 @@ public class Modele implements SujetObservable {
 		this.jeu = jeu;
 	}
 
-	public void getPionSelectionne(int x) {
-		combinaisonSecrete.set(x - 1, pionSelectionne);
+	public void getPionSecret(int x) {
+		combinaisonSecrete.set(x - 1, pionSecret);
 		notifierObservateur();
 	}
 
-	public void setPionSelectionne(Pion pionSelectionne) {
-		this.pionSelectionne = pionSelectionne;
-		System.out.println(pionSelectionne.getNomImage());
+	public void setPionSecret(Pion pionSecret) {
+		this.pionSecret = pionSecret;
+		System.out.println(pionSecret.getNomImage());
+	}
+
+	public void getPionProposition(int x) {
+		combinaisonProposition.set(x - 1, pionProposition);
+		notifierObservateur();
+	}
+
+	public void setPionProposition(Pion pionProposition) {
+		this.pionProposition = pionProposition;
+		System.out.println(pionProposition.getNomImage());
 	}
 
 }

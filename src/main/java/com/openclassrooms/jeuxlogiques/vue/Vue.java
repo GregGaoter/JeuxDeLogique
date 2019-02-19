@@ -14,7 +14,6 @@ import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -31,6 +30,9 @@ import com.openclassrooms.jeuxlogiques.modele.enumeration.Pion;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.PionCommun;
 import com.openclassrooms.jeuxlogiques.separateur.AlignementHorizontal;
 import com.openclassrooms.jeuxlogiques.separateur.SeparateurVertical;
+import com.openclassrooms.jeuxlogiques.vue.labelpion.JLabelPion;
+import com.openclassrooms.jeuxlogiques.vue.labelpion.MouseListenerGetPionProposition;
+import com.openclassrooms.jeuxlogiques.vue.labelpion.MouseListenerSetPionProposition;
 
 public class Vue implements Observateur {
 
@@ -39,10 +41,10 @@ public class Vue implements Observateur {
 	private Modele modele;
 	private Controleur controleur;
 
-	private HashMap<String, JLabel> listePanneauSecret;
-	private HashMap<String, JLabel> listePanneauProposition;
-	private HashMap<String, JLabel> listePanneauReponse;
-	private HashMap<String, JLabel> listePanneauPionUtilisable;
+	private HashMap<String, JLabelPion> listePanneauSecret;
+	private HashMap<String, JLabelPion> listePanneauProposition;
+	private HashMap<String, JLabelPion> listePanneauReponse;
+	private HashMap<String, JLabelPion> listePanneauPionUtilisable;
 	private HashMap<String, JPanel> listePanneauValidation;
 
 	private GridBagConstraints contraintes;
@@ -182,7 +184,7 @@ public class Vue implements Observateur {
 		boutonNouveauJeu.setHorizontalTextPosition(SwingConstants.CENTER);
 		boutonNouveauJeu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				controleur.lancerDialogueJeu(fenetrePrincipale);
 			}
 		});
 		contraintes.gridx++;
@@ -240,7 +242,7 @@ public class Vue implements Observateur {
 		 * Panneau combinaison secrète
 		 */
 		panneauCombinaisonSecrete = new JPanel(new GridBagLayout());
-		setListePanneau(listePanneauSecret, modele.getNbPionsCombinaison(), 1, PionCommun.Vide);
+		setListePanneauPionProposition(listePanneauSecret, modele.getNbPionsCombinaison(), 1, PionCommun.Vide);
 		creerPanneau(panneauCombinaisonSecrete, listePanneauSecret, contraintes, "Combinaison secrète");
 		contraintes.gridx = 2;
 		contraintes.gridy = 1;
@@ -250,7 +252,8 @@ public class Vue implements Observateur {
 		 * Panneau proposition
 		 */
 		panneauProposition = new JPanel(new GridBagLayout());
-		setListePanneau(listePanneauProposition, modele.getNbPionsCombinaison(), modele.getNbEssais(), PionCommun.Vide);
+		setListePanneauPionProposition(listePanneauProposition, modele.getNbPionsCombinaison(), modele.getNbEssais(),
+				PionCommun.Vide);
 		creerPanneau(panneauProposition, listePanneauProposition, contraintes, "Proposition");
 		contraintes.gridx = 2;
 		contraintes.gridy = 2;
@@ -260,7 +263,8 @@ public class Vue implements Observateur {
 		 * Panneau réponse
 		 */
 		panneauReponse = new JPanel(new GridBagLayout());
-		setListePanneau(listePanneauReponse, modele.getNbPionsCombinaison(), modele.getNbEssais(), PionCommun.Vide);
+		setListePanneauPionProposition(listePanneauReponse, modele.getNbPionsCombinaison(), modele.getNbEssais(),
+				PionCommun.Vide);
 		creerPanneau(panneauReponse, listePanneauReponse, contraintes, "Réponse");
 		contraintes.gridx = 3;
 		contraintes.gridy = 2;
@@ -270,7 +274,7 @@ public class Vue implements Observateur {
 		 * Panneau pions utilisables
 		 */
 		panneauPionsUtilisables = new JPanel(new GridBagLayout());
-		setListePanneau(listePanneauPionUtilisable, modele.getNbPionsUtilisables(), 1, PionCommun.Vide);
+		setListePanneauPionUtilisables();
 		creerPanneau(panneauPionsUtilisables, listePanneauPionUtilisable, contraintes, "Pions utilisables");
 		contraintes.gridx = 1;
 		contraintes.gridy = 3;
@@ -313,35 +317,68 @@ public class Vue implements Observateur {
 		return panneauPrincipal;
 	}
 
+	public HashMap<String, JLabelPion> getListePanneauSecret() {
+		return listePanneauSecret;
+	}
+
+	public HashMap<String, JLabelPion> getListePanneauProposition() {
+		return listePanneauProposition;
+	}
+
+	public HashMap<String, JLabelPion> getListePanneauReponse() {
+		return listePanneauReponse;
+	}
+
+	public HashMap<String, JLabelPion> getListePanneauPionUtilisable() {
+		return listePanneauPionUtilisable;
+	}
+
+	public HashMap<String, JPanel> getListePanneauValidation() {
+		return listePanneauValidation;
+	}
+
 	private String getClef(int x, int y) {
 		return String.valueOf(x) + separateurClef + String.valueOf(y);
 	}
 
-	private void setListePanneau(HashMap<String, JLabel> listePanneau, int xMax, int yMax, Pion pion) {
-		for (int y = 1; y <= yMax; y++) {
-			for (int x = 1; x <= xMax; x++) {
-			}
-			// listePanneau.put(getClef(x, y), new JLabelPionsUtilisables(pion));
+	private void setListePanneauPionUtilisables() {
+		Pion pion;
+		for (int x = 1; x <= modele.getPionsUtilisables().size(); x++) {
+			pion = modele.getPionsUtilisables().get(x - 1);
+			listePanneauPionUtilisable.put(getClef(x, 1),
+					new JLabelPion(pion, new MouseListenerSetPionProposition(controleur, pion)));
 		}
 	}
 
-	private void creerPanneau(JPanel panneau, HashMap<String, JLabel> listePanneau, GridBagConstraints c,
+	public void setListePanneauPionProposition(HashMap<String, JLabelPion> listePanneau, int xMax, int yMax,
+			Pion pion) {
+		for (int y = 1; y <= yMax; y++) {
+			for (int x = 1; x <= xMax; x++)
+				listePanneau.put(getClef(x, y),
+						new JLabelPion(pion, new MouseListenerGetPionProposition(controleur, pion, x)));
+		}
+	}
+
+	private void creerPanneau(JPanel panneau, HashMap<String, JLabelPion> listePanneau, GridBagConstraints c,
 			String titre) {
 		panneau.setBorder(BorderFactory.createTitledBorder(titre));
-		for (Map.Entry<String, JLabel> item : listePanneau.entrySet()) {
+		for (Map.Entry<String, JLabelPion> item : listePanneau.entrySet()) {
 			c.gridx = Integer.parseInt(item.getKey().split(separateurClef)[0]);
 			c.gridy = Integer.parseInt(item.getKey().split(separateurClef)[1]);
 			panneau.add(item.getValue(), c);
 		}
 	}
 
-	public void setPion(HashMap<String, JLabel> listePanneau, String clef, Pion pion) {
+	public void setPion(HashMap<String, JLabelPion> listePanneau, String clef, Pion pion) {
+		listePanneau.get(clef).getMouseListener().setPion(pion);
 		listePanneau.get(clef).setIcon(new ImageIcon(getClass().getResource(pion.getNomImage())));
 		listePanneau.get(clef).setText(Integer.toString(pion.getValeur()));
 	}
 
 	public void actualiser() {
-
+		for (int i = 0; i < modele.getNbPionsCombinaison(); i++)
+			setPion(listePanneauProposition, getClef(i + 1, modele.getCompteurEssais()),
+					modele.getCombinaisonProposition().get(i));
 	}
 
 }

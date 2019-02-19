@@ -14,9 +14,9 @@ public class JLabelPion extends JLabel {
 
 	private Pion pion;
 	private Controleur controleur;
-	private MouseListenerPionSelectionne mouseListener;
+	private MouseListenerPion mouseListener;
 
-	public JLabelPion(Pion pion, MouseListenerPionSelectionne mouseListener) {
+	public JLabelPion(Pion pion, MouseListenerPion mouseListener) {
 		this.pion = pion;
 		this.mouseListener = mouseListener;
 		setIcon(new ImageIcon(getClass().getResource(pion.getNomImage())));
@@ -34,11 +34,11 @@ public class JLabelPion extends JLabel {
 		this.pion = pion;
 	}
 
-	public MouseListenerPionSelectionne getMouseListener() {
+	public MouseListenerPion getMouseListener() {
 		return mouseListener;
 	}
 
-	public void setMouseListener(MouseListenerPionSelectionne mouseListener) {
+	public void setMouseListener(MouseListenerPion mouseListener) {
 		this.mouseListener = mouseListener;
 	}
 

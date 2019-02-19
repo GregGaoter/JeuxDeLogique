@@ -31,8 +31,8 @@ import com.openclassrooms.jeuxlogiques.separateur.AlignementVertical;
 import com.openclassrooms.jeuxlogiques.separateur.SeparateurHorizontal;
 import com.openclassrooms.jeuxlogiques.vue.Observateur;
 import com.openclassrooms.jeuxlogiques.vue.labelpion.JLabelPion;
-import com.openclassrooms.jeuxlogiques.vue.labelpion.MouseListenerGetPionSelectionne;
-import com.openclassrooms.jeuxlogiques.vue.labelpion.MouseListenerSetPionSelectionne;
+import com.openclassrooms.jeuxlogiques.vue.labelpion.MouseListenerGetPionSecret;
+import com.openclassrooms.jeuxlogiques.vue.labelpion.MouseListenerSetPionSecret;
 
 public class DialogueSelectionCombinaison extends JDialog implements Observateur {
 
@@ -147,14 +147,12 @@ public class DialogueSelectionCombinaison extends JDialog implements Observateur
 		 * Panneau des pions utilisables
 		 */
 		JPanel panneauPionsUtilisables = new JPanel(new GridBagLayout());
-		setListePanneauPionUtilisables(listePanneauPionUtilisable, modele.getNbPionsUtilisables(), 1, PionCommun.Vide);
+		setListePanneauPionUtilisables();
 		creerPanneau(panneauPionsUtilisables, listePanneauPionUtilisable, contraintes,
 				"Choisissez les pions de la combinaison secrète :");
 		contraintes.gridx = 1;
 		contraintes.gridy = 4;
 		panneauSettings.add(panneauPionsUtilisables, contraintes);
-		for (int i = 0; i < modele.getJeu().getPionsJeu().length; i++)
-			setPionUtilisable(listePanneauPionUtilisable, getClef(i + 1, 1), modele.getJeu().getPionsJeu()[i]);
 
 		/*
 		 * Validation
@@ -184,13 +182,12 @@ public class DialogueSelectionCombinaison extends JDialog implements Observateur
 		return String.valueOf(x) + separateurClef + String.valueOf(y);
 	}
 
-	private void setListePanneauPionUtilisables(HashMap<String, JLabelPion> listePanneau, int xMax, int yMax,
-			Pion pion) {
-		for (int y = 1; y <= yMax; y++) {
-			for (int x = 1; x <= xMax; x++) {
-				listePanneau.put(getClef(x, y),
-						new JLabelPion(pion, new MouseListenerSetPionSelectionne(controleur, pion)));
-			}
+	private void setListePanneauPionUtilisables() {
+		Pion pion;
+		for (int x = 1; x <= modele.getPionsUtilisables().size(); x++) {
+			pion = modele.getPionsUtilisables().get(x - 1);
+			listePanneauPionUtilisable.put(getClef(x, 1),
+					new JLabelPion(pion, new MouseListenerSetPionSecret(controleur, pion)));
 		}
 	}
 
@@ -199,7 +196,7 @@ public class DialogueSelectionCombinaison extends JDialog implements Observateur
 		for (int y = 1; y <= yMax; y++) {
 			for (int x = 1; x <= xMax; x++)
 				listePanneau.put(getClef(x, y),
-						new JLabelPion(pion, new MouseListenerGetPionSelectionne(controleur, pion, x)));
+						new JLabelPion(pion, new MouseListenerGetPionSecret(controleur, pion, x)));
 		}
 	}
 
