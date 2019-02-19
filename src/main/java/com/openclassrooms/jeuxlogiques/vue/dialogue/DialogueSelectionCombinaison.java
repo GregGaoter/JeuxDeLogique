@@ -29,11 +29,12 @@ import com.openclassrooms.jeuxlogiques.modele.enumeration.Pion;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.PionCommun;
 import com.openclassrooms.jeuxlogiques.separateur.AlignementVertical;
 import com.openclassrooms.jeuxlogiques.separateur.SeparateurHorizontal;
+import com.openclassrooms.jeuxlogiques.vue.Observateur;
 import com.openclassrooms.jeuxlogiques.vue.labelpion.JLabelPion;
 import com.openclassrooms.jeuxlogiques.vue.labelpion.MouseListenerGetPionSelectionne;
 import com.openclassrooms.jeuxlogiques.vue.labelpion.MouseListenerSetPionSelectionne;
 
-public class DialogueSelectionCombinaison extends JDialog {
+public class DialogueSelectionCombinaison extends JDialog implements Observateur {
 
 	private static final long serialVersionUID = 1L;
 
@@ -57,6 +58,7 @@ public class DialogueSelectionCombinaison extends JDialog {
 		listePanneauPionUtilisable = new HashMap<>();
 		this.modele = modele;
 		this.controleur = controleur;
+		modele.ajouterObservateur(this);
 
 		/*
 		 * Contraintes du GridBagLayout
@@ -197,7 +199,7 @@ public class DialogueSelectionCombinaison extends JDialog {
 		for (int y = 1; y <= yMax; y++) {
 			for (int x = 1; x <= xMax; x++)
 				listePanneau.put(getClef(x, y),
-						new JLabelPion(pion, new MouseListenerGetPionSelectionne(controleur, pion)));
+						new JLabelPion(pion, new MouseListenerGetPionSelectionne(controleur, pion, x)));
 		}
 	}
 
@@ -212,7 +214,7 @@ public class DialogueSelectionCombinaison extends JDialog {
 	}
 
 	public void setPionUtilisable(HashMap<String, JLabelPion> listePanneau, String clef, Pion pion) {
-		listePanneau.get(clef).setPion(pion);
+		listePanneau.get(clef).getMouseListener().setPion(pion);
 		listePanneau.get(clef).setIcon(new ImageIcon(getClass().getResource(pion.getNomImage())));
 		listePanneau.get(clef).setText(Integer.toString(pion.getValeur()));
 	}
@@ -228,6 +230,11 @@ public class DialogueSelectionCombinaison extends JDialog {
 		setLocationRelativeTo(getOwner());
 		setVisible(true);
 		return (okQ ? listePanneauSecret : null);
+	}
+
+	public void actualiser() {
+		for (int i = 0; i < modele.getCombinaisonSecrete().size(); i++)
+			setPionUtilisable(listePanneauSecret, getClef(i + 1, 1), modele.getCombinaisonSecrete().get(i));
 	}
 
 }

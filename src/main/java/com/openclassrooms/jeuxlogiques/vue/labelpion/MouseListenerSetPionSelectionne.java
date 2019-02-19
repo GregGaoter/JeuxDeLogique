@@ -27,4 +27,8 @@ public class MouseListenerSetPionSelectionne extends MouseListenerPionSelectionn
 	public void mouseReleased(MouseEvent e) {
 	}
 
+	public void setPion(Pion pion) {
+		this.pion = pion;
+	}
+
 }

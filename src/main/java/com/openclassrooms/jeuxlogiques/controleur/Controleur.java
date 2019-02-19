@@ -26,6 +26,7 @@ public class Controleur {
 		vue = new Vue();
 		modele.setVue(vue);
 		modele.setControleur(this);
+		modele.initialiser();
 		vue.setModele(modele);
 		vue.setControleur(this);
 		vue.creerVue();
@@ -60,8 +61,8 @@ public class Controleur {
 		modele.setPionSelectionne(pion);
 	}
 
-	public void getPionSelectionne() {
-		modele.getPionSelectionne();
+	public void getPionSelectionne(int x) {
+		modele.getPionSelectionne(x);
 	}
 
 }

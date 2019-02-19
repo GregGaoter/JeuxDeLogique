@@ -16,8 +16,6 @@ public abstract class MouseListenerPionSelectionne implements MouseListener {
 		this.pion = pion;
 	}
 
-	public void setPion(Pion pion) {
-		this.pion = pion;
-	}
+	public abstract void setPion(Pion pion);
 
 }

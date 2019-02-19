@@ -1,7 +1,6 @@
 package com.openclassrooms.jeuxlogiques.vue.labelpion;
 
 import java.awt.Color;
-import java.awt.event.MouseListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -15,9 +14,9 @@ public class JLabelPion extends JLabel {
 
 	private Pion pion;
 	private Controleur controleur;
-	private MouseListener mouseListener;
+	private MouseListenerPionSelectionne mouseListener;
 
-	public JLabelPion(Pion pion, MouseListener mouseListener) {
+	public JLabelPion(Pion pion, MouseListenerPionSelectionne mouseListener) {
 		this.pion = pion;
 		this.mouseListener = mouseListener;
 		setIcon(new ImageIcon(getClass().getResource(pion.getNomImage())));
@@ -33,6 +32,14 @@ public class JLabelPion extends JLabel {
 
 	public void setPion(Pion pion) {
 		this.pion = pion;
+	}
+
+	public MouseListenerPionSelectionne getMouseListener() {
+		return mouseListener;
+	}
+
+	public void setMouseListener(MouseListenerPionSelectionne mouseListener) {
+		this.mouseListener = mouseListener;
 	}
 
 }

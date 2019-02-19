@@ -48,6 +48,7 @@ public class Vue implements Observateur {
 	private GridBagConstraints contraintes;
 
 	private JPanel panneauPrincipal;
+
 	private JPanel panneauCombinaisonSecrete;
 	private JPanel panneauProposition;
 	private JPanel panneauReponse;
@@ -231,7 +232,7 @@ public class Vue implements Observateur {
 		/*
 		 * Panneau principal
 		 */
-		JPanel panneauPrincipal = new JPanel(new GridBagLayout());
+		panneauPrincipal = new JPanel(new GridBagLayout());
 		fenetrePrincipale.add(panneauPrincipal, BorderLayout.CENTER);
 		panneauPrincipal.setBorder(new EmptyBorder(10, 10, 10, 10));
 
@@ -306,6 +307,10 @@ public class Vue implements Observateur {
 		fenetrePrincipale.setLocationRelativeTo(null);
 		fenetrePrincipale.setVisible(true);
 
+	}
+
+	public JPanel getPanneauPrincipal() {
+		return panneauPrincipal;
 	}
 
 	private String getClef(int x, int y) {
