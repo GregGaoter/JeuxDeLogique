@@ -387,14 +387,13 @@ public class Vue implements Observateur {
 	}
 
 	public void actualiser() {
+		boutonValidation.setEnabled(!modele.getCombinaisonProposition().contains(PionCommun.Vide));
 		for (int i = 0; i < modele.getNbPionsCombinaison(); i++) {
 			setPion(listePanneauProposition, getClef(i + 1, modele.getCompteurEssais()),
 					modele.getCombinaisonProposition().get(i));
 			setPion(listePanneauReponse, getClef(i + 1, modele.getCompteurEssais()),
 					modele.getCombinaisonReponse().get(i));
 		}
-		if (!modele.getCombinaisonProposition().contains(PionCommun.Vide))
-			boutonValidation.setEnabled(true);
 	}
 
 }

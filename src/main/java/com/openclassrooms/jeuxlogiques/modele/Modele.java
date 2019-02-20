@@ -51,7 +51,8 @@ public class Modele implements SujetObservable {
 		initialiserCombinaison(pionsUtilisables, nbPionsUtilisables);
 	}
 
-	private void initialiserCombinaison(List<Pion> combinaison, int nbPions) {
+	public void initialiserCombinaison(List<Pion> combinaison, int nbPions) {
+		combinaison.clear();
 		for (int i = 0; i < nbPions; i++)
 			combinaison.add(PionCommun.Vide);
 	}
@@ -93,8 +94,8 @@ public class Modele implements SujetObservable {
 		return compteurEssais;
 	}
 
-	public void setCompteurEssais(int compteurEssais) {
-		this.compteurEssais = compteurEssais;
+	public void setCompteurEssais() {
+		compteurEssais--;
 	}
 
 	public void setCombinaisonSecrete(List<Pion> combinaisonSecrete) {

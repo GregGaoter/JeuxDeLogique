@@ -112,6 +112,16 @@ public class Controleur {
 	public void calculerReponse() {
 		modele.setCombinaisonReponse(
 				serviceDeCalcul.calculerReponse(modele.getCombinaisonProposition(), modele.getCombinaisonSecrete()));
+		vue.getBoutonValidation().setEnabled(false);
+		modele.setCompteurEssais();
+		modele.initialiserCombinaison(modele.getCombinaisonProposition(), modele.getNbPionsCombinaison());
+		modele.initialiserCombinaison(modele.getCombinaisonReponse(), modele.getNbPionsCombinaison());
+		if (modele.getCompteurEssais() < modele.getNbEssais()) {
+			vue.getListePanneauValidation().get(getClef(1, modele.getCompteurEssais() + 1))
+					.remove(vue.getBoutonValidation());
+			vue.getListePanneauValidation().get(getClef(1, modele.getCompteurEssais())).add(vue.getBoutonValidation());
+			vue.getPanneauPrincipal().repaint();
+		}
 	}
 
 }
