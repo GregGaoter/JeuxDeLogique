@@ -90,8 +90,7 @@ public class DialogueSelectionCombinaison extends JDialog implements Observateur
 		/*
 		 * Panneau des settings
 		 */
-		panneauSettings = new JPanel();
-		panneauSettings.setLayout(new GridBagLayout());
+		panneauSettings = new JPanel(new GridBagLayout());
 		panneauPrincipal.add(panneauSettings, BorderLayout.CENTER);
 
 		/*
@@ -125,8 +124,6 @@ public class DialogueSelectionCombinaison extends JDialog implements Observateur
 				boutonRefresh.setEnabled(true);
 			}
 		});
-
-		toggleButtonManuel.doClick();
 
 		/*
 		 * Séparateur horizontal
@@ -191,6 +188,9 @@ public class DialogueSelectionCombinaison extends JDialog implements Observateur
 				setVisible(false);
 			}
 		});
+
+		toggleButtonManuel.doClick();
+		boutonOk.setEnabled(false);
 	}
 
 	private String getClef(int x, int y) {
@@ -247,6 +247,7 @@ public class DialogueSelectionCombinaison extends JDialog implements Observateur
 	}
 
 	public void actualiser() {
+		boutonOk.setEnabled(!modele.getCombinaisonSecrete().contains(PionCommun.Vide));
 		for (int i = 0; i < modele.getCombinaisonSecrete().size(); i++)
 			setPion(listePanneauSecret, getClef(i + 1, 1), modele.getCombinaisonSecrete().get(i));
 	}

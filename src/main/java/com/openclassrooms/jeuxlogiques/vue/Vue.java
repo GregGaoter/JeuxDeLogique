@@ -134,7 +134,7 @@ public class Vue implements Observateur {
 		menuOption.add(menuItemOptionJeu);
 		menuItemOptionJeu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				controleur.lancerDialogueOption(fenetrePrincipale);
 			}
 		});
 
@@ -201,7 +201,7 @@ public class Vue implements Observateur {
 		boutonOptionJeu.setHorizontalTextPosition(SwingConstants.CENTER);
 		boutonOptionJeu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				controleur.lancerDialogueOption(fenetrePrincipale);
 			}
 		});
 		contraintes.gridx++;

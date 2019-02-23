@@ -14,6 +14,7 @@ import com.openclassrooms.jeuxlogiques.modele.jeu.Jeu;
 import com.openclassrooms.jeuxlogiques.vue.Vue;
 import com.openclassrooms.jeuxlogiques.vue.dialogue.DialogueJeu;
 import com.openclassrooms.jeuxlogiques.vue.dialogue.DialogueMode;
+import com.openclassrooms.jeuxlogiques.vue.dialogue.DialogueOption;
 import com.openclassrooms.jeuxlogiques.vue.dialogue.DialogueSelectionCombinaison;
 import com.openclassrooms.jeuxlogiques.vue.labelpion.JLabelPion;
 
@@ -84,6 +85,17 @@ public class Controleur {
 			modele.setCompteurEssais(modele.getNbEssais());
 		}
 		dialogueSelectionCombinaison.dispose();
+	}
+
+	public void lancerDialogueOption(JFrame fenetreProprietaire) {
+		DialogueOption dialogueOptions = new DialogueOption(fenetreProprietaire);
+		int[] listeValeurs = dialogueOptions.getValeur();
+		if (listeValeurs != null) {
+			modele.setNbPionsCombinaison(listeValeurs[0]);
+			modele.setNbEssais(listeValeurs[1]);
+			modele.setNbPionsUtilisables(listeValeurs[2]);
+			modele.initialiser();
+		}
 	}
 
 	public void setPionSecret(Pion pion) {
