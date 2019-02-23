@@ -150,7 +150,6 @@ public class Modele implements SujetObservable {
 
 	public void setPionSecret(Pion pionSecret) {
 		this.pionSecret = pionSecret;
-		System.out.println(pionSecret.getNomImage());
 	}
 
 	public void getPionProposition(int x) {

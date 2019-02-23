@@ -23,6 +23,8 @@ import javax.swing.JPanel;
 import javax.swing.JToggleButton;
 import javax.swing.border.EmptyBorder;
 
+import org.apache.commons.lang3.RandomUtils;
+
 import com.openclassrooms.jeuxlogiques.controleur.Controleur;
 import com.openclassrooms.jeuxlogiques.modele.Modele;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.Pion;
@@ -59,6 +61,7 @@ public class DialogueSelectionCombinaison extends JDialog implements Observateur
 		listePanneauPionUtilisable = new HashMap<>();
 		this.modele = modele;
 		this.controleur = controleur;
+		boutonRefresh = new JButton(new ImageIcon(getClass().getResource("/refresh_32.png")));
 		modele.ajouterObservateur(this);
 
 		/*
@@ -108,7 +111,7 @@ public class DialogueSelectionCombinaison extends JDialog implements Observateur
 		toggleButtonManuel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				manuelQ = true;
-				System.out.println("Type de sélection : manuelle");
+				boutonRefresh.setEnabled(false);
 			}
 		});
 
@@ -118,7 +121,8 @@ public class DialogueSelectionCombinaison extends JDialog implements Observateur
 		toggleButtonAleatoire.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				manuelQ = false;
-				System.out.println("Type de sélection : aléatoire");
+				setCombinaisonAleatoire();
+				boutonRefresh.setEnabled(true);
 			}
 		});
 
@@ -147,11 +151,10 @@ public class DialogueSelectionCombinaison extends JDialog implements Observateur
 		setListePanneauSecret();
 		creerPanneau(panneauCombinaisonSecrete, listePanneauSecret, contraintes, "Combinaison secrète");
 
-		boutonRefresh = new JButton(new ImageIcon(getClass().getResource("/refresh_32.png")));
 		panneauChoixCombinaison.add(boutonRefresh);
 		boutonRefresh.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// setCombinaisonAleatoire();
+				setCombinaisonAleatoire();
 			}
 		});
 
@@ -219,10 +222,20 @@ public class DialogueSelectionCombinaison extends JDialog implements Observateur
 		}
 	}
 
-	public void setPionUtilisable(HashMap<String, JLabelPion> listePanneau, String clef, Pion pion) {
+	public void setPion(HashMap<String, JLabelPion> listePanneau, String clef, Pion pion) {
 		listePanneau.get(clef).getMouseListener().setPion(pion);
 		listePanneau.get(clef).setIcon(new ImageIcon(getClass().getResource(pion.getNomImage())));
 		listePanneau.get(clef).setText(Integer.toString(pion.getValeur()));
+	}
+
+	private void setCombinaisonAleatoire() {
+		Pion pionAleatoire;
+		for (int i = 1; i <= modele.getNbPionsCombinaison(); i++) {
+			pionAleatoire = modele.getPionsUtilisables().get(RandomUtils.nextInt(0, modele.getNbPionsUtilisables()));
+			setPion(listePanneauSecret, getClef(i, 1), pionAleatoire);
+			modele.setPionSecret(pionAleatoire);
+			modele.getPionSecret(i);
+		}
 	}
 
 	public HashMap<String, JLabelPion> getValeur() {
@@ -235,7 +248,7 @@ public class DialogueSelectionCombinaison extends JDialog implements Observateur
 
 	public void actualiser() {
 		for (int i = 0; i < modele.getCombinaisonSecrete().size(); i++)
-			setPionUtilisable(listePanneauSecret, getClef(i + 1, 1), modele.getCombinaisonSecrete().get(i));
+			setPion(listePanneauSecret, getClef(i + 1, 1), modele.getCombinaisonSecrete().get(i));
 	}
 
 }
