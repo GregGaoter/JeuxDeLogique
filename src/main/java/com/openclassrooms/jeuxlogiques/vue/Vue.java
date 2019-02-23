@@ -49,6 +49,7 @@ public class Vue implements Observateur {
 
 	private GridBagConstraints contraintes;
 
+	private JFrame fenetrePrincipale;
 	private JPanel panneauPrincipal;
 
 	private JPanel panneauCombinaisonSecrete;
@@ -76,6 +77,85 @@ public class Vue implements Observateur {
 		this.controleur = controleur;
 	}
 
+	public void initialiserPanneaux() {
+
+		panneauPrincipal.removeAll();
+
+		/*
+		 * Panneau combinaison secrète
+		 */
+		panneauCombinaisonSecrete = new JPanel(new GridBagLayout());
+		panneauCombinaisonSecrete.setBorder(BorderFactory.createTitledBorder("Combinaison secrète"));
+		setListePanneauPionProposition(listePanneauSecret, modele.getNbPionsCombinaison(), 1, PionCommun.Vide);
+		creerPanneau(panneauCombinaisonSecrete, listePanneauSecret, contraintes);
+		contraintes.gridx = 2;
+		contraintes.gridy = 1;
+		panneauPrincipal.add(panneauCombinaisonSecrete, contraintes);
+
+		/*
+		 * Panneau proposition
+		 */
+		panneauProposition = new JPanel(new GridBagLayout());
+		panneauProposition.setBorder(BorderFactory.createTitledBorder("Proposition"));
+		setListePanneauPionProposition(listePanneauProposition, modele.getNbPionsCombinaison(), modele.getNbEssais(),
+				PionCommun.Vide);
+		creerPanneau(panneauProposition, listePanneauProposition, contraintes);
+		contraintes.gridx = 2;
+		contraintes.gridy = 2;
+		panneauPrincipal.add(panneauProposition, contraintes);
+
+		/*
+		 * Panneau réponse
+		 */
+		panneauReponse = new JPanel(new GridBagLayout());
+		panneauReponse.setBorder(BorderFactory.createTitledBorder("Réponse"));
+		setListePanneauPionProposition(listePanneauReponse, modele.getNbPionsCombinaison(), modele.getNbEssais(),
+				PionCommun.Vide);
+		creerPanneau(panneauReponse, listePanneauReponse, contraintes);
+		contraintes.gridx = 3;
+		contraintes.gridy = 2;
+		panneauPrincipal.add(panneauReponse, contraintes);
+
+		/*
+		 * Panneau pions utilisables
+		 */
+		panneauPionsUtilisables = new JPanel(new GridBagLayout());
+		panneauPionsUtilisables.setBorder(BorderFactory.createTitledBorder("Pions utilisables"));
+		setListePanneauPionUtilisables();
+		creerPanneau(panneauPionsUtilisables, listePanneauPionUtilisable, contraintes);
+		contraintes.gridx = 1;
+		contraintes.gridy = 3;
+		contraintes.gridwidth = 3;
+		contraintes.fill = GridBagConstraints.NONE;
+		panneauPrincipal.add(panneauPionsUtilisables, contraintes);
+		contraintes.gridwidth = 1;
+		contraintes.fill = GridBagConstraints.BOTH;
+
+		/*
+		 * Panneau validation
+		 */
+		boutonValidation = new JButton("Valider");
+		boutonValidation.setEnabled(false);
+		panneauValidation = new JPanel(new GridBagLayout());
+		contraintes.gridx = 1;
+		contraintes.gridy = 2;
+		panneauPrincipal.add(panneauValidation, contraintes);
+		panneauValidation.setBorder(BorderFactory.createTitledBorder("Validation"));
+		creerPanneauValidation();
+		boutonValidation.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				controleur.calculerReponse();
+			}
+		});
+
+		/*
+		 * Dimension et position de la fenêtre principale
+		 */
+		fenetrePrincipale.pack();
+		fenetrePrincipale.setLocationRelativeTo(null);
+
+	}
+
 	public synchronized void creerVue() {
 
 		/*
@@ -94,7 +174,7 @@ public class Vue implements Observateur {
 		/*
 		 * Fenêtre principale
 		 */
-		JFrame fenetrePrincipale = new JFrame("Jeux de logique");
+		fenetrePrincipale = new JFrame("Jeux de logique");
 		fenetrePrincipale.setIconImage(new ImageIcon(getClass().getResource("/game_16.png")).getImage());
 
 		/*
@@ -162,7 +242,7 @@ public class Vue implements Observateur {
 		/*
 		 * GridBagConstraints
 		 */
-		GridBagConstraints contraintes = new GridBagConstraints();
+		contraintes = new GridBagConstraints();
 		contraintes.fill = GridBagConstraints.BOTH;
 		contraintes.insets = new Insets(0, 0, 0, 0);
 		contraintes.anchor = GridBagConstraints.CENTER;
@@ -240,82 +320,12 @@ public class Vue implements Observateur {
 		fenetrePrincipale.add(panneauPrincipal, BorderLayout.CENTER);
 		panneauPrincipal.setBorder(new EmptyBorder(10, 10, 10, 10));
 
-		/*
-		 * Panneau combinaison secrète
-		 */
-		panneauCombinaisonSecrete = new JPanel(new GridBagLayout());
-		setListePanneauPionProposition(listePanneauSecret, modele.getNbPionsCombinaison(), 1, PionCommun.Vide);
-		creerPanneau(panneauCombinaisonSecrete, listePanneauSecret, contraintes, "Combinaison secrète");
-		contraintes.gridx = 2;
-		contraintes.gridy = 1;
-		panneauPrincipal.add(panneauCombinaisonSecrete, contraintes);
-
-		/*
-		 * Panneau proposition
-		 */
-		panneauProposition = new JPanel(new GridBagLayout());
-		setListePanneauPionProposition(listePanneauProposition, modele.getNbPionsCombinaison(), modele.getNbEssais(),
-				PionCommun.Vide);
-		creerPanneau(panneauProposition, listePanneauProposition, contraintes, "Proposition");
-		contraintes.gridx = 2;
-		contraintes.gridy = 2;
-		panneauPrincipal.add(panneauProposition, contraintes);
-
-		/*
-		 * Panneau réponse
-		 */
-		panneauReponse = new JPanel(new GridBagLayout());
-		setListePanneauPionProposition(listePanneauReponse, modele.getNbPionsCombinaison(), modele.getNbEssais(),
-				PionCommun.Vide);
-		creerPanneau(panneauReponse, listePanneauReponse, contraintes, "Réponse");
-		contraintes.gridx = 3;
-		contraintes.gridy = 2;
-		panneauPrincipal.add(panneauReponse, contraintes);
-
-		/*
-		 * Panneau pions utilisables
-		 */
-		panneauPionsUtilisables = new JPanel(new GridBagLayout());
-		setListePanneauPionUtilisables();
-		creerPanneau(panneauPionsUtilisables, listePanneauPionUtilisable, contraintes, "Pions utilisables");
-		contraintes.gridx = 1;
-		contraintes.gridy = 3;
-		contraintes.gridwidth = 3;
-		contraintes.fill = GridBagConstraints.NONE;
-		panneauPrincipal.add(panneauPionsUtilisables, contraintes);
-		contraintes.gridwidth = 1;
-		contraintes.fill = GridBagConstraints.BOTH;
-
-		/*
-		 * Panneau validation
-		 */
-		boutonValidation = new JButton("Valider");
-		boutonValidation.setEnabled(false);
-		panneauValidation = new JPanel(new GridBagLayout());
-		contraintes.gridx = 1;
-		contraintes.gridy = 2;
-		panneauPrincipal.add(panneauValidation, contraintes);
-		panneauValidation.setBorder(BorderFactory.createTitledBorder("Validation"));
-		for (int y = 1; y <= modele.getNbEssais(); y++)
-			listePanneauValidation.put(getClef(1, y), new PanneauBoutonValidation(boutonValidation));
-		for (Map.Entry<String, JPanel> item : listePanneauValidation.entrySet()) {
-			contraintes.gridx = Integer.parseInt(item.getKey().split(separateurClef)[0]);
-			contraintes.gridy = Integer.parseInt(item.getKey().split(separateurClef)[1]);
-			panneauValidation.add(item.getValue(), contraintes);
-		}
-		listePanneauValidation.get(getClef(1, modele.getNbEssais())).add(boutonValidation);
-		boutonValidation.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				controleur.calculerReponse();
-			}
-		});
+		initialiserPanneaux();
 
 		/*
 		 * Paramètres de la fenêtre principale
 		 */
 		fenetrePrincipale.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		fenetrePrincipale.pack();
-		fenetrePrincipale.setLocationRelativeTo(null);
 		fenetrePrincipale.setVisible(true);
 
 	}
@@ -353,6 +363,7 @@ public class Vue implements Observateur {
 	}
 
 	private void setListePanneauPionUtilisables() {
+		listePanneauPionUtilisable.clear();
 		Pion pion;
 		for (int x = 1; x <= modele.getPionsUtilisables().size(); x++) {
 			pion = modele.getPionsUtilisables().get(x - 1);
@@ -363,6 +374,7 @@ public class Vue implements Observateur {
 
 	public void setListePanneauPionProposition(HashMap<String, JLabelPion> listePanneau, int xMax, int yMax,
 			Pion pion) {
+		listePanneau.clear();
 		for (int y = 1; y <= yMax; y++) {
 			for (int x = 1; x <= xMax; x++)
 				listePanneau.put(getClef(x, y),
@@ -370,14 +382,26 @@ public class Vue implements Observateur {
 		}
 	}
 
-	private void creerPanneau(JPanel panneau, HashMap<String, JLabelPion> listePanneau, GridBagConstraints c,
-			String titre) {
-		panneau.setBorder(BorderFactory.createTitledBorder(titre));
+	private void creerPanneau(JPanel panneau, HashMap<String, JLabelPion> listePanneau, GridBagConstraints c) {
+		panneau.removeAll();
 		for (Map.Entry<String, JLabelPion> item : listePanneau.entrySet()) {
 			c.gridx = Integer.parseInt(item.getKey().split(separateurClef)[0]);
 			c.gridy = Integer.parseInt(item.getKey().split(separateurClef)[1]);
 			panneau.add(item.getValue(), c);
 		}
+	}
+
+	private void creerPanneauValidation() {
+		panneauValidation.removeAll();
+		listePanneauValidation.clear();
+		for (int y = 1; y <= modele.getNbEssais(); y++)
+			listePanneauValidation.put(getClef(1, y), new PanneauBoutonValidation(boutonValidation));
+		for (Map.Entry<String, JPanel> item : listePanneauValidation.entrySet()) {
+			contraintes.gridx = Integer.parseInt(item.getKey().split(separateurClef)[0]);
+			contraintes.gridy = Integer.parseInt(item.getKey().split(separateurClef)[1]);
+			panneauValidation.add(item.getValue(), contraintes);
+		}
+		listePanneauValidation.get(getClef(1, modele.getNbEssais())).add(boutonValidation);
 	}
 
 	public void setPion(HashMap<String, JLabelPion> listePanneau, String clef, Pion pion) {

@@ -248,7 +248,7 @@ public class DialogueSelectionCombinaison extends JDialog implements Observateur
 
 	public void actualiser() {
 		boutonOk.setEnabled(!modele.getCombinaisonSecrete().contains(PionCommun.Vide));
-		for (int i = 0; i < modele.getCombinaisonSecrete().size(); i++)
+		for (int i = 0; i < modele.getNbPionsCombinaison(); i++)
 			setPion(listePanneauSecret, getClef(i + 1, 1), modele.getCombinaisonSecrete().get(i));
 	}
 

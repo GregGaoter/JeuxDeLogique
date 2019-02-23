@@ -95,6 +95,7 @@ public class Controleur {
 			modele.setNbEssais(listeValeurs[1]);
 			modele.setNbPionsUtilisables(listeValeurs[2]);
 			modele.initialiser();
+			vue.initialiserPanneaux();
 		}
 	}
 
