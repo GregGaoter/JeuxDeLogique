@@ -44,6 +44,7 @@ public class DialogueSelectionCombinaison extends JDialog implements Observateur
 			panneauPionsUtilisables;
 	private JButton boutonOk;
 	private JButton boutonAnnuler;
+	private JButton boutonRefresh;
 	private boolean manuelQ;
 	private boolean okQ;
 	private HashMap<String, JLabelPion> listePanneauSecret;
@@ -136,12 +137,23 @@ public class DialogueSelectionCombinaison extends JDialog implements Observateur
 		/*
 		 * Panneau combinaison secrète
 		 */
-		JPanel panneauCombinaisonSecrete = new JPanel(new GridBagLayout());
-		setListePanneauSecret();
-		creerPanneau(panneauCombinaisonSecrete, listePanneauSecret, contraintes, "Combinaison secrète");
+		JPanel panneauChoixCombinaison = new JPanel();
 		contraintes.gridx = 1;
 		contraintes.gridy = 3;
-		panneauSettings.add(panneauCombinaisonSecrete, contraintes);
+		panneauSettings.add(panneauChoixCombinaison, contraintes);
+
+		JPanel panneauCombinaisonSecrete = new JPanel(new GridBagLayout());
+		panneauChoixCombinaison.add(panneauCombinaisonSecrete);
+		setListePanneauSecret();
+		creerPanneau(panneauCombinaisonSecrete, listePanneauSecret, contraintes, "Combinaison secrète");
+
+		boutonRefresh = new JButton(new ImageIcon(getClass().getResource("/refresh_32.png")));
+		panneauChoixCombinaison.add(boutonRefresh);
+		boutonRefresh.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// setCombinaisonAleatoire();
+			}
+		});
 
 		/*
 		 * Panneau des pions utilisables
