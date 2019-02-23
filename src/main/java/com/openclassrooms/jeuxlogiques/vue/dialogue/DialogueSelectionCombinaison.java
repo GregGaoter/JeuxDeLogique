@@ -137,7 +137,7 @@ public class DialogueSelectionCombinaison extends JDialog implements Observateur
 		 * Panneau combinaison secrète
 		 */
 		JPanel panneauCombinaisonSecrete = new JPanel(new GridBagLayout());
-		setListePanneauPionProposition(listePanneauSecret, modele.getNbPionsCombinaison(), 1, PionCommun.Vide);
+		setListePanneauSecret();
 		creerPanneau(panneauCombinaisonSecrete, listePanneauSecret, contraintes, "Combinaison secrète");
 		contraintes.gridx = 1;
 		contraintes.gridy = 3;
@@ -184,20 +184,17 @@ public class DialogueSelectionCombinaison extends JDialog implements Observateur
 
 	private void setListePanneauPionUtilisables() {
 		Pion pion;
-		for (int x = 1; x <= modele.getPionsUtilisables().size(); x++) {
+		for (int x = 1; x <= modele.getNbPionsUtilisables(); x++) {
 			pion = modele.getPionsUtilisables().get(x - 1);
 			listePanneauPionUtilisable.put(getClef(x, 1),
 					new JLabelPion(pion, new MouseListenerSetPionSecret(controleur, pion)));
 		}
 	}
 
-	private void setListePanneauPionProposition(HashMap<String, JLabelPion> listePanneau, int xMax, int yMax,
-			Pion pion) {
-		for (int y = 1; y <= yMax; y++) {
-			for (int x = 1; x <= xMax; x++)
-				listePanneau.put(getClef(x, y),
-						new JLabelPion(pion, new MouseListenerGetPionSecret(controleur, pion, x)));
-		}
+	private void setListePanneauSecret() {
+		for (int x = 1; x <= modele.getNbPionsCombinaison(); x++)
+			listePanneauSecret.put(getClef(x, 1),
+					new JLabelPion(PionCommun.Vide, new MouseListenerGetPionSecret(controleur, PionCommun.Vide, x)));
 	}
 
 	private void creerPanneau(JPanel panneau, HashMap<String, JLabelPion> listePanneau, GridBagConstraints c,
@@ -212,11 +209,6 @@ public class DialogueSelectionCombinaison extends JDialog implements Observateur
 
 	public void setPionUtilisable(HashMap<String, JLabelPion> listePanneau, String clef, Pion pion) {
 		listePanneau.get(clef).getMouseListener().setPion(pion);
-		listePanneau.get(clef).setIcon(new ImageIcon(getClass().getResource(pion.getNomImage())));
-		listePanneau.get(clef).setText(Integer.toString(pion.getValeur()));
-	}
-
-	public void setPionProposition(HashMap<String, JLabelPion> listePanneau, String clef, Pion pion) {
 		listePanneau.get(clef).setIcon(new ImageIcon(getClass().getResource(pion.getNomImage())));
 		listePanneau.get(clef).setText(Integer.toString(pion.getValeur()));
 	}

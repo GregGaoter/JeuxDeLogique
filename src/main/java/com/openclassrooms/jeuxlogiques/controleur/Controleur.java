@@ -77,6 +77,11 @@ public class Controleur {
 					vue.setPion(vue.getListePanneauReponse(), getClef(x, y), PionCommun.Vide);
 				}
 			}
+			vue.getListePanneauValidation().get(getClef(1, modele.getCompteurEssais()))
+					.remove(vue.getBoutonValidation());
+			vue.getListePanneauValidation().get(getClef(1, modele.getNbEssais())).add(vue.getBoutonValidation());
+			vue.getPanneauPrincipal().repaint();
+			modele.setCompteurEssais(modele.getNbEssais());
 		}
 		dialogueSelectionCombinaison.dispose();
 	}
@@ -113,7 +118,7 @@ public class Controleur {
 		modele.setCombinaisonReponse(
 				serviceDeCalcul.calculerReponse(modele.getCombinaisonProposition(), modele.getCombinaisonSecrete()));
 		vue.getBoutonValidation().setEnabled(false);
-		modele.setCompteurEssais();
+		modele.decrementerCompteurEssais();
 		modele.initialiserCombinaison(modele.getCombinaisonProposition(), modele.getNbPionsCombinaison());
 		modele.initialiserCombinaison(modele.getCombinaisonReponse(), modele.getNbPionsCombinaison());
 		if (modele.getCompteurEssais() < modele.getNbEssais()) {

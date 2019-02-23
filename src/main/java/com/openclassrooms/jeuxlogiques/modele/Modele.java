@@ -94,7 +94,11 @@ public class Modele implements SujetObservable {
 		return compteurEssais;
 	}
 
-	public void setCompteurEssais() {
+	public void setCompteurEssais(int compteurEssais) {
+		this.compteurEssais = compteurEssais;
+	}
+
+	public void decrementerCompteurEssais() {
 		compteurEssais--;
 	}
 
