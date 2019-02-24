@@ -2,7 +2,7 @@ package com.openclassrooms.jeuxlogiques;
 
 import java.awt.EventQueue;
 
-import com.openclassrooms.jeuxlogiques.controleur.Controleur;
+import com.openclassrooms.jeuxlogiques.controleur.ControleurJeu;
 
 public class Main {
 
@@ -10,7 +10,7 @@ public class Main {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					new Controleur();
+					new ControleurJeu();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

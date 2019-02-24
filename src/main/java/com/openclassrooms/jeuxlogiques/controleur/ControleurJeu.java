@@ -6,7 +6,7 @@ import java.util.HashMap;
 import javax.swing.JFrame;
 
 import com.openclassrooms.jeuxlogiques.controleur.service.ServiceDeCalcul;
-import com.openclassrooms.jeuxlogiques.modele.Modele;
+import com.openclassrooms.jeuxlogiques.modele.ModeleJeu;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.Mode;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.Pion;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.PionCommun;
@@ -18,19 +18,19 @@ import com.openclassrooms.jeuxlogiques.vue.dialogue.DialogueOption;
 import com.openclassrooms.jeuxlogiques.vue.dialogue.DialogueSelectionCombinaison;
 import com.openclassrooms.jeuxlogiques.vue.labelpion.JLabelPion;
 
-public class Controleur {
+public class ControleurJeu {
 
 	private final String separateurClef = "-";
 
-	private Modele modele;
+	private ModeleJeu modele;
 	private Vue vue;
 
 	private Mode mode;
 
 	private ServiceDeCalcul serviceDeCalcul;
 
-	public Controleur() {
-		modele = new Modele();
+	public ControleurJeu() {
+		modele = new ModeleJeu();
 		vue = new Vue();
 		modele.setVue(vue);
 		modele.setControleur(this);

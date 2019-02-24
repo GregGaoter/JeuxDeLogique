@@ -5,7 +5,7 @@ import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
-import com.openclassrooms.jeuxlogiques.controleur.Controleur;
+import com.openclassrooms.jeuxlogiques.controleur.ControleurJeu;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.Pion;
 
 public class JLabelPion extends JLabel {
@@ -13,7 +13,7 @@ public class JLabelPion extends JLabel {
 	private static final long serialVersionUID = 1L;
 
 	private Pion pion;
-	private Controleur controleur;
+	private ControleurJeu controleur;
 	private MouseListenerPion mouseListener;
 
 	public JLabelPion(Pion pion, MouseListenerPion mouseListener) {

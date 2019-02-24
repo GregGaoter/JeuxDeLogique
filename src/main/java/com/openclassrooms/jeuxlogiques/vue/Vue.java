@@ -24,8 +24,8 @@ import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.border.EmptyBorder;
 
-import com.openclassrooms.jeuxlogiques.controleur.Controleur;
-import com.openclassrooms.jeuxlogiques.modele.Modele;
+import com.openclassrooms.jeuxlogiques.controleur.ControleurJeu;
+import com.openclassrooms.jeuxlogiques.modele.ModeleJeu;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.Pion;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.PionCommun;
 import com.openclassrooms.jeuxlogiques.vue.labelpion.JLabelPion;
@@ -38,8 +38,8 @@ public class Vue implements Observateur {
 
 	private final String separateurClef = "-";
 
-	private Modele modele;
-	private Controleur controleur;
+	private ModeleJeu modele;
+	private ControleurJeu controleur;
 
 	private HashMap<String, JLabelPion> listePanneauSecret;
 	private HashMap<String, JLabelPion> listePanneauProposition;
@@ -68,12 +68,12 @@ public class Vue implements Observateur {
 		listePanneauValidation = new HashMap<>();
 	}
 
-	public void setModele(Modele modele) {
+	public void setModele(ModeleJeu modele) {
 		this.modele = modele;
 		modele.ajouterObservateur(this);
 	}
 
-	public void setControleur(Controleur controleur) {
+	public void setControleur(ControleurJeu controleur) {
 		this.controleur = controleur;
 	}
 

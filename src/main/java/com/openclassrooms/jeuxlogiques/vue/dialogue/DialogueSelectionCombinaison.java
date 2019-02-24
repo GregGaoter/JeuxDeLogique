@@ -25,8 +25,8 @@ import javax.swing.border.EmptyBorder;
 
 import org.apache.commons.lang3.RandomUtils;
 
-import com.openclassrooms.jeuxlogiques.controleur.Controleur;
-import com.openclassrooms.jeuxlogiques.modele.Modele;
+import com.openclassrooms.jeuxlogiques.controleur.ControleurJeu;
+import com.openclassrooms.jeuxlogiques.modele.ModeleJeu;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.Pion;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.PionCommun;
 import com.openclassrooms.jeuxlogiques.vue.Observateur;
@@ -52,10 +52,10 @@ public class DialogueSelectionCombinaison extends JDialog implements Observateur
 	private HashMap<String, JLabelPion> listePanneauSecret;
 	private HashMap<String, JLabelPion> listePanneauPionUtilisable;
 
-	private Modele modele;
-	private Controleur controleur;
+	private ModeleJeu modele;
+	private ControleurJeu controleur;
 
-	public DialogueSelectionCombinaison(JFrame fenetreParente, Modele modele, Controleur controleur) {
+	public DialogueSelectionCombinaison(JFrame fenetreParente, ModeleJeu modele, ControleurJeu controleur) {
 		super(fenetreParente, "Choix de la combinaison solution", true);
 		listePanneauSecret = new HashMap<>();
 		listePanneauPionUtilisable = new HashMap<>();

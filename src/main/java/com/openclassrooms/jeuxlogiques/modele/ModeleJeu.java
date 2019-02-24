@@ -3,14 +3,14 @@ package com.openclassrooms.jeuxlogiques.modele;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.openclassrooms.jeuxlogiques.controleur.Controleur;
+import com.openclassrooms.jeuxlogiques.controleur.ControleurJeu;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.Pion;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.PionCommun;
 import com.openclassrooms.jeuxlogiques.modele.jeu.Jeu;
 import com.openclassrooms.jeuxlogiques.vue.Observateur;
 import com.openclassrooms.jeuxlogiques.vue.Vue;
 
-public class Modele implements SujetObservable {
+public class ModeleJeu implements SujetObservable {
 
 	public static final int NB_COULEURS_UTILISABLES_MIN = 4;
 	public static final int NB_COULEURS_UTILISABLES_MAX = 10;
@@ -20,7 +20,7 @@ public class Modele implements SujetObservable {
 	public static final int NB_ESSAIS_MAX = 12;
 
 	private Vue vue;
-	private Controleur controleur;
+	private ControleurJeu controleur;
 
 	private ArrayList<Observateur> listeObservateurs;
 
@@ -39,7 +39,7 @@ public class Modele implements SujetObservable {
 	private Pion pionSecret;
 	private Pion pionProposition;
 
-	public Modele() {
+	public ModeleJeu() {
 		listeObservateurs = new ArrayList<>();
 		nbEssais = 8;
 		nbPionsCombinaison = 4;
@@ -69,7 +69,7 @@ public class Modele implements SujetObservable {
 		this.vue = vue;
 	}
 
-	public void setControleur(Controleur controleur) {
+	public void setControleur(ControleurJeu controleur) {
 		this.controleur = controleur;
 	}
 
