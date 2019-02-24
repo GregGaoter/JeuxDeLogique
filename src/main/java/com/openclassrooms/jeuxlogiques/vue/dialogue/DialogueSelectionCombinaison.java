@@ -29,12 +29,12 @@ import com.openclassrooms.jeuxlogiques.controleur.Controleur;
 import com.openclassrooms.jeuxlogiques.modele.Modele;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.Pion;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.PionCommun;
-import com.openclassrooms.jeuxlogiques.separateur.AlignementVertical;
-import com.openclassrooms.jeuxlogiques.separateur.SeparateurHorizontal;
 import com.openclassrooms.jeuxlogiques.vue.Observateur;
 import com.openclassrooms.jeuxlogiques.vue.labelpion.JLabelPion;
 import com.openclassrooms.jeuxlogiques.vue.labelpion.MouseListenerGetPionSecret;
 import com.openclassrooms.jeuxlogiques.vue.labelpion.MouseListenerSetPionSecret;
+import com.openclassrooms.jeuxlogiques.vue.separateur.AlignementVertical;
+import com.openclassrooms.jeuxlogiques.vue.separateur.SeparateurHorizontal;
 
 public class DialogueSelectionCombinaison extends JDialog implements Observateur {
 

@@ -1,4 +1,4 @@
-package com.openclassrooms.jeuxlogiques.separateur;
+package com.openclassrooms.jeuxlogiques.vue.separateur;
 
 public enum AlignementVertical {
 

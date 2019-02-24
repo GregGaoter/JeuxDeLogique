@@ -1,4 +1,4 @@
-package com.openclassrooms.jeuxlogiques.separateur;
+package com.openclassrooms.jeuxlogiques.vue.separateur;
 
 import java.awt.Color;
 import java.awt.Graphics;

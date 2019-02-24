@@ -28,11 +28,11 @@ import com.openclassrooms.jeuxlogiques.controleur.Controleur;
 import com.openclassrooms.jeuxlogiques.modele.Modele;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.Pion;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.PionCommun;
-import com.openclassrooms.jeuxlogiques.separateur.AlignementHorizontal;
-import com.openclassrooms.jeuxlogiques.separateur.SeparateurVertical;
 import com.openclassrooms.jeuxlogiques.vue.labelpion.JLabelPion;
 import com.openclassrooms.jeuxlogiques.vue.labelpion.MouseListenerGetPionProposition;
 import com.openclassrooms.jeuxlogiques.vue.labelpion.MouseListenerSetPionProposition;
+import com.openclassrooms.jeuxlogiques.vue.separateur.AlignementHorizontal;
+import com.openclassrooms.jeuxlogiques.vue.separateur.SeparateurVertical;
 
 public class Vue implements Observateur {
 
