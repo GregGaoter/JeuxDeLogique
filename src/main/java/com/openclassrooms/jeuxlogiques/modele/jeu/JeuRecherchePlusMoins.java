@@ -8,6 +8,10 @@ import com.openclassrooms.jeuxlogiques.modele.enumeration.PionReponseSymbol;
 
 public class JeuRecherchePlusMoins extends Jeu {
 
+	public JeuRecherchePlusMoins() {
+		nbPionsUtilisables = 10;
+	}
+
 	public String getNom() {
 		return "Recherche +/-";
 	}
@@ -18,6 +22,10 @@ public class JeuRecherchePlusMoins extends Jeu {
 
 	public Pion[] getPionsReponse() {
 		return PionReponseSymbol.values();
+	}
+
+	public void setNbPionsUtilisables(int nbPionsUtilisables) {
+		nbPionsUtilisables = 10;
 	}
 
 	public ServiceDeCalcul getServiceDeCalcul() {

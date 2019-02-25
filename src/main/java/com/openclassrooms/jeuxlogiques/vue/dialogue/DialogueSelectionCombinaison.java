@@ -191,6 +191,7 @@ public class DialogueSelectionCombinaison extends JDialog implements Observateur
 
 		toggleButtonManuel.doClick();
 		boutonOk.setEnabled(false);
+
 	}
 
 	private String getClef(int x, int y) {
@@ -198,6 +199,7 @@ public class DialogueSelectionCombinaison extends JDialog implements Observateur
 	}
 
 	private void setListePanneauPionUtilisables() {
+		listePanneauPionUtilisable.clear();
 		Pion pion;
 		for (int x = 1; x <= modele.getNbPionsUtilisables(); x++) {
 			pion = modele.getPionsUtilisables().get(x - 1);
@@ -207,6 +209,7 @@ public class DialogueSelectionCombinaison extends JDialog implements Observateur
 	}
 
 	private void setListePanneauSecret() {
+		listePanneauSecret.clear();
 		for (int x = 1; x <= modele.getNbPionsCombinaison(); x++)
 			listePanneauSecret.put(getClef(x, 1),
 					new JLabelPion(PionCommun.Vide, new MouseListenerGetPionSecret(controleur, PionCommun.Vide, x)));

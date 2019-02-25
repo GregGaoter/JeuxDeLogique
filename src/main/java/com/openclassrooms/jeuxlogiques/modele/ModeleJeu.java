@@ -26,7 +26,7 @@ public class ModeleJeu implements SujetObservable {
 
 	private int nbEssais;
 	private int nbPionsCombinaison;
-	private int nbPionsUtilisables;
+	// private int nbPionsUtilisables;
 	private int compteurEssais;
 
 	private Jeu jeu;
@@ -43,7 +43,7 @@ public class ModeleJeu implements SujetObservable {
 		listeObservateurs = new ArrayList<>();
 		nbEssais = 8;
 		nbPionsCombinaison = 4;
-		nbPionsUtilisables = 10;
+		// nbPionsUtilisables = 10;
 		compteurEssais = nbEssais;
 	}
 
@@ -52,11 +52,11 @@ public class ModeleJeu implements SujetObservable {
 		combinaisonSecrete = new ArrayList<>(nbPionsCombinaison);
 		combinaisonProposition = new ArrayList<>(nbPionsCombinaison);
 		combinaisonReponse = new ArrayList<>(nbPionsCombinaison);
-		pionsUtilisables = new ArrayList<>(nbPionsUtilisables);
+		pionsUtilisables = new ArrayList<>(jeu.getNbPionsUtilisables());
 		initialiserCombinaison(combinaisonSecrete, nbPionsCombinaison);
 		initialiserCombinaison(combinaisonProposition, nbPionsCombinaison);
 		initialiserCombinaison(combinaisonReponse, nbPionsCombinaison);
-		initialiserCombinaison(pionsUtilisables, nbPionsUtilisables);
+		initialiserCombinaison(pionsUtilisables, jeu.getNbPionsUtilisables());
 	}
 
 	public void initialiserCombinaison(List<Pion> combinaison, int nbPions) {
@@ -95,7 +95,7 @@ public class ModeleJeu implements SujetObservable {
 	}
 
 	public int getNbPionsUtilisables() {
-		return nbPionsUtilisables;
+		return jeu.getNbPionsUtilisables();
 	}
 
 	public void setNbEssais(int nbEssais) {
@@ -107,7 +107,7 @@ public class ModeleJeu implements SujetObservable {
 	}
 
 	public void setNbPionsUtilisables(int nbPionsUtilisables) {
-		this.nbPionsUtilisables = nbPionsUtilisables;
+		jeu.setNbPionsUtilisables(nbPionsUtilisables);
 	}
 
 	public int getCompteurEssais() {

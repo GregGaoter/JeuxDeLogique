@@ -25,6 +25,7 @@ public class ControleurJeu {
 	private ModeleJeu modele;
 	private Vue vue;
 
+	private Jeu jeu;
 	private Mode mode;
 
 	private ServiceDeCalcul serviceDeCalcul;
@@ -34,6 +35,8 @@ public class ControleurJeu {
 		vue = new Vue();
 		modele.setVue(vue);
 		modele.setControleur(this);
+		modele.setJeu(Jeu.LISTE_JEUX[0]);
+		jeu = modele.getJeu();
 		modele.initialiser();
 		vue.setModele(modele);
 		vue.setControleur(this);
@@ -43,11 +46,14 @@ public class ControleurJeu {
 	public void lancerDialogueJeu(JFrame fenetreProprietaire) {
 		modele.initialiser();
 		DialogueJeu dialogueJeu = new DialogueJeu(fenetreProprietaire);
-		Jeu jeu = dialogueJeu.getValeur();
+		jeu = dialogueJeu.getValeur();
 		if (jeu != null) {
 			modele.setJeu(jeu);
+			modele.setNbPionsUtilisables(jeu.getNbPionsUtilisables());
 			modele.setPionsUtilisables(Arrays.asList(jeu.getPionsJeu()));
 			setServiceDeCalcul(jeu.getServiceDeCalcul());
+			vue.initialiserPanneaux();
+			vue.getPanneauPrincipal().repaint();
 			lancerMode(fenetreProprietaire);
 		}
 	}
@@ -81,7 +87,6 @@ public class ControleurJeu {
 			vue.getListePanneauValidation().get(getClef(1, modele.getCompteurEssais()))
 					.remove(vue.getBoutonValidation());
 			vue.getListePanneauValidation().get(getClef(1, modele.getNbEssais())).add(vue.getBoutonValidation());
-			vue.getPanneauPrincipal().repaint();
 			modele.setCompteurEssais(modele.getNbEssais());
 		}
 		dialogueSelectionCombinaison.dispose();
@@ -91,10 +96,15 @@ public class ControleurJeu {
 		DialogueOption dialogueOptions = new DialogueOption(fenetreProprietaire);
 		int[] listeValeurs = dialogueOptions.getValeur();
 		if (listeValeurs != null) {
+			modele = new ModeleJeu();
+			modele.setVue(vue);
+			modele.setControleur(this);
+			modele.setJeu(jeu);
 			modele.setNbPionsCombinaison(listeValeurs[0]);
 			modele.setNbEssais(listeValeurs[1]);
 			modele.setNbPionsUtilisables(listeValeurs[2]);
 			modele.initialiser();
+			vue.setModele(modele);
 			vue.initialiserPanneaux();
 		}
 	}
