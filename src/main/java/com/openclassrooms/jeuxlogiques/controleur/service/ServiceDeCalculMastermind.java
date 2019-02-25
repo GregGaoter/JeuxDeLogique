@@ -1,6 +1,7 @@
 package com.openclassrooms.jeuxlogiques.controleur.service;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 
@@ -15,29 +16,41 @@ public class ServiceDeCalculMastermind implements ServiceDeCalcul {
 		List<Pion> reponse = new ArrayList<>(proposition.size());
 
 		int nbBienPlace = 0;
+		List<Integer> positionBienPlace = new ArrayList<>();
+		int position = -1;
 		Iterator<Pion> itProposition = proposition.iterator();
 		Iterator<Pion> itSolution = solution.iterator();
 		int valeurProposition, valeurSolution;
 		while (itProposition.hasNext() && itSolution.hasNext()) {
 			valeurProposition = itProposition.next().getValeur();
 			valeurSolution = itSolution.next().getValeur();
-			if (valeurProposition == valeurSolution)
+			position++;
+			if (valeurProposition == valeurSolution) {
 				nbBienPlace++;
+				positionBienPlace.add(position);
+			}
 		}
 
 		List<Pion> propositionTemp = new ArrayList<>(proposition.size());
-		itProposition = proposition.iterator();
-		while (itProposition.hasNext())
-			propositionTemp.add(itProposition.next());
+		List<Pion> solutionTemp = new ArrayList<>(solution.size());
+		propositionTemp.addAll(proposition);
+		solutionTemp.addAll(solution);
+		for (int i = positionBienPlace.size() - 1; i >= 0; i--) {
+			propositionTemp.remove((int) positionBienPlace.get(i));
+			solutionTemp.remove((int) positionBienPlace.get(i));
+		}
 
-		propositionTemp.retainAll(solution);
-		int nbPresent = propositionTemp.size() - nbBienPlace;
+		propositionTemp.retainAll(solutionTemp);
+		HashSet<Pion> pionsMalPlaces = new HashSet<>();
+		pionsMalPlaces.addAll(propositionTemp);
+
+		int nbMalPlace = pionsMalPlaces.size();
 
 		for (int i = 0; i < nbBienPlace; i++)
 			reponse.add(PionReponseCouleur.Noir);
-		for (int i = 0; i < nbPresent; i++)
+		for (int i = 0; i < nbMalPlace; i++)
 			reponse.add(PionReponseCouleur.Blanc);
-		for (int i = 0; i < proposition.size() - nbBienPlace - nbPresent; i++)
+		for (int i = 0; i < proposition.size() - nbBienPlace - nbMalPlace; i++)
 			reponse.add(PionCommun.Vide);
 
 		return reponse;

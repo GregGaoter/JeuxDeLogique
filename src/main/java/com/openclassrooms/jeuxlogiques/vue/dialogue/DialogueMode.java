@@ -64,7 +64,6 @@ public class DialogueMode extends JDialog {
 			toggleButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					modeSelectionne = mode;
-					System.out.println(modeSelectionne.toString());
 				}
 			});
 		}

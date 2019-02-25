@@ -26,7 +26,6 @@ public class ModeleJeu implements SujetObservable {
 
 	private int nbEssais;
 	private int nbPionsCombinaison;
-	// private int nbPionsUtilisables;
 	private int compteurEssais;
 
 	private Jeu jeu;
@@ -43,7 +42,6 @@ public class ModeleJeu implements SujetObservable {
 		listeObservateurs = new ArrayList<>();
 		nbEssais = 8;
 		nbPionsCombinaison = 4;
-		// nbPionsUtilisables = 10;
 		compteurEssais = nbEssais;
 	}
 
@@ -179,7 +177,6 @@ public class ModeleJeu implements SujetObservable {
 
 	public void setPionProposition(Pion pionProposition) {
 		this.pionProposition = pionProposition;
-		System.out.println(pionProposition.getNomImage());
 	}
 
 }
