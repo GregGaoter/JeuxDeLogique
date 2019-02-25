@@ -144,11 +144,18 @@ public class ControleurJeu {
 		modele.decrementerCompteurEssais();
 		modele.initialiserCombinaison(modele.getCombinaisonProposition(), modele.getNbPionsCombinaison());
 		modele.initialiserCombinaison(modele.getCombinaisonReponse(), modele.getNbPionsCombinaison());
-		if (modele.getCompteurEssais() < modele.getNbEssais()) {
+		if (modele.getCompteurEssais() > 0) {
 			vue.getListePanneauValidation().get(getClef(1, modele.getCompteurEssais() + 1))
 					.remove(vue.getBoutonValidation());
 			vue.getListePanneauValidation().get(getClef(1, modele.getCompteurEssais())).add(vue.getBoutonValidation());
 			vue.getPanneauPrincipal().repaint();
+		} else
+			afficherCombinaisonSecrete();
+	}
+
+	private void afficherCombinaisonSecrete() {
+		for (int i = 0; i < modele.getNbPionsCombinaison(); i++) {
+			vue.setPion(vue.getListePanneauSecret(), getClef(i + 1, 1), modele.getCombinaisonSecrete().get(i));
 		}
 	}
 

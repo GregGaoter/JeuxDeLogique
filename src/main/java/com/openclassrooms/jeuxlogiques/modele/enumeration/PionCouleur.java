@@ -2,9 +2,9 @@ package com.openclassrooms.jeuxlogiques.modele.enumeration;
 
 public enum PionCouleur implements Pion {
 
-	Bleu("/pion_bleu.png", 0), Cyan("/pion_cyan.png", 1), Gris("/pion_gris.png", 2), Jaune("/pion_jaune.png", 3),
-	Magenta("/pion_magenta.png", 4), Marron("/pion_marron.png", 5), Orange("/pion_orange.png", 6),
-	Rose("/pion_rose.png", 7), Rouge("/pion_rouge.png", 8), Vert("/pion_vert.png", 9);
+	Rouge("/pion_rouge.png", 0), Vert("/pion_vert.png", 1), Bleu("/pion_bleu.png", 2), Jaune("/pion_jaune.png", 3),
+	Magenta("/pion_magenta.png", 4), Cyan("/pion_cyan.png", 5), Gris("/pion_gris.png", 6),
+	Orange("/pion_orange.png", 7), Marron("/pion_marron.png", 8), Rose("/pion_rose.png", 9);
 
 	private final String nomImage;
 	private final int valeur;
