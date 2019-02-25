@@ -1,6 +1,7 @@
 package com.openclassrooms.jeuxlogiques.vue;
 
 import java.awt.BorderLayout;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -14,6 +15,7 @@ import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -52,13 +54,17 @@ public class Vue implements Observateur {
 	private JFrame fenetrePrincipale;
 	private JPanel panneauPrincipal;
 
+	private JPanel panneauFinDePartie;
 	private JPanel panneauCombinaisonSecrete;
 	private JPanel panneauProposition;
 	private JPanel panneauReponse;
 	private JPanel panneauPionsUtilisables;
 	private JPanel panneauValidation;
 
+	private JLabel messageFinDePartie;
+
 	private JButton boutonValidation;
+	private JButton boutonRejouerMemeJeu;
 
 	public Vue() {
 		listePanneauSecret = new HashMap<>();
@@ -80,6 +86,27 @@ public class Vue implements Observateur {
 	public void initialiserPanneaux() {
 
 		panneauPrincipal.removeAll();
+
+		/*
+		 * Panneau fin de partie
+		 */
+		panneauFinDePartie = new JPanel(new GridBagLayout());
+		contraintes.gridx = 3;
+		contraintes.gridy = 1;
+		panneauPrincipal.add(panneauFinDePartie, contraintes);
+
+		messageFinDePartie = new JLabel();
+		messageFinDePartie.setHorizontalAlignment(SwingConstants.CENTER);
+		messageFinDePartie.setFont(new Font(messageFinDePartie.getFont().getName(), Font.BOLD, 28));
+		contraintes.gridx = 1;
+		contraintes.gridy = 1;
+		panneauFinDePartie.add(messageFinDePartie, contraintes);
+
+		boutonRejouerMemeJeu = new JButton("Rejouer au même jeu");
+		boutonRejouerMemeJeu.setVisible(false);
+		contraintes.gridx = 1;
+		contraintes.gridy = 2;
+		panneauFinDePartie.add(boutonRejouerMemeJeu, contraintes);
 
 		/*
 		 * Panneau combinaison secrète
@@ -356,6 +383,14 @@ public class Vue implements Observateur {
 
 	public JButton getBoutonValidation() {
 		return boutonValidation;
+	}
+
+	public JLabel getMessageFinDePartie() {
+		return messageFinDePartie;
+	}
+
+	public JButton getBoutonRejouerMemeJeu() {
+		return boutonRejouerMemeJeu;
 	}
 
 	private String getClef(int x, int y) {

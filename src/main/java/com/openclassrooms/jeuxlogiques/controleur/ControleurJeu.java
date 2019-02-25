@@ -1,5 +1,6 @@
 package com.openclassrooms.jeuxlogiques.controleur;
 
+import java.awt.Color;
 import java.util.Arrays;
 import java.util.HashMap;
 
@@ -149,14 +150,22 @@ public class ControleurJeu {
 					.remove(vue.getBoutonValidation());
 			vue.getListePanneauValidation().get(getClef(1, modele.getCompteurEssais())).add(vue.getBoutonValidation());
 			vue.getPanneauPrincipal().repaint();
-		} else
+		} else {
 			afficherCombinaisonSecrete();
+			afficherMessageFinDePartie();
+		}
 	}
 
 	private void afficherCombinaisonSecrete() {
 		for (int i = 0; i < modele.getNbPionsCombinaison(); i++) {
 			vue.setPion(vue.getListePanneauSecret(), getClef(i + 1, 1), modele.getCombinaisonSecrete().get(i));
 		}
+	}
+
+	private void afficherMessageFinDePartie() {
+		vue.getMessageFinDePartie().setText("PERDU !");
+		vue.getMessageFinDePartie().setForeground(Color.RED);
+		vue.getBoutonRejouerMemeJeu().setVisible(true);
 	}
 
 }
