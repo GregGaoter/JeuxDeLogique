@@ -93,7 +93,11 @@ public class Vue implements Observateur {
 		panneauFinDePartie = new JPanel(new GridBagLayout());
 		contraintes.gridx = 3;
 		contraintes.gridy = 1;
+		contraintes.fill = GridBagConstraints.VERTICAL;
+		contraintes.anchor = GridBagConstraints.WEST;
 		panneauPrincipal.add(panneauFinDePartie, contraintes);
+		contraintes.fill = GridBagConstraints.BOTH;
+		contraintes.anchor = GridBagConstraints.CENTER;
 
 		messageFinDePartie = new JLabel();
 		messageFinDePartie.setHorizontalAlignment(SwingConstants.CENTER);

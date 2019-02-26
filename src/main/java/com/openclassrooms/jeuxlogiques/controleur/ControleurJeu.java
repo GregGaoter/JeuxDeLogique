@@ -3,6 +3,7 @@ package com.openclassrooms.jeuxlogiques.controleur;
 import java.awt.Color;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Iterator;
 
 import javax.swing.JFrame;
 
@@ -142,18 +143,38 @@ public class ControleurJeu {
 		modele.setCombinaisonReponse(
 				serviceDeCalcul.calculerReponse(modele.getCombinaisonProposition(), modele.getCombinaisonSecrete()));
 		vue.getBoutonValidation().setEnabled(false);
-		modele.decrementerCompteurEssais();
-		modele.initialiserCombinaison(modele.getCombinaisonProposition(), modele.getNbPionsCombinaison());
-		modele.initialiserCombinaison(modele.getCombinaisonReponse(), modele.getNbPionsCombinaison());
-		if (modele.getCompteurEssais() > 0) {
-			vue.getListePanneauValidation().get(getClef(1, modele.getCompteurEssais() + 1))
-					.remove(vue.getBoutonValidation());
-			vue.getListePanneauValidation().get(getClef(1, modele.getCompteurEssais())).add(vue.getBoutonValidation());
-			vue.getPanneauPrincipal().repaint();
-		} else {
+		if (gagnantQ()) {
 			afficherCombinaisonSecrete();
-			afficherMessageFinDePartie();
+			afficherMessageFinDePartie("GAGNE !", new Color(0, 127, 0));
+		} else {
+			modele.decrementerCompteurEssais();
+			modele.initialiserCombinaison(modele.getCombinaisonProposition(), modele.getNbPionsCombinaison());
+			modele.initialiserCombinaison(modele.getCombinaisonReponse(), modele.getNbPionsCombinaison());
+			if (modele.getCompteurEssais() > 0) {
+				vue.getListePanneauValidation().get(getClef(1, modele.getCompteurEssais() + 1))
+						.remove(vue.getBoutonValidation());
+				vue.getListePanneauValidation().get(getClef(1, modele.getCompteurEssais()))
+						.add(vue.getBoutonValidation());
+				vue.getPanneauPrincipal().repaint();
+			} else {
+				afficherCombinaisonSecrete();
+				afficherMessageFinDePartie("PERDU !", Color.RED);
+			}
 		}
+	}
+
+	private boolean gagnantQ() {
+		Iterator<Pion> itProposition = modele.getCombinaisonProposition().iterator();
+		Iterator<Pion> itSolution = modele.getCombinaisonSecrete().iterator();
+		int valeurProposition, valeurSolution;
+		int nbPionsCorrects = 0;
+		while (itProposition.hasNext() && itSolution.hasNext()) {
+			valeurProposition = itProposition.next().getValeur();
+			valeurSolution = itSolution.next().getValeur();
+			if (valeurProposition == valeurSolution)
+				nbPionsCorrects++;
+		}
+		return nbPionsCorrects == modele.getCombinaisonSecrete().size();
 	}
 
 	private void afficherCombinaisonSecrete() {
@@ -162,9 +183,9 @@ public class ControleurJeu {
 		}
 	}
 
-	private void afficherMessageFinDePartie() {
-		vue.getMessageFinDePartie().setText("PERDU !");
-		vue.getMessageFinDePartie().setForeground(Color.RED);
+	private void afficherMessageFinDePartie(String message, Color couleur) {
+		vue.getMessageFinDePartie().setText(message);
+		vue.getMessageFinDePartie().setForeground(couleur);
 		vue.getBoutonRejouerMemeJeu().setVisible(true);
 	}
 

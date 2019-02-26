@@ -25,6 +25,7 @@ public class MouseListenerGetPionSecret extends MouseListenerPion {
 	}
 
 	public void mousePressed(MouseEvent e) {
+		controleur.getPionSecret(x);
 	}
 
 	public void mouseReleased(MouseEvent e) {
