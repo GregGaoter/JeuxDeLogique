@@ -54,6 +54,9 @@ public class Vue implements Observateur {
 	private JFrame fenetrePrincipale;
 	private JPanel panneauPrincipal;
 
+	private JMenuItem menuItemOptionJeu;
+	private JButton boutonOptionJeu;
+
 	private JPanel panneauFinDePartie;
 	private JPanel panneauCombinaisonSecrete;
 	private JPanel panneauProposition;
@@ -61,6 +64,7 @@ public class Vue implements Observateur {
 	private JPanel panneauPionsUtilisables;
 	private JPanel panneauValidation;
 
+	private JLabel messageNbEssais;
 	private JLabel messageFinDePartie;
 
 	private JButton boutonValidation;
@@ -88,6 +92,27 @@ public class Vue implements Observateur {
 		panneauPrincipal.removeAll();
 
 		/*
+		 * Panneau nombre d'essais
+		 */
+		JPanel panneauNbEssais = new JPanel(new GridBagLayout());
+		contraintes.gridx = 1;
+		contraintes.gridy = 1;
+		panneauPrincipal.add(panneauNbEssais, contraintes);
+
+		JLabel messageEssais = new JLabel("Essai n°");
+		messageEssais.setHorizontalAlignment(SwingConstants.CENTER);
+		contraintes.gridx = 1;
+		contraintes.gridy = 1;
+		panneauNbEssais.add(messageEssais, contraintes);
+
+		messageNbEssais = new JLabel();
+		messageNbEssais.setHorizontalAlignment(SwingConstants.CENTER);
+		messageNbEssais.setFont(new Font(messageNbEssais.getFont().getName(), Font.PLAIN, 28));
+		contraintes.gridx = 1;
+		contraintes.gridy = 2;
+		panneauNbEssais.add(messageNbEssais, contraintes);
+
+		/*
 		 * Panneau fin de partie
 		 */
 		panneauFinDePartie = new JPanel(new GridBagLayout());
@@ -111,6 +136,11 @@ public class Vue implements Observateur {
 		contraintes.gridx = 1;
 		contraintes.gridy = 2;
 		panneauFinDePartie.add(boutonRejouerMemeJeu, contraintes);
+		boutonRejouerMemeJeu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// controleur.rejouerMemeJeu(fenetrePrincipale);
+			}
+		});
 
 		/*
 		 * Panneau combinaison secrète
@@ -240,9 +270,9 @@ public class Vue implements Observateur {
 		JMenu menuOption = new JMenu("Options");
 		barreDeMenu.add(menuOption);
 
-		JMenuItem menuItemOptionJeu = new JMenuItem("Jeux",
-				new ImageIcon(getClass().getResource("/option_jeu_16.png")));
+		menuItemOptionJeu = new JMenuItem("Jeux", new ImageIcon(getClass().getResource("/option_jeu_16.png")));
 		menuOption.add(menuItemOptionJeu);
+		menuItemOptionJeu.setEnabled(false);
 		menuItemOptionJeu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controleur.lancerDialogueOption(fenetrePrincipale);
@@ -306,10 +336,10 @@ public class Vue implements Observateur {
 		contraintes.gridx++;
 		barreOutils.add(new SeparateurVertical(20, AlignementHorizontal.Centre), contraintes);
 
-		JButton boutonOptionJeu = new JButton("Options jeux",
-				new ImageIcon(getClass().getResource("/option_jeu_32.png")));
+		boutonOptionJeu = new JButton("Options jeux", new ImageIcon(getClass().getResource("/option_jeu_32.png")));
 		boutonOptionJeu.setVerticalTextPosition(SwingConstants.BOTTOM);
 		boutonOptionJeu.setHorizontalTextPosition(SwingConstants.CENTER);
+		boutonOptionJeu.setEnabled(false);
 		boutonOptionJeu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controleur.lancerDialogueOption(fenetrePrincipale);
@@ -331,8 +361,12 @@ public class Vue implements Observateur {
 		barreOutils.add(boutonOptionLogs, contraintes);
 
 		contraintes.gridx++;
-		barreOutils.add(new SeparateurVertical(20, AlignementHorizontal.Centre), contraintes);
+		barreOutils.add(new SeparateurVertical(10, AlignementHorizontal.Droite), contraintes);
 
+		JToolBar barreOutilsAide = new JToolBar();
+		panneauBarreOutils.add(barreOutilsAide, BorderLayout.EAST);
+		barreOutilsAide.setBorderPainted(false);
+		barreOutilsAide.setFloatable(false);
 		JButton bouttonAide = new JButton("Règles de jeux", new ImageIcon(getClass().getResource("/aide_32.png")));
 		bouttonAide.setVerticalTextPosition(SwingConstants.BOTTOM);
 		bouttonAide.setHorizontalTextPosition(SwingConstants.CENTER);
@@ -341,8 +375,7 @@ public class Vue implements Observateur {
 
 			}
 		});
-		contraintes.gridx++;
-		barreOutils.add(bouttonAide, contraintes);
+		barreOutilsAide.add(bouttonAide);
 
 		/*
 		 * Panneau principal
@@ -363,6 +396,14 @@ public class Vue implements Observateur {
 
 	public JPanel getPanneauPrincipal() {
 		return panneauPrincipal;
+	}
+
+	public JMenuItem getMenuItemOptionJeu() {
+		return menuItemOptionJeu;
+	}
+
+	public JButton getBoutonOptionJeu() {
+		return boutonOptionJeu;
 	}
 
 	public HashMap<String, JLabelPion> getListePanneauSecret() {
@@ -387,6 +428,10 @@ public class Vue implements Observateur {
 
 	public JButton getBoutonValidation() {
 		return boutonValidation;
+	}
+
+	public JLabel getMessageNbEssais() {
+		return messageNbEssais;
 	}
 
 	public JLabel getMessageFinDePartie() {

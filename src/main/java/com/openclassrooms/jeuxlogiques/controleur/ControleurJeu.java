@@ -90,6 +90,9 @@ public class ControleurJeu {
 					.remove(vue.getBoutonValidation());
 			vue.getListePanneauValidation().get(getClef(1, modele.getNbEssais())).add(vue.getBoutonValidation());
 			modele.setCompteurEssais(modele.getNbEssais());
+			vue.getMessageNbEssais().setText("1 / " + Integer.toString(modele.getNbEssais()));
+			vue.getMenuItemOptionJeu().setEnabled(true);
+			vue.getBoutonOptionJeu().setEnabled(true);
 		}
 		dialogueSelectionCombinaison.dispose();
 	}
@@ -156,6 +159,8 @@ public class ControleurJeu {
 				vue.getListePanneauValidation().get(getClef(1, modele.getCompteurEssais()))
 						.add(vue.getBoutonValidation());
 				vue.getPanneauPrincipal().repaint();
+				vue.getMessageNbEssais().setText(Integer.toString(1 + modele.getNbEssais() - modele.getCompteurEssais())
+						+ " / " + Integer.toString(modele.getNbEssais()));
 			} else {
 				afficherCombinaisonSecrete();
 				afficherMessageFinDePartie("PERDU !", Color.RED);
@@ -187,6 +192,10 @@ public class ControleurJeu {
 		vue.getMessageFinDePartie().setText(message);
 		vue.getMessageFinDePartie().setForeground(couleur);
 		vue.getBoutonRejouerMemeJeu().setVisible(true);
+	}
+
+	public void rejouerMemeJeu(JFrame fenetreProprietaire) {
+		lancerSelectionCombinaison(fenetreProprietaire);
 	}
 
 }
