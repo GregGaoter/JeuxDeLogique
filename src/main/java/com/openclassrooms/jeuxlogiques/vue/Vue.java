@@ -1,6 +1,7 @@
 package com.openclassrooms.jeuxlogiques.vue;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -12,6 +13,7 @@ import java.util.Map;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -20,7 +22,9 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JProgressBar;
 import javax.swing.JToolBar;
+import javax.swing.JWindow;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
@@ -51,6 +55,8 @@ public class Vue implements Observateur {
 
 	private GridBagConstraints contraintes;
 
+	private JWindow fenetreDemarrage;
+
 	private JFrame fenetrePrincipale;
 	private JPanel panneauPrincipal;
 
@@ -70,6 +76,8 @@ public class Vue implements Observateur {
 	private JButton boutonValidation;
 	private JButton boutonRejouerMemeJeu;
 
+	private JProgressBar barreProgression;
+
 	public Vue() {
 		listePanneauSecret = new HashMap<>();
 		listePanneauProposition = new HashMap<>();
@@ -87,134 +95,56 @@ public class Vue implements Observateur {
 		this.controleur = controleur;
 	}
 
-	public void initialiserPanneaux() {
-
-		panneauPrincipal.removeAll();
+	public synchronized void creerFenetreDemarrage() {
 
 		/*
-		 * Panneau nombre d'essais
+		 * Look and feel
 		 */
-		JPanel panneauNbEssais = new JPanel(new GridBagLayout());
-		contraintes.gridx = 1;
-		contraintes.gridy = 1;
-		panneauPrincipal.add(panneauNbEssais, contraintes);
-
-		JLabel messageEssais = new JLabel("Essai n°");
-		messageEssais.setHorizontalAlignment(SwingConstants.CENTER);
-		contraintes.gridx = 1;
-		contraintes.gridy = 1;
-		panneauNbEssais.add(messageEssais, contraintes);
-
-		messageNbEssais = new JLabel();
-		messageNbEssais.setHorizontalAlignment(SwingConstants.CENTER);
-		messageNbEssais.setFont(new Font(messageNbEssais.getFont().getName(), Font.PLAIN, 28));
-		contraintes.gridx = 1;
-		contraintes.gridy = 2;
-		panneauNbEssais.add(messageNbEssais, contraintes);
-
-		/*
-		 * Panneau fin de partie
-		 */
-		panneauFinDePartie = new JPanel(new GridBagLayout());
-		contraintes.gridx = 3;
-		contraintes.gridy = 1;
-		contraintes.fill = GridBagConstraints.VERTICAL;
-		contraintes.anchor = GridBagConstraints.WEST;
-		panneauPrincipal.add(panneauFinDePartie, contraintes);
-		contraintes.fill = GridBagConstraints.BOTH;
-		contraintes.anchor = GridBagConstraints.CENTER;
-
-		messageFinDePartie = new JLabel();
-		messageFinDePartie.setHorizontalAlignment(SwingConstants.CENTER);
-		messageFinDePartie.setFont(new Font(messageFinDePartie.getFont().getName(), Font.BOLD, 28));
-		contraintes.gridx = 1;
-		contraintes.gridy = 1;
-		panneauFinDePartie.add(messageFinDePartie, contraintes);
-
-		boutonRejouerMemeJeu = new JButton("Rejouer au même jeu");
-		boutonRejouerMemeJeu.setVisible(false);
-		contraintes.gridx = 1;
-		contraintes.gridy = 2;
-		panneauFinDePartie.add(boutonRejouerMemeJeu, contraintes);
-		boutonRejouerMemeJeu.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				// controleur.rejouerMemeJeu(fenetrePrincipale);
+		try {
+			for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+				if ("Nimbus".equals(info.getName())) {
+					UIManager.setLookAndFeel(info.getClassName());
+					break;
+				}
 			}
-		});
+		} catch (Exception e) {
+		}
 
-		/*
-		 * Panneau combinaison secrète
-		 */
-		panneauCombinaisonSecrete = new JPanel(new GridBagLayout());
-		panneauCombinaisonSecrete.setBorder(BorderFactory.createTitledBorder("Combinaison secrète"));
-		setListePanneauPionProposition(listePanneauSecret, modele.getNbPionsCombinaison(), 1, PionCommun.Vide);
-		creerPanneau(panneauCombinaisonSecrete, listePanneauSecret, contraintes);
-		contraintes.gridx = 2;
-		contraintes.gridy = 1;
-		panneauPrincipal.add(panneauCombinaisonSecrete, contraintes);
+		fenetreDemarrage = new JWindow();
 
-		/*
-		 * Panneau proposition
-		 */
-		panneauProposition = new JPanel(new GridBagLayout());
-		panneauProposition.setBorder(BorderFactory.createTitledBorder("Proposition"));
-		setListePanneauPionProposition(listePanneauProposition, modele.getNbPionsCombinaison(), modele.getNbEssais(),
-				PionCommun.Vide);
-		creerPanneau(panneauProposition, listePanneauProposition, contraintes);
-		contraintes.gridx = 2;
-		contraintes.gridy = 2;
-		panneauPrincipal.add(panneauProposition, contraintes);
+		JLabel labelImage = new JLabel(new ImageIcon(getClass().getResource("/image_demarrage.png")));
+		labelImage.setLayout(new BorderLayout());
+		fenetreDemarrage.add(labelImage, BorderLayout.CENTER);
 
-		/*
-		 * Panneau réponse
-		 */
-		panneauReponse = new JPanel(new GridBagLayout());
-		panneauReponse.setBorder(BorderFactory.createTitledBorder("Réponse"));
-		setListePanneauPionProposition(listePanneauReponse, modele.getNbPionsCombinaison(), modele.getNbEssais(),
-				PionCommun.Vide);
-		creerPanneau(panneauReponse, listePanneauReponse, contraintes);
-		contraintes.gridx = 3;
-		contraintes.gridy = 2;
-		panneauPrincipal.add(panneauReponse, contraintes);
+		JPanel panneauBarreProgression = new JPanel();
+		panneauBarreProgression.setLayout(new BoxLayout(panneauBarreProgression, BoxLayout.Y_AXIS));
+		labelImage.add(panneauBarreProgression, BorderLayout.SOUTH);
+		panneauBarreProgression.setBackground(new Color(0, 0, 0, 0));
 
-		/*
-		 * Panneau pions utilisables
-		 */
-		panneauPionsUtilisables = new JPanel(new GridBagLayout());
-		panneauPionsUtilisables.setBorder(BorderFactory.createTitledBorder("Pions utilisables"));
-		setListePanneauPionUtilisables();
-		creerPanneau(panneauPionsUtilisables, listePanneauPionUtilisable, contraintes);
-		contraintes.gridx = 1;
-		contraintes.gridy = 3;
-		contraintes.gridwidth = 3;
-		contraintes.fill = GridBagConstraints.NONE;
-		panneauPrincipal.add(panneauPionsUtilisables, contraintes);
-		contraintes.gridwidth = 1;
-		contraintes.fill = GridBagConstraints.BOTH;
+		JLabel labelDemarrage = new JLabel("Démarrage...");
+		labelDemarrage.setAlignmentX(0.15f);
+		labelDemarrage.setFont(new Font(labelDemarrage.getFont().getFontName(), Font.ITALIC,
+				(int) (labelDemarrage.getFont().getSize() * .95)));
+		panneauBarreProgression.add(labelDemarrage);
 
-		/*
-		 * Panneau validation
-		 */
-		boutonValidation = new JButton("Valider");
-		boutonValidation.setEnabled(false);
-		panneauValidation = new JPanel(new GridBagLayout());
-		contraintes.gridx = 1;
-		contraintes.gridy = 2;
-		panneauPrincipal.add(panneauValidation, contraintes);
-		panneauValidation.setBorder(BorderFactory.createTitledBorder("Validation"));
-		creerPanneauValidation();
-		boutonValidation.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				controleur.calculerReponse();
+		barreProgression = new JProgressBar(0, 100);
+		panneauBarreProgression.add(barreProgression);
+		barreProgression.setStringPainted(true);
+
+		fenetreDemarrage.pack();
+		fenetreDemarrage.setLocationRelativeTo(null);
+		fenetreDemarrage.setVisible(true);
+	}
+
+	public synchronized void runBarreProgression() {
+		for (int i = 1; i <= 100; i++) {
+			try {
+				barreProgression.setValue(i);
+				Thread.sleep(30);
+			} catch (InterruptedException e) {
 			}
-		});
-
-		/*
-		 * Dimension et position de la fenêtre principale
-		 */
-		fenetrePrincipale.pack();
-		fenetrePrincipale.setLocationRelativeTo(null);
-
+		}
+		fenetreDemarrage.dispose();
 	}
 
 	public synchronized void creerVue() {
@@ -391,6 +321,136 @@ public class Vue implements Observateur {
 		 */
 		fenetrePrincipale.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		fenetrePrincipale.setVisible(true);
+
+	}
+
+	public void initialiserPanneaux() {
+
+		panneauPrincipal.removeAll();
+
+		/*
+		 * Panneau nombre d'essais
+		 */
+		JPanel panneauNbEssais = new JPanel(new GridBagLayout());
+		contraintes.gridx = 1;
+		contraintes.gridy = 1;
+		panneauPrincipal.add(panneauNbEssais, contraintes);
+
+		JLabel messageEssais = new JLabel("Essai n°");
+		messageEssais.setHorizontalAlignment(SwingConstants.CENTER);
+		contraintes.gridx = 1;
+		contraintes.gridy = 1;
+		panneauNbEssais.add(messageEssais, contraintes);
+
+		messageNbEssais = new JLabel();
+		messageNbEssais.setHorizontalAlignment(SwingConstants.CENTER);
+		messageNbEssais.setFont(new Font(messageNbEssais.getFont().getName(), Font.PLAIN, 28));
+		contraintes.gridx = 1;
+		contraintes.gridy = 2;
+		panneauNbEssais.add(messageNbEssais, contraintes);
+
+		/*
+		 * Panneau fin de partie
+		 */
+		panneauFinDePartie = new JPanel(new GridBagLayout());
+		contraintes.gridx = 3;
+		contraintes.gridy = 1;
+		contraintes.fill = GridBagConstraints.VERTICAL;
+		contraintes.anchor = GridBagConstraints.WEST;
+		panneauPrincipal.add(panneauFinDePartie, contraintes);
+		contraintes.fill = GridBagConstraints.BOTH;
+		contraintes.anchor = GridBagConstraints.CENTER;
+
+		messageFinDePartie = new JLabel();
+		messageFinDePartie.setHorizontalAlignment(SwingConstants.CENTER);
+		messageFinDePartie.setFont(new Font(messageFinDePartie.getFont().getName(), Font.BOLD, 28));
+		contraintes.gridx = 1;
+		contraintes.gridy = 1;
+		panneauFinDePartie.add(messageFinDePartie, contraintes);
+
+		boutonRejouerMemeJeu = new JButton("Rejouer au même jeu");
+		boutonRejouerMemeJeu.setVisible(false);
+		contraintes.gridx = 1;
+		contraintes.gridy = 2;
+		panneauFinDePartie.add(boutonRejouerMemeJeu, contraintes);
+		boutonRejouerMemeJeu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				controleur.rejouerMemeJeu(fenetrePrincipale);
+			}
+		});
+
+		/*
+		 * Panneau combinaison secrète
+		 */
+		panneauCombinaisonSecrete = new JPanel(new GridBagLayout());
+		panneauCombinaisonSecrete.setBorder(BorderFactory.createTitledBorder("Combinaison secrète"));
+		setListePanneauPionProposition(listePanneauSecret, modele.getNbPionsCombinaison(), 1, PionCommun.Vide);
+		creerPanneau(panneauCombinaisonSecrete, listePanneauSecret, contraintes);
+		contraintes.gridx = 2;
+		contraintes.gridy = 1;
+		panneauPrincipal.add(panneauCombinaisonSecrete, contraintes);
+
+		/*
+		 * Panneau proposition
+		 */
+		panneauProposition = new JPanel(new GridBagLayout());
+		panneauProposition.setBorder(BorderFactory.createTitledBorder("Proposition"));
+		setListePanneauPionProposition(listePanneauProposition, modele.getNbPionsCombinaison(), modele.getNbEssais(),
+				PionCommun.Vide);
+		creerPanneau(panneauProposition, listePanneauProposition, contraintes);
+		contraintes.gridx = 2;
+		contraintes.gridy = 2;
+		panneauPrincipal.add(panneauProposition, contraintes);
+
+		/*
+		 * Panneau réponse
+		 */
+		panneauReponse = new JPanel(new GridBagLayout());
+		panneauReponse.setBorder(BorderFactory.createTitledBorder("Réponse"));
+		setListePanneauPionProposition(listePanneauReponse, modele.getNbPionsCombinaison(), modele.getNbEssais(),
+				PionCommun.Vide);
+		creerPanneau(panneauReponse, listePanneauReponse, contraintes);
+		contraintes.gridx = 3;
+		contraintes.gridy = 2;
+		panneauPrincipal.add(panneauReponse, contraintes);
+
+		/*
+		 * Panneau pions utilisables
+		 */
+		panneauPionsUtilisables = new JPanel(new GridBagLayout());
+		panneauPionsUtilisables.setBorder(BorderFactory.createTitledBorder("Pions utilisables"));
+		setListePanneauPionUtilisables();
+		creerPanneau(panneauPionsUtilisables, listePanneauPionUtilisable, contraintes);
+		contraintes.gridx = 1;
+		contraintes.gridy = 3;
+		contraintes.gridwidth = 3;
+		contraintes.fill = GridBagConstraints.NONE;
+		panneauPrincipal.add(panneauPionsUtilisables, contraintes);
+		contraintes.gridwidth = 1;
+		contraintes.fill = GridBagConstraints.BOTH;
+
+		/*
+		 * Panneau validation
+		 */
+		boutonValidation = new JButton("Valider");
+		boutonValidation.setEnabled(false);
+		panneauValidation = new JPanel(new GridBagLayout());
+		contraintes.gridx = 1;
+		contraintes.gridy = 2;
+		panneauPrincipal.add(panneauValidation, contraintes);
+		panneauValidation.setBorder(BorderFactory.createTitledBorder("Validation"));
+		creerPanneauValidation();
+		boutonValidation.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				controleur.calculerReponse();
+			}
+		});
+
+		/*
+		 * Dimension et position de la fenêtre principale
+		 */
+		fenetrePrincipale.pack();
+		fenetrePrincipale.setLocationRelativeTo(null);
 
 	}
 

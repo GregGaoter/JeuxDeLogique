@@ -42,6 +42,8 @@ public class ControleurJeu {
 		modele.initialiser();
 		vue.setModele(modele);
 		vue.setControleur(this);
+		vue.creerFenetreDemarrage();
+		vue.runBarreProgression();
 		vue.creerVue();
 	}
 
