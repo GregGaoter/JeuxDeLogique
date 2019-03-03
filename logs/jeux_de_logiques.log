@@ -17,3 +17,7 @@
 2019-03-03 17:12:23 DEBUG Parametre:35 - NbPionsCombinaison = 4
 2019-03-03 17:12:23 DEBUG Parametre:35 - NbEssais = 10
 2019-03-03 17:12:23 DEBUG Parametre:35 - NbCouleursUtilisables = 6
+2019-03-03 18:13:29 INFO  Main:14 - Démarrage du jeu
+2019-03-03 18:13:29 DEBUG Parametre:35 - NbPionsCombinaison = 4
+2019-03-03 18:13:29 DEBUG Parametre:35 - NbEssais = 10
+2019-03-03 18:13:29 DEBUG Parametre:35 - NbCouleursUtilisables = 6

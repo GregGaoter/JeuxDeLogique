@@ -29,10 +29,11 @@ public class ControleurJeu {
 
 	private Jeu jeu;
 	private Mode mode;
+	private boolean modeDeveloppeurQ;
 
 	private ServiceDeCalcul serviceDeCalcul;
 
-	public ControleurJeu() {
+	public ControleurJeu(String[] modeDeveloppeur) {
 		modele = new ModeleJeu();
 		vue = new Vue();
 		modele.setVue(vue);
@@ -42,6 +43,7 @@ public class ControleurJeu {
 		modele.initialiser();
 		vue.setModele(modele);
 		vue.setControleur(this);
+		modeDeveloppeurQ = modeDeveloppeur.length > 0;
 		// vue.creerFenetreDemarrage();
 		// vue.runBarreProgression();
 		vue.creerVue();
@@ -95,6 +97,8 @@ public class ControleurJeu {
 			vue.getMessageNbEssais().setText("1 / " + Integer.toString(modele.getNbEssais()));
 			vue.getMenuItemOptionJeu().setEnabled(true);
 			vue.getBoutonOptionJeu().setEnabled(true);
+			if (modeDeveloppeurQ)
+				afficherCombinaisonSecrete();
 		}
 		dialogueSelectionCombinaison.dispose();
 	}

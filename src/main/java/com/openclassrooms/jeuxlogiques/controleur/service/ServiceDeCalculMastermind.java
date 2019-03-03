@@ -11,6 +11,7 @@ import com.openclassrooms.jeuxlogiques.modele.enumeration.PionReponseCouleur;
 
 public class ServiceDeCalculMastermind implements ServiceDeCalcul {
 
+	// TODO Corriger le bug du calcul de la réponse de Mastermind
 	public List<Pion> calculerReponse(List<Pion> proposition, List<Pion> solution) {
 
 		List<Pion> reponse = new ArrayList<>(proposition.size());
