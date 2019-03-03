@@ -29,4 +29,6 @@ public abstract class Jeu {
 
 	public abstract ServiceDeCalcul getServiceDeCalcul();
 
+	public abstract String getNomFichierHTMLReglesJeu();
+
 }

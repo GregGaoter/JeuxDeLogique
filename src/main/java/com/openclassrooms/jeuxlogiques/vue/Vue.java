@@ -8,6 +8,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,11 +30,13 @@ import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.border.EmptyBorder;
+import javax.swing.text.BadLocationException;
 
 import com.openclassrooms.jeuxlogiques.controleur.ControleurJeu;
 import com.openclassrooms.jeuxlogiques.modele.ModeleJeu;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.Pion;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.PionCommun;
+import com.openclassrooms.jeuxlogiques.vue.dialogue.DialogueReglesJeux;
 import com.openclassrooms.jeuxlogiques.vue.labelpion.JLabelPion;
 import com.openclassrooms.jeuxlogiques.vue.labelpion.MouseListenerGetPionProposition;
 import com.openclassrooms.jeuxlogiques.vue.labelpion.MouseListenerSetPionProposition;
@@ -209,15 +212,6 @@ public class Vue implements Observateur {
 			}
 		});
 
-		JMenuItem menuItemOptionLogs = new JMenuItem("Logs",
-				new ImageIcon(getClass().getResource("/option_logs_16.png")));
-		menuOption.add(menuItemOptionLogs);
-		menuItemOptionLogs.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-			}
-		});
-
 		JMenu menuAide = new JMenu("Aide");
 		barreDeMenu.add(menuAide);
 
@@ -278,18 +272,6 @@ public class Vue implements Observateur {
 		contraintes.gridx++;
 		barreOutils.add(boutonOptionJeu, contraintes);
 
-		JButton boutonOptionLogs = new JButton("Options logs",
-				new ImageIcon(getClass().getResource("/option_logs_32.png")));
-		boutonOptionLogs.setVerticalTextPosition(SwingConstants.BOTTOM);
-		boutonOptionLogs.setHorizontalTextPosition(SwingConstants.CENTER);
-		boutonOptionLogs.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-			}
-		});
-		contraintes.gridx++;
-		barreOutils.add(boutonOptionLogs, contraintes);
-
 		contraintes.gridx++;
 		barreOutils.add(new SeparateurVertical(10, AlignementHorizontal.Droite), contraintes);
 
@@ -302,7 +284,13 @@ public class Vue implements Observateur {
 		bouttonAide.setHorizontalTextPosition(SwingConstants.CENTER);
 		bouttonAide.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				try {
+					new DialogueReglesJeux(fenetrePrincipale);
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				} catch (BadLocationException e1) {
+					e1.printStackTrace();
+				}
 			}
 		});
 		barreOutilsAide.add(bouttonAide);

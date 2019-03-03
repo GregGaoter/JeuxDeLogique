@@ -34,4 +34,8 @@ public class JeuMastermind extends Jeu {
 		return new ServiceDeCalculMastermind();
 	}
 
+	public String getNomFichierHTMLReglesJeu() {
+		return "/regles_jeu_mastermind.html";
+	}
+
 }

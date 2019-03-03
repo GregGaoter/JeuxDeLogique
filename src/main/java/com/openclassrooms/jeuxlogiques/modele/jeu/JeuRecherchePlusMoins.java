@@ -32,4 +32,8 @@ public class JeuRecherchePlusMoins extends Jeu {
 		return new ServiceDeCalculRecherchePlusMoins();
 	}
 
+	public String getNomFichierHTMLReglesJeu() {
+		return "/regles_jeu_recherche_plus_moins.html";
+	}
+
 }

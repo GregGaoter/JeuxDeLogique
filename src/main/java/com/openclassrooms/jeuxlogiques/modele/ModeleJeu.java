@@ -40,7 +40,7 @@ public class ModeleJeu implements SujetObservable {
 
 	public ModeleJeu() {
 		listeObservateurs = new ArrayList<>();
-		nbEssais = 8;
+		nbEssais = 10;
 		nbPionsCombinaison = 4;
 		compteurEssais = nbEssais;
 	}

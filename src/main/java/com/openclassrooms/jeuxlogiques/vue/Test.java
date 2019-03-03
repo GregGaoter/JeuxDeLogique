@@ -4,8 +4,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JSlider;
-import javax.swing.JSpinner;
+import javax.swing.JTextPane;
 import javax.swing.border.EmptyBorder;
 
 public class Test extends JFrame {
@@ -32,6 +31,7 @@ public class Test extends JFrame {
 	 * Create the frame.
 	 */
 	public Test() {
+		setTitle("Titre");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -39,12 +39,8 @@ public class Test extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JSpinner spinner = new JSpinner();
-		spinner.setBounds(58, 41, 29, 20);
-		contentPane.add(spinner);
-
-		JSlider slider = new JSlider();
-		slider.setBounds(79, 117, 200, 26);
-		contentPane.add(slider);
+		JTextPane textPane = new JTextPane();
+		textPane.setBounds(35, 41, 258, 160);
+		contentPane.add(textPane);
 	}
 }
