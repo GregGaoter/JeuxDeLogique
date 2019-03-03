@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.openclassrooms.jeuxlogiques.controleur.ControleurJeu;
+import com.openclassrooms.jeuxlogiques.modele.enumeration.Parametre;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.Pion;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.PionCommun;
 import com.openclassrooms.jeuxlogiques.modele.jeu.Jeu;
@@ -40,8 +41,8 @@ public class ModeleJeu implements SujetObservable {
 
 	public ModeleJeu() {
 		listeObservateurs = new ArrayList<>();
-		nbEssais = 10;
-		nbPionsCombinaison = 4;
+		nbEssais = Parametre.NbEssais.getValeur();
+		nbPionsCombinaison = Parametre.NbPionsCombinaison.getValeur();
 		compteurEssais = nbEssais;
 	}
 

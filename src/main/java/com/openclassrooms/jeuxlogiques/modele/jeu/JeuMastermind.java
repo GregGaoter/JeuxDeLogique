@@ -4,6 +4,7 @@ import org.apache.commons.lang3.ArrayUtils;
 
 import com.openclassrooms.jeuxlogiques.controleur.service.ServiceDeCalcul;
 import com.openclassrooms.jeuxlogiques.controleur.service.ServiceDeCalculMastermind;
+import com.openclassrooms.jeuxlogiques.modele.enumeration.Parametre;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.Pion;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.PionCouleur;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.PionReponseCouleur;
@@ -11,7 +12,7 @@ import com.openclassrooms.jeuxlogiques.modele.enumeration.PionReponseCouleur;
 public class JeuMastermind extends Jeu {
 
 	public JeuMastermind() {
-		nbPionsUtilisables = 6;
+		nbPionsUtilisables = Parametre.NbCouleursUtilisables.getValeur();
 	}
 
 	public String getNom() {

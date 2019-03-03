@@ -8,10 +8,10 @@ import com.openclassrooms.jeuxlogiques.controleur.ControleurJeu;
 
 public class Main {
 
-	private final static Logger logger = Logger.getLogger(Main.class);
+	private final static Logger log = Logger.getLogger(Main.class);
 
 	public static void main(String[] args) {
-		// logger.info("Démarrage du jeu");
+		log.info("Démarrage du jeu");
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
