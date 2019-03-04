@@ -8,20 +8,14 @@
 		<param name="Target" value="System.out" />
 		<layout class="org.apache.log4j.PatternLayout">
 			<param name="ConversionPattern"
-				value="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L 
-		- %m%n" />
+				value="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n" />
 		</layout>
 	</appender>
 
 	<appender name="fileAppender"
-		class="org.apache.log4j.RollingFileAppender">
-		<!-- <param name="append" value="false" /> -->
-		<param name="maxFileSize" value="10MB" />
-		<param name="maxBackupIndex" value="10" />
-		<param name="file" value="logs/jeux_de_logiques.log" />
-		<!-- <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy"> 
-			<fileNamePattern>logs/jeux_de_logiques_%d{dd-MM-yyyy}.log</fileNamePattern> 
-			</rollingPolicy> -->
+		class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="logs/jeux_de_logiques.log" />
+		<param name="DatePattern" value="_yyyy-MM-dd" />
 		<layout class="org.apache.log4j.PatternLayout">
 			<param name="ConversionPattern"
 				value="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n" />
@@ -30,7 +24,7 @@
 
 	<root>
 		<priority value="debug"></priority>
-		<appender-ref ref="console" />
+		<!-- <appender-ref ref="console" /> -->
 		<appender-ref ref="fileAppender" />
 	</root>
 

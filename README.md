@@ -24,11 +24,34 @@ Avoir **JAVA 8 minimum** sur sa machine.
 **src** : sources (.java, .properties, .xml, .html, images)  
 
 ### Exécution et lancement du projet
-Placez-vous en ligne de commande dans le répertoire **bin** et taper la commande :  
+
+#### JAR exécutable
+
+Placez-vous en ligne de commande dans le répertoire **"bin"** et taper la commande :  
 
 **java -jar jeux-de-logique-0.0.1.jar**  
 
 Après le lancement, une fenêtre graphique Swing s'ouvre pour permettre de jouer aux jeux.  
+
+
+#### Ligne de commande
+
+**Mode normal**  
+
+Placez-vous en ligne de commande dans le répertoire **"JeuxDeLogiques"** et taper la commande :  
+
+**java -classpath "bin;lib\commons-lang3-3.8.1.jar;lib\log4j-1.2.15.jar" com.openclassrooms.jeuxlogiques.Main**  
+
+Après le lancement, une fenêtre graphique Swing s'ouvre pour permettre de jouer aux jeux.  
+
+**Mode développeur**  
+
+Un mode développeur peut être activé par le passage d'un paramètre au lancement de l'application.  
+Placez-vous en ligne de commande dans le répertoire **"JeuxDeLogiques"** et taper la commande :  
+
+**java -classpath "bin;lib\commons-lang3-3.8.1.jar;lib\log4j-1.2.15.jar" com.openclassrooms.jeuxlogiques.Main 1**  
+
+Après le lancement, une fenêtre graphique Swing s'ouvre pour permettre de jouer aux jeux dans lesquels la solution est affichée dès le départ.  
 
 ### Règles des jeux
 

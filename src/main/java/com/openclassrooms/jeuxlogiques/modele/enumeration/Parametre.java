@@ -9,7 +9,8 @@ import org.apache.log4j.Logger;
 
 public enum Parametre {
 
-	NbPionsCombinaison("nbPionsCombinaison"), NbEssais("nbEssais"), NbCouleursUtilisables("nbCouleursUtilisables");
+	NbPionsCombinaison("nbPionsCombinaison"), NbEssais("nbEssais"), NbCouleursUtilisables("nbCouleursUtilisables"),
+	ModeDeveloppeur("modeDeveloppeur");
 
 	private final Logger log = Logger.getLogger(Parametre.class);
 

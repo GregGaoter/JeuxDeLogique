@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 import com.openclassrooms.jeuxlogiques.controleur.service.ServiceDeCalcul;
 import com.openclassrooms.jeuxlogiques.modele.ModeleJeu;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.Mode;
+import com.openclassrooms.jeuxlogiques.modele.enumeration.Parametre;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.Pion;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.PionCommun;
 import com.openclassrooms.jeuxlogiques.modele.jeu.Jeu;
@@ -43,7 +44,8 @@ public class ControleurJeu {
 		modele.initialiser();
 		vue.setModele(modele);
 		vue.setControleur(this);
-		modeDeveloppeurQ = modeDeveloppeur.length > 0;
+		modeDeveloppeurQ = modeDeveloppeur.length > 0
+				&& Integer.parseInt(modeDeveloppeur[0]) == Parametre.ModeDeveloppeur.getValeur();
 		// vue.creerFenetreDemarrage();
 		// vue.runBarreProgression();
 		vue.creerVue();
