@@ -68,7 +68,7 @@ public class ControleurJeu {
 
 	private void lancerMode(JFrame fenetreProprietaire) {
 		DialogueMode dialogueMode = new DialogueMode(fenetreProprietaire);
-		mode = dialogueMode.getValeur();
+		Mode mode = dialogueMode.getValeur();
 		if (mode != null) {
 			if (mode.getSelectionCombinaisonQ())
 				lancerSelectionCombinaison(fenetreProprietaire);

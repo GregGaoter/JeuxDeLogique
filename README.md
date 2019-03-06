@@ -12,8 +12,9 @@ Ce projet consiste à mettre en œuvre les concepts fondamentaux de la programmati
 
 ## Installation et exécution du projet
 
-### Pré-requis
-Avoir **JAVA 8 minimum** sur sa machine.
+### Environnement d'exécution
+**JavaSE-1.8**  
+**jre1.8.0_201**
 
 ### Présentation de l'arborescence du projet
 **bin** : fichiers compilés (.class, excécutable .jar)  
