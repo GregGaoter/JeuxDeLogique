@@ -10,7 +10,7 @@ Ce projet propose de créer une application proposant des jeux de logique. Plusie
 **Objectif**   
 Ce projet consiste à mettre en œuvre les concepts fondamentaux de la programmation orientée-objet en Java.
 
-## Installation et lancement du projet
+## Installation et exécution du projet
 
 ### Pré-requis
 Avoir **JAVA 8 minimum** sur sa machine.
@@ -23,9 +23,9 @@ Avoir **JAVA 8 minimum** sur sa machine.
 **logs** : fichiers des logs (.log)  
 **src** : sources (.java, .properties, .xml, .html, images)  
 
-### Exécution et lancement du projet
+### Exécution du projet
 
-#### JAR exécutable
+#### Mode normal
 
 Placez-vous en ligne de commande dans le répertoire **"bin"** et taper la commande :  
 
@@ -33,23 +33,12 @@ Placez-vous en ligne de commande dans le répertoire **"bin"** et taper la comman
 
 Après le lancement, une fenêtre graphique Swing s'ouvre pour permettre de jouer aux jeux.  
 
-
-#### Ligne de commande
-
-**Mode normal**  
-
-Placez-vous en ligne de commande dans le répertoire **"JeuxDeLogiques"** et taper la commande :  
-
-**java -classpath "bin;lib\commons-lang3-3.8.1.jar;lib\log4j-1.2.15.jar" com.openclassrooms.jeuxlogiques.Main**  
-
-Après le lancement, une fenêtre graphique Swing s'ouvre pour permettre de jouer aux jeux.  
-
-**Mode développeur**  
+#### Mode développeur
 
 Un mode développeur peut être activé par le passage d'un paramètre au lancement de l'application.  
-Placez-vous en ligne de commande dans le répertoire **"JeuxDeLogiques"** et taper la commande :  
+Placez-vous en ligne de commande dans le répertoire **"bin"** et taper la commande :  
 
-**java -classpath "bin;lib\commons-lang3-3.8.1.jar;lib\log4j-1.2.15.jar" com.openclassrooms.jeuxlogiques.Main 1**  
+**java -jar jeux-de-logique-0.0.1.jar 1**  
 
 Après le lancement, une fenêtre graphique Swing s'ouvre pour permettre de jouer aux jeux dans lesquels la solution est affichée dès le départ.  
 
