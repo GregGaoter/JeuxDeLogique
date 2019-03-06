@@ -2,24 +2,21 @@ package com.openclassrooms.jeuxlogiques.controleur;
 
 import java.awt.Color;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.Iterator;
 
 import javax.swing.JFrame;
 
 import com.openclassrooms.jeuxlogiques.controleur.service.ServiceDeCalcul;
 import com.openclassrooms.jeuxlogiques.modele.ModeleJeu;
-import com.openclassrooms.jeuxlogiques.modele.enumeration.Mode;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.Parametre;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.Pion;
-import com.openclassrooms.jeuxlogiques.modele.enumeration.PionCommun;
 import com.openclassrooms.jeuxlogiques.modele.jeu.Jeu;
+import com.openclassrooms.jeuxlogiques.modele.joueur.Joueur;
+import com.openclassrooms.jeuxlogiques.modele.mode.Mode;
 import com.openclassrooms.jeuxlogiques.vue.Vue;
 import com.openclassrooms.jeuxlogiques.vue.dialogue.DialogueJeu;
 import com.openclassrooms.jeuxlogiques.vue.dialogue.DialogueMode;
 import com.openclassrooms.jeuxlogiques.vue.dialogue.DialogueOption;
-import com.openclassrooms.jeuxlogiques.vue.dialogue.DialogueSelectionCombinaison;
-import com.openclassrooms.jeuxlogiques.vue.labelpion.JLabelPion;
 
 public class ControleurJeu {
 
@@ -29,7 +26,6 @@ public class ControleurJeu {
 	private Vue vue;
 
 	private Jeu jeu;
-	private Mode mode;
 	private boolean modeDeveloppeurQ;
 
 	private ServiceDeCalcul serviceDeCalcul;
@@ -70,39 +66,11 @@ public class ControleurJeu {
 		DialogueMode dialogueMode = new DialogueMode(fenetreProprietaire);
 		Mode mode = dialogueMode.getValeur();
 		if (mode != null) {
-			if (mode.getSelectionCombinaisonQ())
-				lancerSelectionCombinaison(fenetreProprietaire);
+			Iterator<Joueur> it = mode.getListeDefenseurs().iterator();
+			while (it.hasNext())
+				it.next().setCombinaisonSecrete(fenetreProprietaire, modele, this);
 		}
 		dialogueMode.dispose();
-	}
-
-	private void lancerSelectionCombinaison(JFrame fenetreProprietaire) {
-		DialogueSelectionCombinaison dialogueSelectionCombinaison = new DialogueSelectionCombinaison(
-				fenetreProprietaire, modele, this);
-		HashMap<String, JLabelPion> combinaisonSecrete = dialogueSelectionCombinaison.getValeur();
-		if (combinaisonSecrete != null) {
-			for (int x = 1; x <= modele.getNbPionsCombinaison(); x++)
-				vue.setPion(vue.getListePanneauSecret(), getClef(x, 1), PionCommun.Secret);
-			for (int x = 1; x <= modele.getNbPionsUtilisables(); x++)
-				vue.setPion(vue.getListePanneauPionUtilisable(), getClef(x, 1),
-						modele.getPionsUtilisables().get(x - 1));
-			for (int y = 1; y <= modele.getNbEssais(); y++) {
-				for (int x = 1; x <= modele.getNbPionsCombinaison(); x++) {
-					vue.setPion(vue.getListePanneauProposition(), getClef(x, y), PionCommun.Vide);
-					vue.setPion(vue.getListePanneauReponse(), getClef(x, y), PionCommun.Vide);
-				}
-			}
-			vue.getListePanneauValidation().get(getClef(1, modele.getCompteurEssais()))
-					.remove(vue.getBoutonValidation());
-			vue.getListePanneauValidation().get(getClef(1, modele.getNbEssais())).add(vue.getBoutonValidation());
-			modele.setCompteurEssais(modele.getNbEssais());
-			vue.getMessageNbEssais().setText("1 / " + Integer.toString(modele.getNbEssais()));
-			vue.getMenuItemOptionJeu().setEnabled(true);
-			vue.getBoutonOptionJeu().setEnabled(true);
-			if (modeDeveloppeurQ)
-				afficherCombinaisonSecrete();
-		}
-		dialogueSelectionCombinaison.dispose();
 	}
 
 	public void lancerDialogueOption(JFrame fenetreProprietaire) {
@@ -150,6 +118,14 @@ public class ControleurJeu {
 		this.serviceDeCalcul = serviceDeCalcul;
 	}
 
+	public Vue getVue() {
+		return vue;
+	}
+
+	public boolean getModeDeveloppeurQ() {
+		return modeDeveloppeurQ;
+	}
+
 	public void calculerReponse() {
 		modele.setCombinaisonReponse(
 				serviceDeCalcul.calculerReponse(modele.getCombinaisonProposition(), modele.getCombinaisonSecrete()));
@@ -190,7 +166,7 @@ public class ControleurJeu {
 		return nbPionsCorrects == modele.getCombinaisonSecrete().size();
 	}
 
-	private void afficherCombinaisonSecrete() {
+	public void afficherCombinaisonSecrete() {
 		for (int i = 0; i < modele.getNbPionsCombinaison(); i++) {
 			vue.setPion(vue.getListePanneauSecret(), getClef(i + 1, 1), modele.getCombinaisonSecrete().get(i));
 		}
@@ -203,7 +179,7 @@ public class ControleurJeu {
 	}
 
 	public void rejouerMemeJeu(JFrame fenetreProprietaire) {
-		lancerSelectionCombinaison(fenetreProprietaire);
+		// lancerSelectionCombinaison(fenetreProprietaire);
 	}
 
 }

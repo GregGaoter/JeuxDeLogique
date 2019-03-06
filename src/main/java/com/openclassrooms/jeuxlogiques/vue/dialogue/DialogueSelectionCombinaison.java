@@ -56,7 +56,7 @@ public class DialogueSelectionCombinaison extends JDialog implements Observateur
 	private ControleurJeu controleur;
 
 	public DialogueSelectionCombinaison(JFrame fenetreParente, ModeleJeu modele, ControleurJeu controleur) {
-		super(fenetreParente, "Choix de la combinaison solution", true);
+		super(fenetreParente, "Choix de la combinaison secrète", true);
 		listePanneauSecret = new HashMap<>();
 		listePanneauPionUtilisable = new HashMap<>();
 		this.modele = modele;

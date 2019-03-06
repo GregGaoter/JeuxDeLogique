@@ -18,7 +18,7 @@ import javax.swing.JPanel;
 import javax.swing.JToggleButton;
 import javax.swing.border.EmptyBorder;
 
-import com.openclassrooms.jeuxlogiques.modele.enumeration.Mode;
+import com.openclassrooms.jeuxlogiques.modele.mode.Mode;
 
 public class DialogueMode extends JDialog {
 	private static final long serialVersionUID = 1L;
@@ -57,8 +57,8 @@ public class DialogueMode extends JDialog {
 
 		ButtonGroup toggleButtonGroupe = new ButtonGroup();
 
-		for (Mode mode : Mode.values()) {
-			JToggleButton toggleButton = new JToggleButton(mode.toString());
+		for (Mode mode : Mode.LISTE_MODES) {
+			JToggleButton toggleButton = new JToggleButton(mode.getNom());
 			toggleButtonGroupe.add(toggleButton);
 			panneauChoix.add(toggleButton);
 			toggleButton.addActionListener(new ActionListener() {
