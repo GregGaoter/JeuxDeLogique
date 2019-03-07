@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,6 +16,7 @@ import java.util.Map;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -24,6 +26,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
+import javax.swing.JToggleButton;
 import javax.swing.JToolBar;
 import javax.swing.JWindow;
 import javax.swing.SwingConstants;
@@ -64,9 +67,10 @@ public class Vue implements Observateur {
 	private JPanel panneauPrincipal;
 
 	private JMenuItem menuItemOptionJeu;
+	private JMenuItem menuItemOptionJoueur;
 	private JButton boutonOptionJeu;
+	private JButton boutonOptionJoueur;
 
-	private JPanel panneauFinDePartie;
 	private JPanel panneauCombinaisonSecrete;
 	private JPanel panneauProposition;
 	private JPanel panneauReponse;
@@ -75,9 +79,15 @@ public class Vue implements Observateur {
 
 	private JLabel messageNbEssais;
 	private JLabel messageFinDePartie;
+	private JLabel labelVainqueur;
+	private JLabel vainqueur;
+	private JLabel pionSelectionne;
 
 	private JButton boutonValidation;
 	private JButton boutonRejouerMemeJeu;
+
+	private JToggleButton toggleButtonJoueur;
+	private JToggleButton toggleButtonOrdinateur;
 
 	private JProgressBar barreProgression;
 
@@ -212,6 +222,14 @@ public class Vue implements Observateur {
 			}
 		});
 
+		menuItemOptionJoueur = new JMenuItem("Joueur", new ImageIcon(getClass().getResource("/joueur_16.png")));
+		menuOption.add(menuItemOptionJoueur);
+		menuItemOptionJoueur.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				controleur.lancerDialogueOptionJoueur(fenetrePrincipale);
+			}
+		});
+
 		JMenu menuAide = new JMenu("Aide");
 		barreDeMenu.add(menuAide);
 
@@ -220,7 +238,13 @@ public class Vue implements Observateur {
 		menuAide.add(menuItemAideRegles);
 		menuItemAideRegles.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				try {
+					new DialogueReglesJeux(fenetrePrincipale);
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				} catch (BadLocationException e1) {
+					e1.printStackTrace();
+				}
 			}
 		});
 
@@ -258,7 +282,7 @@ public class Vue implements Observateur {
 		barreOutils.add(boutonNouveauJeu, contraintes);
 
 		contraintes.gridx++;
-		barreOutils.add(new SeparateurVertical(20, AlignementHorizontal.Centre), contraintes);
+		barreOutils.add(new SeparateurVertical(10, AlignementHorizontal.Centre), contraintes);
 
 		boutonOptionJeu = new JButton("Options jeux", new ImageIcon(getClass().getResource("/option_jeu_32.png")));
 		boutonOptionJeu.setVerticalTextPosition(SwingConstants.BOTTOM);
@@ -272,28 +296,49 @@ public class Vue implements Observateur {
 		contraintes.gridx++;
 		barreOutils.add(boutonOptionJeu, contraintes);
 
-		contraintes.gridx++;
-		barreOutils.add(new SeparateurVertical(10, AlignementHorizontal.Droite), contraintes);
-
-		JToolBar barreOutilsAide = new JToolBar();
-		panneauBarreOutils.add(barreOutilsAide, BorderLayout.EAST);
-		barreOutilsAide.setBorderPainted(false);
-		barreOutilsAide.setFloatable(false);
-		JButton bouttonAide = new JButton("Règles de jeux", new ImageIcon(getClass().getResource("/aide_32.png")));
-		bouttonAide.setVerticalTextPosition(SwingConstants.BOTTOM);
-		bouttonAide.setHorizontalTextPosition(SwingConstants.CENTER);
-		bouttonAide.addActionListener(new ActionListener() {
+		boutonOptionJoueur = new JButton("Option joueur", new ImageIcon(getClass().getResource("/joueur_32.png")));
+		boutonOptionJoueur.setVerticalTextPosition(SwingConstants.BOTTOM);
+		boutonOptionJoueur.setHorizontalTextPosition(SwingConstants.CENTER);
+		boutonOptionJoueur.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {
-					new DialogueReglesJeux(fenetrePrincipale);
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				} catch (BadLocationException e1) {
-					e1.printStackTrace();
-				}
+				controleur.lancerDialogueOptionJoueur(fenetrePrincipale);
 			}
 		});
-		barreOutilsAide.add(bouttonAide);
+		contraintes.gridx++;
+		barreOutils.add(boutonOptionJoueur, contraintes);
+
+		contraintes.gridx++;
+		barreOutils.add(new SeparateurVertical(5, AlignementHorizontal.Droite), contraintes);
+
+		JPanel panneauVainqueur = new JPanel(new GridBagLayout());
+		panneauBarreOutils.add(panneauVainqueur, BorderLayout.CENTER);
+
+		labelVainqueur = new JLabel("Vainqueur");
+		contraintes.gridx = 1;
+		contraintes.gridy = 1;
+		panneauVainqueur.add(labelVainqueur, contraintes);
+		labelVainqueur.setHorizontalAlignment(SwingConstants.CENTER);
+		labelVainqueur
+				.setFont(new Font(labelVainqueur.getFont().getName(), Font.BOLD, labelVainqueur.getFont().getSize()));
+
+		vainqueur = new JLabel("-");
+		contraintes.gridx = 1;
+		contraintes.gridy = 2;
+		panneauVainqueur.add(vainqueur, contraintes);
+		vainqueur.setHorizontalAlignment(SwingConstants.CENTER);
+		vainqueur.setFont(new Font(vainqueur.getFont().getName(), Font.BOLD, vainqueur.getFont().getSize() * 2));
+		vainqueur.setForeground(new Color(0, 127, 0));
+
+		boutonRejouerMemeJeu = new JButton("Rejouer", new ImageIcon(getClass().getResource("/rejouer_32.png")));
+		panneauBarreOutils.add(boutonRejouerMemeJeu, BorderLayout.EAST);
+		boutonRejouerMemeJeu.setEnabled(false);
+		boutonRejouerMemeJeu.setVerticalTextPosition(SwingConstants.BOTTOM);
+		boutonRejouerMemeJeu.setHorizontalTextPosition(SwingConstants.CENTER);
+		boutonRejouerMemeJeu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				controleur.rejouerMemeJeu(fenetrePrincipale);
+			}
+		});
 
 		/*
 		 * Panneau principal
@@ -317,55 +362,87 @@ public class Vue implements Observateur {
 		panneauPrincipal.removeAll();
 
 		/*
-		 * Panneau nombre d'essais
+		 * Panneau joueur courant
 		 */
-		JPanel panneauNbEssais = new JPanel(new GridBagLayout());
+		JPanel panneauJoueurCourant = new JPanel(new GridLayout(2, 1));
+		contraintes.fill = GridBagConstraints.HORIZONTAL;
 		contraintes.gridx = 1;
 		contraintes.gridy = 1;
-		panneauPrincipal.add(panneauNbEssais, contraintes);
-
-		JLabel messageEssais = new JLabel("Essai n°");
-		messageEssais.setHorizontalAlignment(SwingConstants.CENTER);
-		contraintes.gridx = 1;
-		contraintes.gridy = 1;
-		panneauNbEssais.add(messageEssais, contraintes);
-
-		messageNbEssais = new JLabel();
-		messageNbEssais.setHorizontalAlignment(SwingConstants.CENTER);
-		messageNbEssais.setFont(new Font(messageNbEssais.getFont().getName(), Font.PLAIN, 28));
-		contraintes.gridx = 1;
-		contraintes.gridy = 2;
-		panneauNbEssais.add(messageNbEssais, contraintes);
-
-		/*
-		 * Panneau fin de partie
-		 */
-		panneauFinDePartie = new JPanel(new GridBagLayout());
-		contraintes.gridx = 3;
-		contraintes.gridy = 1;
-		contraintes.fill = GridBagConstraints.VERTICAL;
-		contraintes.anchor = GridBagConstraints.WEST;
-		panneauPrincipal.add(panneauFinDePartie, contraintes);
+		panneauPrincipal.add(panneauJoueurCourant, contraintes);
 		contraintes.fill = GridBagConstraints.BOTH;
-		contraintes.anchor = GridBagConstraints.CENTER;
 
-		messageFinDePartie = new JLabel();
-		messageFinDePartie.setHorizontalAlignment(SwingConstants.CENTER);
-		messageFinDePartie.setFont(new Font(messageFinDePartie.getFont().getName(), Font.BOLD, 28));
-		contraintes.gridx = 1;
-		contraintes.gridy = 1;
-		panneauFinDePartie.add(messageFinDePartie, contraintes);
+		ButtonGroup buttonGroupJoueurCourant = new ButtonGroup();
 
-		boutonRejouerMemeJeu = new JButton("Rejouer au même jeu");
-		boutonRejouerMemeJeu.setVisible(false);
-		contraintes.gridx = 1;
-		contraintes.gridy = 2;
-		panneauFinDePartie.add(boutonRejouerMemeJeu, contraintes);
-		boutonRejouerMemeJeu.addActionListener(new ActionListener() {
+		toggleButtonJoueur = new JToggleButton("Joueur");
+		buttonGroupJoueurCourant.add(toggleButtonJoueur);
+		panneauJoueurCourant.add(toggleButtonJoueur);
+		toggleButtonJoueur.setEnabled(false);
+		toggleButtonJoueur.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				controleur.rejouerMemeJeu(fenetrePrincipale);
+
 			}
 		});
+
+		toggleButtonOrdinateur = new JToggleButton("Ordinateur");
+		buttonGroupJoueurCourant.add(toggleButtonOrdinateur);
+		panneauJoueurCourant.add(toggleButtonOrdinateur);
+		toggleButtonOrdinateur.setEnabled(false);
+		toggleButtonOrdinateur.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+			}
+		});
+
+		/*
+		 * Panneau informations parties
+		 */
+		JPanel panneauInformationsPartie = new JPanel(new GridBagLayout());
+		contraintes.gridx = 3;
+		contraintes.gridy = 1;
+		panneauPrincipal.add(panneauInformationsPartie, contraintes);
+
+		/*
+		 * Label sélection
+		 */
+		JLabel selection = new JLabel("Sélection");
+		selection.setHorizontalAlignment(SwingConstants.CENTER);
+		contraintes.gridx = 1;
+		contraintes.gridy = 1;
+		panneauInformationsPartie.add(selection, contraintes);
+		selection.setHorizontalAlignment(SwingConstants.CENTER);
+
+		/*
+		 * Pion sélectionné
+		 */
+		pionSelectionne = new JLabel();
+		pionSelectionne.setHorizontalAlignment(SwingConstants.CENTER);
+		contraintes.gridx = 1;
+		contraintes.gridy = 2;
+		panneauInformationsPartie.add(pionSelectionne, contraintes);
+		pionSelectionne.setIcon(new ImageIcon(getClass().getResource(PionCommun.Vide.getNomImage())));
+
+		contraintes.gridx = 2;
+		contraintes.gridy = 1;
+		panneauInformationsPartie.add(Box.createHorizontalStrut(20), contraintes);
+
+		/*
+		 * Label message Essai n°
+		 */
+		JLabel messageEssais = new JLabel("Essai n°");
+		messageEssais.setHorizontalAlignment(SwingConstants.CENTER);
+		contraintes.gridx = 3;
+		contraintes.gridy = 1;
+		panneauInformationsPartie.add(messageEssais, contraintes);
+
+		/*
+		 * Label nombre d'essais
+		 */
+		messageNbEssais = new JLabel("01 / " + modele.getNbEssais());
+		messageNbEssais.setHorizontalAlignment(SwingConstants.CENTER);
+		messageNbEssais.setFont(new Font(messageNbEssais.getFont().getName(), Font.PLAIN, 28));
+		contraintes.gridx = 3;
+		contraintes.gridy = 2;
+		panneauInformationsPartie.add(messageNbEssais, contraintes);
 
 		/*
 		 * Panneau combinaison secrète
@@ -488,6 +565,18 @@ public class Vue implements Observateur {
 
 	public JButton getBoutonRejouerMemeJeu() {
 		return boutonRejouerMemeJeu;
+	}
+
+	public JLabel getLabelVainqueur() {
+		return labelVainqueur;
+	}
+
+	public JLabel getVainqueur() {
+		return vainqueur;
+	}
+
+	public JLabel getPionSelectionne() {
+		return pionSelectionne;
 	}
 
 	private String getClef(int x, int y) {

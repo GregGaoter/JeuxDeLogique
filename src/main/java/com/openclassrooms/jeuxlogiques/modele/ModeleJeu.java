@@ -8,6 +8,7 @@ import com.openclassrooms.jeuxlogiques.modele.enumeration.Parametre;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.Pion;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.PionCommun;
 import com.openclassrooms.jeuxlogiques.modele.jeu.Jeu;
+import com.openclassrooms.jeuxlogiques.modele.joueur.Joueur;
 import com.openclassrooms.jeuxlogiques.vue.Observateur;
 import com.openclassrooms.jeuxlogiques.vue.Vue;
 
@@ -36,14 +37,16 @@ public class ModeleJeu implements SujetObservable {
 	private List<Pion> combinaisonReponse;
 	private List<Pion> pionsUtilisables;
 
+	private List<Joueur> listeDefenseurs;
+	private List<Joueur> listeAttaquants;
+
 	private Pion pionSecret;
 	private Pion pionProposition;
 
 	public ModeleJeu() {
 		listeObservateurs = new ArrayList<>();
-		nbEssais = Parametre.NbEssais.getValeur();
+		nbEssais = compteurEssais = Parametre.NbEssais.getValeur();
 		nbPionsCombinaison = Parametre.NbPionsCombinaison.getValeur();
-		compteurEssais = nbEssais;
 	}
 
 	public void initialiser() {
@@ -52,6 +55,9 @@ public class ModeleJeu implements SujetObservable {
 		combinaisonProposition = new ArrayList<>(nbPionsCombinaison);
 		combinaisonReponse = new ArrayList<>(nbPionsCombinaison);
 		pionsUtilisables = new ArrayList<>(jeu.getNbPionsUtilisables());
+		listeDefenseurs = new ArrayList<>();
+		listeAttaquants = new ArrayList<>();
+		pionProposition = PionCommun.Vide;
 		initialiserCombinaison(combinaisonSecrete, nbPionsCombinaison);
 		initialiserCombinaison(combinaisonProposition, nbPionsCombinaison);
 		initialiserCombinaison(combinaisonReponse, nbPionsCombinaison);
@@ -154,6 +160,22 @@ public class ModeleJeu implements SujetObservable {
 		return pionsUtilisables;
 	}
 
+	public List<Joueur> getListeDefenseurs() {
+		return listeDefenseurs;
+	}
+
+	public void setListeDefenseurs(List<Joueur> listeDefenseurs) {
+		this.listeDefenseurs = listeDefenseurs;
+	}
+
+	public List<Joueur> getListeAttaquants() {
+		return listeAttaquants;
+	}
+
+	public void setListeAttaquants(List<Joueur> listeAttaquants) {
+		this.listeAttaquants = listeAttaquants;
+	}
+
 	public Jeu getJeu() {
 		return jeu;
 	}
@@ -178,6 +200,11 @@ public class ModeleJeu implements SujetObservable {
 
 	public void setPionProposition(Pion pionProposition) {
 		this.pionProposition = pionProposition;
+		controleur.setPionSelectionne();
+	}
+
+	public Pion getPionSelectionne() {
+		return pionProposition;
 	}
 
 }

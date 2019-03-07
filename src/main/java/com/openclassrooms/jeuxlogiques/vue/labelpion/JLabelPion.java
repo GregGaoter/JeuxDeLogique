@@ -23,6 +23,7 @@ public class JLabelPion extends JLabel {
 		setText(Integer.toString(pion.getValeur()));
 		setHorizontalTextPosition(0);
 		setForeground(new Color(0, 0, 0, 0));
+
 		addMouseListener(mouseListener);
 	}
 

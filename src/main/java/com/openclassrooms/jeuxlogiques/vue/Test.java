@@ -4,7 +4,6 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JTextPane;
 import javax.swing.border.EmptyBorder;
 
 public class Test extends JFrame {
@@ -38,9 +37,5 @@ public class Test extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-
-		JTextPane textPane = new JTextPane();
-		textPane.setBounds(35, 41, 258, 160);
-		contentPane.add(textPane);
 	}
 }

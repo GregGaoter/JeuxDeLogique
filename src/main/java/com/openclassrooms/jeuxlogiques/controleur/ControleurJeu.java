@@ -4,12 +4,14 @@ import java.awt.Color;
 import java.util.Arrays;
 import java.util.Iterator;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 import com.openclassrooms.jeuxlogiques.controleur.service.ServiceDeCalcul;
 import com.openclassrooms.jeuxlogiques.modele.ModeleJeu;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.Parametre;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.Pion;
+import com.openclassrooms.jeuxlogiques.modele.enumeration.PionCommun;
 import com.openclassrooms.jeuxlogiques.modele.jeu.Jeu;
 import com.openclassrooms.jeuxlogiques.modele.joueur.Joueur;
 import com.openclassrooms.jeuxlogiques.modele.mode.Mode;
@@ -69,8 +71,35 @@ public class ControleurJeu {
 			Iterator<Joueur> it = mode.getListeDefenseurs().iterator();
 			while (it.hasNext())
 				it.next().setCombinaisonSecrete(fenetreProprietaire, modele, this);
+			modele.setListeDefenseurs(mode.getListeDefenseurs());
+			modele.setListeAttaquants(mode.getListeAttaquants());
+			for (int x = 1; x <= modele.getNbPionsCombinaison(); x++)
+				vue.setPion(vue.getListePanneauSecret(), getClef(x, 1), PionCommun.Secret);
+			for (int x = 1; x <= modele.getNbPionsUtilisables(); x++)
+				vue.setPion(vue.getListePanneauPionUtilisable(), getClef(x, 1),
+						modele.getPionsUtilisables().get(x - 1));
+			for (int y = 1; y <= modele.getNbEssais(); y++) {
+				for (int x = 1; x <= modele.getNbPionsCombinaison(); x++) {
+					vue.setPion(vue.getListePanneauProposition(), getClef(x, y), PionCommun.Vide);
+					vue.setPion(vue.getListePanneauReponse(), getClef(x, y), PionCommun.Vide);
+				}
+			}
+			vue.getListePanneauValidation().get(getClef(1, modele.getCompteurEssais()))
+					.remove(vue.getBoutonValidation());
+			vue.getListePanneauValidation().get(getClef(1, modele.getNbEssais())).add(vue.getBoutonValidation());
+			modele.setCompteurEssais(modele.getNbEssais());
+			vue.getMessageNbEssais().setText("1 / " + Integer.toString(modele.getNbEssais()));
+			vue.getMenuItemOptionJeu().setEnabled(true);
+			vue.getBoutonOptionJeu().setEnabled(true);
+			if (getModeDeveloppeurQ())
+				afficherCombinaisonSecrete();
 		}
 		dialogueMode.dispose();
+		dirigerPartie();
+	}
+
+	private void dirigerPartie() {
+
 	}
 
 	public void lancerDialogueOption(JFrame fenetreProprietaire) {
@@ -88,6 +117,10 @@ public class ControleurJeu {
 			vue.setModele(modele);
 			vue.initialiserPanneaux();
 		}
+	}
+
+	public void lancerDialogueOptionJoueur(JFrame fenetrePrincipale) {
+
 	}
 
 	public void setPionSecret(Pion pion) {
@@ -180,6 +213,11 @@ public class ControleurJeu {
 
 	public void rejouerMemeJeu(JFrame fenetreProprietaire) {
 		// lancerSelectionCombinaison(fenetreProprietaire);
+	}
+
+	public void setPionSelectionne() {
+		vue.getPionSelectionne()
+				.setIcon(new ImageIcon(getClass().getResource(modele.getPionSelectionne().getNomImage())));
 	}
 
 }
