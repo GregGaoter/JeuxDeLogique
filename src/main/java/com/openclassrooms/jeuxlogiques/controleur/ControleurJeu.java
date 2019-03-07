@@ -1,6 +1,5 @@
 package com.openclassrooms.jeuxlogiques.controleur;
 
-import java.awt.Color;
 import java.util.Arrays;
 import java.util.Iterator;
 
@@ -19,6 +18,7 @@ import com.openclassrooms.jeuxlogiques.vue.Vue;
 import com.openclassrooms.jeuxlogiques.vue.dialogue.DialogueJeu;
 import com.openclassrooms.jeuxlogiques.vue.dialogue.DialogueMode;
 import com.openclassrooms.jeuxlogiques.vue.dialogue.DialogueOption;
+import com.openclassrooms.jeuxlogiques.vue.dialogue.DialogueOptionJoueur;
 
 public class ControleurJeu {
 
@@ -68,9 +68,15 @@ public class ControleurJeu {
 		DialogueMode dialogueMode = new DialogueMode(fenetreProprietaire);
 		Mode mode = dialogueMode.getValeur();
 		if (mode != null) {
-			Iterator<Joueur> it = mode.getListeDefenseurs().iterator();
-			while (it.hasNext())
-				it.next().setCombinaisonSecrete(fenetreProprietaire, modele, this);
+			Iterator<Joueur> itDefenseurs = mode.getListeDefenseurs().iterator();
+			Iterator<Joueur> itAttaquants = mode.getListeAttaquants().iterator();
+			while (itDefenseurs.hasNext()) {
+				Joueur defenseur = itDefenseurs.next();
+				Joueur attaquant = itAttaquants.next();
+				defenseur.setModele(modele);
+				attaquant.setModele(modele);
+				defenseur.setCombinaisonSecrete(fenetreProprietaire, this);
+			}
 			modele.setListeDefenseurs(mode.getListeDefenseurs());
 			modele.setListeAttaquants(mode.getListeAttaquants());
 			for (int x = 1; x <= modele.getNbPionsCombinaison(); x++)
@@ -88,17 +94,18 @@ public class ControleurJeu {
 					.remove(vue.getBoutonValidation());
 			vue.getListePanneauValidation().get(getClef(1, modele.getNbEssais())).add(vue.getBoutonValidation());
 			modele.setCompteurEssais(modele.getNbEssais());
-			vue.getMessageNbEssais().setText("1 / " + Integer.toString(modele.getNbEssais()));
+			vue.getMessageNbEssais().setText("01 / " + Integer.toString(modele.getNbEssais()));
+			afficherVainqueur("-");
 			vue.getMenuItemOptionJeu().setEnabled(true);
 			vue.getBoutonOptionJeu().setEnabled(true);
 			if (getModeDeveloppeurQ())
 				afficherCombinaisonSecrete();
 		}
 		dialogueMode.dispose();
-		dirigerPartie();
+		lancerPartie();
 	}
 
-	private void dirigerPartie() {
+	private void lancerPartie() {
 
 	}
 
@@ -119,8 +126,14 @@ public class ControleurJeu {
 		}
 	}
 
-	public void lancerDialogueOptionJoueur(JFrame fenetrePrincipale) {
-
+	public void lancerDialogueOptionJoueur(JFrame fenetreProprietaire) {
+		DialogueOptionJoueur dialogueOptionJoueur = new DialogueOptionJoueur(fenetreProprietaire);
+		String nomJoueur = dialogueOptionJoueur.getValeur();
+		if (nomJoueur != null) {
+			modele.setNomJoueur(nomJoueur);
+			vue.getToggleButtonJoueur().setText(nomJoueur);
+		}
+		dialogueOptionJoueur.dispose();
 	}
 
 	public void setPionSecret(Pion pion) {
@@ -165,7 +178,7 @@ public class ControleurJeu {
 		vue.getBoutonValidation().setEnabled(false);
 		if (gagnantQ()) {
 			afficherCombinaisonSecrete();
-			afficherMessageFinDePartie("GAGNE !", new Color(0, 127, 0));
+			afficherVainqueur(modele.getNomJoueur());
 		} else {
 			modele.decrementerCompteurEssais();
 			modele.initialiserCombinaison(modele.getCombinaisonProposition(), modele.getNbPionsCombinaison());
@@ -176,11 +189,12 @@ public class ControleurJeu {
 				vue.getListePanneauValidation().get(getClef(1, modele.getCompteurEssais()))
 						.add(vue.getBoutonValidation());
 				vue.getPanneauPrincipal().repaint();
-				vue.getMessageNbEssais().setText(Integer.toString(1 + modele.getNbEssais() - modele.getCompteurEssais())
-						+ " / " + Integer.toString(modele.getNbEssais()));
+				int essai = 1 + modele.getNbEssais() - modele.getCompteurEssais();
+				vue.getMessageNbEssais().setText((essai < 10 ? "0" : "") + Integer.toString(essai) + " / "
+						+ Integer.toString(modele.getNbEssais()));
 			} else {
 				afficherCombinaisonSecrete();
-				afficherMessageFinDePartie("PERDU !", Color.RED);
+				afficherVainqueur(modele.getNomJoueur());
 			}
 		}
 	}
@@ -205,10 +219,8 @@ public class ControleurJeu {
 		}
 	}
 
-	private void afficherMessageFinDePartie(String message, Color couleur) {
-		vue.getMessageFinDePartie().setText(message);
-		vue.getMessageFinDePartie().setForeground(couleur);
-		vue.getBoutonRejouerMemeJeu().setVisible(true);
+	private void afficherVainqueur(String vainqueur) {
+		vue.getVainqueur().setText(vainqueur);
 	}
 
 	public void rejouerMemeJeu(JFrame fenetreProprietaire) {

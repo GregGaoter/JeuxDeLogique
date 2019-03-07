@@ -43,10 +43,13 @@ public class ModeleJeu implements SujetObservable {
 	private Pion pionSecret;
 	private Pion pionProposition;
 
+	private String nomJoueur;
+
 	public ModeleJeu() {
 		listeObservateurs = new ArrayList<>();
 		nbEssais = compteurEssais = Parametre.NbEssais.getValeur();
 		nbPionsCombinaison = Parametre.NbPionsCombinaison.getValeur();
+		nomJoueur = "Joueur";
 	}
 
 	public void initialiser() {
@@ -182,6 +185,14 @@ public class ModeleJeu implements SujetObservable {
 
 	public void setJeu(Jeu jeu) {
 		this.jeu = jeu;
+	}
+
+	public String getNomJoueur() {
+		return nomJoueur;
+	}
+
+	public void setNomJoueur(String nomJoueur) {
+		this.nomJoueur = nomJoueur;
 	}
 
 	public void getPionSecret(int x) {

@@ -5,12 +5,11 @@ import javax.swing.JFrame;
 import org.apache.commons.lang3.RandomUtils;
 
 import com.openclassrooms.jeuxlogiques.controleur.ControleurJeu;
-import com.openclassrooms.jeuxlogiques.modele.ModeleJeu;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.Pion;
 
 public class Ordinateur extends Joueur {
 
-	public void setCombinaisonSecrete(JFrame fenetreParente, ModeleJeu modele, ControleurJeu controleur) {
+	public void setCombinaisonSecrete(JFrame fenetreParente, ControleurJeu controleur) {
 		Pion pionAleatoire;
 		for (int i = 1; i <= modele.getNbPionsCombinaison(); i++) {
 			pionAleatoire = modele.getPionsUtilisables().get(RandomUtils.nextInt(0, modele.getNbPionsUtilisables()));

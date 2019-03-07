@@ -6,13 +6,12 @@ import java.util.Map;
 import javax.swing.JFrame;
 
 import com.openclassrooms.jeuxlogiques.controleur.ControleurJeu;
-import com.openclassrooms.jeuxlogiques.modele.ModeleJeu;
 import com.openclassrooms.jeuxlogiques.vue.dialogue.DialogueSelectionCombinaison;
 import com.openclassrooms.jeuxlogiques.vue.labelpion.JLabelPion;
 
 public class Humain extends Joueur {
 
-	public void setCombinaisonSecrete(JFrame fenetreParente, ModeleJeu modele, ControleurJeu controleur) {
+	public void setCombinaisonSecrete(JFrame fenetreParente, ControleurJeu controleur) {
 		DialogueSelectionCombinaison dialogueSelectionCombinaison = new DialogueSelectionCombinaison(fenetreParente,
 				modele, controleur);
 		HashMap<String, JLabelPion> combinaisonSecrete = dialogueSelectionCombinaison.getValeur();

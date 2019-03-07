@@ -296,7 +296,7 @@ public class Vue implements Observateur {
 		contraintes.gridx++;
 		barreOutils.add(boutonOptionJeu, contraintes);
 
-		boutonOptionJoueur = new JButton("Option joueur", new ImageIcon(getClass().getResource("/joueur_32.png")));
+		boutonOptionJoueur = new JButton("Options joueur", new ImageIcon(getClass().getResource("/joueur_32.png")));
 		boutonOptionJoueur.setVerticalTextPosition(SwingConstants.BOTTOM);
 		boutonOptionJoueur.setHorizontalTextPosition(SwingConstants.CENTER);
 		boutonOptionJoueur.addActionListener(new ActionListener() {
@@ -373,7 +373,7 @@ public class Vue implements Observateur {
 
 		ButtonGroup buttonGroupJoueurCourant = new ButtonGroup();
 
-		toggleButtonJoueur = new JToggleButton("Joueur");
+		toggleButtonJoueur = new JToggleButton(modele.getNomJoueur());
 		buttonGroupJoueurCourant.add(toggleButtonJoueur);
 		panneauJoueurCourant.add(toggleButtonJoueur);
 		toggleButtonJoueur.setEnabled(false);
@@ -573,6 +573,10 @@ public class Vue implements Observateur {
 
 	public JLabel getVainqueur() {
 		return vainqueur;
+	}
+
+	public JToggleButton getToggleButtonJoueur() {
+		return toggleButtonJoueur;
 	}
 
 	public JLabel getPionSelectionne() {
