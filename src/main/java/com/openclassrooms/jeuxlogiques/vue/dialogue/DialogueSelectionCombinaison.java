@@ -8,7 +8,9 @@ import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.swing.BorderFactory;
@@ -51,6 +53,7 @@ public class DialogueSelectionCombinaison extends JDialog implements Observateur
 	private boolean okQ;
 	private HashMap<String, JLabelPion> listePanneauSecret;
 	private HashMap<String, JLabelPion> listePanneauPionUtilisable;
+	private List<Pion> combinaisonSecrete;
 
 	private ModeleJeu modele;
 	private ControleurJeu controleur;
@@ -59,6 +62,7 @@ public class DialogueSelectionCombinaison extends JDialog implements Observateur
 		super(fenetreParente, "Choix de la combinaison secrète", true);
 		listePanneauSecret = new HashMap<>();
 		listePanneauPionUtilisable = new HashMap<>();
+		combinaisonSecrete = new ArrayList<>(listePanneauSecret.size());
 		this.modele = modele;
 		this.controleur = controleur;
 		boutonRefresh = new JButton(new ImageIcon(getClass().getResource("/refresh_32.png")));
@@ -236,17 +240,18 @@ public class DialogueSelectionCombinaison extends JDialog implements Observateur
 		for (int i = 1; i <= modele.getNbPionsCombinaison(); i++) {
 			pionAleatoire = modele.getPionsUtilisables().get(RandomUtils.nextInt(0, modele.getNbPionsUtilisables()));
 			setPion(listePanneauSecret, getClef(i, 1), pionAleatoire);
+			combinaisonSecrete.add(pionAleatoire);
 			modele.setPionSecret(pionAleatoire);
 			modele.getPionSecret(i);
 		}
 	}
 
-	public HashMap<String, JLabelPion> getValeur() {
+	public List<Pion> getValeur() {
 		okQ = false;
 		pack();
 		setLocationRelativeTo(getOwner());
 		setVisible(true);
-		return (okQ ? listePanneauSecret : null);
+		return (okQ ? combinaisonSecrete : null);
 	}
 
 	public void actualiser() {

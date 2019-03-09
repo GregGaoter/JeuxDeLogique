@@ -22,11 +22,12 @@ public class Ordinateur extends Joueur {
 
 	public void setCombinaisonProposition() {
 		Pion pionAleatoire;
-		combinaisonSecrete.clear();
+		combinaisonProposition.clear();
 		for (int i = 1; i <= modele.getNbPionsCombinaison(); i++) {
 			pionAleatoire = modele.getPionsUtilisables().get(RandomUtils.nextInt(0, modele.getNbPionsUtilisables()));
-			combinaisonSecrete.add(pionAleatoire);
+			combinaisonProposition.add(pionAleatoire);
 		}
+		modele.setCombinaisonProposition(combinaisonProposition);
 		controleur.calculerReponse();
 	}
 

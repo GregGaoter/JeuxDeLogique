@@ -85,6 +85,7 @@ public class ControleurJeu {
 				modele.setAttaquant(attaquant);
 				modele.initialiser();
 				defenseur.setCombinaisonSecrete(fenetreProprietaire, this);
+				modele.setCombinaisonSecrete(defenseur.getCombinaisonSecrete());
 			}
 			for (int x = 1; x <= modele.getNbPionsCombinaison(); x++)
 				vue.setPion(vue.getListePanneauSecret(), getClef(x, 1), PionCommun.Secret);
@@ -122,8 +123,9 @@ public class ControleurJeu {
 				defenseur = itDefenseurs.next();
 				attaquant = itAttaquants.next();
 				modele.setDefenseur(defenseur);
+				modele.setCombinaisonSecrete(defenseur.getCombinaisonSecrete());
 				attaquant.setCombinaisonProposition();
-				modele.setAttaquant(attaquant);
+				// modele.setAttaquant(attaquant);
 			}
 		}
 	}
