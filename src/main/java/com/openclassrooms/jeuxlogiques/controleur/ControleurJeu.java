@@ -28,9 +28,12 @@ public class ControleurJeu {
 	private Vue vue;
 
 	private Jeu jeu;
+	private Mode mode;
 	private boolean modeDeveloppeurQ;
 
 	private ServiceDeCalcul serviceDeCalcul;
+
+	private boolean gagnantQ;
 
 	public ControleurJeu(String[] modeDeveloppeur) {
 		modele = new ModeleJeu();
@@ -44,6 +47,7 @@ public class ControleurJeu {
 		vue.setControleur(this);
 		modeDeveloppeurQ = modeDeveloppeur.length > 0
 				&& Integer.parseInt(modeDeveloppeur[0]) == Parametre.ModeDeveloppeur.getValeur();
+		gagnantQ = false;
 		// vue.creerFenetreDemarrage();
 		// vue.runBarreProgression();
 		vue.creerVue();
@@ -66,7 +70,7 @@ public class ControleurJeu {
 
 	private void lancerMode(JFrame fenetreProprietaire) {
 		DialogueMode dialogueMode = new DialogueMode(fenetreProprietaire);
-		Mode mode = dialogueMode.getValeur();
+		mode = dialogueMode.getValeur();
 		if (mode != null) {
 			Iterator<Joueur> itDefenseurs = mode.getListeDefenseurs().iterator();
 			Iterator<Joueur> itAttaquants = mode.getListeAttaquants().iterator();
@@ -75,10 +79,13 @@ public class ControleurJeu {
 				Joueur attaquant = itAttaquants.next();
 				defenseur.setModele(modele);
 				attaquant.setModele(modele);
+				defenseur.setControleur(this);
+				attaquant.setControleur(this);
+				modele.setDefenseur(defenseur);
+				modele.setAttaquant(attaquant);
+				modele.initialiser();
 				defenseur.setCombinaisonSecrete(fenetreProprietaire, this);
 			}
-			modele.setListeDefenseurs(mode.getListeDefenseurs());
-			modele.setListeAttaquants(mode.getListeAttaquants());
 			for (int x = 1; x <= modele.getNbPionsCombinaison(); x++)
 				vue.setPion(vue.getListePanneauSecret(), getClef(x, 1), PionCommun.Secret);
 			for (int x = 1; x <= modele.getNbPionsUtilisables(); x++)
@@ -102,11 +109,23 @@ public class ControleurJeu {
 				afficherCombinaisonSecrete();
 		}
 		dialogueMode.dispose();
-		lancerPartie();
+		lancerTour();
 	}
 
-	private void lancerPartie() {
-
+	private void lancerTour() {
+		if (!gagnantQ) {
+			Iterator<Joueur> itDefenseurs, itAttaquants;
+			Joueur defenseur, attaquant;
+			itDefenseurs = mode.getListeDefenseurs().iterator();
+			itAttaquants = mode.getListeAttaquants().iterator();
+			while (itDefenseurs.hasNext() && itAttaquants.hasNext()) {
+				defenseur = itDefenseurs.next();
+				attaquant = itAttaquants.next();
+				modele.setDefenseur(defenseur);
+				attaquant.setCombinaisonProposition();
+				modele.setAttaquant(attaquant);
+			}
+		}
 	}
 
 	public void lancerDialogueOption(JFrame fenetreProprietaire) {
@@ -137,11 +156,11 @@ public class ControleurJeu {
 	}
 
 	public void setPionSecret(Pion pion) {
-		modele.setPionSecret(pion);
+		modele.getDefenseur().setPionSecret(pion);
 	}
 
 	public void getPionSecret(int x) {
-		modele.getPionSecret(x);
+		modele.getDefenseur().getPionSecret(x);
 	}
 
 	private String getClef(int x, int y) {
@@ -176,7 +195,8 @@ public class ControleurJeu {
 		modele.setCombinaisonReponse(
 				serviceDeCalcul.calculerReponse(modele.getCombinaisonProposition(), modele.getCombinaisonSecrete()));
 		vue.getBoutonValidation().setEnabled(false);
-		if (gagnantQ()) {
+		isGagnantQ();
+		if (gagnantQ) {
 			afficherCombinaisonSecrete();
 			afficherVainqueur(modele.getNomJoueur());
 		} else {
@@ -192,6 +212,7 @@ public class ControleurJeu {
 				int essai = 1 + modele.getNbEssais() - modele.getCompteurEssais();
 				vue.getMessageNbEssais().setText((essai < 10 ? "0" : "") + Integer.toString(essai) + " / "
 						+ Integer.toString(modele.getNbEssais()));
+				lancerTour();
 			} else {
 				afficherCombinaisonSecrete();
 				afficherVainqueur(modele.getNomJoueur());
@@ -199,7 +220,7 @@ public class ControleurJeu {
 		}
 	}
 
-	private boolean gagnantQ() {
+	private void isGagnantQ() {
 		Iterator<Pion> itProposition = modele.getCombinaisonProposition().iterator();
 		Iterator<Pion> itSolution = modele.getCombinaisonSecrete().iterator();
 		int valeurProposition, valeurSolution;
@@ -210,7 +231,7 @@ public class ControleurJeu {
 			if (valeurProposition == valeurSolution)
 				nbPionsCorrects++;
 		}
-		return nbPionsCorrects == modele.getCombinaisonSecrete().size();
+		gagnantQ = nbPionsCorrects == modele.getCombinaisonSecrete().size();
 	}
 
 	public void afficherCombinaisonSecrete() {

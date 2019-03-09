@@ -16,6 +16,7 @@ public class Humain extends Joueur {
 				modele, controleur);
 		HashMap<String, JLabelPion> combinaisonSecrete = dialogueSelectionCombinaison.getValeur();
 		if (combinaisonSecrete != null) {
+			this.combinaisonSecrete.clear();
 			for (Map.Entry<String, JLabelPion> item : combinaisonSecrete.entrySet())
 				this.combinaisonSecrete.add(item.getValue().getPion());
 		}

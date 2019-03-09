@@ -1,6 +1,7 @@
 package com.openclassrooms.jeuxlogiques.modele;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import com.openclassrooms.jeuxlogiques.controleur.ControleurJeu;
@@ -8,7 +9,9 @@ import com.openclassrooms.jeuxlogiques.modele.enumeration.Parametre;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.Pion;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.PionCommun;
 import com.openclassrooms.jeuxlogiques.modele.jeu.Jeu;
+import com.openclassrooms.jeuxlogiques.modele.joueur.Humain;
 import com.openclassrooms.jeuxlogiques.modele.joueur.Joueur;
+import com.openclassrooms.jeuxlogiques.modele.joueur.Ordinateur;
 import com.openclassrooms.jeuxlogiques.vue.Observateur;
 import com.openclassrooms.jeuxlogiques.vue.Vue;
 
@@ -37,8 +40,7 @@ public class ModeleJeu implements SujetObservable {
 	private List<Pion> combinaisonReponse;
 	private List<Pion> pionsUtilisables;
 
-	private List<Joueur> listeDefenseurs;
-	private List<Joueur> listeAttaquants;
+	private Joueur defenseur, attaquant;
 
 	private Pion pionSecret;
 	private Pion pionProposition;
@@ -50,21 +52,20 @@ public class ModeleJeu implements SujetObservable {
 		nbEssais = compteurEssais = Parametre.NbEssais.getValeur();
 		nbPionsCombinaison = Parametre.NbPionsCombinaison.getValeur();
 		nomJoueur = "Joueur";
+		defenseur = new Ordinateur();
+		attaquant = new Humain();
 	}
 
 	public void initialiser() {
 		compteurEssais = nbEssais;
-		combinaisonSecrete = new ArrayList<>(nbPionsCombinaison);
-		combinaisonProposition = new ArrayList<>(nbPionsCombinaison);
-		combinaisonReponse = new ArrayList<>(nbPionsCombinaison);
-		pionsUtilisables = new ArrayList<>(jeu.getNbPionsUtilisables());
-		listeDefenseurs = new ArrayList<>();
-		listeAttaquants = new ArrayList<>();
+		// combinaisonSecrete = new ArrayList<>(nbPionsCombinaison);
+		combinaisonSecrete = defenseur.getCombinaisonSecrete();
+		// combinaisonProposition = new ArrayList<>(nbPionsCombinaison);
+		combinaisonProposition = attaquant.getCombinaisonProposition();
+		// combinaisonReponse = new ArrayList<>(nbPionsCombinaison);
+		combinaisonReponse = attaquant.getCombinaisonReponse();
+		setPionsUtilisables(Arrays.asList(jeu.getPionsJeu()));
 		pionProposition = PionCommun.Vide;
-		initialiserCombinaison(combinaisonSecrete, nbPionsCombinaison);
-		initialiserCombinaison(combinaisonProposition, nbPionsCombinaison);
-		initialiserCombinaison(combinaisonReponse, nbPionsCombinaison);
-		initialiserCombinaison(pionsUtilisables, jeu.getNbPionsUtilisables());
 	}
 
 	public void initialiserCombinaison(List<Pion> combinaison, int nbPions) {
@@ -163,28 +164,32 @@ public class ModeleJeu implements SujetObservable {
 		return pionsUtilisables;
 	}
 
-	public List<Joueur> getListeDefenseurs() {
-		return listeDefenseurs;
-	}
-
-	public void setListeDefenseurs(List<Joueur> listeDefenseurs) {
-		this.listeDefenseurs = listeDefenseurs;
-	}
-
-	public List<Joueur> getListeAttaquants() {
-		return listeAttaquants;
-	}
-
-	public void setListeAttaquants(List<Joueur> listeAttaquants) {
-		this.listeAttaquants = listeAttaquants;
-	}
-
 	public Jeu getJeu() {
 		return jeu;
 	}
 
 	public void setJeu(Jeu jeu) {
 		this.jeu = jeu;
+	}
+
+	public Joueur getDefenseur() {
+		return defenseur;
+	}
+
+	public void setDefenseur(Joueur defenseur) {
+		this.defenseur = defenseur;
+		setCombinaisonSecrete(defenseur.getCombinaisonSecrete());
+	}
+
+	public Joueur getAttaquant() {
+		return attaquant;
+	}
+
+	public void setAttaquant(Joueur attaquant) {
+		this.attaquant = attaquant;
+		setCombinaisonProposition(attaquant.getCombinaisonProposition());
+		setCombinaisonReponse(attaquant.getCombinaisonReponse());
+		notifierObservateur();
 	}
 
 	public String getNomJoueur() {
