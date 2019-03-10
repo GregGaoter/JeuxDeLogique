@@ -47,7 +47,6 @@ public class ControleurJeu {
 		vue.setControleur(this);
 		modeDeveloppeurQ = modeDeveloppeur.length > 0
 				&& Integer.parseInt(modeDeveloppeur[0]) == Parametre.ModeDeveloppeur.getValeur();
-		gagnantQ = false;
 		// vue.creerFenetreDemarrage();
 		// vue.runBarreProgression();
 		vue.creerVue();
@@ -77,6 +76,8 @@ public class ControleurJeu {
 			while (itDefenseurs.hasNext()) {
 				Joueur defenseur = itDefenseurs.next();
 				Joueur attaquant = itAttaquants.next();
+				defenseur.ajouterObservateur(vue);
+				attaquant.ajouterObservateur(vue);
 				defenseur.setModele(modele);
 				attaquant.setModele(modele);
 				defenseur.setControleur(this);
@@ -110,6 +111,7 @@ public class ControleurJeu {
 				afficherCombinaisonSecrete();
 		}
 		dialogueMode.dispose();
+		gagnantQ = false;
 		lancerTour();
 	}
 
@@ -199,7 +201,6 @@ public class ControleurJeu {
 		vue.getBoutonValidation().setEnabled(false);
 		isGagnantQ();
 		if (gagnantQ) {
-			gagnantQ = false;
 			afficherCombinaisonSecrete();
 			afficherVainqueur(modele.getNomJoueur());
 		} else {
@@ -217,6 +218,7 @@ public class ControleurJeu {
 						+ Integer.toString(modele.getNbEssais()));
 				lancerTour();
 			} else {
+				gagnantQ = true;
 				afficherCombinaisonSecrete();
 				afficherVainqueur(modele.getNomJoueur());
 			}

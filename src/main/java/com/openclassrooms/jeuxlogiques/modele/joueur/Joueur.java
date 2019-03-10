@@ -7,16 +7,20 @@ import javax.swing.JFrame;
 
 import com.openclassrooms.jeuxlogiques.controleur.ControleurJeu;
 import com.openclassrooms.jeuxlogiques.modele.ModeleJeu;
+import com.openclassrooms.jeuxlogiques.modele.SujetObservable;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.Pion;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.PionCommun;
+import com.openclassrooms.jeuxlogiques.vue.Observateur;
 
-public abstract class Joueur {
+public abstract class Joueur implements SujetObservable {
 
 	private final String separateurClef = "-";
 
 	protected List<Pion> combinaisonSecrete;
 	protected List<Pion> combinaisonProposition;
 	protected List<Pion> combinaisonReponse;
+
+	protected List<Observateur> listeObservateurs;
 
 	protected ModeleJeu modele;
 	protected ControleurJeu controleur;
@@ -29,6 +33,7 @@ public abstract class Joueur {
 		combinaisonSecrete = new ArrayList<>();
 		combinaisonProposition = new ArrayList<>();
 		combinaisonReponse = new ArrayList<>();
+		listeObservateurs = new ArrayList<>();
 	}
 
 	public void initialiserJoueur() {
@@ -89,6 +94,20 @@ public abstract class Joueur {
 
 	protected String getClef(int x, int y) {
 		return String.valueOf(x) + separateurClef + String.valueOf(y);
+	}
+
+	public void ajouterObservateur(Observateur observateur) {
+		if (!listeObservateurs.contains(observateur))
+			listeObservateurs.add(observateur);
+	}
+
+	public void supprimerObservateur(Observateur observateur) {
+		listeObservateurs.remove(observateur);
+	}
+
+	public void notifierObservateur() {
+		for (Observateur observateur : listeObservateurs)
+			observateur.actualiser();
 	}
 
 	public abstract void setCombinaisonSecrete(JFrame fenetreParente, ControleurJeu controleur);

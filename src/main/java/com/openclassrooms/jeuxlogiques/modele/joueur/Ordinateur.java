@@ -28,7 +28,12 @@ public class Ordinateur extends Joueur {
 			combinaisonProposition.add(pionAleatoire);
 		}
 		modele.setCombinaisonProposition(combinaisonProposition);
-		controleur.calculerReponse();
+		new Thread(new Runnable() {
+			public void run() {
+				notifierObservateur();
+				// controleur.getVue().getBoutonValidation().doClick();
+			}
+		}).start();
 	}
 
 }
