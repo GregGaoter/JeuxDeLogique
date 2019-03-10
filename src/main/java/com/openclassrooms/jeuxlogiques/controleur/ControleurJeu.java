@@ -124,8 +124,8 @@ public class ControleurJeu {
 				attaquant = itAttaquants.next();
 				modele.setDefenseur(defenseur);
 				modele.setCombinaisonSecrete(defenseur.getCombinaisonSecrete());
+				modele.setAttaquant(attaquant);
 				attaquant.setCombinaisonProposition();
-				// modele.setAttaquant(attaquant);
 			}
 		}
 	}
@@ -199,6 +199,7 @@ public class ControleurJeu {
 		vue.getBoutonValidation().setEnabled(false);
 		isGagnantQ();
 		if (gagnantQ) {
+			gagnantQ = false;
 			afficherCombinaisonSecrete();
 			afficherVainqueur(modele.getNomJoueur());
 		} else {

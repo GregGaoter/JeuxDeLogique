@@ -10,10 +10,12 @@ public class Challenger extends Mode {
 	}
 
 	protected void setListeDefenseurs() {
+		listeDefenseurs.clear();
 		listeDefenseurs.add(new Ordinateur());
 	}
 
 	protected void setListeAttaquants() {
+		listeAttaquants.clear();
 		listeAttaquants.add(new Humain());
 	}
 

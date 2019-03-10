@@ -10,11 +10,13 @@ public class Duel extends Mode {
 	}
 
 	protected void setListeDefenseurs() {
+		listeDefenseurs.clear();
 		listeDefenseurs.add(new Humain());
 		listeDefenseurs.add(new Ordinateur());
 	}
 
 	protected void setListeAttaquants() {
+		listeAttaquants.clear();
 		listeAttaquants.add(new Humain());
 		listeAttaquants.add(new Ordinateur());
 	}

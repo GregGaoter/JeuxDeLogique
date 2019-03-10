@@ -10,10 +10,12 @@ public class Defenseur extends Mode {
 	}
 
 	protected void setListeDefenseurs() {
+		listeDefenseurs.clear();
 		listeDefenseurs.add(new Humain());
 	}
 
 	protected void setListeAttaquants() {
+		listeAttaquants.clear();
 		listeAttaquants.add(new Ordinateur());
 	}
 

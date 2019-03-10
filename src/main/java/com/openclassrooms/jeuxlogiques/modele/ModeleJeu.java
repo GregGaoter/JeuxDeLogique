@@ -178,7 +178,6 @@ public class ModeleJeu implements SujetObservable {
 
 	public void setDefenseur(Joueur defenseur) {
 		this.defenseur = defenseur;
-		setCombinaisonSecrete(defenseur.getCombinaisonSecrete());
 	}
 
 	public Joueur getAttaquant() {
@@ -187,9 +186,6 @@ public class ModeleJeu implements SujetObservable {
 
 	public void setAttaquant(Joueur attaquant) {
 		this.attaquant = attaquant;
-		setCombinaisonProposition(attaquant.getCombinaisonProposition());
-		setCombinaisonReponse(attaquant.getCombinaisonReponse());
-		notifierObservateur();
 	}
 
 	public String getNomJoueur() {
