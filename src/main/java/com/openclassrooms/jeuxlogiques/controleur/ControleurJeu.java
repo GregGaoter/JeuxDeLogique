@@ -2,6 +2,7 @@ package com.openclassrooms.jeuxlogiques.controleur;
 
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.Map;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -19,6 +20,7 @@ import com.openclassrooms.jeuxlogiques.vue.dialogue.DialogueJeu;
 import com.openclassrooms.jeuxlogiques.vue.dialogue.DialogueMode;
 import com.openclassrooms.jeuxlogiques.vue.dialogue.DialogueOption;
 import com.openclassrooms.jeuxlogiques.vue.dialogue.DialogueOptionJoueur;
+import com.openclassrooms.jeuxlogiques.vue.labelpion.JLabelPion;
 
 public class ControleurJeu {
 
@@ -30,6 +32,8 @@ public class ControleurJeu {
 	private Jeu jeu;
 	private Mode mode;
 	private boolean modeDeveloppeurQ;
+
+	private Joueur defenseur, attaquant;
 
 	private ServiceDeCalcul serviceDeCalcul;
 
@@ -118,7 +122,6 @@ public class ControleurJeu {
 	private void lancerTour() {
 		if (!gagnantQ) {
 			Iterator<Joueur> itDefenseurs, itAttaquants;
-			Joueur defenseur, attaquant;
 			itDefenseurs = mode.getListeDefenseurs().iterator();
 			itAttaquants = mode.getListeAttaquants().iterator();
 			while (itDefenseurs.hasNext() && itAttaquants.hasNext()) {
@@ -198,6 +201,11 @@ public class ControleurJeu {
 	public void calculerReponse() {
 		modele.setCombinaisonReponse(
 				serviceDeCalcul.calculerReponse(modele.getCombinaisonProposition(), modele.getCombinaisonSecrete()));
+		for (int i = 0; i < modele.getNbPionsCombinaison(); i++)
+			attaquant.setPion(attaquant.getListePanneauReponse(), getClef(i + 1, modele.getCompteurEssais()),
+					modele.getCombinaisonReponse().get(i));
+		for (Map.Entry<String, JLabelPion> item : attaquant.getListePanneauProposition().entrySet())
+			item.getValue().getMouseListener().setControleur(this);
 		vue.getBoutonValidation().setEnabled(false);
 		isGagnantQ();
 		if (gagnantQ) {

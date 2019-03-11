@@ -551,6 +551,22 @@ public class Vue implements Observateur {
 		return listePanneauValidation;
 	}
 
+	public void setListePanneauSecret(HashMap<String, JLabelPion> listePanneauSecret) {
+		this.listePanneauSecret = listePanneauSecret;
+	}
+
+	public void setListePanneauProposition(HashMap<String, JLabelPion> listePanneauProposition) {
+		this.listePanneauProposition = listePanneauProposition;
+	}
+
+	public void setListePanneauReponse(HashMap<String, JLabelPion> listePanneauReponse) {
+		this.listePanneauReponse = listePanneauReponse;
+	}
+
+	public void setListePanneauValidation(HashMap<String, JPanel> listePanneauValidation) {
+		this.listePanneauValidation = listePanneauValidation;
+	}
+
 	public JButton getBoutonValidation() {
 		return boutonValidation;
 	}
@@ -583,7 +599,7 @@ public class Vue implements Observateur {
 		return pionSelectionne;
 	}
 
-	private String getClef(int x, int y) {
+	public String getClef(int x, int y) {
 		return String.valueOf(x) + separateurClef + String.valueOf(y);
 	}
 
@@ -637,12 +653,11 @@ public class Vue implements Observateur {
 
 	public void actualiser() {
 		boutonValidation.setEnabled(!modele.getCombinaisonProposition().contains(PionCommun.Vide));
-		for (int i = 0; i < modele.getNbPionsCombinaison(); i++) {
-			setPion(listePanneauProposition, getClef(i + 1, modele.getCompteurEssais()),
-					modele.getCombinaisonProposition().get(i));
-			setPion(listePanneauReponse, getClef(i + 1, modele.getCompteurEssais()),
-					modele.getCombinaisonReponse().get(i));
-		}
+		listePanneauProposition.putAll(modele.getAttaquant().getListePanneauProposition());
+		listePanneauReponse.putAll(modele.getAttaquant().getListePanneauReponse());
+		creerPanneau(panneauProposition, listePanneauProposition, contraintes);
+		creerPanneau(panneauReponse, listePanneauReponse, contraintes);
+		panneauPrincipal.repaint();
 	}
 
 }

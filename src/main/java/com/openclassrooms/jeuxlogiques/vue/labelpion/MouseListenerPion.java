@@ -16,6 +16,10 @@ public abstract class MouseListenerPion implements MouseListener {
 		this.pion = pion;
 	}
 
+	public void setControleur(ControleurJeu controleur) {
+		this.controleur = controleur;
+	}
+
 	public abstract void setPion(Pion pion);
 
 }

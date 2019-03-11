@@ -28,12 +28,16 @@ public class Ordinateur extends Joueur {
 			combinaisonProposition.add(pionAleatoire);
 		}
 		modele.setCombinaisonProposition(combinaisonProposition);
-		new Thread(new Runnable() {
-			public void run() {
-				notifierObservateur();
-				// controleur.getVue().getBoutonValidation().doClick();
-			}
-		}).start();
+		for (int i = 0; i < modele.getNbPionsCombinaison(); i++) {
+			setPion(listePanneauProposition, getClef(i + 1, modele.getCompteurEssais()),
+					modele.getCombinaisonProposition().get(i));
+		}
+		notifierObservateur();
+		/*
+		 * new Thread(new Runnable() { public void run() { notifierObservateur(); //
+		 * controleur.getVue().getBoutonValidation().doClick(); } }).start();
+		 */
+
 	}
 
 }

@@ -1,9 +1,12 @@
 package com.openclassrooms.jeuxlogiques.modele.joueur;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 import com.openclassrooms.jeuxlogiques.controleur.ControleurJeu;
 import com.openclassrooms.jeuxlogiques.modele.ModeleJeu;
@@ -11,6 +14,8 @@ import com.openclassrooms.jeuxlogiques.modele.SujetObservable;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.Pion;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.PionCommun;
 import com.openclassrooms.jeuxlogiques.vue.Observateur;
+import com.openclassrooms.jeuxlogiques.vue.labelpion.JLabelPion;
+import com.openclassrooms.jeuxlogiques.vue.labelpion.MouseListenerGetPionProposition;
 
 public abstract class Joueur implements SujetObservable {
 
@@ -19,6 +24,10 @@ public abstract class Joueur implements SujetObservable {
 	protected List<Pion> combinaisonSecrete;
 	protected List<Pion> combinaisonProposition;
 	protected List<Pion> combinaisonReponse;
+
+	protected HashMap<String, JLabelPion> listePanneauProposition;
+	protected HashMap<String, JLabelPion> listePanneauReponse;
+	protected HashMap<String, JPanel> listePanneauValidation;
 
 	protected List<Observateur> listeObservateurs;
 
@@ -33,6 +42,9 @@ public abstract class Joueur implements SujetObservable {
 		combinaisonSecrete = new ArrayList<>();
 		combinaisonProposition = new ArrayList<>();
 		combinaisonReponse = new ArrayList<>();
+		listePanneauProposition = new HashMap<>();
+		listePanneauReponse = new HashMap<>();
+		listePanneauValidation = new HashMap<>();
 		listeObservateurs = new ArrayList<>();
 	}
 
@@ -40,6 +52,9 @@ public abstract class Joueur implements SujetObservable {
 		initialiserCombinaison(combinaisonSecrete);
 		initialiserCombinaison(combinaisonProposition);
 		initialiserCombinaison(combinaisonReponse);
+		setListePanneauPion(listePanneauProposition, modele.getNbPionsCombinaison(), modele.getNbEssais(),
+				PionCommun.Vide);
+		setListePanneauPion(listePanneauReponse, modele.getNbPionsCombinaison(), modele.getNbEssais(), PionCommun.Vide);
 		compteurEssais = modele.getNbEssais();
 		pionSecret = PionCommun.Vide;
 	}
@@ -48,6 +63,21 @@ public abstract class Joueur implements SujetObservable {
 		combinaison.clear();
 		for (int i = 0; i < modele.getNbPionsCombinaison(); i++)
 			combinaison.add(PionCommun.Vide);
+	}
+
+	private void setListePanneauPion(HashMap<String, JLabelPion> listePanneau, int xMax, int yMax, Pion pion) {
+		listePanneau.clear();
+		for (int y = 1; y <= yMax; y++) {
+			for (int x = 1; x <= xMax; x++)
+				listePanneau.put(getClef(x, y),
+						new JLabelPion(pion, new MouseListenerGetPionProposition(controleur, pion, x)));
+		}
+	}
+
+	public void setPion(HashMap<String, JLabelPion> listePanneau, String clef, Pion pion) {
+		listePanneau.get(clef).getMouseListener().setPion(pion);
+		listePanneau.get(clef).setIcon(new ImageIcon(getClass().getResource(pion.getNomImage())));
+		listePanneau.get(clef).setText(Integer.toString(pion.getValeur()));
 	}
 
 	public List<Pion> getCombinaisonSecrete() {
@@ -64,6 +94,18 @@ public abstract class Joueur implements SujetObservable {
 
 	public void setCombinaisonReponse(List<Pion> combinaisonReponse) {
 		this.combinaisonReponse = combinaisonReponse;
+	}
+
+	public HashMap<String, JLabelPion> getListePanneauProposition() {
+		return listePanneauProposition;
+	}
+
+	public HashMap<String, JLabelPion> getListePanneauReponse() {
+		return listePanneauReponse;
+	}
+
+	public HashMap<String, JPanel> getListePanneauValidation() {
+		return listePanneauValidation;
 	}
 
 	public int getCompteurEssais() {
@@ -92,7 +134,7 @@ public abstract class Joueur implements SujetObservable {
 		this.pionSecret = pionSecret;
 	}
 
-	protected String getClef(int x, int y) {
+	public String getClef(int x, int y) {
 		return String.valueOf(x) + separateurClef + String.valueOf(y);
 	}
 

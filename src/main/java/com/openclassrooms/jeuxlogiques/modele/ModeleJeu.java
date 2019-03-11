@@ -206,12 +206,20 @@ public class ModeleJeu implements SujetObservable {
 	}
 
 	public void getPionProposition(int x) {
-		combinaisonProposition.set(x - 1, pionProposition);
-		notifierObservateur();
+		attaquant.getCombinaisonProposition().set(x - 1, pionProposition);
+		setCombinaisonProposition(attaquant.getCombinaisonProposition());
+		for (int i = 0; i < nbPionsCombinaison; i++) {
+			attaquant.setPion(attaquant.getListePanneauProposition(), attaquant.getClef(i + 1, compteurEssais),
+					combinaisonProposition.get(i));
+			vue.setPion(vue.getListePanneauProposition(), vue.getClef(i + 1, compteurEssais),
+					combinaisonProposition.get(i));
+		}
+		vue.getBoutonValidation().setEnabled(!combinaisonProposition.contains(PionCommun.Vide));
 	}
 
 	public void setPionProposition(Pion pionProposition) {
 		this.pionProposition = pionProposition;
+
 		controleur.setPionSelectionne();
 	}
 
