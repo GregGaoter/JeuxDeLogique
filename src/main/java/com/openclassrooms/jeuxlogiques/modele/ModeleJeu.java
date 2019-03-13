@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import com.openclassrooms.jeuxlogiques.controleur.ControleurJeu;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.Parametre;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.Pion;
@@ -16,6 +18,8 @@ import com.openclassrooms.jeuxlogiques.vue.Observateur;
 import com.openclassrooms.jeuxlogiques.vue.Vue;
 
 public class ModeleJeu implements SujetObservable {
+
+	private final static Logger log = Logger.getLogger(ModeleJeu.class);
 
 	public static final int NB_COULEURS_UTILISABLES_MIN = 4;
 	public static final int NB_COULEURS_UTILISABLES_MAX = 10;
@@ -53,7 +57,9 @@ public class ModeleJeu implements SujetObservable {
 		nbPionsCombinaison = Parametre.NbPionsCombinaison.getValeur();
 		nomJoueur = "Joueur";
 		defenseur = new Ordinateur();
+		defenseur.setAttaquantQ(false);
 		attaquant = new Humain();
+		attaquant.setAttaquantQ(true);
 	}
 
 	public void initialiser() {
@@ -133,14 +139,17 @@ public class ModeleJeu implements SujetObservable {
 
 	public void setCombinaisonSecrete(List<Pion> combinaisonSecrete) {
 		this.combinaisonSecrete = combinaisonSecrete;
+		log.debug("Combinaison secrète du modèle :" + combinaisonSecrete);
 	}
 
 	public void setCombinaisonProposition(List<Pion> combinaisonProposition) {
 		this.combinaisonProposition = combinaisonProposition;
+		log.debug("Combinaison proposition du modèle :" + combinaisonProposition);
 	}
 
 	public void setCombinaisonReponse(List<Pion> combinaisonReponse) {
 		this.combinaisonReponse = combinaisonReponse;
+		log.debug("Combinaison réponse du modèle :" + combinaisonReponse);
 		notifierObservateur();
 	}
 
@@ -178,6 +187,7 @@ public class ModeleJeu implements SujetObservable {
 
 	public void setDefenseur(Joueur defenseur) {
 		this.defenseur = defenseur;
+		log.debug("Défenseur du modèle : " + defenseur.getNom());
 	}
 
 	public Joueur getAttaquant() {
@@ -186,6 +196,7 @@ public class ModeleJeu implements SujetObservable {
 
 	public void setAttaquant(Joueur attaquant) {
 		this.attaquant = attaquant;
+		log.debug("Attaquant du modèle : " + attaquant.getNom());
 	}
 
 	public String getNomJoueur() {
@@ -207,19 +218,15 @@ public class ModeleJeu implements SujetObservable {
 
 	public void getPionProposition(int x) {
 		attaquant.getCombinaisonProposition().set(x - 1, pionProposition);
+		attaquant.setPion(attaquant.getListePanneauProposition(), attaquant.getClef(x, attaquant.getCompteurEssais()),
+				pionProposition);
 		setCombinaisonProposition(attaquant.getCombinaisonProposition());
-		for (int i = 0; i < nbPionsCombinaison; i++) {
-			attaquant.setPion(attaquant.getListePanneauProposition(), attaquant.getClef(i + 1, compteurEssais),
-					combinaisonProposition.get(i));
-			vue.setPion(vue.getListePanneauProposition(), vue.getClef(i + 1, compteurEssais),
-					combinaisonProposition.get(i));
-		}
 		vue.getBoutonValidation().setEnabled(!combinaisonProposition.contains(PionCommun.Vide));
+		notifierObservateur();
 	}
 
 	public void setPionProposition(Pion pionProposition) {
 		this.pionProposition = pionProposition;
-
 		controleur.setPionSelectionne();
 	}
 

@@ -17,7 +17,7 @@ public class PanneauBoutonValidation extends JPanel {
 
 	public PanneauBoutonValidation(JButton bouton) {
 		try {
-			image = ImageIO.read(getClass().getResource("/pion_transparent.png"));
+			image = ImageIO.read(getClass().getResource("/images/pion_transparent.png"));
 		} catch (IOException e) {
 		}
 		setPreferredSize(new Dimension(bouton.getPreferredSize().width, image.getHeight()));

@@ -2,7 +2,7 @@ package com.openclassrooms.jeuxlogiques.modele.enumeration;
 
 public enum PionReponseCouleur implements Pion {
 
-	Blanc("/pion_blanc.png"), Noir("/pion_noir.png");
+	Blanc("/images/pion_blanc.png"), Noir("/images/pion_noir.png");
 
 	private final String nomImage;
 

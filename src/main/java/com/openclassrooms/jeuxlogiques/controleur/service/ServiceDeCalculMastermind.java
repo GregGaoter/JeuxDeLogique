@@ -4,12 +4,33 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import com.openclassrooms.jeuxlogiques.modele.enumeration.Pion;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.PionCommun;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.PionReponseCouleur;
 
+/**
+ * <b>ServiceDeCalculMastermind est la classe implémentant les méthodes de
+ * calcul pour le jeu Mastermind.</b>
+ * 
+ * @author Grégory Gautier
+ * @version 1.0
+ */
 public class ServiceDeCalculMastermind implements ServiceDeCalcul {
 
+	private final static Logger log = Logger.getLogger(ServiceDeCalculMastermind.class);
+
+	/**
+	 * Calcul la réponse du jeu Mastermind.
+	 * 
+	 * @param proposition : liste des pions de la combinaison proposition.
+	 * @param solution    : liste des pions de la combinaison solution.
+	 * @return Liste des pions de la combinaison réponse.
+	 * @see Pion
+	 * @see PionCommun
+	 * @see PionReponseCouleur
+	 */
 	public List<Pion> calculerReponse(List<Pion> proposition, List<Pion> solution) {
 
 		List<Pion> reponse = new ArrayList<>(proposition.size());
@@ -70,6 +91,8 @@ public class ServiceDeCalculMastermind implements ServiceDeCalcul {
 			reponse.add(PionReponseCouleur.Blanc);
 		for (int i = 0; i < proposition.size() - nbBienPlace - nbMalPlace; i++)
 			reponse.add(PionCommun.Vide);
+
+		log.debug("Le Mastermind a calculé sa réponse.");
 
 		return reponse;
 	}

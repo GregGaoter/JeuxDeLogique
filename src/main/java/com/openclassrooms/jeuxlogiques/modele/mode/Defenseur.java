@@ -1,8 +1,5 @@
 package com.openclassrooms.jeuxlogiques.modele.mode;
 
-import com.openclassrooms.jeuxlogiques.modele.joueur.Humain;
-import com.openclassrooms.jeuxlogiques.modele.joueur.Ordinateur;
-
 public class Defenseur extends Mode {
 
 	public String getNom() {
@@ -11,12 +8,14 @@ public class Defenseur extends Mode {
 
 	protected void setListeDefenseurs() {
 		listeDefenseurs.clear();
-		listeDefenseurs.add(new Humain());
+		humain.setAttaquantQ(false);
+		listeDefenseurs.add(humain);
 	}
 
 	protected void setListeAttaquants() {
 		listeAttaquants.clear();
-		listeAttaquants.add(new Ordinateur());
+		ordinateur.setAttaquantQ(true);
+		listeAttaquants.add(ordinateur);
 	}
 
 }

@@ -3,11 +3,18 @@ package com.openclassrooms.jeuxlogiques.modele.joueur;
 import javax.swing.JFrame;
 
 import org.apache.commons.lang3.RandomUtils;
+import org.apache.log4j.Logger;
 
 import com.openclassrooms.jeuxlogiques.controleur.ControleurJeu;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.Pion;
 
 public class Ordinateur extends Joueur {
+
+	private final static Logger log = Logger.getLogger(Ordinateur.class);
+
+	public Ordinateur() {
+		nom = "Ordinateur";
+	}
 
 	public void setCombinaisonSecrete(JFrame fenetreParente, ControleurJeu controleur) {
 		Pion pionAleatoire;
@@ -15,9 +22,8 @@ public class Ordinateur extends Joueur {
 		for (int i = 1; i <= modele.getNbPionsCombinaison(); i++) {
 			pionAleatoire = modele.getPionsUtilisables().get(RandomUtils.nextInt(0, modele.getNbPionsUtilisables()));
 			combinaisonSecrete.add(pionAleatoire);
-			// modele.setPionSecret(pionAleatoire);
-			// modele.getPionSecret(i);
 		}
+		log.debug("Combinaison secrète de l'ordinateur : " + combinaisonSecrete);
 	}
 
 	public void setCombinaisonProposition() {
@@ -26,15 +32,22 @@ public class Ordinateur extends Joueur {
 		for (int i = 1; i <= modele.getNbPionsCombinaison(); i++) {
 			pionAleatoire = modele.getPionsUtilisables().get(RandomUtils.nextInt(0, modele.getNbPionsUtilisables()));
 			combinaisonProposition.add(pionAleatoire);
+			setPion(listePanneauProposition, getClef(i, compteurEssais), pionAleatoire);
 		}
-		modele.setCombinaisonProposition(combinaisonProposition);
-		for (int i = 0; i < modele.getNbPionsCombinaison(); i++) {
-			setPion(listePanneauProposition, getClef(i + 1, modele.getCompteurEssais()),
-					modele.getCombinaisonProposition().get(i));
-		}
-		notifierObservateur();
+		log.debug("Combinaison proposition de l'ordinateur : " + combinaisonProposition);
+		// modele.setCombinaisonProposition(combinaisonProposition);
 		/*
-		 * new Thread(new Runnable() { public void run() { notifierObservateur(); //
+		 * for (int i = 0; i < modele.getNbPionsCombinaison(); i++) {
+		 * setPion(listePanneauProposition, getClef(i + 1, modele.getCompteurEssais()),
+		 * modele.getCombinaisonProposition().get(i)); } notifierObservateur();
+		 */
+		// controleur.getVue().getBoutonValidation().doClick();
+		/*
+		 * try { Thread.sleep(2000); } catch (InterruptedException e) {
+		 * e.printStackTrace(); }
+		 */
+		/*
+		 * new Thread(new Runnable() { public void run() { // notifierObservateur();
 		 * controleur.getVue().getBoutonValidation().doClick(); } }).start();
 		 */
 

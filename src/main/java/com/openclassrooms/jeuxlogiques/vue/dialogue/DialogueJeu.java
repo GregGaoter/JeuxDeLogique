@@ -46,7 +46,7 @@ public class DialogueJeu extends JDialog {
 		 */
 		panneauIcone = new JPanel();
 		panneauPrincipal.add(panneauIcone, BorderLayout.WEST);
-		panneauIcone.add(new JLabel(new ImageIcon(getClass().getResource("/game_48.png"))));
+		panneauIcone.add(new JLabel(new ImageIcon(getClass().getResource("/images/game_48.png"))));
 		panneauIcone.add(Box.createHorizontalStrut(10));
 
 		/*

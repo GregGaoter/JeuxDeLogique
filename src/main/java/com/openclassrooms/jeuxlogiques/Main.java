@@ -1,7 +1,5 @@
 package com.openclassrooms.jeuxlogiques;
 
-import java.awt.EventQueue;
-
 import org.apache.log4j.Logger;
 
 import com.openclassrooms.jeuxlogiques.controleur.ControleurJeu;
@@ -12,15 +10,12 @@ public class Main {
 
 	public static void main(String[] modeDeveloppeur) {
 		log.info("Démarrage du jeu");
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					new ControleurJeu(modeDeveloppeur);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+		new ControleurJeu(modeDeveloppeur);
+		/*
+		 * EventQueue.invokeLater(new Runnable() { public void run() { try { new
+		 * ControleurJeu(modeDeveloppeur); } catch (Exception e) { e.printStackTrace();
+		 * } } });
+		 */
 
 	}
 

@@ -2,7 +2,7 @@ package com.openclassrooms.jeuxlogiques.modele.enumeration;
 
 public enum PionReponseSymbol implements Pion {
 
-	Egal("/pion_egal.png"), Moins("/pion_moins.png"), Plus("/pion_plus.png");
+	Egal("/images/pion_egal.png"), Moins("/images/pion_moins.png"), Plus("/images/pion_plus.png");
 
 	private final String nomImage;
 

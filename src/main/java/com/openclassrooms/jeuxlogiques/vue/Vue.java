@@ -35,10 +35,13 @@ import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.border.EmptyBorder;
 import javax.swing.text.BadLocationException;
 
+import org.apache.log4j.Logger;
+
 import com.openclassrooms.jeuxlogiques.controleur.ControleurJeu;
 import com.openclassrooms.jeuxlogiques.modele.ModeleJeu;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.Pion;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.PionCommun;
+import com.openclassrooms.jeuxlogiques.modele.joueur.Joueur;
 import com.openclassrooms.jeuxlogiques.vue.dialogue.DialogueReglesJeux;
 import com.openclassrooms.jeuxlogiques.vue.labelpion.JLabelPion;
 import com.openclassrooms.jeuxlogiques.vue.labelpion.MouseListenerGetPionProposition;
@@ -47,6 +50,8 @@ import com.openclassrooms.jeuxlogiques.vue.separateur.AlignementHorizontal;
 import com.openclassrooms.jeuxlogiques.vue.separateur.SeparateurVertical;
 
 public class Vue implements Observateur {
+
+	private final static Logger log = Logger.getLogger(Vue.class);
 
 	private final String separateurClef = "-";
 
@@ -125,7 +130,7 @@ public class Vue implements Observateur {
 
 		fenetreDemarrage = new JWindow();
 
-		JLabel labelImage = new JLabel(new ImageIcon(getClass().getResource("/image_demarrage.png")));
+		JLabel labelImage = new JLabel(new ImageIcon(getClass().getResource("/images/image_demarrage.png")));
 		labelImage.setLayout(new BorderLayout());
 		fenetreDemarrage.add(labelImage, BorderLayout.CENTER);
 
@@ -179,7 +184,7 @@ public class Vue implements Observateur {
 		 * Fenêtre principale
 		 */
 		fenetrePrincipale = new JFrame("Jeux de logique");
-		fenetrePrincipale.setIconImage(new ImageIcon(getClass().getResource("/game_16.png")).getImage());
+		fenetrePrincipale.setIconImage(new ImageIcon(getClass().getResource("/images/game_16.png")).getImage());
 
 		/*
 		 * Barre de menu
@@ -191,7 +196,7 @@ public class Vue implements Observateur {
 		barreDeMenu.add(menuJeu);
 
 		JMenuItem menuItemJeuNouveauJeu = new JMenuItem("Nouveau jeu",
-				new ImageIcon(getClass().getResource("/nouveau_jeu_16.png")));
+				new ImageIcon(getClass().getResource("/images/nouveau_jeu_16.png")));
 		menuJeu.add(menuItemJeuNouveauJeu);
 		menuItemJeuNouveauJeu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -202,7 +207,7 @@ public class Vue implements Observateur {
 		menuJeu.addSeparator();
 
 		JMenuItem menuItemJeuQuitter = new JMenuItem("Quitter",
-				new ImageIcon(getClass().getResource("/quitter_16.png")));
+				new ImageIcon(getClass().getResource("/images/quitter_16.png")));
 		menuJeu.add(menuItemJeuQuitter);
 		menuItemJeuQuitter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -213,7 +218,7 @@ public class Vue implements Observateur {
 		JMenu menuOption = new JMenu("Options");
 		barreDeMenu.add(menuOption);
 
-		menuItemOptionJeu = new JMenuItem("Jeux", new ImageIcon(getClass().getResource("/option_jeu_16.png")));
+		menuItemOptionJeu = new JMenuItem("Jeux", new ImageIcon(getClass().getResource("/images/option_jeu_16.png")));
 		menuOption.add(menuItemOptionJeu);
 		menuItemOptionJeu.setEnabled(false);
 		menuItemOptionJeu.addActionListener(new ActionListener() {
@@ -222,7 +227,7 @@ public class Vue implements Observateur {
 			}
 		});
 
-		menuItemOptionJoueur = new JMenuItem("Joueur", new ImageIcon(getClass().getResource("/joueur_16.png")));
+		menuItemOptionJoueur = new JMenuItem("Joueur", new ImageIcon(getClass().getResource("/images/joueur_16.png")));
 		menuOption.add(menuItemOptionJoueur);
 		menuItemOptionJoueur.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -234,7 +239,7 @@ public class Vue implements Observateur {
 		barreDeMenu.add(menuAide);
 
 		JMenuItem menuItemAideRegles = new JMenuItem("Règles de jeux",
-				new ImageIcon(getClass().getResource("/aide_16.png")));
+				new ImageIcon(getClass().getResource("/images/aide_16.png")));
 		menuAide.add(menuItemAideRegles);
 		menuItemAideRegles.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -270,7 +275,7 @@ public class Vue implements Observateur {
 		barreOutils.add(Box.createHorizontalStrut(10));
 
 		JButton boutonNouveauJeu = new JButton("Nouveau Jeu",
-				new ImageIcon(getClass().getResource("/nouveau_jeu_32.png")));
+				new ImageIcon(getClass().getResource("/images/nouveau_jeu_32.png")));
 		boutonNouveauJeu.setVerticalTextPosition(SwingConstants.BOTTOM);
 		boutonNouveauJeu.setHorizontalTextPosition(SwingConstants.CENTER);
 		boutonNouveauJeu.addActionListener(new ActionListener() {
@@ -284,7 +289,8 @@ public class Vue implements Observateur {
 		contraintes.gridx++;
 		barreOutils.add(new SeparateurVertical(10, AlignementHorizontal.Centre), contraintes);
 
-		boutonOptionJeu = new JButton("Options jeux", new ImageIcon(getClass().getResource("/option_jeu_32.png")));
+		boutonOptionJeu = new JButton("Options jeux",
+				new ImageIcon(getClass().getResource("/images/option_jeu_32.png")));
 		boutonOptionJeu.setVerticalTextPosition(SwingConstants.BOTTOM);
 		boutonOptionJeu.setHorizontalTextPosition(SwingConstants.CENTER);
 		boutonOptionJeu.setEnabled(false);
@@ -296,7 +302,8 @@ public class Vue implements Observateur {
 		contraintes.gridx++;
 		barreOutils.add(boutonOptionJeu, contraintes);
 
-		boutonOptionJoueur = new JButton("Options joueur", new ImageIcon(getClass().getResource("/joueur_32.png")));
+		boutonOptionJoueur = new JButton("Options joueur",
+				new ImageIcon(getClass().getResource("/images/joueur_32.png")));
 		boutonOptionJoueur.setVerticalTextPosition(SwingConstants.BOTTOM);
 		boutonOptionJoueur.setHorizontalTextPosition(SwingConstants.CENTER);
 		boutonOptionJoueur.addActionListener(new ActionListener() {
@@ -329,7 +336,7 @@ public class Vue implements Observateur {
 		vainqueur.setFont(new Font(vainqueur.getFont().getName(), Font.BOLD, vainqueur.getFont().getSize() * 2));
 		vainqueur.setForeground(new Color(0, 127, 0));
 
-		boutonRejouerMemeJeu = new JButton("Rejouer", new ImageIcon(getClass().getResource("/rejouer_32.png")));
+		boutonRejouerMemeJeu = new JButton("Rejouer", new ImageIcon(getClass().getResource("/images/rejouer_32.png")));
 		panneauBarreOutils.add(boutonRejouerMemeJeu, BorderLayout.EAST);
 		boutonRejouerMemeJeu.setEnabled(false);
 		boutonRejouerMemeJeu.setVerticalTextPosition(SwingConstants.BOTTOM);
@@ -376,17 +383,16 @@ public class Vue implements Observateur {
 		toggleButtonJoueur = new JToggleButton(modele.getNomJoueur());
 		buttonGroupJoueurCourant.add(toggleButtonJoueur);
 		panneauJoueurCourant.add(toggleButtonJoueur);
-		toggleButtonJoueur.setEnabled(false);
 		toggleButtonJoueur.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
 			}
 		});
+		toggleButtonJoueur.doClick();
 
 		toggleButtonOrdinateur = new JToggleButton("Ordinateur");
 		buttonGroupJoueurCourant.add(toggleButtonOrdinateur);
 		panneauJoueurCourant.add(toggleButtonOrdinateur);
-		toggleButtonOrdinateur.setEnabled(false);
 		toggleButtonOrdinateur.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -437,7 +443,7 @@ public class Vue implements Observateur {
 		/*
 		 * Label nombre d'essais
 		 */
-		messageNbEssais = new JLabel("01 / " + modele.getNbEssais());
+		messageNbEssais = new JLabel("01 / " + (modele.getNbEssais() < 10 ? "0" : "") + modele.getNbEssais());
 		messageNbEssais.setHorizontalAlignment(SwingConstants.CENTER);
 		messageNbEssais.setFont(new Font(messageNbEssais.getFont().getName(), Font.PLAIN, 28));
 		contraintes.gridx = 3;
@@ -507,6 +513,7 @@ public class Vue implements Observateur {
 		creerPanneauValidation();
 		boutonValidation.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				log.debug("Clique sur le bouton valider.");
 				controleur.calculerReponse();
 			}
 		});
@@ -653,11 +660,16 @@ public class Vue implements Observateur {
 
 	public void actualiser() {
 		boutonValidation.setEnabled(!modele.getCombinaisonProposition().contains(PionCommun.Vide));
-		listePanneauProposition.putAll(modele.getAttaquant().getListePanneauProposition());
-		listePanneauReponse.putAll(modele.getAttaquant().getListePanneauReponse());
-		creerPanneau(panneauProposition, listePanneauProposition, contraintes);
-		creerPanneau(panneauReponse, listePanneauReponse, contraintes);
-		panneauPrincipal.repaint();
+		Joueur attaquant = modele.getAttaquant();
+		String clef;
+		for (int y = 1; y <= modele.getNbEssais(); y++) {
+			for (int x = 1; x <= modele.getNbPionsCombinaison(); x++) {
+				clef = getClef(x, y);
+				setPion(listePanneauProposition, clef, attaquant.getListePanneauProposition().get(clef));
+				setPion(listePanneauReponse, clef, attaquant.getListePanneauReponse().get(clef));
+			}
+		}
+		log.debug("La vue a été actualisée.");
 	}
 
 }

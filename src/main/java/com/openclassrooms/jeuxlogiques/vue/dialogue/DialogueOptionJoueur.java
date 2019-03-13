@@ -44,7 +44,7 @@ public class DialogueOptionJoueur extends JDialog {
 		 */
 		panneauIcone = new JPanel();
 		panneauPrincipal.add(panneauIcone, BorderLayout.WEST);
-		panneauIcone.add(new JLabel(new ImageIcon(getClass().getResource("/joueur_48.png"))));
+		panneauIcone.add(new JLabel(new ImageIcon(getClass().getResource("/images/joueur_48.png"))));
 		panneauIcone.add(Box.createHorizontalStrut(10));
 
 		/*

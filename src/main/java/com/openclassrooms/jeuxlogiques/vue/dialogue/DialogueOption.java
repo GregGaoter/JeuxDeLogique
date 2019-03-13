@@ -65,7 +65,7 @@ public class DialogueOption extends JDialog {
 		 */
 		JPanel panneauIcone = new JPanel();
 		panneauPrincipal.add(panneauIcone, BorderLayout.WEST);
-		panneauIcone.add(new JLabel(new ImageIcon(getClass().getResource("/option_jeu_48.png"))));
+		panneauIcone.add(new JLabel(new ImageIcon(getClass().getResource("/images/option_jeu_48.png"))));
 		panneauIcone.add(Box.createHorizontalStrut(10));
 
 		/*
@@ -86,7 +86,8 @@ public class DialogueOption extends JDialog {
 		contraintesOptions.gridx = 1;
 		contraintesOptions.gridy = 1;
 		panneauOptionsGenerales.add(new JLabel("Nombre de pions de la combinaison secrète :"), contraintesOptions);
-		sliderNbPionsCombinaisonSecrete = new JSlider(ModeleJeu.NB_PIONS_COMBINAISON_MIN, ModeleJeu.NB_PIONS_COMBINAISON_MAX,
+		sliderNbPionsCombinaisonSecrete = new JSlider(ModeleJeu.NB_PIONS_COMBINAISON_MIN,
+				ModeleJeu.NB_PIONS_COMBINAISON_MAX,
 				(ModeleJeu.NB_PIONS_COMBINAISON_MIN + ModeleJeu.NB_PIONS_COMBINAISON_MAX) / 2);
 		contraintesOptions.gridy = 2;
 		panneauOptionsGenerales.add(sliderNbPionsCombinaisonSecrete, contraintesOptions);

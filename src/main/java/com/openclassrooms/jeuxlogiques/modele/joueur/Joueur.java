@@ -4,20 +4,21 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
+import org.apache.log4j.Logger;
+
+import com.openclassrooms.jeuxlogiques.Main;
 import com.openclassrooms.jeuxlogiques.controleur.ControleurJeu;
 import com.openclassrooms.jeuxlogiques.modele.ModeleJeu;
 import com.openclassrooms.jeuxlogiques.modele.SujetObservable;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.Pion;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.PionCommun;
 import com.openclassrooms.jeuxlogiques.vue.Observateur;
-import com.openclassrooms.jeuxlogiques.vue.labelpion.JLabelPion;
-import com.openclassrooms.jeuxlogiques.vue.labelpion.MouseListenerGetPionProposition;
 
 public abstract class Joueur implements SujetObservable {
+
+	private final static Logger log = Logger.getLogger(Main.class);
 
 	private final String separateurClef = "-";
 
@@ -25,16 +26,17 @@ public abstract class Joueur implements SujetObservable {
 	protected List<Pion> combinaisonProposition;
 	protected List<Pion> combinaisonReponse;
 
-	protected HashMap<String, JLabelPion> listePanneauProposition;
-	protected HashMap<String, JLabelPion> listePanneauReponse;
-	protected HashMap<String, JPanel> listePanneauValidation;
+	protected HashMap<String, Pion> listePanneauProposition;
+	protected HashMap<String, Pion> listePanneauReponse;
 
 	protected List<Observateur> listeObservateurs;
 
 	protected ModeleJeu modele;
 	protected ControleurJeu controleur;
 
+	protected String nom;
 	protected int compteurEssais;
+	private boolean attaquantQ;
 
 	private Pion pionSecret;
 
@@ -44,7 +46,6 @@ public abstract class Joueur implements SujetObservable {
 		combinaisonReponse = new ArrayList<>();
 		listePanneauProposition = new HashMap<>();
 		listePanneauReponse = new HashMap<>();
-		listePanneauValidation = new HashMap<>();
 		listeObservateurs = new ArrayList<>();
 	}
 
@@ -65,19 +66,20 @@ public abstract class Joueur implements SujetObservable {
 			combinaison.add(PionCommun.Vide);
 	}
 
-	private void setListePanneauPion(HashMap<String, JLabelPion> listePanneau, int xMax, int yMax, Pion pion) {
+	private void setListePanneauPion(HashMap<String, Pion> listePanneau, int xMax, int yMax, Pion pion) {
 		listePanneau.clear();
 		for (int y = 1; y <= yMax; y++) {
 			for (int x = 1; x <= xMax; x++)
-				listePanneau.put(getClef(x, y),
-						new JLabelPion(pion, new MouseListenerGetPionProposition(controleur, pion, x)));
+				listePanneau.put(getClef(x, y), pion);
 		}
 	}
 
-	public void setPion(HashMap<String, JLabelPion> listePanneau, String clef, Pion pion) {
-		listePanneau.get(clef).getMouseListener().setPion(pion);
-		listePanneau.get(clef).setIcon(new ImageIcon(getClass().getResource(pion.getNomImage())));
-		listePanneau.get(clef).setText(Integer.toString(pion.getValeur()));
+	public void setPion(HashMap<String, Pion> listePanneau, String clef, Pion pion) {
+		listePanneau.put(clef, pion);
+		/*
+		 * log.debug("Mise à jour d'un pion : joueur " + nom + " / listePanneau " +
+		 * listePanneau + " / clef " + clef + " / pion " + pion.getNomImage());
+		 */
 	}
 
 	public List<Pion> getCombinaisonSecrete() {
@@ -94,18 +96,24 @@ public abstract class Joueur implements SujetObservable {
 
 	public void setCombinaisonReponse(List<Pion> combinaisonReponse) {
 		this.combinaisonReponse = combinaisonReponse;
+		for (int i = 1; i <= modele.getNbPionsCombinaison(); i++)
+			setPion(listePanneauReponse, getClef(i, compteurEssais), combinaisonReponse.get(i - 1));
 	}
 
-	public HashMap<String, JLabelPion> getListePanneauProposition() {
+	public HashMap<String, Pion> getListePanneauProposition() {
 		return listePanneauProposition;
 	}
 
-	public HashMap<String, JLabelPion> getListePanneauReponse() {
+	public HashMap<String, Pion> getListePanneauReponse() {
 		return listePanneauReponse;
 	}
 
-	public HashMap<String, JPanel> getListePanneauValidation() {
-		return listePanneauValidation;
+	public String getNom() {
+		return nom;
+	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
 	}
 
 	public int getCompteurEssais() {
@@ -114,6 +122,14 @@ public abstract class Joueur implements SujetObservable {
 
 	public void setCompteurEssais(int compteurEssais) {
 		this.compteurEssais = compteurEssais;
+	}
+
+	public boolean getAttaquantQ() {
+		return attaquantQ;
+	}
+
+	public void setAttaquantQ(boolean attaquantQ) {
+		this.attaquantQ = attaquantQ;
 	}
 
 	public void setModele(ModeleJeu modele) {
@@ -136,6 +152,10 @@ public abstract class Joueur implements SujetObservable {
 
 	public String getClef(int x, int y) {
 		return String.valueOf(x) + separateurClef + String.valueOf(y);
+	}
+
+	public void decrementerCompteurEssais() {
+		compteurEssais--;
 	}
 
 	public void ajouterObservateur(Observateur observateur) {

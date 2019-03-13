@@ -2,7 +2,7 @@ package com.openclassrooms.jeuxlogiques.modele.enumeration;
 
 public enum PionCommun implements Pion {
 
-	Secret("/pion_secret.png"), Transparent("/pion_transparent.png"), Vide("/pion_vide.png");
+	Secret("/images/pion_secret.png"), Transparent("/images/pion_transparent.png"), Vide("/images/pion_vide.png");
 
 	private final String nomImage;
 

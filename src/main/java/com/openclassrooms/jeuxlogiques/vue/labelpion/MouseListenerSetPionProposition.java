@@ -12,7 +12,7 @@ public class MouseListenerSetPionProposition extends MouseListenerPion {
 	}
 
 	public void mouseClicked(MouseEvent e) {
-		controleur.setPionProposition(pion);
+
 	}
 
 	public void mouseEntered(MouseEvent e) {
@@ -22,10 +22,11 @@ public class MouseListenerSetPionProposition extends MouseListenerPion {
 	}
 
 	public void mousePressed(MouseEvent e) {
-		controleur.setPionProposition(pion);
+		// controleur.setPionProposition(pion);
 	}
 
 	public void mouseReleased(MouseEvent e) {
+		controleur.setPionProposition(pion);
 	}
 
 	public void setPion(Pion pion) {

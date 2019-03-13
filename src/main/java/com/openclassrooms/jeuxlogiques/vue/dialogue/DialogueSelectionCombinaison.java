@@ -65,7 +65,7 @@ public class DialogueSelectionCombinaison extends JDialog implements Observateur
 		combinaisonSecrete = new ArrayList<>(listePanneauSecret.size());
 		this.modele = modele;
 		this.controleur = controleur;
-		boutonRefresh = new JButton(new ImageIcon(getClass().getResource("/refresh_32.png")));
+		boutonRefresh = new JButton(new ImageIcon(getClass().getResource("/images/refresh_32.png")));
 		modele.ajouterObservateur(this);
 
 		/*
@@ -88,7 +88,7 @@ public class DialogueSelectionCombinaison extends JDialog implements Observateur
 		 */
 		panneauIcone = new JPanel();
 		panneauPrincipal.add(panneauIcone, BorderLayout.WEST);
-		panneauIcone.add(new JLabel(new ImageIcon(getClass().getResource("/clef_48.png"))));
+		panneauIcone.add(new JLabel(new ImageIcon(getClass().getResource("/images/clef_48.png"))));
 		panneauIcone.add(Box.createHorizontalStrut(10));
 
 		/*

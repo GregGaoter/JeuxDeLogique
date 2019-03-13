@@ -2,10 +2,11 @@ package com.openclassrooms.jeuxlogiques.controleur;
 
 import java.util.Arrays;
 import java.util.Iterator;
-import java.util.Map;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+
+import org.apache.log4j.Logger;
 
 import com.openclassrooms.jeuxlogiques.controleur.service.ServiceDeCalcul;
 import com.openclassrooms.jeuxlogiques.modele.ModeleJeu;
@@ -20,9 +21,10 @@ import com.openclassrooms.jeuxlogiques.vue.dialogue.DialogueJeu;
 import com.openclassrooms.jeuxlogiques.vue.dialogue.DialogueMode;
 import com.openclassrooms.jeuxlogiques.vue.dialogue.DialogueOption;
 import com.openclassrooms.jeuxlogiques.vue.dialogue.DialogueOptionJoueur;
-import com.openclassrooms.jeuxlogiques.vue.labelpion.JLabelPion;
 
 public class ControleurJeu {
+
+	private final static Logger log = Logger.getLogger(ControleurJeu.class);
 
 	private final String separateurClef = "-";
 
@@ -38,6 +40,8 @@ public class ControleurJeu {
 	private ServiceDeCalcul serviceDeCalcul;
 
 	private boolean gagnantQ;
+
+	private Iterator<Joueur> itDefenseurs, itAttaquants;
 
 	public ControleurJeu(String[] modeDeveloppeur) {
 		modele = new ModeleJeu();
@@ -75,11 +79,13 @@ public class ControleurJeu {
 		DialogueMode dialogueMode = new DialogueMode(fenetreProprietaire);
 		mode = dialogueMode.getValeur();
 		if (mode != null) {
-			Iterator<Joueur> itDefenseurs = mode.getListeDefenseurs().iterator();
-			Iterator<Joueur> itAttaquants = mode.getListeAttaquants().iterator();
-			while (itDefenseurs.hasNext()) {
-				Joueur defenseur = itDefenseurs.next();
-				Joueur attaquant = itAttaquants.next();
+			itDefenseurs = mode.getListeDefenseurs().iterator();
+			itAttaquants = mode.getListeAttaquants().iterator();
+			while (itDefenseurs.hasNext() && itAttaquants.hasNext()) {
+				defenseur = itDefenseurs.next();
+				attaquant = itAttaquants.next();
+				defenseur.setAttaquantQ(false);
+				attaquant.setAttaquantQ(true);
 				defenseur.ajouterObservateur(vue);
 				attaquant.ajouterObservateur(vue);
 				defenseur.setModele(modele);
@@ -89,9 +95,16 @@ public class ControleurJeu {
 				modele.setDefenseur(defenseur);
 				modele.setAttaquant(attaquant);
 				modele.initialiser();
-				defenseur.setCombinaisonSecrete(fenetreProprietaire, this);
-				modele.setCombinaisonSecrete(defenseur.getCombinaisonSecrete());
 			}
+			itDefenseurs = mode.getListeDefenseurs().iterator();
+			while (itDefenseurs.hasNext()) {
+				defenseur = itDefenseurs.next();
+				defenseur.setAttaquantQ(false);
+				defenseur.setCombinaisonSecrete(fenetreProprietaire, this);
+			}
+			itDefenseurs = mode.getListeDefenseurs().iterator();
+			defenseur = itDefenseurs.next();
+			modele.setCombinaisonSecrete(defenseur.getCombinaisonSecrete());
 			for (int x = 1; x <= modele.getNbPionsCombinaison(); x++)
 				vue.setPion(vue.getListePanneauSecret(), getClef(x, 1), PionCommun.Secret);
 			for (int x = 1; x <= modele.getNbPionsUtilisables(); x++)
@@ -111,28 +124,35 @@ public class ControleurJeu {
 			afficherVainqueur("-");
 			vue.getMenuItemOptionJeu().setEnabled(true);
 			vue.getBoutonOptionJeu().setEnabled(true);
-			if (getModeDeveloppeurQ())
-				afficherCombinaisonSecrete();
 		}
 		dialogueMode.dispose();
 		gagnantQ = false;
+		itDefenseurs = mode.getListeDefenseurs().iterator();
+		itAttaquants = mode.getListeAttaquants().iterator();
 		lancerTour();
 	}
 
 	private void lancerTour() {
+		log.debug("Début de lancerTour()");
 		if (!gagnantQ) {
-			Iterator<Joueur> itDefenseurs, itAttaquants;
-			itDefenseurs = mode.getListeDefenseurs().iterator();
-			itAttaquants = mode.getListeAttaquants().iterator();
-			while (itDefenseurs.hasNext() && itAttaquants.hasNext()) {
-				defenseur = itDefenseurs.next();
-				attaquant = itAttaquants.next();
-				modele.setDefenseur(defenseur);
-				modele.setCombinaisonSecrete(defenseur.getCombinaisonSecrete());
-				modele.setAttaquant(attaquant);
-				attaquant.setCombinaisonProposition();
+			if (!itDefenseurs.hasNext() && !itAttaquants.hasNext()) {
+				itDefenseurs = mode.getListeDefenseurs().iterator();
+				itAttaquants = mode.getListeAttaquants().iterator();
 			}
+			defenseur = itDefenseurs.next();
+			attaquant = itAttaquants.next();
+			defenseur.setAttaquantQ(false);
+			attaquant.setAttaquantQ(true);
+			modele.setDefenseur(defenseur);
+			modele.setAttaquant(attaquant);
+			modele.setCombinaisonSecrete(defenseur.getCombinaisonSecrete());
+			attaquant.setCombinaisonProposition();
+			modele.setCombinaisonProposition(attaquant.getCombinaisonProposition());
+			if (modeDeveloppeurQ)
+				afficherCombinaisonSecrete(defenseur);
+			vue.actualiser();
 		}
+		log.debug("Fin de lancerTour()");
 	}
 
 	public void lancerDialogueOption(JFrame fenetreProprietaire) {
@@ -199,38 +219,43 @@ public class ControleurJeu {
 	}
 
 	public void calculerReponse() {
-		modele.setCombinaisonReponse(
+		log.debug("Début du calcul de la réponse.");
+		attaquant.setCombinaisonReponse(
 				serviceDeCalcul.calculerReponse(modele.getCombinaisonProposition(), modele.getCombinaisonSecrete()));
-		for (int i = 0; i < modele.getNbPionsCombinaison(); i++)
-			attaquant.setPion(attaquant.getListePanneauReponse(), getClef(i + 1, modele.getCompteurEssais()),
-					modele.getCombinaisonReponse().get(i));
-		for (Map.Entry<String, JLabelPion> item : attaquant.getListePanneauProposition().entrySet())
-			item.getValue().getMouseListener().setControleur(this);
+		modele.setCombinaisonReponse(attaquant.getCombinaisonReponse());
+		vue.actualiser();
 		vue.getBoutonValidation().setEnabled(false);
 		isGagnantQ();
 		if (gagnantQ) {
-			afficherCombinaisonSecrete();
-			afficherVainqueur(modele.getNomJoueur());
+			afficherCombinaisonSecrete(defenseur);
+			afficherVainqueur(attaquant.getNom());
+			vue.getBoutonRejouerMemeJeu().setEnabled(true);
 		} else {
-			modele.decrementerCompteurEssais();
 			modele.initialiserCombinaison(modele.getCombinaisonProposition(), modele.getNbPionsCombinaison());
 			modele.initialiserCombinaison(modele.getCombinaisonReponse(), modele.getNbPionsCombinaison());
+			attaquant.decrementerCompteurEssais();
+			modele.setCompteurEssais(attaquant.getCompteurEssais());
 			if (modele.getCompteurEssais() > 0) {
-				vue.getListePanneauValidation().get(getClef(1, modele.getCompteurEssais() + 1))
-						.remove(vue.getBoutonValidation());
-				vue.getListePanneauValidation().get(getClef(1, modele.getCompteurEssais()))
-						.add(vue.getBoutonValidation());
-				vue.getPanneauPrincipal().repaint();
-				int essai = 1 + modele.getNbEssais() - modele.getCompteurEssais();
+				actualiserPanneauValidation();
+				int essai = 1 + modele.getNbEssais() - attaquant.getCompteurEssais();
 				vue.getMessageNbEssais().setText((essai < 10 ? "0" : "") + Integer.toString(essai) + " / "
-						+ Integer.toString(modele.getNbEssais()));
+						+ (modele.getNbEssais() < 10 ? "0" : "") + Integer.toString(modele.getNbEssais()));
 				lancerTour();
 			} else {
 				gagnantQ = true;
-				afficherCombinaisonSecrete();
-				afficherVainqueur(modele.getNomJoueur());
+				afficherCombinaisonSecrete(defenseur);
+				afficherVainqueur(defenseur.getNom());
+				vue.getBoutonRejouerMemeJeu().setEnabled(true);
 			}
 		}
+		log.debug("Fin du calcul de la réponse.");
+	}
+
+	private void actualiserPanneauValidation() {
+		vue.getListePanneauValidation().get(getClef(1, modele.getCompteurEssais() + 1))
+				.remove(vue.getBoutonValidation());
+		vue.getListePanneauValidation().get(getClef(1, modele.getCompteurEssais())).add(vue.getBoutonValidation());
+		vue.getPanneauPrincipal().repaint();
 	}
 
 	private void isGagnantQ() {
@@ -247,9 +272,9 @@ public class ControleurJeu {
 		gagnantQ = nbPionsCorrects == modele.getCombinaisonSecrete().size();
 	}
 
-	public void afficherCombinaisonSecrete() {
+	public void afficherCombinaisonSecrete(Joueur joueur) {
 		for (int i = 0; i < modele.getNbPionsCombinaison(); i++) {
-			vue.setPion(vue.getListePanneauSecret(), getClef(i + 1, 1), modele.getCombinaisonSecrete().get(i));
+			vue.setPion(vue.getListePanneauSecret(), getClef(i + 1, 1), joueur.getCombinaisonSecrete().get(i));
 		}
 	}
 
