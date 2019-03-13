@@ -92,9 +92,6 @@ public class ControleurJeu {
 				attaquant.setModele(modele);
 				defenseur.setControleur(this);
 				attaquant.setControleur(this);
-				modele.setDefenseur(defenseur);
-				modele.setAttaquant(attaquant);
-				modele.initialiser();
 			}
 			itDefenseurs = mode.getListeDefenseurs().iterator();
 			while (itDefenseurs.hasNext()) {
@@ -103,8 +100,14 @@ public class ControleurJeu {
 				defenseur.setCombinaisonSecrete(fenetreProprietaire, this);
 			}
 			itDefenseurs = mode.getListeDefenseurs().iterator();
+			itAttaquants = mode.getListeAttaquants().iterator();
 			defenseur = itDefenseurs.next();
-			modele.setCombinaisonSecrete(defenseur.getCombinaisonSecrete());
+			attaquant = itAttaquants.next();
+			defenseur.setAttaquantQ(false);
+			attaquant.setAttaquantQ(true);
+			modele.setDefenseur(defenseur);
+			modele.setAttaquant(attaquant);
+			modele.initialiser();
 			for (int x = 1; x <= modele.getNbPionsCombinaison(); x++)
 				vue.setPion(vue.getListePanneauSecret(), getClef(x, 1), PionCommun.Secret);
 			for (int x = 1; x <= modele.getNbPionsUtilisables(); x++)
@@ -116,10 +119,14 @@ public class ControleurJeu {
 					vue.setPion(vue.getListePanneauReponse(), getClef(x, y), PionCommun.Vide);
 				}
 			}
-			vue.getListePanneauValidation().get(getClef(1, modele.getCompteurEssais()))
-					.remove(vue.getBoutonValidation());
-			vue.getListePanneauValidation().get(getClef(1, modele.getNbEssais())).add(vue.getBoutonValidation());
-			modele.setCompteurEssais(modele.getNbEssais());
+			/*
+			 * vue.getListePanneauValidation().get(getClef(1, modele.getCompteurEssais()))
+			 * .remove(vue.getBoutonValidation());
+			 * vue.getListePanneauValidation().get(getClef(1,
+			 * modele.getNbEssais())).add(vue.getBoutonValidation());
+			 */
+			vue.actualiserPanneauValidation();
+			// modele.setCompteurEssais(modele.getNbEssais());
 			vue.getMessageNbEssais().setText("01 / " + Integer.toString(modele.getNbEssais()));
 			afficherVainqueur("-");
 			vue.getMenuItemOptionJeu().setEnabled(true);
@@ -148,8 +155,10 @@ public class ControleurJeu {
 			modele.setCombinaisonSecrete(defenseur.getCombinaisonSecrete());
 			attaquant.setCombinaisonProposition();
 			modele.setCombinaisonProposition(attaquant.getCombinaisonProposition());
+			modele.setListePanneauValidation(attaquant.getListePanneauValidation());
 			if (modeDeveloppeurQ)
 				afficherCombinaisonSecrete(defenseur);
+			vue.actualiserPanneauValidation();
 			vue.actualiser();
 		}
 		log.debug("Fin de lancerTour()");
@@ -236,7 +245,7 @@ public class ControleurJeu {
 			attaquant.decrementerCompteurEssais();
 			modele.setCompteurEssais(attaquant.getCompteurEssais());
 			if (modele.getCompteurEssais() > 0) {
-				actualiserPanneauValidation();
+				attaquant.actualiserPanneauValidation();
 				int essai = 1 + modele.getNbEssais() - attaquant.getCompteurEssais();
 				vue.getMessageNbEssais().setText((essai < 10 ? "0" : "") + Integer.toString(essai) + " / "
 						+ (modele.getNbEssais() < 10 ? "0" : "") + Integer.toString(modele.getNbEssais()));
@@ -251,12 +260,14 @@ public class ControleurJeu {
 		log.debug("Fin du calcul de la réponse.");
 	}
 
-	private void actualiserPanneauValidation() {
-		vue.getListePanneauValidation().get(getClef(1, modele.getCompteurEssais() + 1))
-				.remove(vue.getBoutonValidation());
-		vue.getListePanneauValidation().get(getClef(1, modele.getCompteurEssais())).add(vue.getBoutonValidation());
-		vue.getPanneauPrincipal().repaint();
-	}
+	/*
+	 * private void actualiserPanneauValidation() {
+	 * vue.getListePanneauValidation().get(getClef(1, modele.getCompteurEssais() +
+	 * 1)) .remove(vue.getBoutonValidation());
+	 * vue.getListePanneauValidation().get(getClef(1,
+	 * modele.getCompteurEssais())).add(vue.getBoutonValidation());
+	 * vue.getPanneauPrincipal().repaint(); }
+	 */
 
 	private void isGagnantQ() {
 		Iterator<Pion> itProposition = modele.getCombinaisonProposition().iterator();

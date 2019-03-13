@@ -241,9 +241,10 @@ public class DialogueSelectionCombinaison extends JDialog implements Observateur
 			pionAleatoire = modele.getPionsUtilisables().get(RandomUtils.nextInt(0, modele.getNbPionsUtilisables()));
 			setPion(listePanneauSecret, getClef(i, 1), pionAleatoire);
 			combinaisonSecrete.add(pionAleatoire);
-			modele.setPionSecret(pionAleatoire);
-			modele.getPionSecret(i);
+			// modele.setPionSecret(pionAleatoire);
+			// modele.getPionSecret(i);
 		}
+		boutonOk.setEnabled(true);
 	}
 
 	public List<Pion> getValeur() {

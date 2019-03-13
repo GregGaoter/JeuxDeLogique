@@ -659,8 +659,8 @@ public class Vue implements Observateur {
 	}
 
 	public void actualiser() {
-		boutonValidation.setEnabled(!modele.getCombinaisonProposition().contains(PionCommun.Vide));
 		Joueur attaquant = modele.getAttaquant();
+		attaquant.getBoutonValidation().setEnabled(!modele.getCombinaisonProposition().contains(PionCommun.Vide));
 		String clef;
 		for (int y = 1; y <= modele.getNbEssais(); y++) {
 			for (int x = 1; x <= modele.getNbPionsCombinaison(); x++) {
@@ -670,6 +670,16 @@ public class Vue implements Observateur {
 			}
 		}
 		log.debug("La vue a été actualisée.");
+	}
+
+	public void actualiserPanneauValidation() {
+		panneauValidation.removeAll();
+		for (Map.Entry<String, JPanel> item : modele.getListePanneauValidation().entrySet()) {
+			contraintes.gridx = Integer.parseInt(item.getKey().split(separateurClef)[0]);
+			contraintes.gridy = Integer.parseInt(item.getKey().split(separateurClef)[1]);
+			panneauValidation.add(item.getValue(), contraintes);
+		}
+		panneauValidation.repaint();
 	}
 
 }

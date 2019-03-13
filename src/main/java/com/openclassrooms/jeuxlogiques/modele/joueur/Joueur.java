@@ -1,10 +1,14 @@
 package com.openclassrooms.jeuxlogiques.modele.joueur;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 import org.apache.log4j.Logger;
 
@@ -15,6 +19,7 @@ import com.openclassrooms.jeuxlogiques.modele.SujetObservable;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.Pion;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.PionCommun;
 import com.openclassrooms.jeuxlogiques.vue.Observateur;
+import com.openclassrooms.jeuxlogiques.vue.PanneauBoutonValidation;
 
 public abstract class Joueur implements SujetObservable {
 
@@ -28,6 +33,7 @@ public abstract class Joueur implements SujetObservable {
 
 	protected HashMap<String, Pion> listePanneauProposition;
 	protected HashMap<String, Pion> listePanneauReponse;
+	protected HashMap<String, JPanel> listePanneauValidation;
 
 	protected List<Observateur> listeObservateurs;
 
@@ -39,6 +45,7 @@ public abstract class Joueur implements SujetObservable {
 	private boolean attaquantQ;
 
 	private Pion pionSecret;
+	private JButton boutonValidation;
 
 	public Joueur() {
 		combinaisonSecrete = new ArrayList<>();
@@ -46,17 +53,27 @@ public abstract class Joueur implements SujetObservable {
 		combinaisonReponse = new ArrayList<>();
 		listePanneauProposition = new HashMap<>();
 		listePanneauReponse = new HashMap<>();
+		listePanneauValidation = new HashMap<>();
+		boutonValidation = new JButton("Valider");
+		boutonValidation.setEnabled(false);
+		boutonValidation.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				log.debug("Clique sur le bouton valider.");
+				controleur.calculerReponse();
+			}
+		});
 		listeObservateurs = new ArrayList<>();
 	}
 
 	public void initialiserJoueur() {
+		compteurEssais = modele.getNbEssais();
 		initialiserCombinaison(combinaisonSecrete);
 		initialiserCombinaison(combinaisonProposition);
 		initialiserCombinaison(combinaisonReponse);
 		setListePanneauPion(listePanneauProposition, modele.getNbPionsCombinaison(), modele.getNbEssais(),
 				PionCommun.Vide);
 		setListePanneauPion(listePanneauReponse, modele.getNbPionsCombinaison(), modele.getNbEssais(), PionCommun.Vide);
-		compteurEssais = modele.getNbEssais();
+		setListePanneauValidation();
 		pionSecret = PionCommun.Vide;
 	}
 
@@ -72,6 +89,21 @@ public abstract class Joueur implements SujetObservable {
 			for (int x = 1; x <= xMax; x++)
 				listePanneau.put(getClef(x, y), pion);
 		}
+	}
+
+	private void setListePanneauValidation() {
+		for (int y = 1; y <= modele.getNbEssais(); y++)
+			listePanneauValidation.put(getClef(1, y), new PanneauBoutonValidation(boutonValidation));
+		listePanneauValidation.get(getClef(1, compteurEssais)).add(boutonValidation);
+	}
+
+	public void actualiserPanneauValidation() {
+		listePanneauValidation.get(getClef(1, compteurEssais + 1)).remove(boutonValidation);
+		listePanneauValidation.get(getClef(1, compteurEssais)).add(boutonValidation);
+	}
+
+	public HashMap<String, JPanel> getListePanneauValidation() {
+		return listePanneauValidation;
 	}
 
 	public void setPion(HashMap<String, Pion> listePanneau, String clef, Pion pion) {
@@ -122,6 +154,10 @@ public abstract class Joueur implements SujetObservable {
 
 	public void setCompteurEssais(int compteurEssais) {
 		this.compteurEssais = compteurEssais;
+	}
+
+	public JButton getBoutonValidation() {
+		return boutonValidation;
 	}
 
 	public boolean getAttaquantQ() {

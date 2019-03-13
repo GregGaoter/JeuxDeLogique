@@ -2,7 +2,10 @@ package com.openclassrooms.jeuxlogiques.modele;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+
+import javax.swing.JPanel;
 
 import org.apache.log4j.Logger;
 
@@ -44,6 +47,8 @@ public class ModeleJeu implements SujetObservable {
 	private List<Pion> combinaisonReponse;
 	private List<Pion> pionsUtilisables;
 
+	private HashMap<String, JPanel> listePanneauValidation;
+
 	private Joueur defenseur, attaquant;
 
 	private Pion pionSecret;
@@ -70,6 +75,7 @@ public class ModeleJeu implements SujetObservable {
 		combinaisonProposition = attaquant.getCombinaisonProposition();
 		// combinaisonReponse = new ArrayList<>(nbPionsCombinaison);
 		combinaisonReponse = attaquant.getCombinaisonReponse();
+		listePanneauValidation = attaquant.getListePanneauValidation();
 		setPionsUtilisables(Arrays.asList(jeu.getPionsJeu()));
 		pionProposition = PionCommun.Vide;
 	}
@@ -151,6 +157,14 @@ public class ModeleJeu implements SujetObservable {
 		this.combinaisonReponse = combinaisonReponse;
 		log.debug("Combinaison réponse du modèle :" + combinaisonReponse);
 		notifierObservateur();
+	}
+
+	public HashMap<String, JPanel> getListePanneauValidation() {
+		return listePanneauValidation;
+	}
+
+	public void setListePanneauValidation(HashMap<String, JPanel> listePanneauValidation) {
+		this.listePanneauValidation = listePanneauValidation;
 	}
 
 	public void setPionsUtilisables(List<Pion> pionsUtilisables) {
