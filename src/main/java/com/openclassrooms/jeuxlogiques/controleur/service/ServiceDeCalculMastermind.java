@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.lang3.RandomUtils;
 
+import com.openclassrooms.jeuxlogiques.modele.ModeleJeu;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.Pion;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.PionCommun;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.PionReponseCouleur;
@@ -17,9 +18,11 @@ import com.openclassrooms.jeuxlogiques.modele.enumeration.PionReponseCouleur;
  * @author Grégory Gautier
  * @version 1.0
  */
-public class ServiceDeCalculMastermind implements ServiceDeCalcul {
+public class ServiceDeCalculMastermind extends ServiceDeCalcul {
 
-	private final static Logger log = Logger.getLogger(ServiceDeCalculMastermind.class);
+	public ServiceDeCalculMastermind(int nbPionsCombinaisonSecrete) {
+		super(nbPionsCombinaisonSecrete);
+	}
 
 	/**
 	 * Calcul la réponse du jeu Mastermind.
@@ -92,9 +95,18 @@ public class ServiceDeCalculMastermind implements ServiceDeCalcul {
 		for (int i = 0; i < proposition.size() - nbBienPlace - nbMalPlace; i++)
 			reponse.add(PionCommun.Vide);
 
-		log.debug("Le Mastermind a calculé sa réponse.");
-
 		return reponse;
+	}
+
+	public List<Pion> calculerProposition(ModeleJeu modele, List<Pion> derniereProposition,
+			List<Pion> derniereReponse) {
+		List<Pion> nouvelleProposition = new ArrayList<>(derniereProposition.size());
+		Pion pionAleatoire;
+		for (int i = 1; i <= derniereProposition.size(); i++) {
+			pionAleatoire = modele.getPionsUtilisables().get(RandomUtils.nextInt(0, modele.getNbPionsUtilisables()));
+			nouvelleProposition.add(pionAleatoire);
+		}
+		return nouvelleProposition;
 	}
 
 }

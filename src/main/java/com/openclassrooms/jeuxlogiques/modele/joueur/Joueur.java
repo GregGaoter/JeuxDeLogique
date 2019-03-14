@@ -10,9 +10,6 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import org.apache.log4j.Logger;
-
-import com.openclassrooms.jeuxlogiques.Main;
 import com.openclassrooms.jeuxlogiques.controleur.ControleurJeu;
 import com.openclassrooms.jeuxlogiques.modele.ModeleJeu;
 import com.openclassrooms.jeuxlogiques.modele.SujetObservable;
@@ -22,8 +19,6 @@ import com.openclassrooms.jeuxlogiques.vue.Observateur;
 import com.openclassrooms.jeuxlogiques.vue.PanneauBoutonValidation;
 
 public abstract class Joueur implements SujetObservable {
-
-	private final static Logger log = Logger.getLogger(Main.class);
 
 	private final String separateurClef = "-";
 
@@ -43,6 +38,7 @@ public abstract class Joueur implements SujetObservable {
 	protected String nom;
 	protected int compteurEssais;
 	private boolean attaquantQ;
+	protected boolean humainQ;
 
 	private Pion pionSecret;
 	private JButton boutonValidation;
@@ -58,7 +54,6 @@ public abstract class Joueur implements SujetObservable {
 		boutonValidation.setEnabled(false);
 		boutonValidation.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				log.debug("Clique sur le bouton valider.");
 				controleur.calculerReponse();
 			}
 		});
@@ -166,6 +161,10 @@ public abstract class Joueur implements SujetObservable {
 
 	public void setAttaquantQ(boolean attaquantQ) {
 		this.attaquantQ = attaquantQ;
+	}
+
+	public boolean getHumainQ() {
+		return humainQ;
 	}
 
 	public void setModele(ModeleJeu modele) {

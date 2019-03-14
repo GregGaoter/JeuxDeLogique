@@ -28,8 +28,8 @@ public class JeuRecherchePlusMoins extends Jeu {
 		nbPionsUtilisables = 10;
 	}
 
-	public ServiceDeCalcul getServiceDeCalcul() {
-		return new ServiceDeCalculRecherchePlusMoins();
+	public ServiceDeCalcul getServiceDeCalcul(int nbPionsCombinaisonSecrete) {
+		return new ServiceDeCalculRecherchePlusMoins(nbPionsCombinaisonSecrete);
 	}
 
 	public String getNomFichierHTMLReglesJeu() {

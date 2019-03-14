@@ -31,8 +31,8 @@ public class JeuMastermind extends Jeu {
 		this.nbPionsUtilisables = nbPionsUtilisables;
 	}
 
-	public ServiceDeCalcul getServiceDeCalcul() {
-		return new ServiceDeCalculMastermind();
+	public ServiceDeCalcul getServiceDeCalcul(int nbPionsCombinaisonSecrete) {
+		return new ServiceDeCalculMastermind(nbPionsCombinaisonSecrete);
 	}
 
 	public String getNomFichierHTMLReglesJeu() {

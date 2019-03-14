@@ -27,7 +27,7 @@ public abstract class Jeu {
 
 	public abstract void setNbPionsUtilisables(int nbPionsUtilisables);
 
-	public abstract ServiceDeCalcul getServiceDeCalcul();
+	public abstract ServiceDeCalcul getServiceDeCalcul(int nbPionsCombinaisonSecrete);
 
 	public abstract String getNomFichierHTMLReglesJeu();
 

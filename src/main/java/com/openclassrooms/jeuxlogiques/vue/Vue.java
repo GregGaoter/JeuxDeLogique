@@ -35,8 +35,6 @@ import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.border.EmptyBorder;
 import javax.swing.text.BadLocationException;
 
-import org.apache.log4j.Logger;
-
 import com.openclassrooms.jeuxlogiques.controleur.ControleurJeu;
 import com.openclassrooms.jeuxlogiques.modele.ModeleJeu;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.Pion;
@@ -50,8 +48,6 @@ import com.openclassrooms.jeuxlogiques.vue.separateur.AlignementHorizontal;
 import com.openclassrooms.jeuxlogiques.vue.separateur.SeparateurVertical;
 
 public class Vue implements Observateur {
-
-	private final static Logger log = Logger.getLogger(Vue.class);
 
 	private final String separateurClef = "-";
 
@@ -383,16 +379,17 @@ public class Vue implements Observateur {
 		toggleButtonJoueur = new JToggleButton(modele.getNomJoueur());
 		buttonGroupJoueurCourant.add(toggleButtonJoueur);
 		panneauJoueurCourant.add(toggleButtonJoueur);
+		toggleButtonJoueur.setEnabled(false);
 		toggleButtonJoueur.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
 			}
 		});
-		toggleButtonJoueur.doClick();
 
 		toggleButtonOrdinateur = new JToggleButton("Ordinateur");
 		buttonGroupJoueurCourant.add(toggleButtonOrdinateur);
 		panneauJoueurCourant.add(toggleButtonOrdinateur);
+		toggleButtonOrdinateur.setEnabled(false);
 		toggleButtonOrdinateur.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -513,7 +510,6 @@ public class Vue implements Observateur {
 		creerPanneauValidation();
 		boutonValidation.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				log.debug("Clique sur le bouton valider.");
 				controleur.calculerReponse();
 			}
 		});
@@ -602,6 +598,10 @@ public class Vue implements Observateur {
 		return toggleButtonJoueur;
 	}
 
+	public JToggleButton getToggleButtonOrdinateur() {
+		return toggleButtonOrdinateur;
+	}
+
 	public JLabel getPionSelectionne() {
 		return pionSelectionne;
 	}
@@ -669,7 +669,10 @@ public class Vue implements Observateur {
 				setPion(listePanneauReponse, clef, attaquant.getListePanneauReponse().get(clef));
 			}
 		}
-		log.debug("La vue a été actualisée.");
+		if (attaquant.getHumainQ())
+			toggleButtonJoueur.setSelected(true);
+		else
+			toggleButtonOrdinateur.setSelected(true);
 	}
 
 	public void actualiserPanneauValidation() {

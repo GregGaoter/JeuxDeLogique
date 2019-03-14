@@ -2,11 +2,10 @@ package com.openclassrooms.jeuxlogiques.controleur;
 
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-
-import org.apache.log4j.Logger;
 
 import com.openclassrooms.jeuxlogiques.controleur.service.ServiceDeCalcul;
 import com.openclassrooms.jeuxlogiques.modele.ModeleJeu;
@@ -24,7 +23,7 @@ import com.openclassrooms.jeuxlogiques.vue.dialogue.DialogueOptionJoueur;
 
 public class ControleurJeu {
 
-	private final static Logger log = Logger.getLogger(ControleurJeu.class);
+	// private final static Logger log = Logger.getLogger(ControleurJeu.class);
 
 	private final String separateurClef = "-";
 
@@ -68,7 +67,7 @@ public class ControleurJeu {
 			modele.setJeu(jeu);
 			modele.setNbPionsUtilisables(jeu.getNbPionsUtilisables());
 			modele.setPionsUtilisables(Arrays.asList(jeu.getPionsJeu()));
-			setServiceDeCalcul(jeu.getServiceDeCalcul());
+			setServiceDeCalcul(jeu.getServiceDeCalcul(modele.getNbPionsCombinaison()));
 			vue.initialiserPanneaux();
 			vue.getPanneauPrincipal().repaint();
 			lancerMode(fenetreProprietaire);
@@ -119,18 +118,13 @@ public class ControleurJeu {
 					vue.setPion(vue.getListePanneauReponse(), getClef(x, y), PionCommun.Vide);
 				}
 			}
-			/*
-			 * vue.getListePanneauValidation().get(getClef(1, modele.getCompteurEssais()))
-			 * .remove(vue.getBoutonValidation());
-			 * vue.getListePanneauValidation().get(getClef(1,
-			 * modele.getNbEssais())).add(vue.getBoutonValidation());
-			 */
 			vue.actualiserPanneauValidation();
-			// modele.setCompteurEssais(modele.getNbEssais());
 			vue.getMessageNbEssais().setText("01 / " + Integer.toString(modele.getNbEssais()));
 			afficherVainqueur("-");
 			vue.getMenuItemOptionJeu().setEnabled(true);
 			vue.getBoutonOptionJeu().setEnabled(true);
+			vue.getToggleButtonJoueur().setEnabled(true);
+			vue.getToggleButtonOrdinateur().setEnabled(true);
 		}
 		dialogueMode.dispose();
 		gagnantQ = false;
@@ -140,7 +134,6 @@ public class ControleurJeu {
 	}
 
 	private void lancerTour() {
-		log.debug("Début de lancerTour()");
 		if (!gagnantQ) {
 			if (!itDefenseurs.hasNext() && !itAttaquants.hasNext()) {
 				itDefenseurs = mode.getListeDefenseurs().iterator();
@@ -161,7 +154,6 @@ public class ControleurJeu {
 			vue.actualiserPanneauValidation();
 			vue.actualiser();
 		}
-		log.debug("Fin de lancerTour()");
 	}
 
 	public void lancerDialogueOption(JFrame fenetreProprietaire) {
@@ -228,7 +220,6 @@ public class ControleurJeu {
 	}
 
 	public void calculerReponse() {
-		log.debug("Début du calcul de la réponse.");
 		attaquant.setCombinaisonReponse(
 				serviceDeCalcul.calculerReponse(modele.getCombinaisonProposition(), modele.getCombinaisonSecrete()));
 		modele.setCombinaisonReponse(attaquant.getCombinaisonReponse());
@@ -240,11 +231,15 @@ public class ControleurJeu {
 			afficherVainqueur(attaquant.getNom());
 			vue.getBoutonRejouerMemeJeu().setEnabled(true);
 		} else {
-			modele.initialiserCombinaison(modele.getCombinaisonProposition(), modele.getNbPionsCombinaison());
-			modele.initialiserCombinaison(modele.getCombinaisonReponse(), modele.getNbPionsCombinaison());
+			/*
+			 * modele.initialiserCombinaison(modele.getCombinaisonProposition(),
+			 * modele.getNbPionsCombinaison());
+			 * modele.initialiserCombinaison(modele.getCombinaisonReponse(),
+			 * modele.getNbPionsCombinaison());
+			 */
 			attaquant.decrementerCompteurEssais();
 			modele.setCompteurEssais(attaquant.getCompteurEssais());
-			if (modele.getCompteurEssais() > 0) {
+			if (attaquant.getCompteurEssais() > 0) {
 				attaquant.actualiserPanneauValidation();
 				int essai = 1 + modele.getNbEssais() - attaquant.getCompteurEssais();
 				vue.getMessageNbEssais().setText((essai < 10 ? "0" : "") + Integer.toString(essai) + " / "
@@ -257,17 +252,7 @@ public class ControleurJeu {
 				vue.getBoutonRejouerMemeJeu().setEnabled(true);
 			}
 		}
-		log.debug("Fin du calcul de la réponse.");
 	}
-
-	/*
-	 * private void actualiserPanneauValidation() {
-	 * vue.getListePanneauValidation().get(getClef(1, modele.getCompteurEssais() +
-	 * 1)) .remove(vue.getBoutonValidation());
-	 * vue.getListePanneauValidation().get(getClef(1,
-	 * modele.getCompteurEssais())).add(vue.getBoutonValidation());
-	 * vue.getPanneauPrincipal().repaint(); }
-	 */
 
 	private void isGagnantQ() {
 		Iterator<Pion> itProposition = modele.getCombinaisonProposition().iterator();
@@ -300,6 +285,10 @@ public class ControleurJeu {
 	public void setPionSelectionne() {
 		vue.getPionSelectionne()
 				.setIcon(new ImageIcon(getClass().getResource(modele.getPionSelectionne().getNomImage())));
+	}
+
+	public List<Pion> setCombinaisonProposition(List<Pion> combinaisonProposition, List<Pion> combinaisonReponse) {
+		return serviceDeCalcul.calculerProposition(modele, combinaisonProposition, combinaisonReponse);
 	}
 
 }
