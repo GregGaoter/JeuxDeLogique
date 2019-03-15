@@ -26,8 +26,8 @@ public class Ordinateur extends Joueur {
 	}
 
 	public void setCombinaisonProposition() {
-		List<Pion> nouvelleCombinaisonProposition = controleur.setCombinaisonProposition(combinaisonProposition,
-				combinaisonReponse);
+		List<Pion> nouvelleCombinaisonProposition = controleur.setCombinaisonProposition(listeCombinaisonsPossibles,
+				combinaisonProposition, combinaisonReponse);
 		combinaisonProposition.clear();
 		combinaisonProposition.addAll(nouvelleCombinaisonProposition);
 		for (int i = 1; i <= modele.getNbPionsCombinaison(); i++)

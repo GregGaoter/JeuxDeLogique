@@ -2,7 +2,6 @@ package com.openclassrooms.jeuxlogiques.controleur.service;
 
 import java.util.List;
 
-import com.openclassrooms.jeuxlogiques.modele.ModeleJeu;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.Pion;
 
 /**
@@ -22,7 +21,7 @@ public abstract class ServiceDeCalcul {
 
 	public abstract List<Pion> calculerReponse(List<Pion> proposition, List<Pion> solution);
 
-	public abstract List<Pion> calculerProposition(ModeleJeu modele, List<Pion> derniereProposition,
-			List<Pion> derniereReponse);
+	public abstract List<Pion> calculerProposition(List<List<Pion>> listeCombinaisonsPossibles,
+			List<Pion> derniereProposition, List<Pion> derniereReponse);
 
 }

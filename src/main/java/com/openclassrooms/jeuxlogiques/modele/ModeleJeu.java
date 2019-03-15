@@ -65,11 +65,8 @@ public class ModeleJeu implements SujetObservable {
 
 	public void initialiser() {
 		compteurEssais = nbEssais;
-		// combinaisonSecrete = new ArrayList<>(nbPionsCombinaison);
 		combinaisonSecrete = defenseur.getCombinaisonSecrete();
-		// combinaisonProposition = new ArrayList<>(nbPionsCombinaison);
 		combinaisonProposition = attaquant.getCombinaisonProposition();
-		// combinaisonReponse = new ArrayList<>(nbPionsCombinaison);
 		combinaisonReponse = attaquant.getCombinaisonReponse();
 		listePanneauValidation = attaquant.getListePanneauValidation();
 		setPionsUtilisables(Arrays.asList(jeu.getPionsJeu()));

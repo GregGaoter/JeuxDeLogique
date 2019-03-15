@@ -10,6 +10,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import org.apache.log4j.Logger;
+
 import com.openclassrooms.jeuxlogiques.controleur.ControleurJeu;
 import com.openclassrooms.jeuxlogiques.modele.ModeleJeu;
 import com.openclassrooms.jeuxlogiques.modele.SujetObservable;
@@ -20,7 +22,12 @@ import com.openclassrooms.jeuxlogiques.vue.PanneauBoutonValidation;
 
 public abstract class Joueur implements SujetObservable {
 
+	private final static Logger log = Logger.getLogger(Joueur.class);
+
 	private final String separateurClef = "-";
+
+	protected List<List<Pion>> listeCombinaisonsPossibles;
+	protected int nbCombinaisonsPossibles;
 
 	protected List<Pion> combinaisonSecrete;
 	protected List<Pion> combinaisonProposition;
@@ -69,6 +76,9 @@ public abstract class Joueur implements SujetObservable {
 				PionCommun.Vide);
 		setListePanneauPion(listePanneauReponse, modele.getNbPionsCombinaison(), modele.getNbEssais(), PionCommun.Vide);
 		setListePanneauValidation();
+		nbCombinaisonsPossibles = (int) Math.pow(modele.getNbPionsUtilisables(), modele.getNbPionsCombinaison());
+		listeCombinaisonsPossibles = new ArrayList<>(nbCombinaisonsPossibles);
+		setListeCombinaisonsPossibles();
 		pionSecret = PionCommun.Vide;
 	}
 
@@ -97,6 +107,31 @@ public abstract class Joueur implements SujetObservable {
 		listePanneauValidation.get(getClef(1, compteurEssais)).add(boutonValidation);
 	}
 
+	// Source :
+	// https://codereview.stackexchange.com/questions/41510/calculate-all-possible-combinations-of-given-characters
+	private void setListeCombinaisonsPossibles() {
+		int carry;
+		int[] indices = new int[modele.getNbPionsCombinaison()];
+		ArrayList<Pion> combinaison;
+		do {
+			combinaison = new ArrayList<>(modele.getNbPionsCombinaison());
+			for (int index : indices)
+				combinaison.add(modele.getPionsUtilisables().get(index));
+			listeCombinaisonsPossibles.add(combinaison);
+			carry = 1;
+			for (int i = indices.length - 1; i >= 0; i--) {
+				if (carry == 0)
+					break;
+				indices[i] += carry;
+				carry = 0;
+				if (indices[i] == modele.getNbPionsUtilisables()) {
+					carry = 1;
+					indices[i] = 0;
+				}
+			}
+		} while (carry != 1);
+	}
+
 	public HashMap<String, JPanel> getListePanneauValidation() {
 		return listePanneauValidation;
 	}
@@ -107,6 +142,10 @@ public abstract class Joueur implements SujetObservable {
 		 * log.debug("Mise à jour d'un pion : joueur " + nom + " / listePanneau " +
 		 * listePanneau + " / clef " + clef + " / pion " + pion.getNomImage());
 		 */
+	}
+
+	public List<List<Pion>> getListeCombinaisonsPossibles() {
+		return listeCombinaisonsPossibles;
 	}
 
 	public List<Pion> getCombinaisonSecrete() {

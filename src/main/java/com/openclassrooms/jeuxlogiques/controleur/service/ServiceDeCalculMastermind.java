@@ -5,8 +5,8 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.apache.commons.lang3.RandomUtils;
+import org.apache.log4j.Logger;
 
-import com.openclassrooms.jeuxlogiques.modele.ModeleJeu;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.Pion;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.PionCommun;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.PionReponseCouleur;
@@ -19,6 +19,8 @@ import com.openclassrooms.jeuxlogiques.modele.enumeration.PionReponseCouleur;
  * @version 1.0
  */
 public class ServiceDeCalculMastermind extends ServiceDeCalcul {
+
+	private final static Logger log = Logger.getLogger(ServiceDeCalculMastermind.class);
 
 	public ServiceDeCalculMastermind(int nbPionsCombinaisonSecrete) {
 		super(nbPionsCombinaisonSecrete);
@@ -98,15 +100,12 @@ public class ServiceDeCalculMastermind extends ServiceDeCalcul {
 		return reponse;
 	}
 
-	public List<Pion> calculerProposition(ModeleJeu modele, List<Pion> derniereProposition,
+	public List<Pion> calculerProposition(List<List<Pion>> listeCombinaisonsPossibles, List<Pion> derniereProposition,
 			List<Pion> derniereReponse) {
-		List<Pion> nouvelleProposition = new ArrayList<>(derniereProposition.size());
-		Pion pionAleatoire;
-		for (int i = 1; i <= derniereProposition.size(); i++) {
-			pionAleatoire = modele.getPionsUtilisables().get(RandomUtils.nextInt(0, modele.getNbPionsUtilisables()));
-			nouvelleProposition.add(pionAleatoire);
-		}
-		return nouvelleProposition;
+		if (!derniereProposition.contains(PionCommun.Vide))
+			listeCombinaisonsPossibles
+					.removeIf(c -> (!derniereReponse.equals(calculerReponse(c, derniereProposition))));
+		return listeCombinaisonsPossibles.get(RandomUtils.nextInt(0, listeCombinaisonsPossibles.size()));
 	}
 
 }

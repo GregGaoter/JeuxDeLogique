@@ -11,6 +11,7 @@ public class Main {
 	public static void main(String[] modeDeveloppeur) {
 		log.info("Démarrage du jeu");
 		new ControleurJeu(modeDeveloppeur);
+
 		/*
 		 * EventQueue.invokeLater(new Runnable() { public void run() { try { new
 		 * ControleurJeu(modeDeveloppeur); } catch (Exception e) { e.printStackTrace();

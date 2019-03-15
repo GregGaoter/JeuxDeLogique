@@ -93,6 +93,12 @@ public class ControleurJeu {
 				attaquant.setControleur(this);
 			}
 			itDefenseurs = mode.getListeDefenseurs().iterator();
+			itAttaquants = mode.getListeAttaquants().iterator();
+			defenseur = itDefenseurs.next();
+			attaquant = itAttaquants.next();
+			defenseur.initialiserJoueur();
+			attaquant.initialiserJoueur();
+			itDefenseurs = mode.getListeDefenseurs().iterator();
 			while (itDefenseurs.hasNext()) {
 				defenseur = itDefenseurs.next();
 				defenseur.setAttaquantQ(false);
@@ -287,8 +293,10 @@ public class ControleurJeu {
 				.setIcon(new ImageIcon(getClass().getResource(modele.getPionSelectionne().getNomImage())));
 	}
 
-	public List<Pion> setCombinaisonProposition(List<Pion> combinaisonProposition, List<Pion> combinaisonReponse) {
-		return serviceDeCalcul.calculerProposition(modele, combinaisonProposition, combinaisonReponse);
+	public List<Pion> setCombinaisonProposition(List<List<Pion>> listeCombinaisonsPossibles,
+			List<Pion> combinaisonProposition, List<Pion> combinaisonReponse) {
+		return serviceDeCalcul.calculerProposition(listeCombinaisonsPossibles, combinaisonProposition,
+				combinaisonReponse);
 	}
 
 }

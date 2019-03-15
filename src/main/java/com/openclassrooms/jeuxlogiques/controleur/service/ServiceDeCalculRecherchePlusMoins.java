@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import com.openclassrooms.jeuxlogiques.modele.ModeleJeu;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.Pion;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.PionChiffre;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.PionCommun;
@@ -59,7 +58,7 @@ public class ServiceDeCalculRecherchePlusMoins extends ServiceDeCalcul {
 		return reponse;
 	}
 
-	public List<Pion> calculerProposition(ModeleJeu modele, List<Pion> derniereProposition,
+	public List<Pion> calculerProposition(List<List<Pion>> listeCombinaisonsPossibles, List<Pion> derniereProposition,
 			List<Pion> derniereReponse) {
 		List<Pion> nouvelleProposition = new ArrayList<>(nbPionsCombinaisonSecrete);
 		if (derniereReponse.contains(PionCommun.Vide))
