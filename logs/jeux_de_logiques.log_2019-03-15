@@ -1,0 +1,315 @@
+2019-03-15 01:20:42 INFO  Main:12 - Démarrage du jeu
+2019-03-15 01:20:51 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Vide, Vide, Vide, Vide]
+2019-03-15 01:20:51 DEBUG ServiceDeCalculMastermind:106 - Avant : 1296
+2019-03-15 01:20:51 DEBUG ServiceDeCalculMastermind:110 - Après : 1296
+2019-03-15 01:20:53 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Noir, Blanc, Vide, Vide]
+2019-03-15 01:20:53 DEBUG ServiceDeCalculMastermind:106 - Avant : 1296
+2019-03-15 01:20:53 DEBUG ServiceDeCalculMastermind:110 - Après : 230
+2019-03-15 01:20:56 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Noir, Noir, Vide, Vide]
+2019-03-15 01:20:56 DEBUG ServiceDeCalculMastermind:106 - Avant : 230
+2019-03-15 01:20:56 DEBUG ServiceDeCalculMastermind:110 - Après : 22
+2019-03-15 01:21:02 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Noir, Vide, Vide, Vide]
+2019-03-15 01:21:02 DEBUG ServiceDeCalculMastermind:106 - Avant : 22
+2019-03-15 01:21:02 DEBUG ServiceDeCalculMastermind:110 - Après : 5
+2019-03-15 01:21:05 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Noir, Vide, Vide, Vide]
+2019-03-15 01:21:05 DEBUG ServiceDeCalculMastermind:106 - Avant : 5
+2019-03-15 01:21:05 DEBUG ServiceDeCalculMastermind:110 - Après : 2
+2019-03-15 01:21:52 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Vide, Vide, Vide, Vide, Vide, Vide]
+2019-03-15 01:21:52 DEBUG ServiceDeCalculMastermind:106 - Avant : 1000000
+2019-03-15 01:21:52 DEBUG ServiceDeCalculMastermind:110 - Après : 1000000
+2019-03-15 01:21:56 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Noir, Blanc, Blanc, Blanc, Vide, Vide]
+2019-03-15 01:21:56 DEBUG ServiceDeCalculMastermind:106 - Avant : 1000000
+2019-03-15 01:21:57 DEBUG ServiceDeCalculMastermind:110 - Après : 49096
+2019-03-15 01:22:05 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Blanc, Blanc, Blanc, Vide, Vide, Vide]
+2019-03-15 01:22:05 DEBUG ServiceDeCalculMastermind:106 - Avant : 49096
+2019-03-15 01:22:05 DEBUG ServiceDeCalculMastermind:110 - Après : 9107
+2019-03-15 01:22:09 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Blanc, Blanc, Blanc, Blanc, Vide, Vide]
+2019-03-15 01:22:09 DEBUG ServiceDeCalculMastermind:106 - Avant : 9107
+2019-03-15 01:22:09 DEBUG ServiceDeCalculMastermind:110 - Après : 1338
+2019-03-15 01:22:13 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Noir, Noir, Noir, Vide, Vide, Vide]
+2019-03-15 01:22:13 DEBUG ServiceDeCalculMastermind:106 - Avant : 1338
+2019-03-15 01:22:13 DEBUG ServiceDeCalculMastermind:110 - Après : 27
+2019-03-15 01:22:18 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Noir, Noir, Noir, Vide, Vide, Vide]
+2019-03-15 01:22:18 DEBUG ServiceDeCalculMastermind:106 - Avant : 27
+2019-03-15 01:22:18 DEBUG ServiceDeCalculMastermind:110 - Après : 12
+2019-03-15 01:22:21 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Noir, Noir, Noir, Blanc, Vide, Vide]
+2019-03-15 01:22:21 DEBUG ServiceDeCalculMastermind:106 - Avant : 12
+2019-03-15 01:22:21 DEBUG ServiceDeCalculMastermind:110 - Après : 5
+2019-03-15 01:22:26 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Noir, Noir, Noir, Noir, Noir, Vide]
+2019-03-15 01:22:26 DEBUG ServiceDeCalculMastermind:106 - Avant : 5
+2019-03-15 01:22:26 DEBUG ServiceDeCalculMastermind:110 - Après : 2
+2019-03-15 01:22:30 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Noir, Noir, Noir, Noir, Noir, Vide]
+2019-03-15 01:22:30 DEBUG ServiceDeCalculMastermind:106 - Avant : 2
+2019-03-15 01:22:30 DEBUG ServiceDeCalculMastermind:110 - Après : 1
+2019-03-15 01:23:54 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Vide, Vide, Vide, Vide, Vide, Vide]
+2019-03-15 01:23:54 DEBUG ServiceDeCalculMastermind:106 - Avant : 1000000
+2019-03-15 01:23:54 DEBUG ServiceDeCalculMastermind:110 - Après : 1000000
+2019-03-15 01:24:00 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Noir, Blanc, Vide, Vide, Vide, Vide]
+2019-03-15 01:24:00 DEBUG ServiceDeCalculMastermind:106 - Avant : 1000000
+2019-03-15 01:24:00 DEBUG ServiceDeCalculMastermind:110 - Après : 128662
+2019-03-15 01:24:05 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Noir, Noir, Vide, Vide, Vide, Vide]
+2019-03-15 01:24:05 DEBUG ServiceDeCalculMastermind:106 - Avant : 128662
+2019-03-15 01:24:05 DEBUG ServiceDeCalculMastermind:110 - Après : 4002
+2019-03-15 01:24:10 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Noir, Blanc, Blanc, Vide, Vide, Vide]
+2019-03-15 01:24:10 DEBUG ServiceDeCalculMastermind:106 - Avant : 4002
+2019-03-15 01:24:10 DEBUG ServiceDeCalculMastermind:110 - Après : 647
+2019-03-15 01:24:15 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Noir, Blanc, Vide, Vide, Vide, Vide]
+2019-03-15 01:24:15 DEBUG ServiceDeCalculMastermind:106 - Avant : 647
+2019-03-15 01:24:15 DEBUG ServiceDeCalculMastermind:110 - Après : 109
+2019-03-15 01:24:18 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Noir, Noir, Noir, Blanc, Vide, Vide]
+2019-03-15 01:24:18 DEBUG ServiceDeCalculMastermind:106 - Avant : 109
+2019-03-15 01:24:18 DEBUG ServiceDeCalculMastermind:110 - Après : 7
+2019-03-15 01:24:23 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Noir, Noir, Noir, Noir, Blanc, Blanc]
+2019-03-15 01:24:23 DEBUG ServiceDeCalculMastermind:106 - Avant : 7
+2019-03-15 01:24:23 DEBUG ServiceDeCalculMastermind:110 - Après : 1
+2019-03-15 01:29:31 INFO  Main:12 - Démarrage du jeu
+2019-03-15 01:33:55 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Vide, Vide, Vide, Vide]
+2019-03-15 01:33:55 DEBUG ServiceDeCalculMastermind:106 - Avant : 1296
+2019-03-15 01:33:55 DEBUG ServiceDeCalculMastermind:110 - Après : 1296
+2019-03-15 01:33:58 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Noir, Blanc, Vide, Vide]
+2019-03-15 01:33:58 DEBUG ServiceDeCalculMastermind:106 - Avant : 1296
+2019-03-15 01:33:58 DEBUG ServiceDeCalculMastermind:110 - Après : 230
+2019-03-15 01:34:05 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Blanc, Blanc, Blanc, Vide]
+2019-03-15 01:34:05 DEBUG ServiceDeCalculMastermind:106 - Avant : 230
+2019-03-15 01:34:05 DEBUG ServiceDeCalculMastermind:110 - Après : 23
+2019-03-15 01:35:16 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Blanc, Blanc, Blanc, Vide]
+2019-03-15 01:35:16 DEBUG ServiceDeCalculMastermind:106 - Avant : 23
+2019-03-15 01:35:16 DEBUG ServiceDeCalculMastermind:110 - Après : 3
+2019-03-15 01:35:20 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Noir, Noir, Vide, Vide]
+2019-03-15 01:35:20 DEBUG ServiceDeCalculMastermind:106 - Avant : 3
+2019-03-15 01:35:20 DEBUG ServiceDeCalculMastermind:110 - Après : 2
+2019-03-15 01:37:21 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Vide, Vide, Vide, Vide]
+2019-03-15 01:37:21 DEBUG ServiceDeCalculMastermind:106 - Avant : 1296
+2019-03-15 01:37:21 DEBUG ServiceDeCalculMastermind:110 - Après : 1296
+2019-03-15 01:37:40 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Noir, Vide, Vide, Vide]
+2019-03-15 01:37:40 DEBUG ServiceDeCalculMastermind:106 - Avant : 1296
+2019-03-15 01:37:40 DEBUG ServiceDeCalculMastermind:110 - Après : 108
+2019-03-15 01:38:36 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Noir, Blanc, Vide, Vide]
+2019-03-15 01:38:36 DEBUG ServiceDeCalculMastermind:106 - Avant : 108
+2019-03-15 01:38:36 DEBUG ServiceDeCalculMastermind:110 - Après : 18
+2019-03-15 01:39:10 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Noir, Blanc, Vide, Vide]
+2019-03-15 01:39:10 DEBUG ServiceDeCalculMastermind:106 - Avant : 18
+2019-03-15 01:39:10 DEBUG ServiceDeCalculMastermind:110 - Après : 6
+2019-03-15 01:39:40 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Vide, Vide, Vide, Vide]
+2019-03-15 01:39:40 DEBUG ServiceDeCalculMastermind:106 - Avant : 1296
+2019-03-15 01:39:40 DEBUG ServiceDeCalculMastermind:110 - Après : 1296
+2019-03-15 01:39:42 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Noir, Vide, Vide, Vide]
+2019-03-15 01:39:42 DEBUG ServiceDeCalculMastermind:106 - Avant : 1296
+2019-03-15 01:39:42 DEBUG ServiceDeCalculMastermind:110 - Après : 182
+2019-03-15 01:39:45 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Blanc, Blanc, Vide, Vide]
+2019-03-15 01:39:45 DEBUG ServiceDeCalculMastermind:106 - Avant : 182
+2019-03-15 01:39:45 DEBUG ServiceDeCalculMastermind:110 - Après : 23
+2019-03-15 01:39:46 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Noir, Noir, Noir, Vide]
+2019-03-15 01:39:46 DEBUG ServiceDeCalculMastermind:106 - Avant : 23
+2019-03-15 01:39:46 DEBUG ServiceDeCalculMastermind:110 - Après : 2
+2019-03-15 02:23:52 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Vide, Vide, Vide, Vide]
+2019-03-15 02:23:52 DEBUG ServiceDeCalculMastermind:106 - Avant : 1296
+2019-03-15 02:23:52 DEBUG ServiceDeCalculMastermind:110 - Après : 1296
+2019-03-15 02:23:54 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Blanc, Vide, Vide, Vide]
+2019-03-15 02:23:54 DEBUG ServiceDeCalculMastermind:106 - Avant : 1296
+2019-03-15 02:23:54 DEBUG ServiceDeCalculMastermind:110 - Après : 308
+2019-03-15 02:24:07 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Blanc, Blanc, Vide, Vide]
+2019-03-15 02:24:07 DEBUG ServiceDeCalculMastermind:106 - Avant : 308
+2019-03-15 02:24:07 DEBUG ServiceDeCalculMastermind:110 - Après : 57
+2019-03-15 02:24:12 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Blanc, Vide, Vide, Vide]
+2019-03-15 02:24:12 DEBUG ServiceDeCalculMastermind:106 - Avant : 57
+2019-03-15 02:24:12 DEBUG ServiceDeCalculMastermind:110 - Après : 8
+2019-03-15 02:24:17 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Noir, Noir, Noir, Vide]
+2019-03-15 02:24:17 DEBUG ServiceDeCalculMastermind:106 - Avant : 8
+2019-03-15 02:24:17 DEBUG ServiceDeCalculMastermind:110 - Après : 2
+2019-03-15 02:24:57 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Vide, Vide, Vide, Vide, Vide, Vide]
+2019-03-15 02:24:57 DEBUG ServiceDeCalculMastermind:106 - Avant : 1000000
+2019-03-15 02:24:57 DEBUG ServiceDeCalculMastermind:110 - Après : 1000000
+2019-03-15 02:25:01 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Blanc, Blanc, Vide, Vide, Vide, Vide]
+2019-03-15 02:25:01 DEBUG ServiceDeCalculMastermind:106 - Avant : 1000000
+2019-03-15 02:25:02 DEBUG ServiceDeCalculMastermind:110 - Après : 207789
+2019-03-15 02:25:10 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Blanc, Blanc, Vide, Vide, Vide, Vide]
+2019-03-15 02:25:10 DEBUG ServiceDeCalculMastermind:106 - Avant : 207789
+2019-03-15 02:25:10 DEBUG ServiceDeCalculMastermind:110 - Après : 42502
+2019-03-15 02:25:16 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Noir, Noir, Vide, Vide, Vide, Vide]
+2019-03-15 02:25:16 DEBUG ServiceDeCalculMastermind:106 - Avant : 42502
+2019-03-15 02:25:16 DEBUG ServiceDeCalculMastermind:110 - Après : 2196
+2019-03-15 02:25:24 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Blanc, Blanc, Vide, Vide, Vide, Vide]
+2019-03-15 02:25:24 DEBUG ServiceDeCalculMastermind:106 - Avant : 2196
+2019-03-15 02:25:24 DEBUG ServiceDeCalculMastermind:110 - Après : 101
+2019-03-15 02:25:29 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Blanc, Blanc, Vide, Vide, Vide, Vide]
+2019-03-15 02:25:29 DEBUG ServiceDeCalculMastermind:106 - Avant : 101
+2019-03-15 02:25:29 DEBUG ServiceDeCalculMastermind:110 - Après : 11
+2019-03-15 02:25:35 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Noir, Noir, Noir, Blanc, Blanc, Blanc]
+2019-03-15 02:25:35 DEBUG ServiceDeCalculMastermind:106 - Avant : 11
+2019-03-15 02:25:35 DEBUG ServiceDeCalculMastermind:110 - Après : 2
+2019-03-15 02:25:43 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Noir, Noir, Noir, Blanc, Blanc, Blanc]
+2019-03-15 02:25:43 DEBUG ServiceDeCalculMastermind:106 - Avant : 2
+2019-03-15 02:25:43 DEBUG ServiceDeCalculMastermind:110 - Après : 1
+2019-03-15 02:26:09 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Vide, Vide, Vide, Vide, Vide, Vide]
+2019-03-15 02:26:09 DEBUG ServiceDeCalculMastermind:106 - Avant : 1000000
+2019-03-15 02:26:09 DEBUG ServiceDeCalculMastermind:110 - Après : 1000000
+2019-03-15 02:26:11 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Blanc, Blanc, Blanc, Blanc, Vide, Vide]
+2019-03-15 02:26:11 DEBUG ServiceDeCalculMastermind:106 - Avant : 1000000
+2019-03-15 02:26:12 DEBUG ServiceDeCalculMastermind:110 - Après : 87120
+2019-03-15 02:26:23 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Noir, Blanc, Vide, Vide, Vide, Vide]
+2019-03-15 02:26:23 DEBUG ServiceDeCalculMastermind:106 - Avant : 87120
+2019-03-15 02:26:23 DEBUG ServiceDeCalculMastermind:110 - Après : 11849
+2019-03-15 02:26:26 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Noir, Noir, Noir, Vide, Vide, Vide]
+2019-03-15 02:26:26 DEBUG ServiceDeCalculMastermind:106 - Avant : 11849
+2019-03-15 02:26:26 DEBUG ServiceDeCalculMastermind:110 - Après : 188
+2019-03-15 02:26:31 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Noir, Noir, Blanc, Vide, Vide, Vide]
+2019-03-15 02:26:31 DEBUG ServiceDeCalculMastermind:106 - Avant : 188
+2019-03-15 02:26:31 DEBUG ServiceDeCalculMastermind:110 - Après : 34
+2019-03-15 02:26:40 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Noir, Noir, Blanc, Vide, Vide, Vide]
+2019-03-15 02:26:40 DEBUG ServiceDeCalculMastermind:106 - Avant : 34
+2019-03-15 02:26:40 DEBUG ServiceDeCalculMastermind:110 - Après : 8
+2019-03-15 02:26:43 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Noir, Noir, Noir, Noir, Noir, Vide]
+2019-03-15 02:26:43 DEBUG ServiceDeCalculMastermind:106 - Avant : 8
+2019-03-15 02:26:43 DEBUG ServiceDeCalculMastermind:110 - Après : 3
+2019-03-15 02:26:48 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Noir, Noir, Noir, Noir, Noir, Vide]
+2019-03-15 02:26:48 DEBUG ServiceDeCalculMastermind:106 - Avant : 3
+2019-03-15 02:26:48 DEBUG ServiceDeCalculMastermind:110 - Après : 2
+2019-03-15 02:26:50 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Noir, Noir, Noir, Noir, Noir, Vide]
+2019-03-15 02:26:50 DEBUG ServiceDeCalculMastermind:106 - Avant : 2
+2019-03-15 02:26:50 DEBUG ServiceDeCalculMastermind:110 - Après : 1
+2019-03-15 02:27:07 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Vide, Vide, Vide, Vide, Vide, Vide]
+2019-03-15 02:27:07 DEBUG ServiceDeCalculMastermind:106 - Avant : 1000000
+2019-03-15 02:27:07 DEBUG ServiceDeCalculMastermind:110 - Après : 1000000
+2019-03-15 02:27:14 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Noir, Noir, Vide, Vide, Vide, Vide]
+2019-03-15 02:27:14 DEBUG ServiceDeCalculMastermind:106 - Avant : 1000000
+2019-03-15 02:27:14 DEBUG ServiceDeCalculMastermind:110 - Après : 33290
+2019-03-15 02:27:18 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Noir, Vide, Vide, Vide, Vide, Vide]
+2019-03-15 02:27:18 DEBUG ServiceDeCalculMastermind:106 - Avant : 33290
+2019-03-15 02:27:18 DEBUG ServiceDeCalculMastermind:110 - Après : 3797
+2019-03-15 02:27:26 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Noir, Blanc, Vide, Vide, Vide, Vide]
+2019-03-15 02:27:26 DEBUG ServiceDeCalculMastermind:106 - Avant : 3797
+2019-03-15 02:27:26 DEBUG ServiceDeCalculMastermind:110 - Après : 561
+2019-03-15 02:27:30 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Noir, Noir, Noir, Blanc, Blanc, Vide]
+2019-03-15 02:27:30 DEBUG ServiceDeCalculMastermind:106 - Avant : 561
+2019-03-15 02:27:30 DEBUG ServiceDeCalculMastermind:110 - Après : 7
+2019-03-15 02:27:33 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Noir, Noir, Blanc, Blanc, Vide, Vide]
+2019-03-15 02:27:33 DEBUG ServiceDeCalculMastermind:106 - Avant : 7
+2019-03-15 02:27:33 DEBUG ServiceDeCalculMastermind:110 - Après : 1
+2019-03-15 02:28:09 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Vide, Vide, Vide, Vide, Vide, Vide]
+2019-03-15 02:28:09 DEBUG ServiceDeCalculMastermind:106 - Avant : 1000000
+2019-03-15 02:28:09 DEBUG ServiceDeCalculMastermind:110 - Après : 1000000
+2019-03-15 02:28:15 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Noir, Blanc, Vide, Vide, Vide, Vide]
+2019-03-15 02:28:15 DEBUG ServiceDeCalculMastermind:106 - Avant : 1000000
+2019-03-15 02:28:15 DEBUG ServiceDeCalculMastermind:110 - Après : 128662
+2019-03-15 02:28:17 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Noir, Blanc, Blanc, Vide, Vide, Vide]
+2019-03-15 02:28:17 DEBUG ServiceDeCalculMastermind:106 - Avant : 128662
+2019-03-15 02:28:17 DEBUG ServiceDeCalculMastermind:110 - Après : 18711
+2019-03-15 02:28:20 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Blanc, Vide, Vide, Vide, Vide, Vide]
+2019-03-15 02:28:20 DEBUG ServiceDeCalculMastermind:106 - Avant : 18711
+2019-03-15 02:28:20 DEBUG ServiceDeCalculMastermind:110 - Après : 3488
+2019-03-15 02:28:22 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Blanc, Blanc, Blanc, Vide, Vide, Vide]
+2019-03-15 02:28:22 DEBUG ServiceDeCalculMastermind:106 - Avant : 3488
+2019-03-15 02:28:22 DEBUG ServiceDeCalculMastermind:110 - Après : 300
+2019-03-15 02:28:26 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Noir, Noir, Noir, Noir, Blanc, Blanc]
+2019-03-15 02:28:26 DEBUG ServiceDeCalculMastermind:106 - Avant : 300
+2019-03-15 02:28:26 DEBUG ServiceDeCalculMastermind:110 - Après : 4
+2019-03-15 02:28:45 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Vide, Vide, Vide, Vide, Vide, Vide]
+2019-03-15 02:28:45 DEBUG ServiceDeCalculMastermind:106 - Avant : 1000000
+2019-03-15 02:28:45 DEBUG ServiceDeCalculMastermind:110 - Après : 1000000
+2019-03-15 02:28:48 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Blanc, Blanc, Blanc, Vide, Vide, Vide]
+2019-03-15 02:28:48 DEBUG ServiceDeCalculMastermind:106 - Avant : 1000000
+2019-03-15 02:28:49 DEBUG ServiceDeCalculMastermind:110 - Après : 153616
+2019-03-15 02:28:55 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Blanc, Vide, Vide, Vide, Vide, Vide]
+2019-03-15 02:28:55 DEBUG ServiceDeCalculMastermind:106 - Avant : 153616
+2019-03-15 02:28:55 DEBUG ServiceDeCalculMastermind:110 - Après : 26423
+2019-03-15 02:29:03 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Blanc, Blanc, Blanc, Vide, Vide, Vide]
+2019-03-15 02:29:03 DEBUG ServiceDeCalculMastermind:106 - Avant : 26423
+2019-03-15 02:29:03 DEBUG ServiceDeCalculMastermind:110 - Après : 3068
+2019-03-15 02:29:06 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Noir, Blanc, Vide, Vide, Vide, Vide]
+2019-03-15 02:29:06 DEBUG ServiceDeCalculMastermind:106 - Avant : 3068
+2019-03-15 02:29:06 DEBUG ServiceDeCalculMastermind:110 - Après : 135
+2019-03-15 02:29:08 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Noir, Noir, Noir, Vide, Vide, Vide]
+2019-03-15 02:29:08 DEBUG ServiceDeCalculMastermind:106 - Avant : 135
+2019-03-15 02:29:08 DEBUG ServiceDeCalculMastermind:110 - Après : 14
+2019-03-15 02:29:12 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Noir, Noir, Noir, Vide, Vide, Vide]
+2019-03-15 02:29:12 DEBUG ServiceDeCalculMastermind:106 - Avant : 14
+2019-03-15 02:29:12 DEBUG ServiceDeCalculMastermind:110 - Après : 2
+2019-03-15 02:29:27 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Vide, Vide, Vide, Vide, Vide, Vide]
+2019-03-15 02:29:27 DEBUG ServiceDeCalculMastermind:106 - Avant : 1000000
+2019-03-15 02:29:27 DEBUG ServiceDeCalculMastermind:110 - Après : 1000000
+2019-03-15 02:29:29 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Blanc, Vide, Vide, Vide, Vide, Vide]
+2019-03-15 02:29:29 DEBUG ServiceDeCalculMastermind:106 - Avant : 1000000
+2019-03-15 02:29:29 DEBUG ServiceDeCalculMastermind:110 - Après : 170580
+2019-03-15 02:29:36 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Blanc, Blanc, Vide, Vide, Vide, Vide]
+2019-03-15 02:29:36 DEBUG ServiceDeCalculMastermind:106 - Avant : 170580
+2019-03-15 02:29:36 DEBUG ServiceDeCalculMastermind:110 - Après : 30535
+2019-03-15 02:29:39 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Blanc, Blanc, Blanc, Vide, Vide, Vide]
+2019-03-15 02:29:39 DEBUG ServiceDeCalculMastermind:106 - Avant : 30535
+2019-03-15 02:29:39 DEBUG ServiceDeCalculMastermind:110 - Après : 2968
+2019-03-15 02:29:43 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Noir, Blanc, Blanc, Vide, Vide, Vide]
+2019-03-15 02:29:43 DEBUG ServiceDeCalculMastermind:106 - Avant : 2968
+2019-03-15 02:29:43 DEBUG ServiceDeCalculMastermind:110 - Après : 426
+2019-03-15 02:29:47 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Blanc, Blanc, Vide, Vide, Vide, Vide]
+2019-03-15 02:29:47 DEBUG ServiceDeCalculMastermind:106 - Avant : 426
+2019-03-15 02:29:47 DEBUG ServiceDeCalculMastermind:110 - Après : 51
+2019-03-15 02:29:51 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Noir, Noir, Blanc, Blanc, Blanc, Blanc]
+2019-03-15 02:29:51 DEBUG ServiceDeCalculMastermind:106 - Avant : 51
+2019-03-15 02:29:51 DEBUG ServiceDeCalculMastermind:110 - Après : 3
+2019-03-15 02:29:54 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Noir, Noir, Blanc, Blanc, Blanc, Blanc]
+2019-03-15 02:29:54 DEBUG ServiceDeCalculMastermind:106 - Avant : 3
+2019-03-15 02:29:54 DEBUG ServiceDeCalculMastermind:110 - Après : 2
+2019-03-15 02:29:57 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Noir, Noir, Noir, Noir, Blanc, Blanc]
+2019-03-15 02:29:57 DEBUG ServiceDeCalculMastermind:106 - Avant : 2
+2019-03-15 02:29:57 DEBUG ServiceDeCalculMastermind:110 - Après : 1
+2019-03-15 02:30:17 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Vide, Vide, Vide, Vide, Vide, Vide]
+2019-03-15 02:30:17 DEBUG ServiceDeCalculMastermind:106 - Avant : 1000000
+2019-03-15 02:30:17 DEBUG ServiceDeCalculMastermind:110 - Après : 1000000
+2019-03-15 02:30:19 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Noir, Blanc, Blanc, Vide, Vide, Vide]
+2019-03-15 02:30:19 DEBUG ServiceDeCalculMastermind:106 - Avant : 1000000
+2019-03-15 02:30:19 DEBUG ServiceDeCalculMastermind:110 - Après : 108952
+2019-03-15 02:30:21 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Blanc, Blanc, Blanc, Vide, Vide, Vide]
+2019-03-15 02:30:21 DEBUG ServiceDeCalculMastermind:106 - Avant : 108952
+2019-03-15 02:30:21 DEBUG ServiceDeCalculMastermind:110 - Après : 21928
+2019-03-15 02:30:23 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Blanc, Blanc, Blanc, Vide, Vide, Vide]
+2019-03-15 02:30:23 DEBUG ServiceDeCalculMastermind:106 - Avant : 21928
+2019-03-15 02:30:23 DEBUG ServiceDeCalculMastermind:110 - Après : 4692
+2019-03-15 02:30:25 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Blanc, Blanc, Vide, Vide, Vide, Vide]
+2019-03-15 02:30:25 DEBUG ServiceDeCalculMastermind:106 - Avant : 4692
+2019-03-15 02:30:25 DEBUG ServiceDeCalculMastermind:110 - Après : 578
+2019-03-15 02:30:28 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Noir, Blanc, Blanc, Vide, Vide, Vide]
+2019-03-15 02:30:28 DEBUG ServiceDeCalculMastermind:106 - Avant : 578
+2019-03-15 02:30:28 DEBUG ServiceDeCalculMastermind:110 - Après : 64
+2019-03-15 02:30:31 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Noir, Noir, Noir, Vide, Vide, Vide]
+2019-03-15 02:30:31 DEBUG ServiceDeCalculMastermind:106 - Avant : 64
+2019-03-15 02:30:31 DEBUG ServiceDeCalculMastermind:110 - Après : 3
+2019-03-15 02:30:33 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Noir, Noir, Noir, Noir, Noir, Vide]
+2019-03-15 02:30:33 DEBUG ServiceDeCalculMastermind:106 - Avant : 3
+2019-03-15 02:30:33 DEBUG ServiceDeCalculMastermind:110 - Après : 1
+2019-03-15 02:31:04 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Vide, Vide, Vide, Vide, Vide]
+2019-03-15 02:31:04 DEBUG ServiceDeCalculMastermind:106 - Avant : 32768
+2019-03-15 02:31:04 DEBUG ServiceDeCalculMastermind:110 - Après : 32768
+2019-03-15 02:31:10 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Blanc, Blanc, Vide, Vide, Vide]
+2019-03-15 02:31:10 DEBUG ServiceDeCalculMastermind:106 - Avant : 32768
+2019-03-15 02:31:10 DEBUG ServiceDeCalculMastermind:110 - Après : 4890
+2019-03-15 02:31:13 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Noir, Blanc, Vide, Vide, Vide]
+2019-03-15 02:31:13 DEBUG ServiceDeCalculMastermind:106 - Avant : 4890
+2019-03-15 02:31:13 DEBUG ServiceDeCalculMastermind:110 - Après : 774
+2019-03-15 02:31:17 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Noir, Noir, Blanc, Vide, Vide]
+2019-03-15 02:31:17 DEBUG ServiceDeCalculMastermind:106 - Avant : 774
+2019-03-15 02:31:17 DEBUG ServiceDeCalculMastermind:110 - Après : 46
+2019-03-15 02:31:19 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Noir, Blanc, Blanc, Blanc, Blanc]
+2019-03-15 02:31:19 DEBUG ServiceDeCalculMastermind:106 - Avant : 46
+2019-03-15 02:31:19 DEBUG ServiceDeCalculMastermind:110 - Après : 2
+2019-03-15 02:31:21 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Noir, Blanc, Blanc, Blanc, Blanc]
+2019-03-15 02:31:21 DEBUG ServiceDeCalculMastermind:106 - Avant : 2
+2019-03-15 02:31:21 DEBUG ServiceDeCalculMastermind:110 - Après : 1
+2019-03-15 02:31:38 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Vide, Vide, Vide, Vide, Vide]
+2019-03-15 02:31:38 DEBUG ServiceDeCalculMastermind:106 - Avant : 32768
+2019-03-15 02:31:38 DEBUG ServiceDeCalculMastermind:110 - Après : 32768
+2019-03-15 02:32:01 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Vide, Vide, Vide, Vide]
+2019-03-15 02:32:01 DEBUG ServiceDeCalculMastermind:106 - Avant : 1296
+2019-03-15 02:32:01 DEBUG ServiceDeCalculMastermind:110 - Après : 1296
+2019-03-15 02:32:03 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Blanc, Blanc, Vide, Vide]
+2019-03-15 02:32:03 DEBUG ServiceDeCalculMastermind:106 - Avant : 1296
+2019-03-15 02:32:03 DEBUG ServiceDeCalculMastermind:110 - Après : 222
+2019-03-15 02:32:04 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Noir, Blanc, Vide, Vide]
+2019-03-15 02:32:04 DEBUG ServiceDeCalculMastermind:106 - Avant : 222
+2019-03-15 02:32:04 DEBUG ServiceDeCalculMastermind:110 - Après : 42
+2019-03-15 02:32:05 DEBUG ServiceDeCalculMastermind:105 - Dernière réponse : [Noir, Blanc, Blanc, Blanc]
+2019-03-15 02:32:05 DEBUG ServiceDeCalculMastermind:106 - Avant : 42
+2019-03-15 02:32:05 DEBUG ServiceDeCalculMastermind:110 - Après : 1
+2019-03-15 13:04:32 INFO  Main:12 - Démarrage du jeu
+2019-03-15 13:05:49 INFO  Main:12 - Démarrage du jeu
+2019-03-15 13:06:24 INFO  Main:12 - Démarrage du jeu
+2019-03-15 13:10:15 INFO  Main:12 - Démarrage du jeu

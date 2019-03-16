@@ -10,8 +10,6 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import org.apache.log4j.Logger;
-
 import com.openclassrooms.jeuxlogiques.controleur.ControleurJeu;
 import com.openclassrooms.jeuxlogiques.modele.ModeleJeu;
 import com.openclassrooms.jeuxlogiques.modele.SujetObservable;
@@ -21,8 +19,6 @@ import com.openclassrooms.jeuxlogiques.vue.Observateur;
 import com.openclassrooms.jeuxlogiques.vue.PanneauBoutonValidation;
 
 public abstract class Joueur implements SujetObservable {
-
-	private final static Logger log = Logger.getLogger(Joueur.class);
 
 	private final String separateurClef = "-";
 
@@ -46,6 +42,7 @@ public abstract class Joueur implements SujetObservable {
 	protected int compteurEssais;
 	private boolean attaquantQ;
 	protected boolean humainQ;
+	private boolean vainqueurQ;
 
 	private Pion pionSecret;
 	private JButton boutonValidation;
@@ -57,6 +54,7 @@ public abstract class Joueur implements SujetObservable {
 		listePanneauProposition = new HashMap<>();
 		listePanneauReponse = new HashMap<>();
 		listePanneauValidation = new HashMap<>();
+		vainqueurQ = false;
 		boutonValidation = new JButton("Valider");
 		boutonValidation.setEnabled(false);
 		boutonValidation.addActionListener(new ActionListener() {
@@ -138,10 +136,6 @@ public abstract class Joueur implements SujetObservable {
 
 	public void setPion(HashMap<String, Pion> listePanneau, String clef, Pion pion) {
 		listePanneau.put(clef, pion);
-		/*
-		 * log.debug("Mise à jour d'un pion : joueur " + nom + " / listePanneau " +
-		 * listePanneau + " / clef " + clef + " / pion " + pion.getNomImage());
-		 */
 	}
 
 	public List<List<Pion>> getListeCombinaisonsPossibles() {
@@ -204,6 +198,14 @@ public abstract class Joueur implements SujetObservable {
 
 	public boolean getHumainQ() {
 		return humainQ;
+	}
+
+	public boolean getVainqueurQ() {
+		return vainqueurQ;
+	}
+
+	public void setVainqueurQ(boolean vainqueurQ) {
+		this.vainqueurQ = vainqueurQ;
 	}
 
 	public void setModele(ModeleJeu modele) {
