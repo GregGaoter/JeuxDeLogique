@@ -44,6 +44,9 @@ public class Duel extends Mode {
 				else
 					controleur.afficherVainqueur(humain.getVainqueurQ() ? humain.getNom() : ordinateur.getNom());
 				controleur.setGagnantQ(true);
+				humain.getListePanneauValidation().get(humain.getClef(1, humain.getCompteurEssais())).removeAll();
+				humain.getListePanneauValidation().get(humain.getClef(1, humain.getCompteurEssais() + 1))
+						.add(humain.getBoutonValidation());
 				controleur.afficherCombinaisonSecrete(defenseur);
 				vue.getMenuItemOptionJeu().setEnabled(true);
 				vue.getBoutonOptionJeu().setEnabled(true);
@@ -57,10 +60,8 @@ public class Duel extends Mode {
 			humain.setVainqueurQ(gagnantQ(humain, controleur));
 			attaquant.decrementerCompteurEssais();
 			modele.setCompteurEssais(attaquant.getCompteurEssais());
+			attaquant.getBoutonValidation().setEnabled(false);
 			attaquant.actualiserPanneauValidation();
-			int essai = 1 + modele.getNbEssais() - attaquant.getCompteurEssais();
-			vue.getMessageNbEssais().setText((essai < 10 ? "0" : "") + Integer.toString(essai) + " / "
-					+ (modele.getNbEssais() < 10 ? "0" : "") + Integer.toString(modele.getNbEssais()));
 			controleur.lancerTour();
 		}
 	}

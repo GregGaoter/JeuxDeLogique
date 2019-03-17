@@ -1,5 +1,6 @@
 package com.openclassrooms.jeuxlogiques.controleur;
 
+import java.awt.Dimension;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
@@ -142,6 +143,7 @@ public class ControleurJeu {
 		vue.getToggleButtonJoueur().setEnabled(true);
 		vue.getToggleButtonOrdinateur().setEnabled(true);
 		vue.getBoutonRejouerMemeJeu().setEnabled(false);
+		repeindreFenetrePrincipale();
 		gagnantQ = false;
 		itDefenseurs = mode.getListeDefenseurs().iterator();
 		itAttaquants = mode.getListeAttaquants().iterator();
@@ -161,8 +163,12 @@ public class ControleurJeu {
 			modele.setDefenseur(defenseur);
 			modele.setAttaquant(attaquant);
 			modele.setCombinaisonSecrete(defenseur.getCombinaisonSecrete());
-			if (attaquant.getHumainQ())
+			if (attaquant.getHumainQ()) {
 				attaquant.initialiserCombinaison(attaquant.getCombinaisonProposition());
+				defenseur.getBoutonValidation().setEnabled(false);
+				attaquant.setNom(modele.getNomJoueur());
+			} else
+				defenseur.setNom(modele.getNomJoueur());
 			attaquant.setCombinaisonProposition();
 			modele.setCombinaisonProposition(attaquant.getCombinaisonProposition());
 			modele.setListePanneauValidation(attaquant.getListePanneauValidation());
@@ -173,8 +179,15 @@ public class ControleurJeu {
 		}
 	}
 
+	private void repeindreFenetrePrincipale() {
+		int largeurFenetre = (int) vue.getFenetrePrincipale().getPreferredSize().getWidth();
+		int hauteurFenetre = (int) vue.getFenetrePrincipale().getPreferredSize().getHeight();
+		vue.getFenetrePrincipale().setSize(new Dimension(largeurFenetre + 1, hauteurFenetre));
+		vue.getFenetrePrincipale().pack();
+	}
+
 	public void lancerDialogueOption(JFrame fenetreProprietaire) {
-		DialogueOption dialogueOptions = new DialogueOption(fenetreProprietaire);
+		DialogueOption dialogueOptions = new DialogueOption(fenetreProprietaire, modele);
 		int[] listeValeurs = dialogueOptions.getValeur();
 		if (listeValeurs != null) {
 			modele = new ModeleJeu();
@@ -186,6 +199,7 @@ public class ControleurJeu {
 			modele.setNbPionsUtilisables(listeValeurs[2]);
 			modele.initialiser();
 			vue.setModele(modele);
+			afficherVainqueur("-");
 			vue.initialiserPanneaux();
 		}
 	}

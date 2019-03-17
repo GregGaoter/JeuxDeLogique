@@ -1,10 +1,1 @@
-2019-03-11 11:37:04 INFO  Main:14 - Démarrage du jeu
-2019-03-11 11:37:05 DEBUG Parametre:36 - NbPionsCombinaison = 4
-2019-03-11 11:37:05 DEBUG Parametre:36 - NbEssais = 10
-2019-03-11 11:37:05 DEBUG Parametre:36 - NbCouleursUtilisables = 6
-2019-03-11 11:37:05 DEBUG Parametre:36 - ModeDeveloppeur = 1
-2019-03-11 11:37:30 INFO  Main:14 - Démarrage du jeu
-2019-03-11 11:37:30 DEBUG Parametre:36 - NbPionsCombinaison = 4
-2019-03-11 11:37:30 DEBUG Parametre:36 - NbEssais = 10
-2019-03-11 11:37:30 DEBUG Parametre:36 - NbCouleursUtilisables = 6
-2019-03-11 11:37:30 DEBUG Parametre:36 - ModeDeveloppeur = 1
+2019-03-17 18:51:44 INFO  Main:12 - Démarrage du jeu

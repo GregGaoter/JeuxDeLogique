@@ -227,7 +227,6 @@ public class ModeleJeu implements SujetObservable {
 		attaquant.setPion(attaquant.getListePanneauProposition(), attaquant.getClef(x, attaquant.getCompteurEssais()),
 				pionProposition);
 		setCombinaisonProposition(attaquant.getCombinaisonProposition());
-		// attaquant.getBoutonValidation().setEnabled(!combinaisonProposition.contains(PionCommun.Vide));
 		notifierObservateur();
 	}
 

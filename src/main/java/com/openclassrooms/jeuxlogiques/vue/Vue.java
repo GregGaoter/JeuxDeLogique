@@ -515,6 +515,10 @@ public class Vue implements Observateur {
 
 	}
 
+	public JFrame getFenetrePrincipale() {
+		return fenetrePrincipale;
+	}
+
 	public JPanel getPanneauPrincipal() {
 		return panneauPrincipal;
 	}

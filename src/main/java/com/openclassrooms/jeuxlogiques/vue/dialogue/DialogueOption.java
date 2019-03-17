@@ -26,6 +26,8 @@ public class DialogueOption extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 
+	private ModeleJeu modele;
+
 	private int[] listeValeurs;
 	private boolean okQ;
 
@@ -33,8 +35,9 @@ public class DialogueOption extends JDialog {
 	private JSlider sliderNbEssaisPossibles;
 	private JSlider sliderNbCouleursUtilisables;
 
-	public DialogueOption(JFrame fenetreParente) {
+	public DialogueOption(JFrame fenetreParente, ModeleJeu modele) {
 		super(fenetreParente, "Choix des options", true);
+		this.modele = modele;
 		listeValeurs = new int[3];
 
 		/*
@@ -87,8 +90,7 @@ public class DialogueOption extends JDialog {
 		contraintesOptions.gridy = 1;
 		panneauOptionsGenerales.add(new JLabel("Nombre de pions de la combinaison secrète :"), contraintesOptions);
 		sliderNbPionsCombinaisonSecrete = new JSlider(ModeleJeu.NB_PIONS_COMBINAISON_MIN,
-				ModeleJeu.NB_PIONS_COMBINAISON_MAX,
-				(ModeleJeu.NB_PIONS_COMBINAISON_MIN + ModeleJeu.NB_PIONS_COMBINAISON_MAX) / 2);
+				ModeleJeu.NB_PIONS_COMBINAISON_MAX, modele.getNbPionsCombinaison());
 		contraintesOptions.gridy = 2;
 		panneauOptionsGenerales.add(sliderNbPionsCombinaisonSecrete, contraintesOptions);
 		sliderNbPionsCombinaisonSecrete.setMajorTickSpacing(1);
@@ -103,8 +105,7 @@ public class DialogueOption extends JDialog {
 
 		contraintesOptions.gridy = 4;
 		panneauOptionsGenerales.add(new JLabel("Nombre d'essais possibles :"), contraintesOptions);
-		sliderNbEssaisPossibles = new JSlider(ModeleJeu.NB_ESSAIS_MIN, ModeleJeu.NB_ESSAIS_MAX,
-				(ModeleJeu.NB_ESSAIS_MIN + ModeleJeu.NB_ESSAIS_MAX) / 2);
+		sliderNbEssaisPossibles = new JSlider(ModeleJeu.NB_ESSAIS_MIN, ModeleJeu.NB_ESSAIS_MAX, modele.getNbEssais());
 		contraintesOptions.gridy = 5;
 		panneauOptionsGenerales.add(sliderNbEssaisPossibles, contraintesOptions);
 		sliderNbEssaisPossibles.setMajorTickSpacing(1);
@@ -126,8 +127,7 @@ public class DialogueOption extends JDialog {
 		contraintesOptions.gridy = 1;
 		panneauOptionsMastermind.add(new JLabel("Nombre de couleurs utilisables :"), contraintesOptions);
 		sliderNbCouleursUtilisables = new JSlider(ModeleJeu.NB_COULEURS_UTILISABLES_MIN,
-				ModeleJeu.NB_COULEURS_UTILISABLES_MAX,
-				(ModeleJeu.NB_COULEURS_UTILISABLES_MIN + ModeleJeu.NB_COULEURS_UTILISABLES_MAX) / 2);
+				ModeleJeu.NB_COULEURS_UTILISABLES_MAX, modele.getNbPionsUtilisables());
 		contraintesOptions.gridy = 2;
 		panneauOptionsMastermind.add(sliderNbCouleursUtilisables, contraintesOptions);
 		sliderNbCouleursUtilisables.setMajorTickSpacing(1);
