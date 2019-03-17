@@ -19,6 +19,7 @@ public abstract class Mode {
 	protected List<Joueur> listeDefenseurs;
 	protected List<Joueur> listeAttaquants;
 	protected Joueur humain, ordinateur;
+	protected boolean loadCombinaisonsPossiblesQ;
 
 	public Mode() {
 		listeDefenseurs = new ArrayList<>();
@@ -27,6 +28,7 @@ public abstract class Mode {
 		ordinateur = new Ordinateur();
 		setListeDefenseurs();
 		setListeAttaquants();
+		setLoadCombinaisonsPossiblesQ();
 	}
 
 	public List<Joueur> getListeDefenseurs() {
@@ -79,10 +81,16 @@ public abstract class Mode {
 		return nbPionsCorrects == joueur.getCombinaisonProposition().size();
 	}
 
+	public boolean getLoadCombinaisonsPossiblesQ() {
+		return loadCombinaisonsPossiblesQ;
+	}
+
 	public abstract String getNom();
 
 	protected abstract void setListeDefenseurs();
 
 	protected abstract void setListeAttaquants();
+
+	protected abstract void setLoadCombinaisonsPossiblesQ();
 
 }

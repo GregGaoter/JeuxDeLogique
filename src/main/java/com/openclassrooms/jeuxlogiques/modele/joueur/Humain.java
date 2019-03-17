@@ -31,4 +31,7 @@ public class Humain extends Joueur {
 	public void setCombinaisonProposition() {
 	}
 
+	protected void setListeCombinaisonsPossibles() {
+	}
+
 }

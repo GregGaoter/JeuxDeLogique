@@ -1,5 +1,6 @@
 package com.openclassrooms.jeuxlogiques.modele.joueur;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JFrame;
@@ -32,6 +33,36 @@ public class Ordinateur extends Joueur {
 		combinaisonProposition.addAll(nouvelleCombinaisonProposition);
 		for (int i = 1; i <= modele.getNbPionsCombinaison(); i++)
 			setPion(listePanneauProposition, getClef(i, compteurEssais), combinaisonProposition.get(i - 1));
+	}
+
+	// Source :
+	// https://codereview.stackexchange.com/questions/41510/calculate-all-possible-combinations-of-given-characters
+	protected void setListeCombinaisonsPossibles() {
+		if (controleur.getJeu().getLoadCombinaisonsPossiblesQ()
+				&& controleur.getMode().getLoadCombinaisonsPossiblesQ()) {
+			nbCombinaisonsPossibles = (int) Math.pow(modele.getNbPionsUtilisables(), modele.getNbPionsCombinaison());
+			listeCombinaisonsPossibles = new ArrayList<>(nbCombinaisonsPossibles);
+			int carry;
+			int[] indices = new int[modele.getNbPionsCombinaison()];
+			ArrayList<Pion> combinaison;
+			do {
+				combinaison = new ArrayList<>(modele.getNbPionsCombinaison());
+				for (int index : indices)
+					combinaison.add(modele.getPionsUtilisables().get(index));
+				listeCombinaisonsPossibles.add(combinaison);
+				carry = 1;
+				for (int i = indices.length - 1; i >= 0; i--) {
+					if (carry == 0)
+						break;
+					indices[i] += carry;
+					carry = 0;
+					if (indices[i] == modele.getNbPionsUtilisables()) {
+						carry = 1;
+						indices[i] = 0;
+					}
+				}
+			} while (carry != 1);
+		}
 	}
 
 }

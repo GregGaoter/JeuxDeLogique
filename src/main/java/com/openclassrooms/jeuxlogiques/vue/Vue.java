@@ -216,7 +216,6 @@ public class Vue implements Observateur {
 
 		menuItemOptionJeu = new JMenuItem("Jeux", new ImageIcon(getClass().getResource("/images/option_jeu_16.png")));
 		menuOption.add(menuItemOptionJeu);
-		menuItemOptionJeu.setEnabled(false);
 		menuItemOptionJeu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controleur.lancerDialogueOption(fenetrePrincipale);
@@ -289,7 +288,6 @@ public class Vue implements Observateur {
 				new ImageIcon(getClass().getResource("/images/option_jeu_32.png")));
 		boutonOptionJeu.setVerticalTextPosition(SwingConstants.BOTTOM);
 		boutonOptionJeu.setHorizontalTextPosition(SwingConstants.CENTER);
-		boutonOptionJeu.setEnabled(false);
 		boutonOptionJeu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controleur.lancerDialogueOption(fenetrePrincipale);

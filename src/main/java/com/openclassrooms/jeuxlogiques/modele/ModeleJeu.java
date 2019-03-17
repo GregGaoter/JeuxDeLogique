@@ -83,6 +83,10 @@ public class ModeleJeu implements SujetObservable {
 		this.vue = vue;
 	}
 
+	public ControleurJeu getControleur() {
+		return controleur;
+	}
+
 	public void setControleur(ControleurJeu controleur) {
 		this.controleur = controleur;
 	}

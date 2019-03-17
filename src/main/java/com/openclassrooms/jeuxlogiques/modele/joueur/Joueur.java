@@ -56,12 +56,12 @@ public abstract class Joueur implements SujetObservable {
 		listePanneauValidation = new HashMap<>();
 		vainqueurQ = false;
 		boutonValidation = new JButton("Valider");
-		boutonValidation.setEnabled(false);
 		boutonValidation.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controleur.calculerReponse();
 			}
 		});
+		boutonValidation.setEnabled(false);
 		listeObservateurs = new ArrayList<>();
 	}
 
@@ -74,8 +74,6 @@ public abstract class Joueur implements SujetObservable {
 				PionCommun.Vide);
 		setListePanneauPion(listePanneauReponse, modele.getNbPionsCombinaison(), modele.getNbEssais(), PionCommun.Vide);
 		setListePanneauValidation();
-		nbCombinaisonsPossibles = (int) Math.pow(modele.getNbPionsUtilisables(), modele.getNbPionsCombinaison());
-		listeCombinaisonsPossibles = new ArrayList<>(nbCombinaisonsPossibles);
 		setListeCombinaisonsPossibles();
 		pionSecret = PionCommun.Vide;
 	}
@@ -103,31 +101,6 @@ public abstract class Joueur implements SujetObservable {
 	public void actualiserPanneauValidation() {
 		listePanneauValidation.get(getClef(1, compteurEssais + 1)).removeAll();
 		listePanneauValidation.get(getClef(1, compteurEssais)).add(boutonValidation);
-	}
-
-	// Source :
-	// https://codereview.stackexchange.com/questions/41510/calculate-all-possible-combinations-of-given-characters
-	private void setListeCombinaisonsPossibles() {
-		int carry;
-		int[] indices = new int[modele.getNbPionsCombinaison()];
-		ArrayList<Pion> combinaison;
-		do {
-			combinaison = new ArrayList<>(modele.getNbPionsCombinaison());
-			for (int index : indices)
-				combinaison.add(modele.getPionsUtilisables().get(index));
-			listeCombinaisonsPossibles.add(combinaison);
-			carry = 1;
-			for (int i = indices.length - 1; i >= 0; i--) {
-				if (carry == 0)
-					break;
-				indices[i] += carry;
-				carry = 0;
-				if (indices[i] == modele.getNbPionsUtilisables()) {
-					carry = 1;
-					indices[i] = 0;
-				}
-			}
-		} while (carry != 1);
 	}
 
 	public HashMap<String, JPanel> getListePanneauValidation() {
@@ -210,7 +183,6 @@ public abstract class Joueur implements SujetObservable {
 
 	public void setModele(ModeleJeu modele) {
 		this.modele = modele;
-		initialiserJoueur();
 	}
 
 	public void setControleur(ControleurJeu controleur) {
@@ -251,5 +223,7 @@ public abstract class Joueur implements SujetObservable {
 	public abstract void setCombinaisonSecrete(JFrame fenetreParente, ControleurJeu controleur);
 
 	public abstract void setCombinaisonProposition();
+
+	protected abstract void setListeCombinaisonsPossibles();
 
 }

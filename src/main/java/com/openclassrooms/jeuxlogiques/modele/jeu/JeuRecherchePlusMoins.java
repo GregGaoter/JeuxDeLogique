@@ -10,6 +10,7 @@ public class JeuRecherchePlusMoins extends Jeu {
 
 	public JeuRecherchePlusMoins() {
 		nbPionsUtilisables = 10;
+		loadCombinaisonsPossiblesQ = false;
 	}
 
 	public String getNom() {

@@ -18,4 +18,8 @@ public class Challenger extends Mode {
 		listeAttaquants.add(humain);
 	}
 
+	protected void setLoadCombinaisonsPossiblesQ() {
+		loadCombinaisonsPossiblesQ = false;
+	}
+
 }

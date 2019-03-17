@@ -13,6 +13,7 @@ public class JeuMastermind extends Jeu {
 
 	public JeuMastermind() {
 		nbPionsUtilisables = Parametre.NbCouleursUtilisables.getValeur();
+		loadCombinaisonsPossiblesQ = true;
 	}
 
 	public String getNom() {

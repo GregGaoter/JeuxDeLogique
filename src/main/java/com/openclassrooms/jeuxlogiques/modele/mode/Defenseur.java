@@ -18,4 +18,8 @@ public class Defenseur extends Mode {
 		listeAttaquants.add(ordinateur);
 	}
 
+	protected void setLoadCombinaisonsPossiblesQ() {
+		loadCombinaisonsPossiblesQ = true;
+	}
+
 }

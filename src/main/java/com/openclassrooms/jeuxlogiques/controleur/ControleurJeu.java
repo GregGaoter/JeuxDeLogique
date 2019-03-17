@@ -54,9 +54,9 @@ public class ControleurJeu {
 		vue.setControleur(this);
 		modeDeveloppeurQ = modeDeveloppeur.length > 0
 				&& Integer.parseInt(modeDeveloppeur[0]) == Parametre.ModeDeveloppeur.getValeur();
-		vue.creerFenetreDemarrage();
+		// vue.creerFenetreDemarrage();
 		// vue.runBarreProgression();
-		// vue.creerVue();
+		vue.creerVue();
 	}
 
 	public void lancerDialogueJeu(JFrame fenetreProprietaire) {
@@ -213,6 +213,14 @@ public class ControleurJeu {
 
 	public void setPionProposition(Pion pion) {
 		modele.setPionProposition(pion);
+	}
+
+	public Jeu getJeu() {
+		return jeu;
+	}
+
+	public Mode getMode() {
+		return mode;
 	}
 
 	public ServiceDeCalcul getServiceDeCalcul() {

@@ -10,6 +10,7 @@ public abstract class Jeu {
 
 	protected PionCommun pionCommun;
 	protected int nbPionsUtilisables;
+	protected boolean loadCombinaisonsPossiblesQ;
 
 	public Pion getPionCommun() {
 		return pionCommun;
@@ -17,6 +18,10 @@ public abstract class Jeu {
 
 	public int getNbPionsUtilisables() {
 		return nbPionsUtilisables;
+	}
+
+	public boolean getLoadCombinaisonsPossiblesQ() {
+		return loadCombinaisonsPossiblesQ;
 	}
 
 	public abstract String getNom();

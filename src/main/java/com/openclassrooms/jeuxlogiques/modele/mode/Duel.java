@@ -60,4 +60,8 @@ public class Duel extends Mode {
 		}
 	}
 
+	protected void setLoadCombinaisonsPossiblesQ() {
+		loadCombinaisonsPossiblesQ = true;
+	}
+
 }
