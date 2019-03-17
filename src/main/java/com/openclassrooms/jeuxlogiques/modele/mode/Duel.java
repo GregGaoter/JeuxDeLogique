@@ -43,7 +43,12 @@ public class Duel extends Mode {
 					controleur.afficherVainqueur("Match nul");
 				else
 					controleur.afficherVainqueur(humain.getVainqueurQ() ? humain.getNom() : ordinateur.getNom());
+				controleur.setGagnantQ(true);
 				controleur.afficherCombinaisonSecrete(defenseur);
+				vue.getMenuItemOptionJeu().setEnabled(true);
+				vue.getBoutonOptionJeu().setEnabled(true);
+				vue.getMenuItemOptionJoueur().setEnabled(true);
+				vue.getBoutonOptionJoueur().setEnabled(true);
 				attaquant.getBoutonValidation().setEnabled(false);
 				defenseur.getBoutonValidation().setEnabled(false);
 				vue.getBoutonRejouerMemeJeu().setEnabled(true);

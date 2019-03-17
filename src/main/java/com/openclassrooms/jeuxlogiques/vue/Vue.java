@@ -527,6 +527,14 @@ public class Vue implements Observateur {
 		return boutonOptionJeu;
 	}
 
+	public JMenuItem getMenuItemOptionJoueur() {
+		return menuItemOptionJoueur;
+	}
+
+	public JButton getBoutonOptionJoueur() {
+		return boutonOptionJoueur;
+	}
+
 	public HashMap<String, JLabelPion> getListePanneauSecret() {
 		return listePanneauSecret;
 	}
@@ -561,10 +569,6 @@ public class Vue implements Observateur {
 
 	public void setListePanneauValidation(HashMap<String, JPanel> listePanneauValidation) {
 		this.listePanneauValidation = listePanneauValidation;
-	}
-
-	public JButton getBoutonValidation() {
-		return boutonValidation;
 	}
 
 	public JLabel getMessageNbEssais() {
@@ -678,17 +682,17 @@ public class Vue implements Observateur {
 		panneauValidation.repaint();
 	}
 
-	public void actualiserVueJoueur(Joueur joueur) {
+	public void actualiserVueJoueur(Joueur attaquant, Joueur defenseur) {
 		String clef;
 		for (int y = 1; y <= modele.getNbEssais(); y++) {
 			for (int x = 1; x <= modele.getNbPionsCombinaison(); x++) {
 				clef = getClef(x, y);
-				setPion(listePanneauProposition, clef, joueur.getListePanneauProposition().get(clef));
-				setPion(listePanneauReponse, clef, joueur.getListePanneauReponse().get(clef));
+				setPion(listePanneauProposition, clef, attaquant.getListePanneauProposition().get(clef));
+				setPion(listePanneauReponse, clef, attaquant.getListePanneauReponse().get(clef));
 			}
 		}
 		if (controleur.getGagnantQ() || controleur.getModeDeveloppeurQ())
-			controleur.afficherCombinaisonSecrete(joueur);
+			controleur.afficherCombinaisonSecrete(defenseur);
 	}
 
 }

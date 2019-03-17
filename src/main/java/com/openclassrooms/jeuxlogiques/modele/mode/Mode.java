@@ -43,9 +43,15 @@ public abstract class Mode {
 		Joueur attaquant = controleur.getAttaquant();
 		Joueur defenseur = controleur.getDefenseur();
 		if (gagnantQ(attaquant, controleur)) {
+			controleur.setGagnantQ(true);
 			controleur.afficherCombinaisonSecrete(defenseur);
 			controleur.afficherVainqueur(attaquant.getNom());
+			vue.getMenuItemOptionJeu().setEnabled(true);
+			vue.getBoutonOptionJeu().setEnabled(true);
+			vue.getMenuItemOptionJoueur().setEnabled(true);
+			vue.getBoutonOptionJoueur().setEnabled(true);
 			attaquant.getBoutonValidation().setEnabled(false);
+			defenseur.getBoutonValidation().setEnabled(false);
 			vue.getBoutonRejouerMemeJeu().setEnabled(true);
 		} else {
 			attaquant.decrementerCompteurEssais();
@@ -60,7 +66,12 @@ public abstract class Mode {
 				controleur.setGagnantQ(true);
 				controleur.afficherCombinaisonSecrete(defenseur);
 				controleur.afficherVainqueur(defenseur.getNom());
+				vue.getMenuItemOptionJeu().setEnabled(true);
+				vue.getBoutonOptionJeu().setEnabled(true);
+				vue.getMenuItemOptionJoueur().setEnabled(true);
+				vue.getBoutonOptionJoueur().setEnabled(true);
 				attaquant.getBoutonValidation().setEnabled(false);
+				defenseur.getBoutonValidation().setEnabled(false);
 				vue.getBoutonRejouerMemeJeu().setEnabled(true);
 			}
 		}

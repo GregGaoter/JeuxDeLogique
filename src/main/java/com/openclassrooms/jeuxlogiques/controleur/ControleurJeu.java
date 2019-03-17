@@ -132,10 +132,13 @@ public class ControleurJeu {
 				vue.setPion(vue.getListePanneauReponse(), getClef(x, y), PionCommun.Vide);
 			}
 		}
-		vue.getMessageNbEssais().setText("01 / " + Integer.toString(modele.getNbEssais()));
+		vue.getMessageNbEssais()
+				.setText("01 / " + (modele.getNbEssais() < 10 ? "0" : "") + Integer.toString(modele.getNbEssais()));
 		afficherVainqueur("-");
-		vue.getMenuItemOptionJeu().setEnabled(true);
-		vue.getBoutonOptionJeu().setEnabled(true);
+		vue.getMenuItemOptionJeu().setEnabled(false);
+		vue.getBoutonOptionJeu().setEnabled(false);
+		vue.getMenuItemOptionJoueur().setEnabled(false);
+		vue.getBoutonOptionJoueur().setEnabled(false);
 		vue.getToggleButtonJoueur().setEnabled(true);
 		vue.getToggleButtonOrdinateur().setEnabled(true);
 		vue.getBoutonRejouerMemeJeu().setEnabled(false);
@@ -158,6 +161,8 @@ public class ControleurJeu {
 			modele.setDefenseur(defenseur);
 			modele.setAttaquant(attaquant);
 			modele.setCombinaisonSecrete(defenseur.getCombinaisonSecrete());
+			if (attaquant.getHumainQ())
+				attaquant.initialiserCombinaison(attaquant.getCombinaisonProposition());
 			attaquant.setCombinaisonProposition();
 			modele.setCombinaisonProposition(attaquant.getCombinaisonProposition());
 			modele.setListePanneauValidation(attaquant.getListePanneauValidation());
@@ -260,7 +265,6 @@ public class ControleurJeu {
 				serviceDeCalcul.calculerReponse(modele.getCombinaisonProposition(), modele.getCombinaisonSecrete()));
 		modele.setCombinaisonReponse(attaquant.getCombinaisonReponse());
 		vue.actualiser();
-		attaquant.getBoutonValidation().setEnabled(false);
 		mode.calculerVainqueur(modele, this, vue);
 	}
 
@@ -294,12 +298,12 @@ public class ControleurJeu {
 			modele.setCombinaisonSecrete(attaquant.getCombinaisonSecrete());
 			modele.setCombinaisonProposition(defenseur.getCombinaisonProposition());
 			modele.setListePanneauValidation(defenseur.getListePanneauValidation());
-			vue.actualiserVueJoueur(defenseur);
+			vue.actualiserVueJoueur(defenseur, attaquant);
 		} else {
 			modele.setCombinaisonSecrete(defenseur.getCombinaisonSecrete());
 			modele.setCombinaisonProposition(attaquant.getCombinaisonProposition());
 			modele.setListePanneauValidation(attaquant.getListePanneauValidation());
-			vue.actualiserVueJoueur(attaquant);
+			vue.actualiserVueJoueur(attaquant, defenseur);
 		}
 		vue.actualiserPanneauValidation();
 	}
@@ -309,12 +313,12 @@ public class ControleurJeu {
 			modele.setCombinaisonSecrete(attaquant.getCombinaisonSecrete());
 			modele.setCombinaisonProposition(defenseur.getCombinaisonProposition());
 			modele.setListePanneauValidation(defenseur.getListePanneauValidation());
-			vue.actualiserVueJoueur(defenseur);
+			vue.actualiserVueJoueur(defenseur, attaquant);
 		} else {
 			modele.setCombinaisonSecrete(defenseur.getCombinaisonSecrete());
 			modele.setCombinaisonProposition(attaquant.getCombinaisonProposition());
 			modele.setListePanneauValidation(attaquant.getListePanneauValidation());
-			vue.actualiserVueJoueur(attaquant);
+			vue.actualiserVueJoueur(attaquant, defenseur);
 		}
 		vue.actualiserPanneauValidation();
 	}

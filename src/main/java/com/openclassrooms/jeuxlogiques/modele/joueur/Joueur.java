@@ -54,14 +54,8 @@ public abstract class Joueur implements SujetObservable {
 		listePanneauProposition = new HashMap<>();
 		listePanneauReponse = new HashMap<>();
 		listePanneauValidation = new HashMap<>();
-		vainqueurQ = false;
 		boutonValidation = new JButton("Valider");
-		boutonValidation.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				controleur.calculerReponse();
-			}
-		});
-		boutonValidation.setEnabled(false);
+		vainqueurQ = false;
 		listeObservateurs = new ArrayList<>();
 	}
 
@@ -73,12 +67,18 @@ public abstract class Joueur implements SujetObservable {
 		setListePanneauPion(listePanneauProposition, modele.getNbPionsCombinaison(), modele.getNbEssais(),
 				PionCommun.Vide);
 		setListePanneauPion(listePanneauReponse, modele.getNbPionsCombinaison(), modele.getNbEssais(), PionCommun.Vide);
+		boutonValidation = new JButton("Valider");
+		boutonValidation.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				controleur.calculerReponse();
+			}
+		});
 		setListePanneauValidation();
 		setListeCombinaisonsPossibles();
 		pionSecret = PionCommun.Vide;
 	}
 
-	private void initialiserCombinaison(List<Pion> combinaison) {
+	public void initialiserCombinaison(List<Pion> combinaison) {
 		combinaison.clear();
 		for (int i = 0; i < modele.getNbPionsCombinaison(); i++)
 			combinaison.add(PionCommun.Vide);
@@ -105,6 +105,10 @@ public abstract class Joueur implements SujetObservable {
 
 	public HashMap<String, JPanel> getListePanneauValidation() {
 		return listePanneauValidation;
+	}
+
+	public JButton getBoutonValidation() {
+		return boutonValidation;
 	}
 
 	public void setPion(HashMap<String, Pion> listePanneau, String clef, Pion pion) {
@@ -155,10 +159,6 @@ public abstract class Joueur implements SujetObservable {
 
 	public void setCompteurEssais(int compteurEssais) {
 		this.compteurEssais = compteurEssais;
-	}
-
-	public JButton getBoutonValidation() {
-		return boutonValidation;
 	}
 
 	public boolean getAttaquantQ() {
