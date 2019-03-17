@@ -101,7 +101,7 @@ public abstract class Joueur implements SujetObservable {
 	}
 
 	public void actualiserPanneauValidation() {
-		listePanneauValidation.get(getClef(1, compteurEssais + 1)).remove(boutonValidation);
+		listePanneauValidation.get(getClef(1, compteurEssais + 1)).removeAll();
 		listePanneauValidation.get(getClef(1, compteurEssais)).add(boutonValidation);
 	}
 

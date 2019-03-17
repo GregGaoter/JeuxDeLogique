@@ -19,11 +19,15 @@ import javax.swing.JTextPane;
 import javax.swing.UIDefaults;
 import javax.swing.text.BadLocationException;
 
+import org.apache.log4j.Logger;
+
 import com.openclassrooms.jeuxlogiques.modele.jeu.Jeu;
 
 public class DialogueReglesJeux extends JDialog {
 
 	private static final long serialVersionUID = 1L;
+
+	private final static Logger log = Logger.getLogger(DialogueReglesJeux.class);
 
 	public DialogueReglesJeux(JFrame fenetreParente) throws IOException, BadLocationException {
 		super(fenetreParente, "Règles des jeux", false);
@@ -57,10 +61,10 @@ public class DialogueReglesJeux extends JDialog {
 				try {
 					panneauTexte.setPage(url);
 				} catch (IOException e) {
-					System.out.println("Tentative de lecture d'une mauvaise URL : " + url);
+					log.error("Lecture d'une mauvaise URL du fichier d'aide HTML du jeu " + jeu.getNom() + " : " + url);
 				}
 			} else
-				System.out.println("Fichier introuvable : " + jeu.getNomFichierHTMLReglesJeu());
+				log.error("Fichier introuvable : " + jeu.getNomFichierHTMLReglesJeu());
 
 			JScrollPane panneauAscenceurs = new JScrollPane(panneauTexte);
 			panneauAscenceurs.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);

@@ -15,7 +15,6 @@ public class MouseListenerGetPionProposition extends MouseListenerPion {
 	}
 
 	public void mouseClicked(MouseEvent e) {
-
 	}
 
 	public void mouseEntered(MouseEvent e) {
@@ -25,7 +24,6 @@ public class MouseListenerGetPionProposition extends MouseListenerPion {
 	}
 
 	public void mousePressed(MouseEvent e) {
-		// controleur.getPionProposition(x);
 	}
 
 	public void mouseReleased(MouseEvent e) {

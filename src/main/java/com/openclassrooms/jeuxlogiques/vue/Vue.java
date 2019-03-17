@@ -382,7 +382,7 @@ public class Vue implements Observateur {
 		toggleButtonJoueur.setEnabled(false);
 		toggleButtonJoueur.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				controleur.setVueJoueur();
 			}
 		});
 
@@ -392,7 +392,7 @@ public class Vue implements Observateur {
 		toggleButtonOrdinateur.setEnabled(false);
 		toggleButtonOrdinateur.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				controleur.setVueOrdinateur();
 			}
 		});
 
@@ -508,11 +508,6 @@ public class Vue implements Observateur {
 		panneauPrincipal.add(panneauValidation, contraintes);
 		panneauValidation.setBorder(BorderFactory.createTitledBorder("Validation"));
 		creerPanneauValidation();
-		boutonValidation.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				controleur.calculerReponse();
-			}
-		});
 
 		/*
 		 * Dimension et position de la fenêtre principale
@@ -683,6 +678,19 @@ public class Vue implements Observateur {
 			panneauValidation.add(item.getValue(), contraintes);
 		}
 		panneauValidation.repaint();
+	}
+
+	public void actualiserVueJoueur(Joueur joueur) {
+		String clef;
+		for (int y = 1; y <= modele.getNbEssais(); y++) {
+			for (int x = 1; x <= modele.getNbPionsCombinaison(); x++) {
+				clef = getClef(x, y);
+				setPion(listePanneauProposition, clef, joueur.getListePanneauProposition().get(clef));
+				setPion(listePanneauReponse, clef, joueur.getListePanneauReponse().get(clef));
+			}
+		}
+		if (controleur.getGagnantQ() || controleur.getModeDeveloppeurQ())
+			controleur.afficherCombinaisonSecrete(joueur);
 	}
 
 }
