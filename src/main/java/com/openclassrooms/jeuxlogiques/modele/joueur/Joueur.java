@@ -44,7 +44,6 @@ public abstract class Joueur implements SujetObservable {
 	protected boolean humainQ;
 	private boolean vainqueurQ;
 
-	private Pion pionSecret;
 	private JButton boutonValidation;
 
 	public Joueur() {
@@ -75,7 +74,6 @@ public abstract class Joueur implements SujetObservable {
 		});
 		setListePanneauValidation();
 		setListeCombinaisonsPossibles();
-		pionSecret = PionCommun.Vide;
 	}
 
 	public void initialiserCombinaison(List<Pion> combinaison) {
@@ -187,15 +185,6 @@ public abstract class Joueur implements SujetObservable {
 
 	public void setControleur(ControleurJeu controleur) {
 		this.controleur = controleur;
-	}
-
-	public Pion getPionSecret(int x) {
-		combinaisonSecrete.set(x - 1, pionSecret);
-		return pionSecret;
-	}
-
-	public void setPionSecret(Pion pionSecret) {
-		this.pionSecret = pionSecret;
 	}
 
 	public String getClef(int x, int y) {

@@ -14,6 +14,7 @@ import com.openclassrooms.jeuxlogiques.modele.enumeration.Parametre;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.Pion;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.PionCommun;
 import com.openclassrooms.jeuxlogiques.modele.jeu.Jeu;
+import com.openclassrooms.jeuxlogiques.modele.joueur.Humain;
 import com.openclassrooms.jeuxlogiques.modele.joueur.Joueur;
 import com.openclassrooms.jeuxlogiques.modele.mode.Mode;
 import com.openclassrooms.jeuxlogiques.vue.Vue;
@@ -55,8 +56,8 @@ public class ControleurJeu {
 		vue.setControleur(this);
 		modeDeveloppeurQ = modeDeveloppeur.length > 0
 				&& Integer.parseInt(modeDeveloppeur[0]) == Parametre.ModeDeveloppeur.getValeur();
-		// vue.creerFenetreDemarrage();
-		// vue.runBarreProgression();
+		vue.creerFenetreDemarrage();
+		vue.runBarreProgression();
 		vue.creerVue();
 	}
 
@@ -190,7 +191,9 @@ public class ControleurJeu {
 		DialogueOption dialogueOptions = new DialogueOption(fenetreProprietaire, modele);
 		int[] listeValeurs = dialogueOptions.getValeur();
 		if (listeValeurs != null) {
+			String nomJoueur = modele.getNomJoueur();
 			modele = new ModeleJeu();
+			modele.setNomJoueur(nomJoueur);
 			modele.setVue(vue);
 			modele.setControleur(this);
 			modele.setJeu(jeu);
@@ -215,11 +218,11 @@ public class ControleurJeu {
 	}
 
 	public void setPionSecret(Pion pion) {
-		modele.getDefenseur().setPionSecret(pion);
+		((Humain) defenseur).setPionSecret(pion);
 	}
 
 	public void getPionSecret(int x) {
-		modele.getDefenseur().getPionSecret(x);
+		((Humain) defenseur).getPionSecret(x);
 	}
 
 	private String getClef(int x, int y) {

@@ -56,7 +56,7 @@ Les pions **"+"** indiquent le chiffre de la combinaison secrète est **plus gran
 Les pions **"-"** indiquent le chiffre de la combinaison secrète est **plus petit** que celui de la proposition.  
 Les pions **"="** indiquent le chiffre de la combinaison secrète est **égal** à celui de la proposition.  
 
-![Exemple Recherche +/-](src/main/ressources/exemple_recherche_plus_moins.png)
+![Exemple Recherche +/-](src/main/ressources/images/exemple_recherche_plus_moins.png)
 
 #### Mastermind
 
@@ -68,4 +68,4 @@ L'attaquant doit deviner la combinaison secrète en un nombre limité d'essais.
 Les pions **noirs** indiquent le nombre de couleurs qui sont **bien placées**.  
 Les pions **blancs** indiquent le nombre de couleurs qui sont **mal placées**.  
 
-![Exemple Mastermind](src/main/ressources/exemple_mastermind.png)
+![Exemple Mastermind](src/main/ressources/images/exemple_mastermind.png)

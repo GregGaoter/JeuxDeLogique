@@ -65,6 +65,7 @@ public class DialogueSelectionCombinaison extends JDialog implements Observateur
 		combinaisonSecrete = new ArrayList<>(listePanneauSecret.size());
 		this.modele = modele;
 		this.controleur = controleur;
+		setCombinaisonSecrete();
 		boutonRefresh = new JButton(new ImageIcon(getClass().getResource("/images/refresh_32.png")));
 		modele.ajouterObservateur(this);
 
@@ -202,6 +203,10 @@ public class DialogueSelectionCombinaison extends JDialog implements Observateur
 		return String.valueOf(x) + separateurClef + String.valueOf(y);
 	}
 
+	public List<Pion> getCombinaisonSecrete() {
+		return combinaisonSecrete;
+	}
+
 	private void setListePanneauPionUtilisables() {
 		listePanneauPionUtilisable.clear();
 		Pion pion;
@@ -237,6 +242,7 @@ public class DialogueSelectionCombinaison extends JDialog implements Observateur
 
 	private void setCombinaisonAleatoire() {
 		Pion pionAleatoire;
+		combinaisonSecrete.clear();
 		for (int i = 1; i <= modele.getNbPionsCombinaison(); i++) {
 			pionAleatoire = modele.getPionsUtilisables().get(RandomUtils.nextInt(0, modele.getNbPionsUtilisables()));
 			setPion(listePanneauSecret, getClef(i, 1), pionAleatoire);
@@ -245,6 +251,12 @@ public class DialogueSelectionCombinaison extends JDialog implements Observateur
 			// modele.getPionSecret(i);
 		}
 		boutonOk.setEnabled(true);
+	}
+
+	private void setCombinaisonSecrete() {
+		combinaisonSecrete.clear();
+		for (int i = 1; i <= modele.getNbPionsCombinaison(); i++)
+			combinaisonSecrete.add(PionCommun.Vide);
 	}
 
 	public List<Pion> getValeur() {
@@ -256,9 +268,9 @@ public class DialogueSelectionCombinaison extends JDialog implements Observateur
 	}
 
 	public void actualiser() {
-		boutonOk.setEnabled(!modele.getCombinaisonSecrete().contains(PionCommun.Vide));
+		boutonOk.setEnabled(!combinaisonSecrete.contains(PionCommun.Vide));
 		for (int i = 0; i < modele.getNbPionsCombinaison(); i++)
-			setPion(listePanneauSecret, getClef(i + 1, 1), modele.getCombinaisonSecrete().get(i));
+			setPion(listePanneauSecret, getClef(i + 1, 1), combinaisonSecrete.get(i));
 	}
 
 }
