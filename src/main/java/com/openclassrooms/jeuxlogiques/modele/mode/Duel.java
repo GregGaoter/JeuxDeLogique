@@ -37,6 +37,12 @@ public class Duel extends Mode {
 					vue.getMessageNbEssais().setText((essai < 10 ? "0" : "") + Integer.toString(essai) + " / "
 							+ (modele.getNbEssais() < 10 ? "0" : "") + Integer.toString(modele.getNbEssais()));
 					controleur.lancerTour();
+				} else {
+
+					controleur.setGagnantQ(true);
+					controleur.afficherVainqueur("Match nul");
+					attaquant.getBoutonValidation().setEnabled(false);
+					controleur.afficherCombinaisonSecrete(defenseur);
 				}
 			} else {
 				if (humain.getVainqueurQ() && ordinateur.getVainqueurQ())
@@ -44,9 +50,11 @@ public class Duel extends Mode {
 				else
 					controleur.afficherVainqueur(humain.getVainqueurQ() ? humain.getNom() : ordinateur.getNom());
 				controleur.setGagnantQ(true);
-				humain.getListePanneauValidation().get(humain.getClef(1, humain.getCompteurEssais())).removeAll();
-				humain.getListePanneauValidation().get(humain.getClef(1, humain.getCompteurEssais() + 1))
-						.add(humain.getBoutonValidation());
+				if (humain.getCompteurEssais() > 0) {
+					humain.getListePanneauValidation().get(humain.getClef(1, humain.getCompteurEssais())).removeAll();
+					humain.getListePanneauValidation().get(humain.getClef(1, humain.getCompteurEssais() + 1))
+							.add(humain.getBoutonValidation());
+				}
 				controleur.afficherCombinaisonSecrete(defenseur);
 				vue.getMenuItemOptionJeu().setEnabled(true);
 				vue.getBoutonOptionJeu().setEnabled(true);

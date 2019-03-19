@@ -97,8 +97,10 @@ public abstract class Joueur implements SujetObservable {
 	}
 
 	public void actualiserPanneauValidation() {
-		listePanneauValidation.get(getClef(1, compteurEssais + 1)).removeAll();
-		listePanneauValidation.get(getClef(1, compteurEssais)).add(boutonValidation);
+		if (compteurEssais > 0) {
+			listePanneauValidation.get(getClef(1, compteurEssais + 1)).removeAll();
+			listePanneauValidation.get(getClef(1, compteurEssais)).add(boutonValidation);
+		}
 	}
 
 	public HashMap<String, JPanel> getListePanneauValidation() {
