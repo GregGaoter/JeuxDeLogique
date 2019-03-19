@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+import javax.swing.JOptionPane;
+
 import org.apache.log4j.Logger;
 
 /**
@@ -23,10 +25,18 @@ import org.apache.log4j.Logger;
  */
 public enum Parametre {
 
-	NbPionsCombinaison("nbPionsCombinaison"), NbEssais("nbEssais"), NbCouleursUtilisables("nbCouleursUtilisables"),
-	ModeDeveloppeur("modeDeveloppeur");
+	NbPionsCombinaison("nbPionsCombinaison", 4, 6), NbEssais("nbEssais", 4, 12),
+	NbCouleursUtilisables("nbCouleursUtilisables", 4, 10), ModeDeveloppeur("modeDeveloppeur", 1, 1);
 
 	private final Logger log = Logger.getLogger(Parametre.class);
+
+	/*
+	 * public static final int NB_COULEURS_UTILISABLES_MIN = 4; public static final
+	 * int NB_COULEURS_UTILISABLES_MAX = 10; public static final int
+	 * NB_PIONS_COMBINAISON_MIN = 4; public static final int
+	 * NB_PIONS_COMBINAISON_MAX = 6; public static final int NB_ESSAIS_MIN = 1;
+	 * public static final int NB_ESSAIS_MAX = 12;
+	 */
 
 	/**
 	 * La valeur du paramètre dans le fichier de configuration.
@@ -34,6 +44,8 @@ public enum Parametre {
 	 * @see Parametre#getValeur()
 	 */
 	private int valeur;
+	private int min;
+	private int max;
 
 	/**
 	 * Constructeur Parametre.</br>
@@ -42,7 +54,9 @@ public enum Parametre {
 	 * 
 	 * @param parametre : le nom du paramètre dans le fichier de configuration.
 	 */
-	private Parametre(String parametre) {
+	private Parametre(String parametre, int min, int max) {
+		this.min = min;
+		this.max = max;
 		try {
 
 			Properties proprietes = new Properties();
@@ -59,7 +73,17 @@ public enum Parametre {
 			// Récupérer la valeur de la propriété
 			valeur = Integer.parseInt(proprietes.getProperty(parametre));
 
-			// log.debug(toString() + " = " + valeur);
+			// Tester la valeur de la propriété
+			if (valeur < min || valeur > max) {
+				log.error("La valeur du paramètre " + parametre
+						+ " dans le fichier de configuration doit être comprise entre " + min + " et " + max + ".");
+				JOptionPane.showMessageDialog(null,
+						new Object[] { "Erreur liée aux paramètres du fichier de configuration.",
+								"Veuillez contacter le développeur.", "", "Arrêt du programme." },
+						"Erreur", JOptionPane.ERROR_MESSAGE);
+				System.exit(0);
+			}
+
 			inputStream.close();
 
 		} catch (FileNotFoundException e) {
@@ -76,6 +100,24 @@ public enum Parametre {
 	 */
 	public int getValeur() {
 		return valeur;
+	}
+
+	/**
+	 * Retourne la valeur minimum du paramètre.
+	 * 
+	 * @return La valeur minimum du paramètre.
+	 */
+	public int getMin() {
+		return min;
+	}
+
+	/**
+	 * Retourne la valeur maximum du paramètre.
+	 * 
+	 * @return La valeur maximum du paramètre.
+	 */
+	public int getMax() {
+		return max;
 	}
 
 }

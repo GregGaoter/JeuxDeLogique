@@ -21,6 +21,7 @@ import javax.swing.JSlider;
 import javax.swing.border.EmptyBorder;
 
 import com.openclassrooms.jeuxlogiques.modele.ModeleJeu;
+import com.openclassrooms.jeuxlogiques.modele.enumeration.Parametre;
 
 public class DialogueOption extends JDialog {
 
@@ -89,8 +90,8 @@ public class DialogueOption extends JDialog {
 		contraintesOptions.gridx = 1;
 		contraintesOptions.gridy = 1;
 		panneauOptionsGenerales.add(new JLabel("Nombre de pions de la combinaison secrète :"), contraintesOptions);
-		sliderNbPionsCombinaisonSecrete = new JSlider(ModeleJeu.NB_PIONS_COMBINAISON_MIN,
-				ModeleJeu.NB_PIONS_COMBINAISON_MAX, modele.getNbPionsCombinaison());
+		sliderNbPionsCombinaisonSecrete = new JSlider(Parametre.NbPionsCombinaison.getMin(),
+				Parametre.NbPionsCombinaison.getMax(), modele.getNbPionsCombinaison());
 		contraintesOptions.gridy = 2;
 		panneauOptionsGenerales.add(sliderNbPionsCombinaisonSecrete, contraintesOptions);
 		sliderNbPionsCombinaisonSecrete.setMajorTickSpacing(1);
@@ -105,7 +106,8 @@ public class DialogueOption extends JDialog {
 
 		contraintesOptions.gridy = 4;
 		panneauOptionsGenerales.add(new JLabel("Nombre d'essais possibles :"), contraintesOptions);
-		sliderNbEssaisPossibles = new JSlider(ModeleJeu.NB_ESSAIS_MIN, ModeleJeu.NB_ESSAIS_MAX, modele.getNbEssais());
+		sliderNbEssaisPossibles = new JSlider(Parametre.NbEssais.getMin(), Parametre.NbEssais.getMax(),
+				modele.getNbEssais());
 		contraintesOptions.gridy = 5;
 		panneauOptionsGenerales.add(sliderNbEssaisPossibles, contraintesOptions);
 		sliderNbEssaisPossibles.setMajorTickSpacing(1);
@@ -126,8 +128,8 @@ public class DialogueOption extends JDialog {
 		contraintesOptions.gridx = 1;
 		contraintesOptions.gridy = 1;
 		panneauOptionsMastermind.add(new JLabel("Nombre de couleurs utilisables :"), contraintesOptions);
-		sliderNbCouleursUtilisables = new JSlider(ModeleJeu.NB_COULEURS_UTILISABLES_MIN,
-				ModeleJeu.NB_COULEURS_UTILISABLES_MAX, modele.getNbPionsUtilisables());
+		sliderNbCouleursUtilisables = new JSlider(Parametre.NbCouleursUtilisables.getMin(),
+				Parametre.NbCouleursUtilisables.getMax(), modele.getNbPionsUtilisables());
 		contraintesOptions.gridy = 2;
 		panneauOptionsMastermind.add(sliderNbCouleursUtilisables, contraintesOptions);
 		sliderNbCouleursUtilisables.setMajorTickSpacing(1);

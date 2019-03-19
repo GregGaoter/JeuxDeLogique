@@ -90,7 +90,7 @@ public abstract class Joueur implements SujetObservable {
 		}
 	}
 
-	private void setListePanneauValidation() {
+	public void setListePanneauValidation() {
 		for (int y = 1; y <= modele.getNbEssais(); y++)
 			listePanneauValidation.put(getClef(1, y), new PanneauBoutonValidation(boutonValidation));
 		listePanneauValidation.get(getClef(1, compteurEssais)).add(boutonValidation);

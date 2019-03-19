@@ -86,8 +86,10 @@ public class ControleurJeu {
 	private void lancerMode(JFrame fenetreProprietaire) {
 		DialogueMode dialogueMode = new DialogueMode(fenetreProprietaire);
 		mode = dialogueMode.getValeur();
-		if (mode != null)
+		if (mode != null) {
 			initialiserMode(fenetreProprietaire);
+			lancerTour();
+		}
 		dialogueMode.dispose();
 	}
 
@@ -151,7 +153,6 @@ public class ControleurJeu {
 		gagnantQ = false;
 		itDefenseurs = mode.getListeDefenseurs().iterator();
 		itAttaquants = mode.getListeAttaquants().iterator();
-		lancerTour();
 	}
 
 	public void lancerTour() {
@@ -200,13 +201,14 @@ public class ControleurJeu {
 			modele.setVue(vue);
 			modele.setControleur(this);
 			modele.setJeu(jeu);
+			modele.initialiser();
 			modele.setNbPionsCombinaison(listeValeurs[0]);
 			modele.setNbEssais(listeValeurs[1]);
 			modele.setNbPionsUtilisables(listeValeurs[2]);
-			modele.initialiser();
 			vue.setModele(modele);
 			afficherVainqueur("-");
 			vue.initialiserPanneaux();
+			vue.getBoutonRejouerMemeJeu().setEnabled(false);
 			repeindreFenetrePrincipale();
 		}
 	}
@@ -309,6 +311,7 @@ public class ControleurJeu {
 	public void rejouerMemeJeu(JFrame fenetreProprietaire) {
 		initialiserJeu();
 		initialiserMode(fenetreProprietaire);
+		lancerTour();
 	}
 
 	public void setPionSelectionne() {

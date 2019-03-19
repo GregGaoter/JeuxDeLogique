@@ -20,12 +20,13 @@ import com.openclassrooms.jeuxlogiques.vue.Vue;
 
 public class ModeleJeu implements SujetObservable {
 
-	public static final int NB_COULEURS_UTILISABLES_MIN = 4;
-	public static final int NB_COULEURS_UTILISABLES_MAX = 10;
-	public static final int NB_PIONS_COMBINAISON_MIN = 4;
-	public static final int NB_PIONS_COMBINAISON_MAX = 6;
-	public static final int NB_ESSAIS_MIN = 1;
-	public static final int NB_ESSAIS_MAX = 12;
+	/*
+	 * public static final int NB_COULEURS_UTILISABLES_MIN = 4; public static final
+	 * int NB_COULEURS_UTILISABLES_MAX = 10; public static final int
+	 * NB_PIONS_COMBINAISON_MIN = 4; public static final int
+	 * NB_PIONS_COMBINAISON_MAX = 6; public static final int NB_ESSAIS_MIN = 1;
+	 * public static final int NB_ESSAIS_MAX = 12;
+	 */
 
 	private Vue vue;
 	private ControleurJeu controleur;
