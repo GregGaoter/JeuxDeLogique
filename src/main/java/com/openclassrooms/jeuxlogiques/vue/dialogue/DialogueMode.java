@@ -5,6 +5,8 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -14,6 +16,7 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JToggleButton;
 import javax.swing.border.EmptyBorder;
@@ -27,11 +30,18 @@ public class DialogueMode extends JDialog {
 
 	private JPanel panneauPrincipal, panneauIcone, panneauChoix;
 	private JButton boutonOk;
-	private JButton boutonAnnuler;
 	private boolean okQ;
 
 	public DialogueMode(JFrame fenetreProprietaire) {
+
 		super(fenetreProprietaire, "Sélection du mode", true);
+
+		addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent arg0) {
+				JOptionPane.showMessageDialog(fenetreProprietaire, new Object[] {
+						"La sélection du mode ne peut pas être annulée.", "Vous devez cliquer sur le bouton OK." });
+			}
+		});
 
 		/*
 		 * Panneau principal
@@ -84,21 +94,13 @@ public class DialogueMode extends JDialog {
 			}
 		});
 
-		boutonAnnuler = new JButton("Annuler");
-		panneauValidation.add(boutonAnnuler);
-		boutonAnnuler.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				okQ = false;
-				setVisible(false);
-			}
-		});
-
 	}
 
 	public Mode getValeur() {
 		okQ = false;
 		pack();
 		setLocationRelativeTo(getOwner());
+		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		setVisible(true);
 		return (okQ ? modeSelectionne : null);
 	}

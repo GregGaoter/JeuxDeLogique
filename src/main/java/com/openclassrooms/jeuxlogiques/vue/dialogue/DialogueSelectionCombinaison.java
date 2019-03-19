@@ -8,6 +8,8 @@ import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -21,6 +23,7 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JToggleButton;
 import javax.swing.border.EmptyBorder;
@@ -47,7 +50,6 @@ public class DialogueSelectionCombinaison extends JDialog implements Observateur
 	private JPanel panneauPrincipal, panneauSettings, panneauIcone, panneauTypeSelection, panneauSolution,
 			panneauPionsUtilisables;
 	private JButton boutonOk;
-	private JButton boutonAnnuler;
 	private JButton boutonRefresh;
 	private boolean manuelQ;
 	private boolean okQ;
@@ -60,6 +62,13 @@ public class DialogueSelectionCombinaison extends JDialog implements Observateur
 
 	public DialogueSelectionCombinaison(JFrame fenetreParente, ModeleJeu modele, ControleurJeu controleur) {
 		super(fenetreParente, "Choix de la combinaison secrète", true);
+		addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent arg0) {
+				JOptionPane.showMessageDialog(fenetreParente,
+						new Object[] { "La sélection de la combinaison secrète ne peut pas être annulée.",
+								"Vous devez cliquer sur le bouton OK." });
+			}
+		});
 		listePanneauSecret = new HashMap<>();
 		listePanneauPionUtilisable = new HashMap<>();
 		combinaisonSecrete = new ArrayList<>(listePanneauSecret.size());
@@ -185,15 +194,6 @@ public class DialogueSelectionCombinaison extends JDialog implements Observateur
 			}
 		});
 
-		boutonAnnuler = new JButton("Annuler");
-		panneauValidation.add(boutonAnnuler);
-		boutonAnnuler.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				okQ = false;
-				setVisible(false);
-			}
-		});
-
 		toggleButtonManuel.doClick();
 		boutonOk.setEnabled(false);
 
@@ -263,6 +263,7 @@ public class DialogueSelectionCombinaison extends JDialog implements Observateur
 		okQ = false;
 		pack();
 		setLocationRelativeTo(getOwner());
+		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		setVisible(true);
 		return (okQ ? combinaisonSecrete : null);
 	}

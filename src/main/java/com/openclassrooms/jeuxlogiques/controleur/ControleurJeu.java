@@ -34,6 +34,7 @@ public class ControleurJeu {
 
 	private Jeu jeu;
 	private Mode mode;
+
 	private boolean modeDeveloppeurQ;
 
 	private Joueur defenseur, attaquant;
@@ -49,25 +50,27 @@ public class ControleurJeu {
 		vue = new Vue();
 		modele.setVue(vue);
 		modele.setControleur(this);
-		modele.setJeu(Jeu.LISTE_JEUX[0]);
+		modele.setJeu(Jeu.LISTE_JEUX[1]);
 		jeu = modele.getJeu();
 		modele.initialiser();
 		vue.setModele(modele);
 		vue.setControleur(this);
 		modeDeveloppeurQ = modeDeveloppeur.length > 0
 				&& Integer.parseInt(modeDeveloppeur[0]) == Parametre.ModeDeveloppeur.getValeur();
-		vue.creerFenetreDemarrage();
-		vue.runBarreProgression();
+		// vue.creerFenetreDemarrage();
+		// vue.runBarreProgression();
 		vue.creerVue();
 	}
 
 	public void lancerDialogueJeu(JFrame fenetreProprietaire) {
+		Memoire memoire = creerMemoire();
 		DialogueJeu dialogueJeu = new DialogueJeu(fenetreProprietaire);
 		jeu = dialogueJeu.getValeur();
 		if (jeu != null) {
 			initialiserJeu();
 			lancerMode(fenetreProprietaire);
-		}
+		} else
+			restaurerMemoire(memoire);
 	}
 
 	private void initialiserJeu() {
@@ -204,6 +207,7 @@ public class ControleurJeu {
 			vue.setModele(modele);
 			afficherVainqueur("-");
 			vue.initialiserPanneaux();
+			repeindreFenetrePrincipale();
 		}
 	}
 
@@ -215,6 +219,14 @@ public class ControleurJeu {
 			vue.getToggleButtonJoueur().setText(nomJoueur);
 		}
 		dialogueOptionJoueur.dispose();
+	}
+
+	public Memoire creerMemoire() {
+		return new Memoire(jeu);
+	}
+
+	public void restaurerMemoire(Memoire memoire) {
+		jeu = memoire.getJeu();
 	}
 
 	public void setPionSecret(Pion pion) {

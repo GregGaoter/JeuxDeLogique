@@ -223,11 +223,14 @@ public class ModeleJeu implements SujetObservable {
 	}
 
 	public void getPionProposition(int x) {
-		attaquant.getCombinaisonProposition().set(x - 1, pionProposition);
-		attaquant.setPion(attaquant.getListePanneauProposition(), attaquant.getClef(x, attaquant.getCompteurEssais()),
-				pionProposition);
-		setCombinaisonProposition(attaquant.getCombinaisonProposition());
-		notifierObservateur();
+		try {
+			attaquant.getCombinaisonProposition().set(x - 1, pionProposition);
+			attaquant.setPion(attaquant.getListePanneauProposition(),
+					attaquant.getClef(x, attaquant.getCompteurEssais()), pionProposition);
+			setCombinaisonProposition(attaquant.getCombinaisonProposition());
+			notifierObservateur();
+		} catch (IndexOutOfBoundsException e) {
+		}
 	}
 
 	public void setPionProposition(Pion pionProposition) {
