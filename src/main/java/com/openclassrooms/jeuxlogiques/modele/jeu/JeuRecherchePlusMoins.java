@@ -1,5 +1,7 @@
 package com.openclassrooms.jeuxlogiques.modele.jeu;
 
+import org.apache.log4j.Logger;
+
 import com.openclassrooms.jeuxlogiques.controleur.service.ServiceDeCalcul;
 import com.openclassrooms.jeuxlogiques.controleur.service.ServiceDeCalculRecherchePlusMoins;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.Pion;
@@ -8,7 +10,10 @@ import com.openclassrooms.jeuxlogiques.modele.enumeration.PionReponseSymbol;
 
 public class JeuRecherchePlusMoins extends Jeu {
 
+	private final static Logger log = Logger.getLogger(JeuRecherchePlusMoins.class);
+
 	public JeuRecherchePlusMoins() {
+		log.info("Construction de Recherche +/-");
 		nbPionsUtilisables = 10;
 		loadCombinaisonsPossiblesQ = false;
 	}

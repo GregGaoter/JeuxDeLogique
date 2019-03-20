@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import com.openclassrooms.jeuxlogiques.modele.enumeration.Pion;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.PionChiffre;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.PionCommun;
@@ -18,10 +20,13 @@ import com.openclassrooms.jeuxlogiques.modele.enumeration.PionReponseSymbol;
  */
 public class ServiceDeCalculRecherchePlusMoins extends ServiceDeCalcul {
 
+	private final static Logger log = Logger.getLogger(ServiceDeCalculRecherchePlusMoins.class);
+
 	private List<Integer[]> rechercheReponse;
 
 	public ServiceDeCalculRecherchePlusMoins(int nbPionsCombinaisonSecrete) {
 		super(nbPionsCombinaisonSecrete);
+		log.info("Construction du service de calcul pour Recherche +/-.");
 		rechercheReponse = new ArrayList<>();
 		initialiserRechercheReponse();
 	}
@@ -41,6 +46,7 @@ public class ServiceDeCalculRecherchePlusMoins extends ServiceDeCalcul {
 	 * @see PionReponseSymbol
 	 */
 	public List<Pion> calculerReponse(List<Pion> proposition, List<Pion> solution) {
+		log.info("Calcul de la réponse de recherche +/-.");
 		List<Pion> reponse = new ArrayList<>(nbPionsCombinaisonSecrete);
 		Iterator<Pion> itProposition = proposition.iterator();
 		Iterator<Pion> itSolution = solution.iterator();
@@ -60,6 +66,7 @@ public class ServiceDeCalculRecherchePlusMoins extends ServiceDeCalcul {
 
 	public List<Pion> calculerProposition(List<List<Pion>> listeCombinaisonsPossibles, List<Pion> derniereProposition,
 			List<Pion> derniereReponse) {
+		log.info("Calcul de la proposition de recherche +/-.");
 		List<Pion> nouvelleProposition = new ArrayList<>(nbPionsCombinaisonSecrete);
 		if (derniereReponse.contains(PionCommun.Vide))
 			for (int i = 1; i <= nbPionsCombinaisonSecrete; i++)

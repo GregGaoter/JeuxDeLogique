@@ -31,6 +31,7 @@ public class DialogueReglesJeux extends JDialog {
 
 	public DialogueReglesJeux(JFrame fenetreParente) throws IOException, BadLocationException {
 		super(fenetreParente, "Règles des jeux", false);
+		log.info("Construction de la boîte de dialogue des règles des jeux.");
 
 		/*
 		 * Panneau onglets

@@ -7,6 +7,8 @@ import java.util.List;
 
 import javax.swing.JPanel;
 
+import org.apache.log4j.Logger;
+
 import com.openclassrooms.jeuxlogiques.controleur.ControleurJeu;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.Parametre;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.Pion;
@@ -20,13 +22,7 @@ import com.openclassrooms.jeuxlogiques.vue.Vue;
 
 public class ModeleJeu implements SujetObservable {
 
-	/*
-	 * public static final int NB_COULEURS_UTILISABLES_MIN = 4; public static final
-	 * int NB_COULEURS_UTILISABLES_MAX = 10; public static final int
-	 * NB_PIONS_COMBINAISON_MIN = 4; public static final int
-	 * NB_PIONS_COMBINAISON_MAX = 6; public static final int NB_ESSAIS_MIN = 1;
-	 * public static final int NB_ESSAIS_MAX = 12;
-	 */
+	private final static Logger log = Logger.getLogger(ModeleJeu.class);
 
 	private Vue vue;
 	private ControleurJeu controleur;
@@ -54,6 +50,7 @@ public class ModeleJeu implements SujetObservable {
 	private String nomJoueur;
 
 	public ModeleJeu() {
+		log.info("Construction du modèle.");
 		listeObservateurs = new ArrayList<>();
 		nbEssais = compteurEssais = Parametre.NbEssais.getValeur();
 		nbPionsCombinaison = Parametre.NbPionsCombinaison.getValeur();
@@ -65,6 +62,7 @@ public class ModeleJeu implements SujetObservable {
 	}
 
 	public void initialiser() {
+		log.info("Initialisation du modèle.");
 		compteurEssais = nbEssais;
 		combinaisonSecrete = defenseur.getCombinaisonSecrete();
 		combinaisonProposition = attaquant.getCombinaisonProposition();
@@ -231,6 +229,7 @@ public class ModeleJeu implements SujetObservable {
 			setCombinaisonProposition(attaquant.getCombinaisonProposition());
 			notifierObservateur();
 		} catch (IndexOutOfBoundsException e) {
+			log.error("IndexOutOfBoundsException : " + e.getMessage());
 		}
 	}
 

@@ -6,18 +6,23 @@ import java.util.List;
 import javax.swing.JFrame;
 
 import org.apache.commons.lang3.RandomUtils;
+import org.apache.log4j.Logger;
 
 import com.openclassrooms.jeuxlogiques.controleur.ControleurJeu;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.Pion;
 
 public class Ordinateur extends Joueur {
 
+	private final static Logger log = Logger.getLogger(Ordinateur.class);
+
 	public Ordinateur() {
+		log.info("Construction du joueur ordinateur.");
 		nom = "Ordinateur";
 		humainQ = false;
 	}
 
 	public void setCombinaisonSecrete(JFrame fenetreParente, ControleurJeu controleur) {
+		log.info("Lancement du choix de la combinaison secrète de l'ordinateur.");
 		Pion pionAleatoire;
 		combinaisonSecrete.clear();
 		for (int i = 1; i <= modele.getNbPionsCombinaison(); i++) {
@@ -27,6 +32,7 @@ public class Ordinateur extends Joueur {
 	}
 
 	public void setCombinaisonProposition() {
+		log.info("Lancement du choix de la combinaison proposition de l'ordinateur.");
 		List<Pion> nouvelleCombinaisonProposition = controleur.setCombinaisonProposition(listeCombinaisonsPossibles,
 				combinaisonProposition, combinaisonReponse);
 		combinaisonProposition.clear();
@@ -38,6 +44,7 @@ public class Ordinateur extends Joueur {
 	// Source :
 	// https://codereview.stackexchange.com/questions/41510/calculate-all-possible-combinations-of-given-characters
 	protected void setListeCombinaisonsPossibles() {
+		log.info("Calcul de la liste de toutes les combinaisons possibles pour l'ordinateur.");
 		if (controleur.getJeu().getLoadCombinaisonsPossiblesQ()
 				&& controleur.getMode().getLoadCombinaisonsPossiblesQ()) {
 			nbCombinaisonsPossibles = (int) Math.pow(modele.getNbPionsUtilisables(), modele.getNbPionsCombinaison());

@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.swing.JFrame;
 
+import org.apache.log4j.Logger;
+
 import com.openclassrooms.jeuxlogiques.controleur.ControleurJeu;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.Pion;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.PionCommun;
@@ -12,16 +14,20 @@ import com.openclassrooms.jeuxlogiques.vue.dialogue.DialogueSelectionCombinaison
 
 public class Humain extends Joueur {
 
+	private final static Logger log = Logger.getLogger(Humain.class);
+
 	private DialogueSelectionCombinaison dialogueSelectionCombinaison;
 	private Pion pionSecret;
 
 	public Humain() {
+		log.info("Construction du joueur Humain.");
 		nom = "Joueur";
 		humainQ = true;
 		pionSecret = PionCommun.Vide;
 	}
 
 	public void setCombinaisonSecrete(JFrame fenetreParente, ControleurJeu controleur) {
+		log.info("Lancement du choix de la combinaison secrète de " + nom + ".");
 		dialogueSelectionCombinaison = new DialogueSelectionCombinaison(fenetreParente, modele, controleur);
 		List<Pion> combinaisonSecreteDialogue = new ArrayList<>(modele.getNbPionsCombinaison());
 		combinaisonSecreteDialogue = dialogueSelectionCombinaison.getValeur();
@@ -39,7 +45,6 @@ public class Humain extends Joueur {
 	}
 
 	public Pion getPionSecret(int x) {
-		// combinaisonSecrete.set(x - 1, pionSecret);
 		dialogueSelectionCombinaison.getCombinaisonSecrete().set(x - 1, pionSecret);
 		dialogueSelectionCombinaison.actualiser();
 		return pionSecret;

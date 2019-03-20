@@ -35,6 +35,8 @@ import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.border.EmptyBorder;
 import javax.swing.text.BadLocationException;
 
+import org.apache.log4j.Logger;
+
 import com.openclassrooms.jeuxlogiques.controleur.ControleurJeu;
 import com.openclassrooms.jeuxlogiques.modele.ModeleJeu;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.Pion;
@@ -48,6 +50,8 @@ import com.openclassrooms.jeuxlogiques.vue.separateur.AlignementHorizontal;
 import com.openclassrooms.jeuxlogiques.vue.separateur.SeparateurVertical;
 
 public class Vue implements Observateur {
+
+	private final static Logger log = Logger.getLogger(Vue.class);
 
 	private final String separateurClef = "-";
 
@@ -93,6 +97,7 @@ public class Vue implements Observateur {
 	private JProgressBar barreProgression;
 
 	public Vue() {
+		log.info("Construction de la vue.");
 		listePanneauSecret = new HashMap<>();
 		listePanneauProposition = new HashMap<>();
 		listePanneauReponse = new HashMap<>();
@@ -110,6 +115,7 @@ public class Vue implements Observateur {
 	}
 
 	public synchronized void creerFenetreDemarrage() {
+		log.info("Création de la fenêtre de démarrage.");
 
 		/*
 		 * Look and feel
@@ -151,6 +157,7 @@ public class Vue implements Observateur {
 	}
 
 	public synchronized void runBarreProgression() {
+		log.info("Lancement de la barre de progression de la fenêtre de démarrage.");
 		for (int i = 1; i <= 100; i++) {
 			try {
 				barreProgression.setValue(i);
@@ -162,6 +169,7 @@ public class Vue implements Observateur {
 	}
 
 	public synchronized void creerVue() {
+		log.info("Création de la vue.");
 
 		/*
 		 * Look and feel
@@ -359,6 +367,7 @@ public class Vue implements Observateur {
 	}
 
 	public void initialiserPanneaux() {
+		log.info("Initialisation des panneaux de la vue.");
 
 		panneauPrincipal.removeAll();
 

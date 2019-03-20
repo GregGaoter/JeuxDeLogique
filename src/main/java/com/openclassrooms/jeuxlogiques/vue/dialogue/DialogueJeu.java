@@ -18,9 +18,13 @@ import javax.swing.JPanel;
 import javax.swing.JToggleButton;
 import javax.swing.border.EmptyBorder;
 
+import org.apache.log4j.Logger;
+
 import com.openclassrooms.jeuxlogiques.modele.jeu.Jeu;
 
 public class DialogueJeu extends JDialog {
+
+	private final static Logger log = Logger.getLogger(DialogueJeu.class);
 
 	private static final long serialVersionUID = 1L;
 
@@ -33,6 +37,7 @@ public class DialogueJeu extends JDialog {
 
 	public DialogueJeu(JFrame fenetreParente) {
 		super(fenetreParente, "Sélection du jeu", true);
+		log.info("Construction de la boîte de dialogue du choix du jeu.");
 
 		/*
 		 * Panneau principal

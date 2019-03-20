@@ -1,5 +1,7 @@
 package com.openclassrooms.jeuxlogiques.modele.mode;
 
+import org.apache.log4j.Logger;
+
 import com.openclassrooms.jeuxlogiques.controleur.ControleurJeu;
 import com.openclassrooms.jeuxlogiques.modele.ModeleJeu;
 import com.openclassrooms.jeuxlogiques.modele.joueur.Joueur;
@@ -7,23 +9,28 @@ import com.openclassrooms.jeuxlogiques.vue.Vue;
 
 public class Duel extends Mode {
 
+	private final static Logger log = Logger.getLogger(Duel.class);
+
 	public String getNom() {
 		return "Duel";
 	}
 
 	protected void setListeDefenseurs() {
+		log.info("Création de la liste des défenseurs du mode " + getNom() + ".");
 		listeDefenseurs.clear();
 		listeDefenseurs.add(ordinateur);
 		listeDefenseurs.add(humain);
 	}
 
 	protected void setListeAttaquants() {
+		log.info("Création de la liste des attaquants du mode " + getNom() + ".");
 		listeAttaquants.clear();
 		listeAttaquants.add(humain);
 		listeAttaquants.add(ordinateur);
 	}
 
 	public void calculerVainqueur(ModeleJeu modele, ControleurJeu controleur, Vue vue) {
+		log.info("Calcul du vainqueur du mode Duel.");
 		Joueur attaquant = controleur.getAttaquant();
 		Joueur defenseur = controleur.getDefenseur();
 		if (humain.getCompteurEssais() != ordinateur.getCompteurEssais()) {

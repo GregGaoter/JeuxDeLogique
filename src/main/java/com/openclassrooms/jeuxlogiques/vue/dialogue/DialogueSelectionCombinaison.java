@@ -29,6 +29,7 @@ import javax.swing.JToggleButton;
 import javax.swing.border.EmptyBorder;
 
 import org.apache.commons.lang3.RandomUtils;
+import org.apache.log4j.Logger;
 
 import com.openclassrooms.jeuxlogiques.controleur.ControleurJeu;
 import com.openclassrooms.jeuxlogiques.modele.ModeleJeu;
@@ -42,6 +43,8 @@ import com.openclassrooms.jeuxlogiques.vue.separateur.AlignementVertical;
 import com.openclassrooms.jeuxlogiques.vue.separateur.SeparateurHorizontal;
 
 public class DialogueSelectionCombinaison extends JDialog implements Observateur {
+
+	private final static Logger log = Logger.getLogger(DialogueSelectionCombinaison.class);
 
 	private static final long serialVersionUID = 1L;
 
@@ -62,6 +65,7 @@ public class DialogueSelectionCombinaison extends JDialog implements Observateur
 
 	public DialogueSelectionCombinaison(JFrame fenetreParente, ModeleJeu modele, ControleurJeu controleur) {
 		super(fenetreParente, "Choix de la combinaison secrète", true);
+		log.info("Construction de la boîte de dialogue du choix de la combinaison secrète.");
 		addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent arg0) {
 				JOptionPane.showMessageDialog(fenetreParente,

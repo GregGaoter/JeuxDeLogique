@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import com.openclassrooms.jeuxlogiques.controleur.ControleurJeu;
 import com.openclassrooms.jeuxlogiques.modele.ModeleJeu;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.Pion;
@@ -14,6 +16,8 @@ import com.openclassrooms.jeuxlogiques.vue.Vue;
 
 public abstract class Mode {
 
+	private final static Logger log = Logger.getLogger(Mode.class);
+
 	public static final Mode[] LISTE_MODES = { new Challenger(), new Defenseur(), new Duel() };
 
 	protected List<Joueur> listeDefenseurs;
@@ -22,6 +26,7 @@ public abstract class Mode {
 	protected boolean loadCombinaisonsPossiblesQ;
 
 	public Mode() {
+		log.info("Construction du mode.");
 		listeDefenseurs = new ArrayList<>();
 		listeAttaquants = new ArrayList<>();
 		humain = new Humain();
@@ -40,6 +45,7 @@ public abstract class Mode {
 	}
 
 	public void calculerVainqueur(ModeleJeu modele, ControleurJeu controleur, Vue vue) {
+		log.info("Calcul du vainqueur du mode " + getNom());
 		Joueur attaquant = controleur.getAttaquant();
 		Joueur defenseur = controleur.getDefenseur();
 		if (gagnantQ(attaquant, controleur)) {

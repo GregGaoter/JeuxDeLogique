@@ -8,6 +8,8 @@ import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
+import org.apache.log4j.Logger;
+
 import com.openclassrooms.jeuxlogiques.controleur.service.ServiceDeCalcul;
 import com.openclassrooms.jeuxlogiques.modele.ModeleJeu;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.Parametre;
@@ -25,7 +27,7 @@ import com.openclassrooms.jeuxlogiques.vue.dialogue.DialogueOptionJoueur;
 
 public class ControleurJeu {
 
-	// private final static Logger log = Logger.getLogger(ControleurJeu.class);
+	private final static Logger log = Logger.getLogger(ControleurJeu.class);
 
 	private final String separateurClef = "-";
 
@@ -46,6 +48,7 @@ public class ControleurJeu {
 	private Iterator<Joueur> itDefenseurs, itAttaquants;
 
 	public ControleurJeu(String[] modeDeveloppeur) {
+		log.info("Construction du contrôleur.");
 		modele = new ModeleJeu();
 		vue = new Vue();
 		modele.setVue(vue);
@@ -57,12 +60,13 @@ public class ControleurJeu {
 		vue.setControleur(this);
 		modeDeveloppeurQ = modeDeveloppeur.length > 0
 				&& Integer.parseInt(modeDeveloppeur[0]) == Parametre.ModeDeveloppeur.getValeur();
-		// vue.creerFenetreDemarrage();
-		// vue.runBarreProgression();
+		vue.creerFenetreDemarrage();
+		vue.runBarreProgression();
 		vue.creerVue();
 	}
 
 	public void lancerDialogueJeu(JFrame fenetreProprietaire) {
+		log.info("Lancement de la boîte de dialogue du choix des jeux.");
 		Memoire memoire = creerMemoire();
 		DialogueJeu dialogueJeu = new DialogueJeu(fenetreProprietaire);
 		jeu = dialogueJeu.getValeur();
@@ -74,6 +78,7 @@ public class ControleurJeu {
 	}
 
 	private void initialiserJeu() {
+		log.info("Initialisation du jeu.");
 		modele.initialiser();
 		modele.setJeu(jeu);
 		modele.setNbPionsUtilisables(jeu.getNbPionsUtilisables());
@@ -84,16 +89,19 @@ public class ControleurJeu {
 	}
 
 	private void lancerMode(JFrame fenetreProprietaire) {
+		log.info("Lancement de la boîte de dialogue du choix des modes.");
 		DialogueMode dialogueMode = new DialogueMode(fenetreProprietaire);
 		mode = dialogueMode.getValeur();
 		if (mode != null) {
 			initialiserMode(fenetreProprietaire);
+			log.info("Lancement d'une nouvelle partie.");
 			lancerTour();
 		}
 		dialogueMode.dispose();
 	}
 
 	private void initialiserMode(JFrame fenetreProprietaire) {
+		log.info("Initialisation du mode.");
 		itDefenseurs = mode.getListeDefenseurs().iterator();
 		itAttaquants = mode.getListeAttaquants().iterator();
 		while (itDefenseurs.hasNext() && itAttaquants.hasNext()) {
@@ -156,6 +164,7 @@ public class ControleurJeu {
 	}
 
 	public void lancerTour() {
+		log.info("Lancement d'un tour de jeu.");
 		if (!gagnantQ) {
 			if (!itDefenseurs.hasNext() && !itAttaquants.hasNext()) {
 				itDefenseurs = mode.getListeDefenseurs().iterator();
@@ -192,6 +201,7 @@ public class ControleurJeu {
 	}
 
 	public void lancerDialogueOption(JFrame fenetreProprietaire) {
+		log.info("Lancement de la boîte de dialogue du réglage des options des jeux.");
 		DialogueOption dialogueOptions = new DialogueOption(fenetreProprietaire, modele);
 		int[] listeValeurs = dialogueOptions.getValeur();
 		if (listeValeurs != null) {
@@ -214,6 +224,7 @@ public class ControleurJeu {
 	}
 
 	public void lancerDialogueOptionJoueur(JFrame fenetreProprietaire) {
+		log.info("Lancement de la boîte de dialogue du nom du joueur.");
 		DialogueOptionJoueur dialogueOptionJoueur = new DialogueOptionJoueur(fenetreProprietaire);
 		String nomJoueur = dialogueOptionJoueur.getValeur();
 		if (nomJoueur != null) {
@@ -292,6 +303,7 @@ public class ControleurJeu {
 	}
 
 	public void calculerReponse() {
+		log.info("Lancement du calcul de la réponse.");
 		attaquant.setCombinaisonReponse(
 				serviceDeCalcul.calculerReponse(modele.getCombinaisonProposition(), modele.getCombinaisonSecrete()));
 		modele.setCombinaisonReponse(attaquant.getCombinaisonReponse());
@@ -300,15 +312,18 @@ public class ControleurJeu {
 	}
 
 	public void afficherCombinaisonSecrete(Joueur joueur) {
+		log.info("Affichage de la combinaison secrète.");
 		for (int i = 0; i < modele.getNbPionsCombinaison(); i++)
 			vue.setPion(vue.getListePanneauSecret(), getClef(i + 1, 1), joueur.getCombinaisonSecrete().get(i));
 	}
 
 	public void afficherVainqueur(String vainqueur) {
+		log.info("Affichage du vainqueur.");
 		vue.getVainqueur().setText(vainqueur);
 	}
 
 	public void rejouerMemeJeu(JFrame fenetreProprietaire) {
+		log.info("Lancement pour rejouer au même jeu.");
 		initialiserJeu();
 		initialiserMode(fenetreProprietaire);
 		lancerTour();
@@ -326,6 +341,7 @@ public class ControleurJeu {
 	}
 
 	public void setVueJoueur() {
+		log.info("Actualisation de la vue du joueur.");
 		if (defenseur.getHumainQ()) {
 			modele.setCombinaisonSecrete(attaquant.getCombinaisonSecrete());
 			modele.setCombinaisonProposition(defenseur.getCombinaisonProposition());
@@ -341,6 +357,7 @@ public class ControleurJeu {
 	}
 
 	public void setVueOrdinateur() {
+		log.info("Actualisation de la vue de l'ordinateur.");
 		if (!defenseur.getHumainQ()) {
 			modele.setCombinaisonSecrete(attaquant.getCombinaisonSecrete());
 			modele.setCombinaisonProposition(defenseur.getCombinaisonProposition());

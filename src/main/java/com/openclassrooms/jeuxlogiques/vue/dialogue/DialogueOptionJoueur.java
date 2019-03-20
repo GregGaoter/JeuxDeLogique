@@ -18,7 +18,11 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import org.apache.log4j.Logger;
+
 public class DialogueOptionJoueur extends JDialog {
+
+	private final static Logger log = Logger.getLogger(DialogueOptionJoueur.class);
 
 	private static final long serialVersionUID = 1L;
 
@@ -31,6 +35,7 @@ public class DialogueOptionJoueur extends JDialog {
 
 	public DialogueOptionJoueur(JFrame fenetreParente) {
 		super(fenetreParente, "Options du joueur", true);
+		log.info("Construction de la boîte de dialogue du réglage du nom du jeu.");
 
 		/*
 		 * Panneau principal

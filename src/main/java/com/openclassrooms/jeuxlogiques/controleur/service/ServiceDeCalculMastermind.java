@@ -24,6 +24,7 @@ public class ServiceDeCalculMastermind extends ServiceDeCalcul {
 
 	public ServiceDeCalculMastermind(int nbPionsCombinaisonSecrete) {
 		super(nbPionsCombinaisonSecrete);
+		log.info("Construction du service de calcul pour le Mastermind.");
 	}
 
 	/**
@@ -102,6 +103,7 @@ public class ServiceDeCalculMastermind extends ServiceDeCalcul {
 
 	public List<Pion> calculerProposition(List<List<Pion>> listeCombinaisonsPossibles, List<Pion> derniereProposition,
 			List<Pion> derniereReponse) {
+		log.info("Calcul de la proposition du Mastermind.");
 		if (!derniereProposition.contains(PionCommun.Vide))
 			listeCombinaisonsPossibles
 					.removeIf(c -> (!derniereReponse.equals(calculerReponse(c, derniereProposition))));

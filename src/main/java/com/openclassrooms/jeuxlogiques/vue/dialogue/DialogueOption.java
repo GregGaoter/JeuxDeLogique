@@ -20,10 +20,14 @@ import javax.swing.JPanel;
 import javax.swing.JSlider;
 import javax.swing.border.EmptyBorder;
 
+import org.apache.log4j.Logger;
+
 import com.openclassrooms.jeuxlogiques.modele.ModeleJeu;
 import com.openclassrooms.jeuxlogiques.modele.enumeration.Parametre;
 
 public class DialogueOption extends JDialog {
+
+	private final static Logger log = Logger.getLogger(DialogueOption.class);
 
 	private static final long serialVersionUID = 1L;
 
@@ -38,6 +42,7 @@ public class DialogueOption extends JDialog {
 
 	public DialogueOption(JFrame fenetreParente, ModeleJeu modele) {
 		super(fenetreParente, "Choix des options", true);
+		log.info("Construction de la boîte de dialogue du réglage des options des jeux.");
 		this.modele = modele;
 		listeValeurs = new int[3];
 

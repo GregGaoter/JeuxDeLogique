@@ -1,6 +1,7 @@
 package com.openclassrooms.jeuxlogiques.modele.jeu;
 
 import org.apache.commons.lang3.ArrayUtils;
+import org.apache.log4j.Logger;
 
 import com.openclassrooms.jeuxlogiques.controleur.service.ServiceDeCalcul;
 import com.openclassrooms.jeuxlogiques.controleur.service.ServiceDeCalculMastermind;
@@ -11,7 +12,10 @@ import com.openclassrooms.jeuxlogiques.modele.enumeration.PionReponseCouleur;
 
 public class JeuMastermind extends Jeu {
 
+	private final static Logger log = Logger.getLogger(JeuMastermind.class);
+
 	public JeuMastermind() {
+		log.info("Construction du Mastermind.");
 		nbPionsUtilisables = Parametre.NbCouleursUtilisables.getValeur();
 		loadCombinaisonsPossiblesQ = true;
 	}

@@ -9,7 +9,7 @@ public class Main {
 	private final static Logger log = Logger.getLogger(Main.class);
 
 	public static void main(String[] modeDeveloppeur) {
-		log.info("Démarrage du jeu");
+		log.info("Démarrage de l'application.");
 		new ControleurJeu(modeDeveloppeur);
 
 		/*
