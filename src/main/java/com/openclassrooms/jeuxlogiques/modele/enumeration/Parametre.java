@@ -30,29 +30,38 @@ public enum Parametre {
 
 	private final Logger log = Logger.getLogger(Parametre.class);
 
-	/*
-	 * public static final int NB_COULEURS_UTILISABLES_MIN = 4; public static final
-	 * int NB_COULEURS_UTILISABLES_MAX = 10; public static final int
-	 * NB_PIONS_COMBINAISON_MIN = 4; public static final int
-	 * NB_PIONS_COMBINAISON_MAX = 6; public static final int NB_ESSAIS_MIN = 1;
-	 * public static final int NB_ESSAIS_MAX = 12;
-	 */
-
 	/**
 	 * La valeur du paramètre dans le fichier de configuration.
 	 * 
 	 * @see Parametre#getValeur()
 	 */
 	private int valeur;
+
+	/**
+	 * La valeur minimum du paramètre.
+	 * 
+	 * @see Parametre#getMin()
+	 */
 	private int min;
+
+	/**
+	 * La valeur maximum du paramètre.
+	 * 
+	 * @see Parametre#getMax()
+	 */
 	private int max;
 
 	/**
 	 * Constructeur Parametre.</br>
 	 * Le constructeur initialise l'attribut valeur à la valeur du paramètre dans le
-	 * fichier de configuration.
+	 * fichier de configuration et vérifie si la valeur est comprise entre les
+	 * bornes min et max.
 	 * 
-	 * @param parametre : le nom du paramètre dans le fichier de configuration.
+	 * @param parametre le nom du paramètre dans le fichier de configuration
+	 * @param min       la valeur minimum du paramètre
+	 * @param max       la valeur maximum du paramètre
+	 * @see Properties
+	 * @see InputStream
 	 */
 	private Parametre(String parametre, int min, int max) {
 		this.min = min;
@@ -94,9 +103,9 @@ public enum Parametre {
 	}
 
 	/**
-	 * Retourne la valeur du paramètre.
+	 * Retourne la valeur du paramètre dans le fichier de configuration.
 	 * 
-	 * @return La valeur du paramètre.
+	 * @return la valeur du paramètre dans le fichier de configuration
 	 */
 	public int getValeur() {
 		return valeur;

@@ -7,14 +7,30 @@ import com.openclassrooms.jeuxlogiques.modele.ModeleJeu;
 import com.openclassrooms.jeuxlogiques.modele.joueur.Joueur;
 import com.openclassrooms.jeuxlogiques.vue.Vue;
 
+/**
+ * <b>Duel est une classe implémentant des méthodes caractérisant le mode
+ * Duel.</b></br>
+ * La classe Duel étend la classe abstraite Mode.
+ * 
+ * @author Grégory Gautier
+ * @version 1.0
+ */
 public class Duel extends Mode {
 
 	private final static Logger log = Logger.getLogger(Duel.class);
 
+	/**
+	 * Donne le nom du mode.
+	 * 
+	 * @return le nom du mode
+	 */
 	public String getNom() {
 		return "Duel";
 	}
 
+	/**
+	 * Définit la liste des défenseurs du mode.
+	 */
 	protected void setListeDefenseurs() {
 		log.info("Création de la liste des défenseurs du mode " + getNom() + ".");
 		listeDefenseurs.clear();
@@ -22,6 +38,9 @@ public class Duel extends Mode {
 		listeDefenseurs.add(humain);
 	}
 
+	/**
+	 * Définit la liste des attaquants du mode.
+	 */
 	protected void setListeAttaquants() {
 		log.info("Création de la liste des attaquants du mode " + getNom() + ".");
 		listeAttaquants.clear();
@@ -29,6 +48,16 @@ public class Duel extends Mode {
 		listeAttaquants.add(ordinateur);
 	}
 
+	/**
+	 * Calcul si un joueur est victorieux à l'issue d'un tour pour le mode
+	 * Duel.</br>
+	 * Un joueur est déclaré vainqueur seulement si les 2 joueurs ont joué le même
+	 * nombre d'essais.
+	 * 
+	 * @param modele     modèle du jeu
+	 * @param controleur controleur du jeu
+	 * @param vue        vue du jeu
+	 */
 	public void calculerVainqueur(ModeleJeu modele, ControleurJeu controleur, Vue vue) {
 		log.info("Calcul du vainqueur du mode Duel.");
 		Joueur attaquant = controleur.getAttaquant();
@@ -81,6 +110,10 @@ public class Duel extends Mode {
 		}
 	}
 
+	/**
+	 * Définit l'état de chargement de la liste de toutes les combinaisons
+	 * possibles.
+	 */
 	protected void setLoadCombinaisonsPossiblesQ() {
 		loadCombinaisonsPossiblesQ = true;
 	}

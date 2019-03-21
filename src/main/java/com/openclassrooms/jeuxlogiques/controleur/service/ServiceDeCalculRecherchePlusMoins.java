@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.apache.commons.lang3.RandomUtils;
 import org.apache.log4j.Logger;
 
 import com.openclassrooms.jeuxlogiques.modele.enumeration.Pion;
@@ -13,7 +14,9 @@ import com.openclassrooms.jeuxlogiques.modele.enumeration.PionReponseSymbol;
 
 /**
  * <b>ServiceDeCalculRecherchePlusMoins est la classe implémentant les méthodes
- * de calcul pour le jeu Recherche +/_.</b>
+ * de calcul pour le jeu Recherche +/_.</b></br>
+ * La classe ServiceDeCalculRecherchePlusMoins étend la classe abstraite
+ * ServiceDeCalcul.
  * 
  * @author Grégory Gautier
  * @version 1.0
@@ -22,8 +25,21 @@ public class ServiceDeCalculRecherchePlusMoins extends ServiceDeCalcul {
 
 	private final static Logger log = Logger.getLogger(ServiceDeCalculRecherchePlusMoins.class);
 
+	/**
+	 * Liste de tableau d'entier représentant l'interval de recherche de la solution
+	 * pour chaque pion de la combinaison proposition.
+	 * 
+	 * @see ServiceDeCalculRecherchePlusMoins#calculerProposition(List, List, List)
+	 */
 	private List<Integer[]> rechercheReponse;
 
+	/**
+	 * Constructeur du service de calcul pour le jeu Recherche +/_. Initialise le
+	 * nombre de pions de la combinaison secrète et la liste de recherche de la
+	 * solution.
+	 * 
+	 * @param nbPionsCombinaisonSecrete nombre de pions de la combinaison secrète
+	 */
 	public ServiceDeCalculRecherchePlusMoins(int nbPionsCombinaisonSecrete) {
 		super(nbPionsCombinaisonSecrete);
 		log.info("Construction du service de calcul pour Recherche +/-.");
@@ -64,6 +80,16 @@ public class ServiceDeCalculRecherchePlusMoins extends ServiceDeCalcul {
 		return reponse;
 	}
 
+	/**
+	 * Calcul la proposition de l'ordinateur pour le jeu Recherche +/_.
+	 * 
+	 * @param listeCombinaisonsPossibles liste des combinaisons possibles du jeu.
+	 * @param derniereProposition        dernière proposition de l'ordinateur
+	 * @param derniereProposition        dernière réponse obtenue
+	 * @return la nouvelle proposition de l'ordinateur pour Recherche +/_
+	 * @see Pion
+	 * @see RandomUtils
+	 */
 	public List<Pion> calculerProposition(List<List<Pion>> listeCombinaisonsPossibles, List<Pion> derniereProposition,
 			List<Pion> derniereReponse) {
 		log.info("Calcul de la proposition de recherche +/-.");

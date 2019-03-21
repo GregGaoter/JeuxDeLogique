@@ -7,6 +7,7 @@ import com.openclassrooms.jeuxlogiques.modele.enumeration.Pion;
 
 public class MouseListenerGetPionProposition extends MouseListenerPion {
 
+	// Position x du pion dans la combinaison proposition
 	private int x;
 
 	public MouseListenerGetPionProposition(ControleurJeu controleur, Pion pion, int x) {

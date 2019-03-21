@@ -1,0 +1,566 @@
+2019-03-21 08:53:31 INFO  Main:12 - Démarrage de l'application.
+2019-03-21 08:53:31 INFO  ControleurJeu:162 - Construction du contrôleur.
+2019-03-21 08:53:31 INFO  ModeleJeu:187 - Construction du modèle.
+2019-03-21 08:53:31 INFO  Ordinateur:34 - Construction du joueur ordinateur.
+2019-03-21 08:53:31 INFO  Humain:49 - Construction du joueur Humain.
+2019-03-21 08:53:31 INFO  Vue:100 - Construction de la vue.
+2019-03-21 08:53:31 INFO  JeuRecherchePlusMoins:31 - Construction de Recherche +/-
+2019-03-21 08:53:31 INFO  JeuMastermind:33 - Construction du Mastermind.
+2019-03-21 08:53:31 INFO  ModeleJeu:216 - Initialisation du modèle.
+2019-03-21 08:53:31 INFO  Vue:118 - Création de la fenêtre de démarrage.
+2019-03-21 08:53:32 INFO  Vue:160 - Lancement de la barre de progression de la fenêtre de démarrage.
+2019-03-21 08:53:35 INFO  Vue:172 - Création de la vue.
+2019-03-21 08:53:35 INFO  Vue:370 - Initialisation des panneaux de la vue.
+2019-03-21 08:53:44 INFO  ControleurJeu:370 - Lancement de la boîte de dialogue du nom du joueur.
+2019-03-21 08:53:44 INFO  DialogueOptionJoueur:38 - Construction de la boîte de dialogue du réglage du nom du jeu.
+2019-03-21 08:53:59 INFO  ControleurJeu:191 - Lancement de la boîte de dialogue du choix des jeux.
+2019-03-21 08:53:59 INFO  DialogueJeu:40 - Construction de la boîte de dialogue du choix du jeu.
+2019-03-21 08:54:01 INFO  ControleurJeu:203 - Initialisation du jeu.
+2019-03-21 08:54:01 INFO  ModeleJeu:216 - Initialisation du modèle.
+2019-03-21 08:54:01 INFO  ServiceDeCalculRecherchePlusMoins:45 - Construction du service de calcul pour Recherche +/-.
+2019-03-21 08:54:01 INFO  Vue:370 - Initialisation des panneaux de la vue.
+2019-03-21 08:54:01 INFO  ControleurJeu:214 - Lancement de la boîte de dialogue du choix des modes.
+2019-03-21 08:54:01 INFO  DialogueMode:44 - Construction de la boîte de dialogue du choix du mode.
+2019-03-21 08:54:01 INFO  Mode:87 - Construction du mode.
+2019-03-21 08:54:01 INFO  Humain:49 - Construction du joueur Humain.
+2019-03-21 08:54:01 INFO  Ordinateur:34 - Construction du joueur ordinateur.
+2019-03-21 08:54:01 INFO  Challenger:30 - Création de la liste des défenseurs du mode Challenger.
+2019-03-21 08:54:01 INFO  Challenger:40 - Création de la liste des attaquants du mode Challenger.
+2019-03-21 08:54:01 INFO  Mode:87 - Construction du mode.
+2019-03-21 08:54:01 INFO  Humain:49 - Construction du joueur Humain.
+2019-03-21 08:54:01 INFO  Ordinateur:34 - Construction du joueur ordinateur.
+2019-03-21 08:54:01 INFO  Defenseur:30 - Création de la liste des défenseurs du mode Défenseur.
+2019-03-21 08:54:01 INFO  Defenseur:40 - Création de la liste des attaquants du mode Défenseur.
+2019-03-21 08:54:01 INFO  Mode:87 - Construction du mode.
+2019-03-21 08:54:01 INFO  Humain:49 - Construction du joueur Humain.
+2019-03-21 08:54:01 INFO  Ordinateur:34 - Construction du joueur ordinateur.
+2019-03-21 08:54:01 INFO  Duel:35 - Création de la liste des défenseurs du mode Duel.
+2019-03-21 08:54:01 INFO  Duel:45 - Création de la liste des attaquants du mode Duel.
+2019-03-21 08:54:06 INFO  ControleurJeu:226 - Initialisation du mode.
+2019-03-21 08:54:06 INFO  Ordinateur:82 - Calcul de la liste de toutes les combinaisons possibles pour l'ordinateur.
+2019-03-21 08:54:06 INFO  Ordinateur:48 - Lancement du choix de la combinaison secrète de l'ordinateur.
+2019-03-21 08:54:06 INFO  ModeleJeu:216 - Initialisation du modèle.
+2019-03-21 08:54:06 INFO  ControleurJeu:542 - Affichage du vainqueur.
+2019-03-21 08:54:06 INFO  ControleurJeu:219 - Lancement d'une nouvelle partie.
+2019-03-21 08:54:06 INFO  ControleurJeu:292 - Lancement d'un tour de jeu.
+2019-03-21 08:54:11 INFO  ControleurJeu:516 - Lancement du calcul de la réponse.
+2019-03-21 08:54:11 INFO  ServiceDeCalculRecherchePlusMoins:65 - Calcul de la réponse de recherche +/-.
+2019-03-21 08:54:11 INFO  Mode:114 - Calcul du vainqueur du mode Challenger
+2019-03-21 08:54:11 INFO  ControleurJeu:292 - Lancement d'un tour de jeu.
+2019-03-21 08:54:18 INFO  ControleurJeu:516 - Lancement du calcul de la réponse.
+2019-03-21 08:54:18 INFO  ServiceDeCalculRecherchePlusMoins:65 - Calcul de la réponse de recherche +/-.
+2019-03-21 08:54:18 INFO  Mode:114 - Calcul du vainqueur du mode Challenger
+2019-03-21 08:54:18 INFO  ControleurJeu:292 - Lancement d'un tour de jeu.
+2019-03-21 08:54:29 INFO  ControleurJeu:516 - Lancement du calcul de la réponse.
+2019-03-21 08:54:29 INFO  ServiceDeCalculRecherchePlusMoins:65 - Calcul de la réponse de recherche +/-.
+2019-03-21 08:54:29 INFO  Mode:114 - Calcul du vainqueur du mode Challenger
+2019-03-21 08:54:29 INFO  ControleurJeu:292 - Lancement d'un tour de jeu.
+2019-03-21 08:54:37 INFO  ControleurJeu:516 - Lancement du calcul de la réponse.
+2019-03-21 08:54:37 INFO  ServiceDeCalculRecherchePlusMoins:65 - Calcul de la réponse de recherche +/-.
+2019-03-21 08:54:37 INFO  Mode:114 - Calcul du vainqueur du mode Challenger
+2019-03-21 08:54:37 INFO  ControleurJeu:531 - Affichage de la combinaison secrète.
+2019-03-21 08:54:37 INFO  ControleurJeu:542 - Affichage du vainqueur.
+2019-03-21 08:54:43 INFO  ControleurJeu:191 - Lancement de la boîte de dialogue du choix des jeux.
+2019-03-21 08:54:43 INFO  DialogueJeu:40 - Construction de la boîte de dialogue du choix du jeu.
+2019-03-21 08:54:47 INFO  ControleurJeu:203 - Initialisation du jeu.
+2019-03-21 08:54:47 INFO  ModeleJeu:216 - Initialisation du modèle.
+2019-03-21 08:54:47 INFO  ServiceDeCalculRecherchePlusMoins:45 - Construction du service de calcul pour Recherche +/-.
+2019-03-21 08:54:47 INFO  Vue:370 - Initialisation des panneaux de la vue.
+2019-03-21 08:54:47 INFO  ControleurJeu:214 - Lancement de la boîte de dialogue du choix des modes.
+2019-03-21 08:54:47 INFO  DialogueMode:44 - Construction de la boîte de dialogue du choix du mode.
+2019-03-21 08:54:48 INFO  ControleurJeu:226 - Initialisation du mode.
+2019-03-21 08:54:48 INFO  Ordinateur:82 - Calcul de la liste de toutes les combinaisons possibles pour l'ordinateur.
+2019-03-21 08:54:48 INFO  Humain:65 - Lancement du choix de la combinaison secrète de Joueur.
+2019-03-21 08:54:48 INFO  DialogueSelectionCombinaison:68 - Construction de la boîte de dialogue du choix de la combinaison secrète.
+2019-03-21 08:54:57 INFO  ModeleJeu:216 - Initialisation du modèle.
+2019-03-21 08:54:57 INFO  ControleurJeu:542 - Affichage du vainqueur.
+2019-03-21 08:54:57 INFO  ControleurJeu:219 - Lancement d'une nouvelle partie.
+2019-03-21 08:54:57 INFO  ControleurJeu:292 - Lancement d'un tour de jeu.
+2019-03-21 08:54:57 INFO  Ordinateur:67 - Lancement du choix de la combinaison proposition de l'ordinateur.
+2019-03-21 08:54:57 INFO  ServiceDeCalculRecherchePlusMoins:95 - Calcul de la proposition de recherche +/-.
+2019-03-21 08:54:58 INFO  ControleurJeu:516 - Lancement du calcul de la réponse.
+2019-03-21 08:54:58 INFO  ServiceDeCalculRecherchePlusMoins:65 - Calcul de la réponse de recherche +/-.
+2019-03-21 08:54:58 INFO  Mode:114 - Calcul du vainqueur du mode Défenseur
+2019-03-21 08:54:58 INFO  ControleurJeu:292 - Lancement d'un tour de jeu.
+2019-03-21 08:54:58 INFO  Ordinateur:67 - Lancement du choix de la combinaison proposition de l'ordinateur.
+2019-03-21 08:54:58 INFO  ServiceDeCalculRecherchePlusMoins:95 - Calcul de la proposition de recherche +/-.
+2019-03-21 08:55:01 INFO  ControleurJeu:516 - Lancement du calcul de la réponse.
+2019-03-21 08:55:01 INFO  ServiceDeCalculRecherchePlusMoins:65 - Calcul de la réponse de recherche +/-.
+2019-03-21 08:55:01 INFO  Mode:114 - Calcul du vainqueur du mode Défenseur
+2019-03-21 08:55:01 INFO  ControleurJeu:292 - Lancement d'un tour de jeu.
+2019-03-21 08:55:01 INFO  Ordinateur:67 - Lancement du choix de la combinaison proposition de l'ordinateur.
+2019-03-21 08:55:01 INFO  ServiceDeCalculRecherchePlusMoins:95 - Calcul de la proposition de recherche +/-.
+2019-03-21 08:55:03 INFO  ControleurJeu:516 - Lancement du calcul de la réponse.
+2019-03-21 08:55:03 INFO  ServiceDeCalculRecherchePlusMoins:65 - Calcul de la réponse de recherche +/-.
+2019-03-21 08:55:03 INFO  Mode:114 - Calcul du vainqueur du mode Défenseur
+2019-03-21 08:55:03 INFO  ControleurJeu:292 - Lancement d'un tour de jeu.
+2019-03-21 08:55:03 INFO  Ordinateur:67 - Lancement du choix de la combinaison proposition de l'ordinateur.
+2019-03-21 08:55:03 INFO  ServiceDeCalculRecherchePlusMoins:95 - Calcul de la proposition de recherche +/-.
+2019-03-21 08:55:05 INFO  ControleurJeu:516 - Lancement du calcul de la réponse.
+2019-03-21 08:55:05 INFO  ServiceDeCalculRecherchePlusMoins:65 - Calcul de la réponse de recherche +/-.
+2019-03-21 08:55:05 INFO  Mode:114 - Calcul du vainqueur du mode Défenseur
+2019-03-21 08:55:05 INFO  ControleurJeu:531 - Affichage de la combinaison secrète.
+2019-03-21 08:55:05 INFO  ControleurJeu:542 - Affichage du vainqueur.
+2019-03-21 08:55:12 INFO  ControleurJeu:191 - Lancement de la boîte de dialogue du choix des jeux.
+2019-03-21 08:55:12 INFO  DialogueJeu:40 - Construction de la boîte de dialogue du choix du jeu.
+2019-03-21 08:55:14 INFO  ControleurJeu:203 - Initialisation du jeu.
+2019-03-21 08:55:14 INFO  ModeleJeu:216 - Initialisation du modèle.
+2019-03-21 08:55:14 INFO  ServiceDeCalculRecherchePlusMoins:45 - Construction du service de calcul pour Recherche +/-.
+2019-03-21 08:55:14 INFO  Vue:370 - Initialisation des panneaux de la vue.
+2019-03-21 08:55:14 INFO  ControleurJeu:214 - Lancement de la boîte de dialogue du choix des modes.
+2019-03-21 08:55:14 INFO  DialogueMode:44 - Construction de la boîte de dialogue du choix du mode.
+2019-03-21 08:55:15 INFO  ControleurJeu:226 - Initialisation du mode.
+2019-03-21 08:55:16 INFO  Ordinateur:82 - Calcul de la liste de toutes les combinaisons possibles pour l'ordinateur.
+2019-03-21 08:55:16 INFO  Ordinateur:48 - Lancement du choix de la combinaison secrète de l'ordinateur.
+2019-03-21 08:55:16 INFO  Humain:65 - Lancement du choix de la combinaison secrète de Joueur.
+2019-03-21 08:55:16 INFO  DialogueSelectionCombinaison:68 - Construction de la boîte de dialogue du choix de la combinaison secrète.
+2019-03-21 08:55:19 INFO  ModeleJeu:216 - Initialisation du modèle.
+2019-03-21 08:55:19 INFO  ControleurJeu:542 - Affichage du vainqueur.
+2019-03-21 08:55:19 INFO  ControleurJeu:219 - Lancement d'une nouvelle partie.
+2019-03-21 08:55:19 INFO  ControleurJeu:292 - Lancement d'un tour de jeu.
+2019-03-21 08:55:23 INFO  ControleurJeu:516 - Lancement du calcul de la réponse.
+2019-03-21 08:55:23 INFO  ServiceDeCalculRecherchePlusMoins:65 - Calcul de la réponse de recherche +/-.
+2019-03-21 08:55:23 INFO  Duel:62 - Calcul du vainqueur du mode Duel.
+2019-03-21 08:55:23 INFO  ControleurJeu:292 - Lancement d'un tour de jeu.
+2019-03-21 08:55:23 INFO  Ordinateur:67 - Lancement du choix de la combinaison proposition de l'ordinateur.
+2019-03-21 08:55:23 INFO  ServiceDeCalculRecherchePlusMoins:95 - Calcul de la proposition de recherche +/-.
+2019-03-21 08:55:26 INFO  ControleurJeu:516 - Lancement du calcul de la réponse.
+2019-03-21 08:55:26 INFO  ServiceDeCalculRecherchePlusMoins:65 - Calcul de la réponse de recherche +/-.
+2019-03-21 08:55:26 INFO  Duel:62 - Calcul du vainqueur du mode Duel.
+2019-03-21 08:55:26 INFO  ControleurJeu:292 - Lancement d'un tour de jeu.
+2019-03-21 08:55:35 INFO  ControleurJeu:516 - Lancement du calcul de la réponse.
+2019-03-21 08:55:35 INFO  ServiceDeCalculRecherchePlusMoins:65 - Calcul de la réponse de recherche +/-.
+2019-03-21 08:55:35 INFO  Duel:62 - Calcul du vainqueur du mode Duel.
+2019-03-21 08:55:35 INFO  ControleurJeu:292 - Lancement d'un tour de jeu.
+2019-03-21 08:55:35 INFO  Ordinateur:67 - Lancement du choix de la combinaison proposition de l'ordinateur.
+2019-03-21 08:55:35 INFO  ServiceDeCalculRecherchePlusMoins:95 - Calcul de la proposition de recherche +/-.
+2019-03-21 08:55:39 INFO  ControleurJeu:516 - Lancement du calcul de la réponse.
+2019-03-21 08:55:39 INFO  ServiceDeCalculRecherchePlusMoins:65 - Calcul de la réponse de recherche +/-.
+2019-03-21 08:55:39 INFO  Duel:62 - Calcul du vainqueur du mode Duel.
+2019-03-21 08:55:39 INFO  ControleurJeu:292 - Lancement d'un tour de jeu.
+2019-03-21 08:55:52 INFO  ControleurJeu:516 - Lancement du calcul de la réponse.
+2019-03-21 08:55:52 INFO  ServiceDeCalculRecherchePlusMoins:65 - Calcul de la réponse de recherche +/-.
+2019-03-21 08:55:52 INFO  Duel:62 - Calcul du vainqueur du mode Duel.
+2019-03-21 08:55:52 INFO  ControleurJeu:292 - Lancement d'un tour de jeu.
+2019-03-21 08:55:52 INFO  Ordinateur:67 - Lancement du choix de la combinaison proposition de l'ordinateur.
+2019-03-21 08:55:52 INFO  ServiceDeCalculRecherchePlusMoins:95 - Calcul de la proposition de recherche +/-.
+2019-03-21 08:55:55 INFO  ControleurJeu:516 - Lancement du calcul de la réponse.
+2019-03-21 08:55:55 INFO  ServiceDeCalculRecherchePlusMoins:65 - Calcul de la réponse de recherche +/-.
+2019-03-21 08:55:55 INFO  Duel:62 - Calcul du vainqueur du mode Duel.
+2019-03-21 08:55:55 INFO  ControleurJeu:292 - Lancement d'un tour de jeu.
+2019-03-21 08:55:59 INFO  ControleurJeu:609 - Actualisation de la vue de l'ordinateur.
+2019-03-21 08:56:02 INFO  ControleurJeu:590 - Actualisation de la vue du joueur.
+2019-03-21 08:56:20 INFO  ControleurJeu:516 - Lancement du calcul de la réponse.
+2019-03-21 08:56:20 INFO  ServiceDeCalculRecherchePlusMoins:65 - Calcul de la réponse de recherche +/-.
+2019-03-21 08:56:20 INFO  Duel:62 - Calcul du vainqueur du mode Duel.
+2019-03-21 08:56:20 INFO  ControleurJeu:292 - Lancement d'un tour de jeu.
+2019-03-21 08:56:20 INFO  Ordinateur:67 - Lancement du choix de la combinaison proposition de l'ordinateur.
+2019-03-21 08:56:20 INFO  ServiceDeCalculRecherchePlusMoins:95 - Calcul de la proposition de recherche +/-.
+2019-03-21 08:56:22 INFO  ControleurJeu:516 - Lancement du calcul de la réponse.
+2019-03-21 08:56:22 INFO  ServiceDeCalculRecherchePlusMoins:65 - Calcul de la réponse de recherche +/-.
+2019-03-21 08:56:22 INFO  Duel:62 - Calcul du vainqueur du mode Duel.
+2019-03-21 08:56:22 INFO  ControleurJeu:542 - Affichage du vainqueur.
+2019-03-21 08:56:22 INFO  ControleurJeu:531 - Affichage de la combinaison secrète.
+2019-03-21 08:56:25 INFO  ControleurJeu:590 - Actualisation de la vue du joueur.
+2019-03-21 08:56:25 INFO  ControleurJeu:531 - Affichage de la combinaison secrète.
+2019-03-21 08:56:26 INFO  ControleurJeu:609 - Actualisation de la vue de l'ordinateur.
+2019-03-21 08:56:26 INFO  ControleurJeu:531 - Affichage de la combinaison secrète.
+2019-03-21 08:56:27 INFO  ControleurJeu:590 - Actualisation de la vue du joueur.
+2019-03-21 08:56:27 INFO  ControleurJeu:531 - Affichage de la combinaison secrète.
+2019-03-21 08:56:28 INFO  ControleurJeu:609 - Actualisation de la vue de l'ordinateur.
+2019-03-21 08:56:28 INFO  ControleurJeu:531 - Affichage de la combinaison secrète.
+2019-03-21 08:56:40 INFO  ControleurJeu:338 - Lancement de la boîte de dialogue du réglage des options des jeux.
+2019-03-21 08:56:40 INFO  DialogueOption:45 - Construction de la boîte de dialogue du réglage des options des jeux.
+2019-03-21 08:56:49 INFO  ModeleJeu:187 - Construction du modèle.
+2019-03-21 08:56:49 INFO  Ordinateur:34 - Construction du joueur ordinateur.
+2019-03-21 08:56:49 INFO  Humain:49 - Construction du joueur Humain.
+2019-03-21 08:56:49 INFO  ModeleJeu:216 - Initialisation du modèle.
+2019-03-21 08:56:49 INFO  ControleurJeu:542 - Affichage du vainqueur.
+2019-03-21 08:56:49 INFO  Vue:370 - Initialisation des panneaux de la vue.
+2019-03-21 08:56:52 INFO  ControleurJeu:191 - Lancement de la boîte de dialogue du choix des jeux.
+2019-03-21 08:56:52 INFO  DialogueJeu:40 - Construction de la boîte de dialogue du choix du jeu.
+2019-03-21 08:56:53 INFO  ControleurJeu:203 - Initialisation du jeu.
+2019-03-21 08:56:53 INFO  ModeleJeu:216 - Initialisation du modèle.
+2019-03-21 08:56:53 INFO  ServiceDeCalculMastermind:35 - Construction du service de calcul pour le Mastermind.
+2019-03-21 08:56:53 INFO  Vue:370 - Initialisation des panneaux de la vue.
+2019-03-21 08:56:53 INFO  ControleurJeu:214 - Lancement de la boîte de dialogue du choix des modes.
+2019-03-21 08:56:53 INFO  DialogueMode:44 - Construction de la boîte de dialogue du choix du mode.
+2019-03-21 08:56:56 INFO  ControleurJeu:226 - Initialisation du mode.
+2019-03-21 08:56:56 INFO  Ordinateur:82 - Calcul de la liste de toutes les combinaisons possibles pour l'ordinateur.
+2019-03-21 08:56:56 INFO  Ordinateur:48 - Lancement du choix de la combinaison secrète de l'ordinateur.
+2019-03-21 08:56:56 INFO  ModeleJeu:216 - Initialisation du modèle.
+2019-03-21 08:56:56 INFO  ControleurJeu:542 - Affichage du vainqueur.
+2019-03-21 08:56:56 INFO  ControleurJeu:219 - Lancement d'une nouvelle partie.
+2019-03-21 08:56:56 INFO  ControleurJeu:292 - Lancement d'un tour de jeu.
+2019-03-21 08:57:00 INFO  ControleurJeu:516 - Lancement du calcul de la réponse.
+2019-03-21 08:57:00 INFO  Mode:114 - Calcul du vainqueur du mode Challenger
+2019-03-21 08:57:00 INFO  ControleurJeu:292 - Lancement d'un tour de jeu.
+2019-03-21 08:57:05 INFO  ControleurJeu:516 - Lancement du calcul de la réponse.
+2019-03-21 08:57:05 INFO  Mode:114 - Calcul du vainqueur du mode Challenger
+2019-03-21 08:57:05 INFO  ControleurJeu:292 - Lancement d'un tour de jeu.
+2019-03-21 08:57:12 INFO  ControleurJeu:516 - Lancement du calcul de la réponse.
+2019-03-21 08:57:12 INFO  Mode:114 - Calcul du vainqueur du mode Challenger
+2019-03-21 08:57:12 INFO  ControleurJeu:292 - Lancement d'un tour de jeu.
+2019-03-21 08:57:21 INFO  ControleurJeu:516 - Lancement du calcul de la réponse.
+2019-03-21 08:57:21 INFO  Mode:114 - Calcul du vainqueur du mode Challenger
+2019-03-21 08:57:21 INFO  ControleurJeu:292 - Lancement d'un tour de jeu.
+2019-03-21 08:57:25 INFO  ControleurJeu:516 - Lancement du calcul de la réponse.
+2019-03-21 08:57:25 INFO  Mode:114 - Calcul du vainqueur du mode Challenger
+2019-03-21 08:57:25 INFO  ControleurJeu:292 - Lancement d'un tour de jeu.
+2019-03-21 08:57:43 INFO  ControleurJeu:516 - Lancement du calcul de la réponse.
+2019-03-21 08:57:43 INFO  Mode:114 - Calcul du vainqueur du mode Challenger
+2019-03-21 08:57:43 INFO  ControleurJeu:292 - Lancement d'un tour de jeu.
+2019-03-21 08:57:53 INFO  ControleurJeu:516 - Lancement du calcul de la réponse.
+2019-03-21 08:57:53 INFO  Mode:114 - Calcul du vainqueur du mode Challenger
+2019-03-21 08:57:53 INFO  ControleurJeu:292 - Lancement d'un tour de jeu.
+2019-03-21 08:58:02 INFO  ControleurJeu:516 - Lancement du calcul de la réponse.
+2019-03-21 08:58:02 INFO  Mode:114 - Calcul du vainqueur du mode Challenger
+2019-03-21 08:58:02 INFO  ControleurJeu:531 - Affichage de la combinaison secrète.
+2019-03-21 08:58:02 INFO  ControleurJeu:542 - Affichage du vainqueur.
+2019-03-21 08:58:09 INFO  ControleurJeu:191 - Lancement de la boîte de dialogue du choix des jeux.
+2019-03-21 08:58:09 INFO  DialogueJeu:40 - Construction de la boîte de dialogue du choix du jeu.
+2019-03-21 08:58:11 INFO  ControleurJeu:203 - Initialisation du jeu.
+2019-03-21 08:58:11 INFO  ModeleJeu:216 - Initialisation du modèle.
+2019-03-21 08:58:11 INFO  ServiceDeCalculMastermind:35 - Construction du service de calcul pour le Mastermind.
+2019-03-21 08:58:11 INFO  Vue:370 - Initialisation des panneaux de la vue.
+2019-03-21 08:58:11 INFO  ControleurJeu:214 - Lancement de la boîte de dialogue du choix des modes.
+2019-03-21 08:58:11 INFO  DialogueMode:44 - Construction de la boîte de dialogue du choix du mode.
+2019-03-21 08:58:13 INFO  ControleurJeu:226 - Initialisation du mode.
+2019-03-21 08:58:13 INFO  Ordinateur:82 - Calcul de la liste de toutes les combinaisons possibles pour l'ordinateur.
+2019-03-21 08:58:13 INFO  Humain:65 - Lancement du choix de la combinaison secrète de Grégory.
+2019-03-21 08:58:13 INFO  DialogueSelectionCombinaison:68 - Construction de la boîte de dialogue du choix de la combinaison secrète.
+2019-03-21 08:58:17 INFO  ModeleJeu:216 - Initialisation du modèle.
+2019-03-21 08:58:17 INFO  ControleurJeu:542 - Affichage du vainqueur.
+2019-03-21 08:58:17 INFO  ControleurJeu:219 - Lancement d'une nouvelle partie.
+2019-03-21 08:58:17 INFO  ControleurJeu:292 - Lancement d'un tour de jeu.
+2019-03-21 08:58:17 INFO  Ordinateur:67 - Lancement du choix de la combinaison proposition de l'ordinateur.
+2019-03-21 08:58:17 INFO  ServiceDeCalculMastermind:125 - Calcul de la proposition du Mastermind.
+2019-03-21 08:58:21 INFO  ControleurJeu:516 - Lancement du calcul de la réponse.
+2019-03-21 08:58:21 INFO  Mode:114 - Calcul du vainqueur du mode Défenseur
+2019-03-21 08:58:21 INFO  ControleurJeu:292 - Lancement d'un tour de jeu.
+2019-03-21 08:58:21 INFO  Ordinateur:67 - Lancement du choix de la combinaison proposition de l'ordinateur.
+2019-03-21 08:58:21 INFO  ServiceDeCalculMastermind:125 - Calcul de la proposition du Mastermind.
+2019-03-21 08:58:24 INFO  ControleurJeu:516 - Lancement du calcul de la réponse.
+2019-03-21 08:58:24 INFO  Mode:114 - Calcul du vainqueur du mode Défenseur
+2019-03-21 08:58:24 INFO  ControleurJeu:292 - Lancement d'un tour de jeu.
+2019-03-21 08:58:24 INFO  Ordinateur:67 - Lancement du choix de la combinaison proposition de l'ordinateur.
+2019-03-21 08:58:24 INFO  ServiceDeCalculMastermind:125 - Calcul de la proposition du Mastermind.
+2019-03-21 08:58:26 INFO  ControleurJeu:516 - Lancement du calcul de la réponse.
+2019-03-21 08:58:26 INFO  Mode:114 - Calcul du vainqueur du mode Défenseur
+2019-03-21 08:58:26 INFO  ControleurJeu:292 - Lancement d'un tour de jeu.
+2019-03-21 08:58:26 INFO  Ordinateur:67 - Lancement du choix de la combinaison proposition de l'ordinateur.
+2019-03-21 08:58:26 INFO  ServiceDeCalculMastermind:125 - Calcul de la proposition du Mastermind.
+2019-03-21 08:58:29 INFO  ControleurJeu:516 - Lancement du calcul de la réponse.
+2019-03-21 08:58:29 INFO  Mode:114 - Calcul du vainqueur du mode Défenseur
+2019-03-21 08:58:29 INFO  ControleurJeu:292 - Lancement d'un tour de jeu.
+2019-03-21 08:58:29 INFO  Ordinateur:67 - Lancement du choix de la combinaison proposition de l'ordinateur.
+2019-03-21 08:58:29 INFO  ServiceDeCalculMastermind:125 - Calcul de la proposition du Mastermind.
+2019-03-21 08:58:31 INFO  ControleurJeu:516 - Lancement du calcul de la réponse.
+2019-03-21 08:58:32 INFO  Mode:114 - Calcul du vainqueur du mode Défenseur
+2019-03-21 08:58:32 INFO  ControleurJeu:531 - Affichage de la combinaison secrète.
+2019-03-21 08:58:32 INFO  ControleurJeu:542 - Affichage du vainqueur.
+2019-03-21 08:58:45 INFO  ControleurJeu:191 - Lancement de la boîte de dialogue du choix des jeux.
+2019-03-21 08:58:45 INFO  DialogueJeu:40 - Construction de la boîte de dialogue du choix du jeu.
+2019-03-21 08:58:47 INFO  ControleurJeu:203 - Initialisation du jeu.
+2019-03-21 08:58:47 INFO  ModeleJeu:216 - Initialisation du modèle.
+2019-03-21 08:58:47 INFO  ServiceDeCalculMastermind:35 - Construction du service de calcul pour le Mastermind.
+2019-03-21 08:58:47 INFO  Vue:370 - Initialisation des panneaux de la vue.
+2019-03-21 08:58:47 INFO  ControleurJeu:214 - Lancement de la boîte de dialogue du choix des modes.
+2019-03-21 08:58:47 INFO  DialogueMode:44 - Construction de la boîte de dialogue du choix du mode.
+2019-03-21 08:58:51 INFO  ControleurJeu:226 - Initialisation du mode.
+2019-03-21 08:58:51 INFO  Ordinateur:82 - Calcul de la liste de toutes les combinaisons possibles pour l'ordinateur.
+2019-03-21 08:58:51 INFO  Ordinateur:48 - Lancement du choix de la combinaison secrète de l'ordinateur.
+2019-03-21 08:58:51 INFO  Humain:65 - Lancement du choix de la combinaison secrète de Grégory.
+2019-03-21 08:58:51 INFO  DialogueSelectionCombinaison:68 - Construction de la boîte de dialogue du choix de la combinaison secrète.
+2019-03-21 08:58:54 INFO  ModeleJeu:216 - Initialisation du modèle.
+2019-03-21 08:58:54 INFO  ControleurJeu:542 - Affichage du vainqueur.
+2019-03-21 08:58:54 INFO  ControleurJeu:219 - Lancement d'une nouvelle partie.
+2019-03-21 08:58:54 INFO  ControleurJeu:292 - Lancement d'un tour de jeu.
+2019-03-21 08:59:01 INFO  ControleurJeu:516 - Lancement du calcul de la réponse.
+2019-03-21 08:59:01 INFO  Duel:62 - Calcul du vainqueur du mode Duel.
+2019-03-21 08:59:01 INFO  ControleurJeu:292 - Lancement d'un tour de jeu.
+2019-03-21 08:59:01 INFO  Ordinateur:67 - Lancement du choix de la combinaison proposition de l'ordinateur.
+2019-03-21 08:59:01 INFO  ServiceDeCalculMastermind:125 - Calcul de la proposition du Mastermind.
+2019-03-21 08:59:02 INFO  ControleurJeu:516 - Lancement du calcul de la réponse.
+2019-03-21 08:59:02 INFO  Duel:62 - Calcul du vainqueur du mode Duel.
+2019-03-21 08:59:02 INFO  ControleurJeu:292 - Lancement d'un tour de jeu.
+2019-03-21 08:59:07 INFO  ControleurJeu:516 - Lancement du calcul de la réponse.
+2019-03-21 08:59:07 INFO  Duel:62 - Calcul du vainqueur du mode Duel.
+2019-03-21 08:59:07 INFO  ControleurJeu:292 - Lancement d'un tour de jeu.
+2019-03-21 08:59:07 INFO  Ordinateur:67 - Lancement du choix de la combinaison proposition de l'ordinateur.
+2019-03-21 08:59:07 INFO  ServiceDeCalculMastermind:125 - Calcul de la proposition du Mastermind.
+2019-03-21 08:59:08 INFO  ControleurJeu:516 - Lancement du calcul de la réponse.
+2019-03-21 08:59:08 INFO  Duel:62 - Calcul du vainqueur du mode Duel.
+2019-03-21 08:59:08 INFO  ControleurJeu:292 - Lancement d'un tour de jeu.
+2019-03-21 08:59:19 INFO  ControleurJeu:516 - Lancement du calcul de la réponse.
+2019-03-21 08:59:19 INFO  Duel:62 - Calcul du vainqueur du mode Duel.
+2019-03-21 08:59:19 INFO  ControleurJeu:292 - Lancement d'un tour de jeu.
+2019-03-21 08:59:19 INFO  Ordinateur:67 - Lancement du choix de la combinaison proposition de l'ordinateur.
+2019-03-21 08:59:19 INFO  ServiceDeCalculMastermind:125 - Calcul de la proposition du Mastermind.
+2019-03-21 08:59:21 INFO  ControleurJeu:516 - Lancement du calcul de la réponse.
+2019-03-21 08:59:21 INFO  Duel:62 - Calcul du vainqueur du mode Duel.
+2019-03-21 08:59:21 INFO  ControleurJeu:292 - Lancement d'un tour de jeu.
+2019-03-21 08:59:28 INFO  ControleurJeu:516 - Lancement du calcul de la réponse.
+2019-03-21 08:59:28 INFO  Duel:62 - Calcul du vainqueur du mode Duel.
+2019-03-21 08:59:28 INFO  ControleurJeu:292 - Lancement d'un tour de jeu.
+2019-03-21 08:59:28 INFO  Ordinateur:67 - Lancement du choix de la combinaison proposition de l'ordinateur.
+2019-03-21 08:59:28 INFO  ServiceDeCalculMastermind:125 - Calcul de la proposition du Mastermind.
+2019-03-21 08:59:30 INFO  ControleurJeu:516 - Lancement du calcul de la réponse.
+2019-03-21 08:59:30 INFO  Duel:62 - Calcul du vainqueur du mode Duel.
+2019-03-21 08:59:30 INFO  ControleurJeu:542 - Affichage du vainqueur.
+2019-03-21 08:59:30 INFO  ControleurJeu:531 - Affichage de la combinaison secrète.
+2019-03-21 08:59:37 INFO  ControleurJeu:590 - Actualisation de la vue du joueur.
+2019-03-21 08:59:37 INFO  ControleurJeu:531 - Affichage de la combinaison secrète.
+2019-03-21 08:59:38 INFO  ControleurJeu:609 - Actualisation de la vue de l'ordinateur.
+2019-03-21 08:59:38 INFO  ControleurJeu:531 - Affichage de la combinaison secrète.
+2019-03-21 08:59:39 INFO  ControleurJeu:590 - Actualisation de la vue du joueur.
+2019-03-21 08:59:39 INFO  ControleurJeu:531 - Affichage de la combinaison secrète.
+2019-03-21 08:59:42 INFO  ControleurJeu:609 - Actualisation de la vue de l'ordinateur.
+2019-03-21 08:59:42 INFO  ControleurJeu:531 - Affichage de la combinaison secrète.
+2019-03-21 08:59:48 INFO  ControleurJeu:553 - Lancement pour rejouer au même jeu.
+2019-03-21 08:59:48 INFO  ControleurJeu:203 - Initialisation du jeu.
+2019-03-21 08:59:48 INFO  ModeleJeu:216 - Initialisation du modèle.
+2019-03-21 08:59:48 INFO  ServiceDeCalculMastermind:35 - Construction du service de calcul pour le Mastermind.
+2019-03-21 08:59:48 INFO  Vue:370 - Initialisation des panneaux de la vue.
+2019-03-21 08:59:48 INFO  ControleurJeu:226 - Initialisation du mode.
+2019-03-21 08:59:48 INFO  Ordinateur:82 - Calcul de la liste de toutes les combinaisons possibles pour l'ordinateur.
+2019-03-21 08:59:48 INFO  Ordinateur:48 - Lancement du choix de la combinaison secrète de l'ordinateur.
+2019-03-21 08:59:48 INFO  Humain:65 - Lancement du choix de la combinaison secrète de Grégory.
+2019-03-21 08:59:48 INFO  DialogueSelectionCombinaison:68 - Construction de la boîte de dialogue du choix de la combinaison secrète.
+2019-03-21 08:59:51 INFO  ModeleJeu:216 - Initialisation du modèle.
+2019-03-21 08:59:51 INFO  ControleurJeu:542 - Affichage du vainqueur.
+2019-03-21 08:59:51 INFO  ControleurJeu:292 - Lancement d'un tour de jeu.
+2019-03-21 08:59:56 INFO  ControleurJeu:516 - Lancement du calcul de la réponse.
+2019-03-21 08:59:56 INFO  Duel:62 - Calcul du vainqueur du mode Duel.
+2019-03-21 08:59:56 INFO  ControleurJeu:292 - Lancement d'un tour de jeu.
+2019-03-21 08:59:56 INFO  Ordinateur:67 - Lancement du choix de la combinaison proposition de l'ordinateur.
+2019-03-21 08:59:56 INFO  ServiceDeCalculMastermind:125 - Calcul de la proposition du Mastermind.
+2019-03-21 09:00:00 INFO  ControleurJeu:516 - Lancement du calcul de la réponse.
+2019-03-21 09:00:00 INFO  Duel:62 - Calcul du vainqueur du mode Duel.
+2019-03-21 09:00:00 INFO  ControleurJeu:292 - Lancement d'un tour de jeu.
+2019-03-21 09:00:07 INFO  ControleurJeu:191 - Lancement de la boîte de dialogue du choix des jeux.
+2019-03-21 09:00:07 INFO  DialogueJeu:40 - Construction de la boîte de dialogue du choix du jeu.
+2019-03-21 09:00:09 INFO  ControleurJeu:203 - Initialisation du jeu.
+2019-03-21 09:00:09 INFO  ModeleJeu:216 - Initialisation du modèle.
+2019-03-21 09:00:09 INFO  ServiceDeCalculMastermind:35 - Construction du service de calcul pour le Mastermind.
+2019-03-21 09:00:09 INFO  Vue:370 - Initialisation des panneaux de la vue.
+2019-03-21 09:00:09 INFO  ControleurJeu:214 - Lancement de la boîte de dialogue du choix des modes.
+2019-03-21 09:00:09 INFO  DialogueMode:44 - Construction de la boîte de dialogue du choix du mode.
+2019-03-21 09:00:13 INFO  ControleurJeu:226 - Initialisation du mode.
+2019-03-21 09:00:13 INFO  Ordinateur:82 - Calcul de la liste de toutes les combinaisons possibles pour l'ordinateur.
+2019-03-21 09:00:13 INFO  Humain:65 - Lancement du choix de la combinaison secrète de Grégory.
+2019-03-21 09:00:13 INFO  DialogueSelectionCombinaison:68 - Construction de la boîte de dialogue du choix de la combinaison secrète.
+2019-03-21 09:00:15 INFO  ModeleJeu:216 - Initialisation du modèle.
+2019-03-21 09:00:15 INFO  ControleurJeu:542 - Affichage du vainqueur.
+2019-03-21 09:00:15 INFO  ControleurJeu:219 - Lancement d'une nouvelle partie.
+2019-03-21 09:00:15 INFO  ControleurJeu:292 - Lancement d'un tour de jeu.
+2019-03-21 09:00:15 INFO  Ordinateur:67 - Lancement du choix de la combinaison proposition de l'ordinateur.
+2019-03-21 09:00:15 INFO  ServiceDeCalculMastermind:125 - Calcul de la proposition du Mastermind.
+2019-03-21 09:00:16 INFO  ControleurJeu:516 - Lancement du calcul de la réponse.
+2019-03-21 09:00:16 INFO  Mode:114 - Calcul du vainqueur du mode Défenseur
+2019-03-21 09:00:16 INFO  ControleurJeu:292 - Lancement d'un tour de jeu.
+2019-03-21 09:00:16 INFO  Ordinateur:67 - Lancement du choix de la combinaison proposition de l'ordinateur.
+2019-03-21 09:00:16 INFO  ServiceDeCalculMastermind:125 - Calcul de la proposition du Mastermind.
+2019-03-21 09:00:18 INFO  ControleurJeu:516 - Lancement du calcul de la réponse.
+2019-03-21 09:00:18 INFO  Mode:114 - Calcul du vainqueur du mode Défenseur
+2019-03-21 09:00:18 INFO  ControleurJeu:292 - Lancement d'un tour de jeu.
+2019-03-21 09:00:18 INFO  Ordinateur:67 - Lancement du choix de la combinaison proposition de l'ordinateur.
+2019-03-21 09:00:18 INFO  ServiceDeCalculMastermind:125 - Calcul de la proposition du Mastermind.
+2019-03-21 09:00:19 INFO  ControleurJeu:516 - Lancement du calcul de la réponse.
+2019-03-21 09:00:19 INFO  Mode:114 - Calcul du vainqueur du mode Défenseur
+2019-03-21 09:00:19 INFO  ControleurJeu:292 - Lancement d'un tour de jeu.
+2019-03-21 09:00:19 INFO  Ordinateur:67 - Lancement du choix de la combinaison proposition de l'ordinateur.
+2019-03-21 09:00:19 INFO  ServiceDeCalculMastermind:125 - Calcul de la proposition du Mastermind.
+2019-03-21 09:00:21 INFO  ControleurJeu:516 - Lancement du calcul de la réponse.
+2019-03-21 09:00:21 INFO  Mode:114 - Calcul du vainqueur du mode Défenseur
+2019-03-21 09:00:21 INFO  ControleurJeu:292 - Lancement d'un tour de jeu.
+2019-03-21 09:00:21 INFO  Ordinateur:67 - Lancement du choix de la combinaison proposition de l'ordinateur.
+2019-03-21 09:00:21 INFO  ServiceDeCalculMastermind:125 - Calcul de la proposition du Mastermind.
+2019-03-21 09:00:22 INFO  ControleurJeu:516 - Lancement du calcul de la réponse.
+2019-03-21 09:00:22 INFO  Mode:114 - Calcul du vainqueur du mode Défenseur
+2019-03-21 09:00:22 INFO  ControleurJeu:292 - Lancement d'un tour de jeu.
+2019-03-21 09:00:22 INFO  Ordinateur:67 - Lancement du choix de la combinaison proposition de l'ordinateur.
+2019-03-21 09:00:22 INFO  ServiceDeCalculMastermind:125 - Calcul de la proposition du Mastermind.
+2019-03-21 09:00:24 INFO  ControleurJeu:516 - Lancement du calcul de la réponse.
+2019-03-21 09:00:24 INFO  Mode:114 - Calcul du vainqueur du mode Défenseur
+2019-03-21 09:00:24 INFO  ControleurJeu:292 - Lancement d'un tour de jeu.
+2019-03-21 09:00:24 INFO  Ordinateur:67 - Lancement du choix de la combinaison proposition de l'ordinateur.
+2019-03-21 09:00:24 INFO  ServiceDeCalculMastermind:125 - Calcul de la proposition du Mastermind.
+2019-03-21 09:00:26 INFO  ControleurJeu:516 - Lancement du calcul de la réponse.
+2019-03-21 09:00:26 INFO  Mode:114 - Calcul du vainqueur du mode Défenseur
+2019-03-21 09:00:26 INFO  ControleurJeu:531 - Affichage de la combinaison secrète.
+2019-03-21 09:00:26 INFO  ControleurJeu:542 - Affichage du vainqueur.
+2019-03-21 09:00:31 INFO  ControleurJeu:338 - Lancement de la boîte de dialogue du réglage des options des jeux.
+2019-03-21 09:00:31 INFO  DialogueOption:45 - Construction de la boîte de dialogue du réglage des options des jeux.
+2019-03-21 09:00:39 INFO  ModeleJeu:187 - Construction du modèle.
+2019-03-21 09:00:39 INFO  Ordinateur:34 - Construction du joueur ordinateur.
+2019-03-21 09:00:39 INFO  Humain:49 - Construction du joueur Humain.
+2019-03-21 09:00:39 INFO  ModeleJeu:216 - Initialisation du modèle.
+2019-03-21 09:00:39 INFO  ControleurJeu:542 - Affichage du vainqueur.
+2019-03-21 09:00:39 INFO  Vue:370 - Initialisation des panneaux de la vue.
+2019-03-21 09:00:43 INFO  ControleurJeu:191 - Lancement de la boîte de dialogue du choix des jeux.
+2019-03-21 09:00:43 INFO  DialogueJeu:40 - Construction de la boîte de dialogue du choix du jeu.
+2019-03-21 09:00:45 INFO  ControleurJeu:203 - Initialisation du jeu.
+2019-03-21 09:00:45 INFO  ModeleJeu:216 - Initialisation du modèle.
+2019-03-21 09:00:45 INFO  ServiceDeCalculMastermind:35 - Construction du service de calcul pour le Mastermind.
+2019-03-21 09:00:45 INFO  Vue:370 - Initialisation des panneaux de la vue.
+2019-03-21 09:00:45 INFO  ControleurJeu:214 - Lancement de la boîte de dialogue du choix des modes.
+2019-03-21 09:00:45 INFO  DialogueMode:44 - Construction de la boîte de dialogue du choix du mode.
+2019-03-21 09:00:47 INFO  ControleurJeu:226 - Initialisation du mode.
+2019-03-21 09:00:47 INFO  Ordinateur:82 - Calcul de la liste de toutes les combinaisons possibles pour l'ordinateur.
+2019-03-21 09:00:48 INFO  Humain:65 - Lancement du choix de la combinaison secrète de Grégory.
+2019-03-21 09:00:48 INFO  DialogueSelectionCombinaison:68 - Construction de la boîte de dialogue du choix de la combinaison secrète.
+2019-03-21 09:00:55 INFO  ModeleJeu:216 - Initialisation du modèle.
+2019-03-21 09:00:55 INFO  ControleurJeu:542 - Affichage du vainqueur.
+2019-03-21 09:00:55 INFO  ControleurJeu:219 - Lancement d'une nouvelle partie.
+2019-03-21 09:00:55 INFO  ControleurJeu:292 - Lancement d'un tour de jeu.
+2019-03-21 09:00:55 INFO  Ordinateur:67 - Lancement du choix de la combinaison proposition de l'ordinateur.
+2019-03-21 09:00:55 INFO  ServiceDeCalculMastermind:125 - Calcul de la proposition du Mastermind.
+2019-03-21 09:00:57 INFO  ControleurJeu:516 - Lancement du calcul de la réponse.
+2019-03-21 09:00:57 INFO  Mode:114 - Calcul du vainqueur du mode Défenseur
+2019-03-21 09:00:57 INFO  ControleurJeu:292 - Lancement d'un tour de jeu.
+2019-03-21 09:00:57 INFO  Ordinateur:67 - Lancement du choix de la combinaison proposition de l'ordinateur.
+2019-03-21 09:00:57 INFO  ServiceDeCalculMastermind:125 - Calcul de la proposition du Mastermind.
+2019-03-21 09:01:01 INFO  ControleurJeu:516 - Lancement du calcul de la réponse.
+2019-03-21 09:01:01 INFO  Mode:114 - Calcul du vainqueur du mode Défenseur
+2019-03-21 09:01:01 INFO  ControleurJeu:292 - Lancement d'un tour de jeu.
+2019-03-21 09:01:01 INFO  Ordinateur:67 - Lancement du choix de la combinaison proposition de l'ordinateur.
+2019-03-21 09:01:01 INFO  ServiceDeCalculMastermind:125 - Calcul de la proposition du Mastermind.
+2019-03-21 09:01:03 INFO  ControleurJeu:516 - Lancement du calcul de la réponse.
+2019-03-21 09:01:03 INFO  Mode:114 - Calcul du vainqueur du mode Défenseur
+2019-03-21 09:01:03 INFO  ControleurJeu:292 - Lancement d'un tour de jeu.
+2019-03-21 09:01:03 INFO  Ordinateur:67 - Lancement du choix de la combinaison proposition de l'ordinateur.
+2019-03-21 09:01:03 INFO  ServiceDeCalculMastermind:125 - Calcul de la proposition du Mastermind.
+2019-03-21 09:01:05 INFO  ControleurJeu:516 - Lancement du calcul de la réponse.
+2019-03-21 09:01:05 INFO  Mode:114 - Calcul du vainqueur du mode Défenseur
+2019-03-21 09:01:05 INFO  ControleurJeu:292 - Lancement d'un tour de jeu.
+2019-03-21 09:01:05 INFO  Ordinateur:67 - Lancement du choix de la combinaison proposition de l'ordinateur.
+2019-03-21 09:01:05 INFO  ServiceDeCalculMastermind:125 - Calcul de la proposition du Mastermind.
+2019-03-21 09:01:07 INFO  ControleurJeu:516 - Lancement du calcul de la réponse.
+2019-03-21 09:01:07 INFO  Mode:114 - Calcul du vainqueur du mode Défenseur
+2019-03-21 09:01:07 INFO  ControleurJeu:292 - Lancement d'un tour de jeu.
+2019-03-21 09:01:07 INFO  Ordinateur:67 - Lancement du choix de la combinaison proposition de l'ordinateur.
+2019-03-21 09:01:07 INFO  ServiceDeCalculMastermind:125 - Calcul de la proposition du Mastermind.
+2019-03-21 09:01:09 INFO  ControleurJeu:516 - Lancement du calcul de la réponse.
+2019-03-21 09:01:09 INFO  Mode:114 - Calcul du vainqueur du mode Défenseur
+2019-03-21 09:01:09 INFO  ControleurJeu:292 - Lancement d'un tour de jeu.
+2019-03-21 09:01:09 INFO  Ordinateur:67 - Lancement du choix de la combinaison proposition de l'ordinateur.
+2019-03-21 09:01:09 INFO  ServiceDeCalculMastermind:125 - Calcul de la proposition du Mastermind.
+2019-03-21 09:01:11 INFO  ControleurJeu:516 - Lancement du calcul de la réponse.
+2019-03-21 09:01:11 INFO  Mode:114 - Calcul du vainqueur du mode Défenseur
+2019-03-21 09:01:11 INFO  ControleurJeu:292 - Lancement d'un tour de jeu.
+2019-03-21 09:01:11 INFO  Ordinateur:67 - Lancement du choix de la combinaison proposition de l'ordinateur.
+2019-03-21 09:01:11 INFO  ServiceDeCalculMastermind:125 - Calcul de la proposition du Mastermind.
+2019-03-21 09:01:13 INFO  ControleurJeu:516 - Lancement du calcul de la réponse.
+2019-03-21 09:01:13 INFO  Mode:114 - Calcul du vainqueur du mode Défenseur
+2019-03-21 09:01:13 INFO  ControleurJeu:531 - Affichage de la combinaison secrète.
+2019-03-21 09:01:13 INFO  ControleurJeu:542 - Affichage du vainqueur.
+2019-03-21 09:01:18 INFO  ControleurJeu:553 - Lancement pour rejouer au même jeu.
+2019-03-21 09:01:18 INFO  ControleurJeu:203 - Initialisation du jeu.
+2019-03-21 09:01:18 INFO  ModeleJeu:216 - Initialisation du modèle.
+2019-03-21 09:01:18 INFO  ServiceDeCalculMastermind:35 - Construction du service de calcul pour le Mastermind.
+2019-03-21 09:01:18 INFO  Vue:370 - Initialisation des panneaux de la vue.
+2019-03-21 09:01:18 INFO  ControleurJeu:226 - Initialisation du mode.
+2019-03-21 09:01:19 INFO  Ordinateur:82 - Calcul de la liste de toutes les combinaisons possibles pour l'ordinateur.
+2019-03-21 09:01:19 INFO  Humain:65 - Lancement du choix de la combinaison secrète de Grégory.
+2019-03-21 09:01:19 INFO  DialogueSelectionCombinaison:68 - Construction de la boîte de dialogue du choix de la combinaison secrète.
+2019-03-21 09:01:22 INFO  ModeleJeu:216 - Initialisation du modèle.
+2019-03-21 09:01:22 INFO  ControleurJeu:542 - Affichage du vainqueur.
+2019-03-21 09:01:22 INFO  ControleurJeu:292 - Lancement d'un tour de jeu.
+2019-03-21 09:01:22 INFO  Ordinateur:67 - Lancement du choix de la combinaison proposition de l'ordinateur.
+2019-03-21 09:01:22 INFO  ServiceDeCalculMastermind:125 - Calcul de la proposition du Mastermind.
+2019-03-21 09:01:24 INFO  ControleurJeu:516 - Lancement du calcul de la réponse.
+2019-03-21 09:01:24 INFO  Mode:114 - Calcul du vainqueur du mode Défenseur
+2019-03-21 09:01:24 INFO  ControleurJeu:292 - Lancement d'un tour de jeu.
+2019-03-21 09:01:24 INFO  Ordinateur:67 - Lancement du choix de la combinaison proposition de l'ordinateur.
+2019-03-21 09:01:24 INFO  ServiceDeCalculMastermind:125 - Calcul de la proposition du Mastermind.
+2019-03-21 09:01:26 INFO  ControleurJeu:516 - Lancement du calcul de la réponse.
+2019-03-21 09:01:26 INFO  Mode:114 - Calcul du vainqueur du mode Défenseur
+2019-03-21 09:01:26 INFO  ControleurJeu:292 - Lancement d'un tour de jeu.
+2019-03-21 09:01:26 INFO  Ordinateur:67 - Lancement du choix de la combinaison proposition de l'ordinateur.
+2019-03-21 09:01:26 INFO  ServiceDeCalculMastermind:125 - Calcul de la proposition du Mastermind.
+2019-03-21 09:01:28 INFO  ControleurJeu:516 - Lancement du calcul de la réponse.
+2019-03-21 09:01:28 INFO  Mode:114 - Calcul du vainqueur du mode Défenseur
+2019-03-21 09:01:28 INFO  ControleurJeu:292 - Lancement d'un tour de jeu.
+2019-03-21 09:01:28 INFO  Ordinateur:67 - Lancement du choix de la combinaison proposition de l'ordinateur.
+2019-03-21 09:01:28 INFO  ServiceDeCalculMastermind:125 - Calcul de la proposition du Mastermind.
+2019-03-21 09:01:30 INFO  ControleurJeu:516 - Lancement du calcul de la réponse.
+2019-03-21 09:01:30 INFO  Mode:114 - Calcul du vainqueur du mode Défenseur
+2019-03-21 09:01:30 INFO  ControleurJeu:292 - Lancement d'un tour de jeu.
+2019-03-21 09:01:30 INFO  Ordinateur:67 - Lancement du choix de la combinaison proposition de l'ordinateur.
+2019-03-21 09:01:30 INFO  ServiceDeCalculMastermind:125 - Calcul de la proposition du Mastermind.
+2019-03-21 09:01:33 INFO  ControleurJeu:516 - Lancement du calcul de la réponse.
+2019-03-21 09:01:33 INFO  Mode:114 - Calcul du vainqueur du mode Défenseur
+2019-03-21 09:01:33 INFO  ControleurJeu:292 - Lancement d'un tour de jeu.
+2019-03-21 09:01:33 INFO  Ordinateur:67 - Lancement du choix de la combinaison proposition de l'ordinateur.
+2019-03-21 09:01:33 INFO  ServiceDeCalculMastermind:125 - Calcul de la proposition du Mastermind.
+2019-03-21 09:01:35 INFO  ControleurJeu:516 - Lancement du calcul de la réponse.
+2019-03-21 09:01:35 INFO  Mode:114 - Calcul du vainqueur du mode Défenseur
+2019-03-21 09:01:35 INFO  ControleurJeu:292 - Lancement d'un tour de jeu.
+2019-03-21 09:01:35 INFO  Ordinateur:67 - Lancement du choix de la combinaison proposition de l'ordinateur.
+2019-03-21 09:01:35 INFO  ServiceDeCalculMastermind:125 - Calcul de la proposition du Mastermind.
+2019-03-21 09:01:38 INFO  ControleurJeu:516 - Lancement du calcul de la réponse.
+2019-03-21 09:01:38 INFO  Mode:114 - Calcul du vainqueur du mode Défenseur
+2019-03-21 09:01:38 INFO  ControleurJeu:292 - Lancement d'un tour de jeu.
+2019-03-21 09:01:38 INFO  Ordinateur:67 - Lancement du choix de la combinaison proposition de l'ordinateur.
+2019-03-21 09:01:38 INFO  ServiceDeCalculMastermind:125 - Calcul de la proposition du Mastermind.
+2019-03-21 09:01:40 INFO  ControleurJeu:516 - Lancement du calcul de la réponse.
+2019-03-21 09:01:40 INFO  Mode:114 - Calcul du vainqueur du mode Défenseur
+2019-03-21 09:01:40 INFO  ControleurJeu:531 - Affichage de la combinaison secrète.
+2019-03-21 09:01:40 INFO  ControleurJeu:542 - Affichage du vainqueur.
+2019-03-21 09:01:48 INFO  DialogueReglesJeux:34 - Construction de la boîte de dialogue des règles des jeux.
+2019-03-21 09:02:02 INFO  ControleurJeu:338 - Lancement de la boîte de dialogue du réglage des options des jeux.
+2019-03-21 09:02:02 INFO  DialogueOption:45 - Construction de la boîte de dialogue du réglage des options des jeux.
+2019-03-21 09:02:06 INFO  ModeleJeu:187 - Construction du modèle.
+2019-03-21 09:02:06 INFO  Ordinateur:34 - Construction du joueur ordinateur.
+2019-03-21 09:02:06 INFO  Humain:49 - Construction du joueur Humain.
+2019-03-21 09:02:06 INFO  ModeleJeu:216 - Initialisation du modèle.
+2019-03-21 09:02:06 INFO  ControleurJeu:542 - Affichage du vainqueur.
+2019-03-21 09:02:06 INFO  Vue:370 - Initialisation des panneaux de la vue.
+2019-03-21 09:02:07 INFO  ControleurJeu:191 - Lancement de la boîte de dialogue du choix des jeux.
+2019-03-21 09:02:07 INFO  DialogueJeu:40 - Construction de la boîte de dialogue du choix du jeu.
+2019-03-21 09:02:09 INFO  ControleurJeu:203 - Initialisation du jeu.
+2019-03-21 09:02:09 INFO  ModeleJeu:216 - Initialisation du modèle.
+2019-03-21 09:02:09 INFO  ServiceDeCalculMastermind:35 - Construction du service de calcul pour le Mastermind.
+2019-03-21 09:02:09 INFO  Vue:370 - Initialisation des panneaux de la vue.
+2019-03-21 09:02:09 INFO  ControleurJeu:214 - Lancement de la boîte de dialogue du choix des modes.
+2019-03-21 09:02:09 INFO  DialogueMode:44 - Construction de la boîte de dialogue du choix du mode.
+2019-03-21 09:02:10 INFO  ControleurJeu:226 - Initialisation du mode.
+2019-03-21 09:02:10 INFO  Ordinateur:82 - Calcul de la liste de toutes les combinaisons possibles pour l'ordinateur.
+2019-03-21 09:02:11 INFO  Humain:65 - Lancement du choix de la combinaison secrète de Grégory.
+2019-03-21 09:02:11 INFO  DialogueSelectionCombinaison:68 - Construction de la boîte de dialogue du choix de la combinaison secrète.
+2019-03-21 09:02:13 INFO  ModeleJeu:216 - Initialisation du modèle.
+2019-03-21 09:02:13 INFO  ControleurJeu:542 - Affichage du vainqueur.
+2019-03-21 09:02:13 INFO  ControleurJeu:219 - Lancement d'une nouvelle partie.
+2019-03-21 09:02:13 INFO  ControleurJeu:292 - Lancement d'un tour de jeu.
+2019-03-21 09:02:13 INFO  Ordinateur:67 - Lancement du choix de la combinaison proposition de l'ordinateur.
+2019-03-21 09:02:13 INFO  ServiceDeCalculMastermind:125 - Calcul de la proposition du Mastermind.
+2019-03-21 09:02:14 INFO  ControleurJeu:516 - Lancement du calcul de la réponse.
+2019-03-21 09:02:14 INFO  Mode:114 - Calcul du vainqueur du mode Défenseur
+2019-03-21 09:02:14 INFO  ControleurJeu:292 - Lancement d'un tour de jeu.
+2019-03-21 09:02:14 INFO  Ordinateur:67 - Lancement du choix de la combinaison proposition de l'ordinateur.
+2019-03-21 09:02:14 INFO  ServiceDeCalculMastermind:125 - Calcul de la proposition du Mastermind.
+2019-03-21 09:02:15 INFO  ControleurJeu:516 - Lancement du calcul de la réponse.
+2019-03-21 09:02:15 INFO  Mode:114 - Calcul du vainqueur du mode Défenseur
+2019-03-21 09:02:15 INFO  ControleurJeu:292 - Lancement d'un tour de jeu.
+2019-03-21 09:02:15 INFO  Ordinateur:67 - Lancement du choix de la combinaison proposition de l'ordinateur.
+2019-03-21 09:02:15 INFO  ServiceDeCalculMastermind:125 - Calcul de la proposition du Mastermind.
+2019-03-21 09:02:16 INFO  ControleurJeu:516 - Lancement du calcul de la réponse.
+2019-03-21 09:02:16 INFO  Mode:114 - Calcul du vainqueur du mode Défenseur
+2019-03-21 09:02:16 INFO  ControleurJeu:292 - Lancement d'un tour de jeu.
+2019-03-21 09:02:16 INFO  Ordinateur:67 - Lancement du choix de la combinaison proposition de l'ordinateur.
+2019-03-21 09:02:16 INFO  ServiceDeCalculMastermind:125 - Calcul de la proposition du Mastermind.
+2019-03-21 09:02:17 INFO  ControleurJeu:516 - Lancement du calcul de la réponse.
+2019-03-21 09:02:17 INFO  Mode:114 - Calcul du vainqueur du mode Défenseur
+2019-03-21 09:02:17 INFO  ControleurJeu:292 - Lancement d'un tour de jeu.
+2019-03-21 09:02:17 INFO  Ordinateur:67 - Lancement du choix de la combinaison proposition de l'ordinateur.
+2019-03-21 09:02:17 INFO  ServiceDeCalculMastermind:125 - Calcul de la proposition du Mastermind.
+2019-03-21 09:02:17 INFO  ControleurJeu:516 - Lancement du calcul de la réponse.
+2019-03-21 09:02:17 INFO  Mode:114 - Calcul du vainqueur du mode Défenseur
+2019-03-21 09:02:17 INFO  ControleurJeu:292 - Lancement d'un tour de jeu.
+2019-03-21 09:02:17 INFO  Ordinateur:67 - Lancement du choix de la combinaison proposition de l'ordinateur.
+2019-03-21 09:02:17 INFO  ServiceDeCalculMastermind:125 - Calcul de la proposition du Mastermind.
+2019-03-21 09:02:18 INFO  ControleurJeu:516 - Lancement du calcul de la réponse.
+2019-03-21 09:02:18 INFO  Mode:114 - Calcul du vainqueur du mode Défenseur
+2019-03-21 09:02:18 INFO  ControleurJeu:531 - Affichage de la combinaison secrète.
+2019-03-21 09:02:18 INFO  ControleurJeu:542 - Affichage du vainqueur.

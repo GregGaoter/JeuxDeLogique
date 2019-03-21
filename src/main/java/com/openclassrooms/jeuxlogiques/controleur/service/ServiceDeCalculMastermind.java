@@ -13,7 +13,9 @@ import com.openclassrooms.jeuxlogiques.modele.enumeration.PionReponseCouleur;
 
 /**
  * <b>ServiceDeCalculMastermind est la classe implémentant les méthodes de
- * calcul pour le jeu Mastermind.</b>
+ * calcul pour le jeu Mastermind.</b></br>
+ * La classe ServiceDeCalculMastermind étend la classe abstraite
+ * ServiceDeCalcul.
  * 
  * @author Grégory Gautier
  * @version 1.0
@@ -22,6 +24,12 @@ public class ServiceDeCalculMastermind extends ServiceDeCalcul {
 
 	private final static Logger log = Logger.getLogger(ServiceDeCalculMastermind.class);
 
+	/**
+	 * Constructeur du service de calcul pour le jeu Mastermind. Initialise le
+	 * nombre de pions de la combinaison secrète.
+	 * 
+	 * @param nbPionsCombinaisonSecrete nombre de pions de la combinaison secrète
+	 */
 	public ServiceDeCalculMastermind(int nbPionsCombinaisonSecrete) {
 		super(nbPionsCombinaisonSecrete);
 		log.info("Construction du service de calcul pour le Mastermind.");
@@ -30,9 +38,9 @@ public class ServiceDeCalculMastermind extends ServiceDeCalcul {
 	/**
 	 * Calcul la réponse du jeu Mastermind.
 	 * 
-	 * @param proposition : liste des pions de la combinaison proposition.
-	 * @param solution    : liste des pions de la combinaison solution.
-	 * @return Liste des pions de la combinaison réponse.
+	 * @param proposition liste des pions de la combinaison proposition
+	 * @param solution    liste des pions de la combinaison solution
+	 * @return Liste des pions de la combinaison réponse
 	 * @see Pion
 	 * @see PionCommun
 	 * @see PionReponseCouleur
@@ -101,6 +109,17 @@ public class ServiceDeCalculMastermind extends ServiceDeCalcul {
 		return reponse;
 	}
 
+	/**
+	 * Calcul la proposition de l'ordinateur pour le jeu Mastermind.
+	 * 
+	 * @param listeCombinaisonsPossibles liste des combinaisons possibles du jeu.
+	 * @param derniereProposition        dernière proposition de l'ordinateur
+	 * @param derniereProposition        dernière réponse obtenue
+	 * @return la nouvelle proposition de l'ordinateur pour le Mastermind
+	 * @see Pion
+	 * @see ServiceDeCalculMastermind#calculerReponse(List, List)
+	 * @see RandomUtils
+	 */
 	public List<Pion> calculerProposition(List<List<Pion>> listeCombinaisonsPossibles, List<Pion> derniereProposition,
 			List<Pion> derniereReponse) {
 		log.info("Calcul de la proposition du Mastermind.");

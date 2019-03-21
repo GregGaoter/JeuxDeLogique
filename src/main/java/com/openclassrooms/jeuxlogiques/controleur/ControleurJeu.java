@@ -25,28 +25,139 @@ import com.openclassrooms.jeuxlogiques.vue.dialogue.DialogueMode;
 import com.openclassrooms.jeuxlogiques.vue.dialogue.DialogueOption;
 import com.openclassrooms.jeuxlogiques.vue.dialogue.DialogueOptionJoueur;
 
+/**
+ * <b>ControleurJeu est une classe permettant de contrôler le déroulement des
+ * jeux.</b>
+ * 
+ * @author Grégory Gautier
+ * @version 1.0
+ */
 public class ControleurJeu {
 
 	private final static Logger log = Logger.getLogger(ControleurJeu.class);
 
+	/**
+	 * Texte séparant les positions en x et en y des pions dans les clefs de
+	 * recherche.
+	 * 
+	 * @see ControleurJeu#getClef(int, int)
+	 */
 	private final String separateurClef = "-";
 
+	/**
+	 * Modèle des jeux.
+	 * 
+	 * @see ControleurJeu#ControleurJeu(String[])
+	 * @see ControleurJeu#initialiserJeu()
+	 * @see ControleurJeu#lancerTour()
+	 * @see ControleurJeu#lancerDialogueOption(JFrame)
+	 * @see ControleurJeu#lancerDialogueOptionJoueur(JFrame)
+	 * @see ControleurJeu#getPionProposition(int)
+	 * @see ControleurJeu#setPionProposition(Pion)
+	 * @see ControleurJeu#calculerReponse()
+	 * @see ControleurJeu#afficherCombinaisonSecrete(Joueur)
+	 * @see ControleurJeu#setPionSelectionne()
+	 * @see ControleurJeu#setVueJoueur()
+	 * @see ControleurJeu#setVueOrdinateur()
+	 */
 	private ModeleJeu modele;
+
+	/**
+	 * Vue des jeux.
+	 * 
+	 * @see ControleurJeu#ControleurJeu(String[])
+	 * @see ControleurJeu#initialiserJeu()
+	 * @see ControleurJeu#lancerTour()
+	 * @see ControleurJeu#lancerDialogueOption(JFrame)
+	 * @see ControleurJeu#lancerDialogueOptionJoueur(JFrame)
+	 * @see ControleurJeu#calculerReponse()
+	 * @see ControleurJeu#afficherCombinaisonSecrete(Joueur)
+	 * @see ControleurJeu#afficherVainqueur(String)
+	 * @see ControleurJeu#setPionSelectionne()
+	 * @see ControleurJeu#setVueJoueur()
+	 * @see ControleurJeu#setVueOrdinateur()
+	 */
 	private Vue vue;
 
-	private Jeu jeu;
-	private Mode mode;
-
-	private boolean modeDeveloppeurQ;
-
-	private Joueur defenseur, attaquant;
-
+	/**
+	 * Service de calcul courant.
+	 * 
+	 * @see ControleurJeu#calculerReponse()
+	 * @see ControleurJeu#setCombinaisonProposition(List, List, List)
+	 */
 	private ServiceDeCalcul serviceDeCalcul;
 
+	/**
+	 * Jeu courant.
+	 * 
+	 * @see ControleurJeu#ControleurJeu(String[])
+	 * @see ControleurJeu#lancerDialogueJeu(JFrame)
+	 * @see ControleurJeu#initialiserJeu()
+	 * @see ControleurJeu#lancerDialogueOption(JFrame)
+	 * @see ControleurJeu#creerMemoire()
+	 * @see ControleurJeu#restaurerMemoire(Memoire)
+	 */
+	private Jeu jeu;
+
+	/**
+	 * Mode courant.
+	 * 
+	 * @see ControleurJeu#lancerTour()
+	 * @see ControleurJeu#calculerReponse()
+	 */
+	private Mode mode;
+
+	/**
+	 * Etat d'activation du mode développeur.
+	 * 
+	 * @see ControleurJeu#ControleurJeu(String[])
+	 * @see ControleurJeu#lancerTour()
+	 */
+	private boolean modeDeveloppeurQ;
+
+	/**
+	 * Défenseur courant. Le défenseur est le joueur qui a choisit la combinaison
+	 * secrète.
+	 * 
+	 * @see ControleurJeu#lancerTour()
+	 * @see ControleurJeu#setPionSecret(Pion)
+	 * @see ControleurJeu#getPionSecret(int)
+	 * @see ControleurJeu#setVueJoueur()
+	 * @see ControleurJeu#setVueOrdinateur()
+	 */
+	private Joueur defenseur;
+
+	/**
+	 * Attaquant courant. L'attaquant est le joueur qui doit deviner la combinaison
+	 * secrète.
+	 * 
+	 * @see ControleurJeu#lancerTour()
+	 * @see ControleurJeu#setPionSecret(Pion)
+	 * @see ControleurJeu#getPionSecret(int)
+	 * @see ControleurJeu#setVueJoueur()
+	 * @see ControleurJeu#setVueOrdinateur()
+	 */
+	private Joueur attaquant;
+
+	/**
+	 * Etat représentant si un joueur est gagnant.
+	 * 
+	 * @see ControleurJeu#lancerTour()
+	 */
 	private boolean gagnantQ;
 
 	private Iterator<Joueur> itDefenseurs, itAttaquants;
 
+	/**
+	 * Constructeur du contrôleur. Le constructeur instancie le modèle et la vue. Il
+	 * initialise le modèle et l'état du mode développeur. Il créé ensuite la vue.
+	 * 
+	 * @param modeDeveloppeur paramètre passé au lancement de l'application pour
+	 *                        activer le mode développeur
+	 * @see ModeleJeu
+	 * @see Vue
+	 * @see Parametre
+	 */
 	public ControleurJeu(String[] modeDeveloppeur) {
 		log.info("Construction du contrôleur.");
 		modele = new ModeleJeu();
@@ -65,6 +176,17 @@ public class ControleurJeu {
 		vue.creerVue();
 	}
 
+	/**
+	 * Lance la boîte de dialogue du choix des jeux et récupère le jeu sélectionné.
+	 * Initialise ensuite le jeu et lance la sélection du mode.
+	 * 
+	 * @param fenetreProprietaire fenêtre parente de la boîte de dialogue de
+	 *                            sélection des jeux.
+	 * @see Memoire
+	 * @see DialogueJeu
+	 * @see ControleurJeu#creerMemoire()
+	 * @see ControleurJeu#restaurerMemoire(Memoire)
+	 */
 	public void lancerDialogueJeu(JFrame fenetreProprietaire) {
 		log.info("Lancement de la boîte de dialogue du choix des jeux.");
 		Memoire memoire = creerMemoire();
@@ -163,6 +285,9 @@ public class ControleurJeu {
 		itAttaquants = mode.getListeAttaquants().iterator();
 	}
 
+	/**
+	 * Lance un nouveau tour de jeu dans la partie en cours.
+	 */
 	public void lancerTour() {
 		log.info("Lancement d'un tour de jeu.");
 		if (!gagnantQ) {
@@ -200,6 +325,15 @@ public class ControleurJeu {
 		vue.getFenetrePrincipale().pack();
 	}
 
+	/**
+	 * Lance la boîte de dialogue du réglage des options des jeux et récupère les
+	 * valeurs. Initialise ensuite le modèle et met à jour la vue.
+	 * 
+	 * @param fenetreProprietaire fenêtre parente de la boîte de dialogue du réglage
+	 *                            des options des jeux
+	 * 
+	 * @see DialogueOption
+	 */
 	public void lancerDialogueOption(JFrame fenetreProprietaire) {
 		log.info("Lancement de la boîte de dialogue du réglage des options des jeux.");
 		DialogueOption dialogueOptions = new DialogueOption(fenetreProprietaire, modele);
@@ -223,6 +357,15 @@ public class ControleurJeu {
 		}
 	}
 
+	/**
+	 * Lance la boîte de dialogue du réglage du nom du joueur et récupère la valeur.
+	 * Initialise ensuite à jour le modèle et la vue.
+	 * 
+	 * @param fenetreProprietaire fenêtre parente de la boîte de dialogue du réglage
+	 *                            du nom du joueur
+	 * 
+	 * @see DialogueOptionJoueur
+	 */
 	public void lancerDialogueOptionJoueur(JFrame fenetreProprietaire) {
 		log.info("Lancement de la boîte de dialogue du nom du joueur.");
 		DialogueOptionJoueur dialogueOptionJoueur = new DialogueOptionJoueur(fenetreProprietaire);
@@ -234,30 +377,86 @@ public class ControleurJeu {
 		dialogueOptionJoueur.dispose();
 	}
 
+	/**
+	 * Créé une mémoire du jeu courant.
+	 * 
+	 * @return une mémoire contenant l'état du jeu courant.
+	 * @see Memoire
+	 */
 	public Memoire creerMemoire() {
 		return new Memoire(jeu);
 	}
 
+	/**
+	 * Restaure l'état du jeu précédent gardé en mémoire..
+	 * 
+	 * @param memoire la mémoire du jeu précédent
+	 * @see Memoire#getJeu()
+	 */
 	public void restaurerMemoire(Memoire memoire) {
 		jeu = memoire.getJeu();
 	}
 
+	/**
+	 * Demande au joueur Humain de définir le pion de la liste des pions utilisables
+	 * que le joueur a sélectionné avec la souris afin de constituer la combinaison
+	 * secrète. Cette action est valable uniquement dans la boîte de dialogue de
+	 * sélection de la combinaison secrète.
+	 * 
+	 * @param pion le pion sélectionné par un clique de la souris
+	 * @see Humain#setPionSecret(Pion)
+	 */
 	public void setPionSecret(Pion pion) {
 		((Humain) defenseur).setPionSecret(pion);
 	}
 
+	/**
+	 * Demande au joueur Humain le pion de la liste des pions utilisables que le
+	 * joueur a sélectionné avec la souris afin de le placer dans la combinaison
+	 * secrète. Cette action est valable uniquement dans la boîte de dialogue de
+	 * sélection de la combinaison secrète.
+	 * 
+	 * @param x position en x du pion dans la combinaison secrète.
+	 * @see Humain#getPionSecret(int)
+	 */
 	public void getPionSecret(int x) {
 		((Humain) defenseur).getPionSecret(x);
 	}
 
+	/**
+	 * Récupère la clef de recherche des pions dans les listes des combinaisons.
+	 * 
+	 * @param x position en x du pion dans la combinaison
+	 * @param y position en y du pion dans la combinaison
+	 * @return la valeur de la clef de recherche
+	 * @see String#valueOf(boolean)
+	 */
 	private String getClef(int x, int y) {
 		return String.valueOf(x) + separateurClef + String.valueOf(y);
 	}
 
+	/**
+	 * Demande au modèle le pion de la liste des pions utilisables que le joueur a
+	 * sélectionné avec la souris afin de le placer dans la combinaison proposition.
+	 * Cette action est valable uniquement dans la zone proposition du plateau de
+	 * jeu.
+	 * 
+	 * @param x position en x du pion dans la combinaison proposition.
+	 * @see ModeleJeu#getPionProposition(int)
+	 */
 	public void getPionProposition(int x) {
 		modele.getPionProposition(x);
 	}
 
+	/**
+	 * Demande au modèle de définir le pion de la liste des pions utilisables que le
+	 * joueur a sélectionné avec la souris afin de constituer la combinaison
+	 * proposition. Cette action est valable uniquement dans la zone des pions
+	 * utilisables du plateau de jeu.
+	 * 
+	 * @param pion le pion sélectionné par un clique de la souris
+	 * @see ModeleJeu#setPionProposition(Pion)
+	 */
 	public void setPionProposition(Pion pion) {
 		modele.setPionProposition(pion);
 	}
@@ -302,6 +501,17 @@ public class ControleurJeu {
 		this.gagnantQ = gagnantQ;
 	}
 
+	/**
+	 * Lance le calcul de la réponse.
+	 * <p>
+	 * <ul>
+	 * <li>Demande au service de calcul de calculer la réponse</li>
+	 * <li>Met à jour la combinaison réponse de l'attaquant et du modèle</li>
+	 * <li>Actualise la vue</li>
+	 * <li>Demande au mode de calculer le vainqueur</li>
+	 * </ul>
+	 * </p>
+	 */
 	public void calculerReponse() {
 		log.info("Lancement du calcul de la réponse.");
 		attaquant.setCombinaisonReponse(
@@ -311,17 +521,34 @@ public class ControleurJeu {
 		mode.calculerVainqueur(modele, this, vue);
 	}
 
+	/**
+	 * Demande à la vue d'afficher la combinaison secrète.
+	 * 
+	 * @param joueur joueur a qui appartient la combinaison secrète à afficher
+	 * @see Joueur
+	 */
 	public void afficherCombinaisonSecrete(Joueur joueur) {
 		log.info("Affichage de la combinaison secrète.");
 		for (int i = 0; i < modele.getNbPionsCombinaison(); i++)
 			vue.setPion(vue.getListePanneauSecret(), getClef(i + 1, 1), joueur.getCombinaisonSecrete().get(i));
 	}
 
+	/**
+	 * Demande à la vue d'afficher le vainqueur.
+	 * 
+	 * @param vainqueur nom du vaiqueur
+	 */
 	public void afficherVainqueur(String vainqueur) {
 		log.info("Affichage du vainqueur.");
 		vue.getVainqueur().setText(vainqueur);
 	}
 
+	/**
+	 * Lance une nouvelle partie du même jeu et du même mode.
+	 * 
+	 * @param fenetreProprietaire fenêtre parente
+	 * @see ControleurJeu#lancerTour()
+	 */
 	public void rejouerMemeJeu(JFrame fenetreProprietaire) {
 		log.info("Lancement pour rejouer au même jeu.");
 		initialiserJeu();
@@ -329,17 +556,36 @@ public class ControleurJeu {
 		lancerTour();
 	}
 
+	/**
+	 * Demande à la vue de mettre à jour le pion sélectionné par le joueur.
+	 * 
+	 * @see ImageIcon
+	 */
 	public void setPionSelectionne() {
 		vue.getPionSelectionne()
 				.setIcon(new ImageIcon(getClass().getResource(modele.getPionSelectionne().getNomImage())));
 	}
 
+	/**
+	 * Demande au service de calcul de calculer la combinaison proposition de
+	 * l'attaquant.
+	 * 
+	 * @param listeCombinaisonsPossibles liste des combinaisons possibles du jeu.
+	 * @param combinaisonProposition     combinaison proposition
+	 * @param combinaisonReponse         combinaison réponse
+	 * @return la nouvelle combinaison proposition
+	 * @see Pion
+	 * @see ServiceDeCalcul#calculerProposition(List, List, List)
+	 */
 	public List<Pion> setCombinaisonProposition(List<List<Pion>> listeCombinaisonsPossibles,
 			List<Pion> combinaisonProposition, List<Pion> combinaisonReponse) {
 		return serviceDeCalcul.calculerProposition(listeCombinaisonsPossibles, combinaisonProposition,
 				combinaisonReponse);
 	}
 
+	/**
+	 * Demande à la vue de mettre à jour l'affichage du joueur.
+	 */
 	public void setVueJoueur() {
 		log.info("Actualisation de la vue du joueur.");
 		if (defenseur.getHumainQ()) {
@@ -356,6 +602,9 @@ public class ControleurJeu {
 		vue.actualiserPanneauValidation();
 	}
 
+	/**
+	 * Demande à la vue de mettre à jour l'affichage de l'ordinateur.
+	 */
 	public void setVueOrdinateur() {
 		log.info("Actualisation de la vue de l'ordinateur.");
 		if (!defenseur.getHumainQ()) {

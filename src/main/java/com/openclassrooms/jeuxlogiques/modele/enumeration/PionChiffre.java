@@ -2,7 +2,8 @@ package com.openclassrooms.jeuxlogiques.modele.enumeration;
 
 /**
  * <b>PionChiffre est l'énumération contenant les pions représentant des
- * chiffres.</b>
+ * chiffres.</b></br>
+ * PionChiffre implémente l'interface Pion.
  * 
  * <p>
  * Un pion chiffre est caractérisé par les informations suivantes :
@@ -36,6 +37,15 @@ public enum PionChiffre implements Pion {
 	 */
 	private final int valeur;
 
+	/**
+	 * Constructeur du pion chiffre.</br>
+	 * Le constructeur initialise le nom de l'image et la valeur du pion chiffre.
+	 * 
+	 * @param nomImage le nom du fichier image du pion chiffre
+	 * @param min      la valeur du pion chiffre
+	 * @see PionChiffre#getNomImage()
+	 * @see PionChiffre#getValeur()
+	 */
 	private PionChiffre(String nomImage, int valeur) {
 		this.nomImage = nomImage;
 		this.valeur = valeur;

@@ -7,6 +7,7 @@ import com.openclassrooms.jeuxlogiques.modele.enumeration.Pion;
 
 public class MouseListenerGetPionSecret extends MouseListenerPion {
 
+	// Position x du pion dans la combinaison secrète
 	private int x;
 
 	public MouseListenerGetPionSecret(ControleurJeu controleur, Pion pion, int x) {
@@ -25,7 +26,6 @@ public class MouseListenerGetPionSecret extends MouseListenerPion {
 	}
 
 	public void mousePressed(MouseEvent e) {
-		// controleur.getPionSecret(x);
 	}
 
 	public void mouseReleased(MouseEvent e) {
